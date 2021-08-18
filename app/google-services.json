@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "621494620379",
+    "project_id": "dgtechhealthcare",
+    "storage_bucket": "dgtechhealthcare.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:621494620379:android:ce8b57a657e1815babbcfe",
+        "android_client_info": {
+          "package_name": "com.example.dgtechhealthcare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "621494620379-79ufi6fj8lpnfu506a02qpue8ukmh766.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dgtechhealthcare",
+            "certificate_hash": "a395835c71c91cc6034ad10655b5f0d3d45d08b3"
+          }
+        },
+        {
+          "client_id": "621494620379-udjscap8ggdgit7ubrpn39mjs8k1f21j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCN169mtsp_Y3FiWH0QVd409R3BZo6WxRA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "621494620379-udjscap8ggdgit7ubrpn39mjs8k1f21j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
