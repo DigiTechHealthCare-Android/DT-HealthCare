@@ -1,33 +1,40 @@
 package com.example.dgtechhealthcare.view.fragments
 
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import com.example.dgtechhealthcare.R
+import com.example.dgtechhealthcare.SignInActivity
+import com.example.dgtechhealthcare.utils.AboutUsFragment
+import com.example.dgtechhealthcare.utils.FirebasePresenter
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SettingsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SettingsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    lateinit var logoutB : TextView
+    lateinit var aboutus : TextView
+    lateinit var rateus : TextView
+    lateinit var feedback : TextView
+    lateinit var userImageV : ImageView
+    lateinit var username : TextView
+    lateinit var useremail : TextView
+
+    lateinit var reference : FirebasePresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        arguments?.let {}
     }
 
     override fun onCreateView(
@@ -38,23 +45,76 @@ class SettingsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SettingsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SettingsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        logoutB = view.findViewById(R.id.userLogoutB)
+        aboutus = view.findViewById(R.id.settingsAboutUs)
+        rateus = view.findViewById(R.id.settingsRate)
+        feedback = view.findViewById(R.id.settingsFeedback)
+        reference = FirebasePresenter(view)
+
+        settingsUserData(reference,reference.currentUserId!!,requireActivity())
+
+        logoutB.setOnClickListener {
+            reference.auth.signOut()
+            val i = Intent(activity,SignInActivity::class.java)
+            startActivity(i)
+            activity?.finish()
+        }
+
+        aboutus.setOnClickListener {
+            val frag = AboutUsFragment()
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.settingsFrame,frag)
+                ?.addToBackStack(null)?.commit()
+        }
+
+        rateus.setOnClickListener {
+            val i = Intent(Intent.ACTION_VIEW)
+            i.setData(Uri.parse("market://details?id=com.example.dgtechhealthcare"))
+            startActivity(i)
+        }
+
+        feedback.setOnClickListener {
+            val i = Intent(Intent.ACTION_SENDTO).apply {
+                data = Uri.parse("mailto:dgtech.health@gmail.com")
+                putExtra(Intent.EXTRA_EMAIL,"dgtech.health@gmail.com")
+                putExtra(Intent.EXTRA_SUBJECT, "Feedback")
             }
+            if(i.resolveActivity(activity?.packageManager!!) != null) startActivity(i)
+        }
+    }
+
+    fun initialiseValues(){
+        userImageV = view?.findViewById(R.id.settingsUserIV)!!
+        username = view?.findViewById(R.id.settingsNameT)!!
+        useremail = view?.findViewById(R.id.settingsEmailT)!!
+    }
+
+    fun settingsUserData(reference:FirebasePresenter,currentUserId:String,activity: Context){
+
+        initialiseValues()
+
+        reference.userReference.child(currentUserId).addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.hasChild("profileImage")) {
+                    val img = snapshot.child("profileImage").value.toString()
+                    Picasso.get().load(img).into(userImageV)
+                }
+                if(snapshot.hasChild("username")) {
+                    val name = snapshot.child("username").value.toString()
+                    username.text = name
+                }
+                if(snapshot.hasChild("email")) {
+                    val email = snapshot.child("email").value.toString()
+                    useremail.text = email
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {}
+
+        })
     }
 }

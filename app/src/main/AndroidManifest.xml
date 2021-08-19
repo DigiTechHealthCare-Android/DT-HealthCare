@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dgtechhealthcare">
 
+    <uses-permission android:name="android.permission.INTERNETt" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,12 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DGTechHealthCare">
         <activity
-            android:name=".PatientsNavigationActivity"
+            android:name=".utils.ViewPdfActivity"
             android:exported="true" />
         <activity
-            android:name=".view.PatientNavigationActivity"
-            android:exported="true"
-            android:label="@string/title_activity_patient_navigation" />
+            android:name=".PatientsNavigationActivity"
+            android:exported="true" />
         <activity
             android:name=".view.DoctorNavigationActivity"
             android:exported="true" />

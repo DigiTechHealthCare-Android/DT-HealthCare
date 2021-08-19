@@ -3,15 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DigiTech/DT-HealthCare/app/src/main/res/layout/activity_nurse_navigation.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DigiTech/DT-HealthCare/app/src/main/res/layout/activity_patient_navigation.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DigiTech/DT-HealthCare/app/src/main/res/layout/activity_patients_navigation.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DigiTech/DT-HealthCare/app/src/main/res/layout/fragment_patient_article.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DigiTech/DT-HealthCare/app/src/main/res/layout/fragment_patient_profile.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DigiTech/DT-HealthCare/app/src/main/res/layout/fragment_settings.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DigiTech/DT-HealthCare/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DigiTech/DT-HealthCare/app/src/main/res/menu/nurse_nav_menu.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DigiTech/DT-HealthCare/app/src/main/res/menu/patient_nav_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Work/DGTechHealthCare/app/src/main/res/drawable-v24/button_bg.xml" value="0.3828125" />
         <entry key="..\:/Work/DGTechHealthCare/app/src/main/res/drawable-v24/edit_text_bg.xml" value="0.3828125" />
         <entry key="..\:/Work/DGTechHealthCare/app/src/main/res/drawable-v24/view_bg.xml" value="0.3828125" />
@@ -40,6 +31,13 @@
         <entry key="..\:/Work/DGTechHealthCare/app/src/main/res/menu/doctor_nav_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Work/DGTechHealthCare/app/src/main/res/menu/nurse_nav_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Work/DGTechHealthCare/app/src/main/res/menu/pharmacist_nav_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/activity_patients_navigation.xml" value="0.36666666666666664" />
+        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/activity_splash.xml" value="0.36666666666666664" />
+        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/activity_view_pdf.xml" value="0.36666666666666664" />
+        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_about_us.xml" value="0.36666666666666664" />
+        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_patient_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_patient_registration.xml" value="0.36666666666666664" />
+        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_settings.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

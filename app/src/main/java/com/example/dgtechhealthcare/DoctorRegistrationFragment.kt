@@ -9,9 +9,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.example.dgtechhealthcare.presenter.FirebasePresenter
+import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.view.DoctorNavigationActivity
-import com.example.dgtechhealthcare.view.NurseNavigationActivity
 
 class DoctorRegistrationFragment : Fragment() {
 

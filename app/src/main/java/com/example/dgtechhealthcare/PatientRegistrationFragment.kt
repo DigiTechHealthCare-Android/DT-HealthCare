@@ -10,7 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.Toast
-import com.example.dgtechhealthcare.presenter.FirebasePresenter
+import com.example.dgtechhealthcare.utils.FirebasePresenter
 
 class PatientRegistrationFragment : Fragment() {
 
