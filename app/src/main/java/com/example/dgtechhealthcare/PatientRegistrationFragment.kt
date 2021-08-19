@@ -11,11 +11,6 @@ import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.Toast
 import com.example.dgtechhealthcare.presenter.FirebasePresenter
-import com.example.dgtechhealthcare.view.NurseNavigationActivity
-import com.example.dgtechhealthcare.view.PatientNavigationActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 
 class PatientRegistrationFragment : Fragment() {
 
@@ -78,7 +73,7 @@ class PatientRegistrationFragment : Fragment() {
                     if(it.isSuccessful)
                     {
                         Toast.makeText(activity,"Account successfully created",Toast.LENGTH_LONG).show()
-                        val i = Intent(activity, PatientNavigationActivity::class.java)
+                        val i = Intent(activity, PatientsNavigationActivity::class.java)
                         startActivity(i)
                         activity?.finish()
                     } else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
