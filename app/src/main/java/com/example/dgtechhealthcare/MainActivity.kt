@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                 Thread.sleep(1000)
 
                 if(type?.compareTo("patient") ==0){
-                    val i = Intent(this@MainActivity, PatientNavigationActivity::class.java)
+                    val i = Intent(this@MainActivity, PatientsNavigationActivity::class.java)
                     startActivity(i)
                     loadingBar.dismiss()
                     finish()
