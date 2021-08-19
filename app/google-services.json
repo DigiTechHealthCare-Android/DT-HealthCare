@@ -1,41 +1,34 @@
 {
   "project_info": {
-    "project_number": "621494620379",
-    "project_id": "dgtechhealthcare",
-    "storage_bucket": "dgtechhealthcare.appspot.com"
+    "project_number": "818986015455",
+    "firebase_url": "https://testdatabase-8dfa3-default-rtdb.firebaseio.com",
+    "project_id": "testdatabase-8dfa3",
+    "storage_bucket": "testdatabase-8dfa3.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:621494620379:android:ce8b57a657e1815babbcfe",
+        "mobilesdk_app_id": "1:818986015455:android:f2204b1510bda6388fe76a",
         "android_client_info": {
           "package_name": "com.example.dgtechhealthcare"
         }
       },
       "oauth_client": [
         {
-          "client_id": "621494620379-79ufi6fj8lpnfu506a02qpue8ukmh766.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.dgtechhealthcare",
-            "certificate_hash": "a395835c71c91cc6034ad10655b5f0d3d45d08b3"
-          }
-        },
-        {
-          "client_id": "621494620379-udjscap8ggdgit7ubrpn39mjs8k1f21j.apps.googleusercontent.com",
+          "client_id": "818986015455-fos8q6i9rftod9jsgmp83vreeotlpe5d.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCN169mtsp_Y3FiWH0QVd409R3BZo6WxRA"
+          "current_key": "AIzaSyCB6oCrGuNo0NgPc0Cc_yNrs4CiEBth95M"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "621494620379-udjscap8ggdgit7ubrpn39mjs8k1f21j.apps.googleusercontent.com",
+              "client_id": "818986015455-fos8q6i9rftod9jsgmp83vreeotlpe5d.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

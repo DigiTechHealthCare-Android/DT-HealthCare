@@ -29,23 +29,35 @@ class SetupActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         spinner.onItemSelectedListener = this
 
 
-        val logout = findViewById<Button>(R.id.logoutB)
+        /*val logout = findViewById<Button>(R.id.logoutB)
 
         logout.setOnClickListener {
             auth.signOut()
             val i = Intent(this,SignInActivity::class.java)
             startActivity(i)
             finish()
-        }
+        }*/
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         when(roles[position])
         {
-            "Patient" -> {}
-            "Doctor" -> {}
-            "Nurse" -> {}
-            "Pharmacist" -> {}
+            "Patient" -> {
+                val frag = PatientRegistrationFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.setupFrame,frag).commit()
+            }
+            "Doctor" -> {
+                val frag = DoctorRegistrationFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.setupFrame,frag).commit()
+            }
+            "Nurse" -> {
+                val frag = NurseRegistrationFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.setupFrame,frag).commit()
+            }
+            "Pharmacist" -> {
+                val frag = PharmacistRegistrationFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.setupFrame,frag).commit()
+            }
         }
     }
 
