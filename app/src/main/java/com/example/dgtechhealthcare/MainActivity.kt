@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                     FlagTask().execute()
                 }
                 result.await()!!
-                Thread.sleep(1000)
+                Thread.sleep(4000)
 
                 if(type?.compareTo("patient") ==0){
                     val i = Intent(this@MainActivity, PatientsNavigationActivity::class.java)
