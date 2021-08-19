@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nurseProfile"
+        android:title="Profile"
+        android:icon="@drawable/profile"/>
+    <item
+        android:id="@+id/nurseArticle"
+        android:title="Article"
+        android:icon="@drawable/article"/>
+    <item
+        android:id="@+id/nurseSettings"
+        android:title="Settings"
+        android:icon="@drawable/settings"/>
+</menu>

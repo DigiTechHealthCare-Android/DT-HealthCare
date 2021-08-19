@@ -11,7 +11,10 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.example.dgtechhealthcare.presenter.FirebasePresenter
+import com.example.dgtechhealthcare.view.DoctorNavigationActivity
+import com.example.dgtechhealthcare.view.NurseNavigationActivity
 import com.example.dgtechhealthcare.view.PatientNavigationActivity
+import com.example.dgtechhealthcare.view.PharmacistNavigationActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -64,13 +67,26 @@ class MainActivity : AppCompatActivity() {
                     loadingBar.dismiss()
                     runOnUiThread {
                         Toast.makeText(this@MainActivity,"Welcome Doctor",Toast.LENGTH_LONG).show()
+                        val i = Intent(this@MainActivity,DoctorNavigationActivity::class.java)
+                        startActivity(i)
+                        finish()
                     }
                 } else if(type?.compareTo("nurse") == 0 ) {
                     loadingBar.dismiss()
-                    runOnUiThread { Toast.makeText(this@MainActivity,"Welcome",Toast.LENGTH_LONG).show() }
+                    runOnUiThread {
+                        Toast.makeText(this@MainActivity,"Welcome",Toast.LENGTH_LONG).show()
+                        val i = Intent(this@MainActivity, NurseNavigationActivity::class.java)
+                        startActivity(i)
+                        finish()
+                    }
                 } else if(type?.compareTo("pharmacist") == 0) {
                     loadingBar.dismiss()
-                    runOnUiThread { Toast.makeText(this@MainActivity,"Shop's open",Toast.LENGTH_LONG).show() }
+                    runOnUiThread {
+                        Toast.makeText(this@MainActivity,"Shop's open",Toast.LENGTH_LONG).show()
+                        val i = Intent(this@MainActivity, PharmacistNavigationActivity::class.java)
+                        startActivity(i)
+                        finish()
+                    }
                 }
             }
         } else {

@@ -1,5 +1,6 @@
 package com.example.dgtechhealthcare
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,8 @@ import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.Toast
 import com.example.dgtechhealthcare.presenter.FirebasePresenter
+import com.example.dgtechhealthcare.view.NurseNavigationActivity
+import com.example.dgtechhealthcare.view.PatientNavigationActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -75,6 +78,9 @@ class PatientRegistrationFragment : Fragment() {
                     if(it.isSuccessful)
                     {
                         Toast.makeText(activity,"Account successfully created",Toast.LENGTH_LONG).show()
+                        val i = Intent(activity, PatientNavigationActivity::class.java)
+                        startActivity(i)
+                        activity?.finish()
                     } else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
                 }
             }

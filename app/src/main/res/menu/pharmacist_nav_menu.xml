@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/pharmaProfile"
+        android:title="Profile"
+        android:icon="@drawable/profile"/>
+    <item
+        android:id="@+id/pharmaRequest"
+        android:icon="@drawable/medicalrequest"
+        android:title="Requests" />
+    <item
+        android:id="@+id/pharmaSettings"
+        android:title="Settings"
+        android:icon="@drawable/settings"/>
+</menu>

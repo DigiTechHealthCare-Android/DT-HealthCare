@@ -41,7 +41,7 @@ class SignInActivity : AppCompatActivity() {
             auth.signInWithEmailAndPassword(email,password).addOnCompleteListener {
                 if(it.isSuccessful) {
                     Toast.makeText(this,"Welcome!",Toast.LENGTH_LONG).show()
-                    val i = Intent(this,SetupActivity::class.java)
+                    val i = Intent(this,MainActivity::class.java)
                     startActivity(i)
                     finish()
                 } else {

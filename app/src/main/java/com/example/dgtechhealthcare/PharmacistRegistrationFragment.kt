@@ -1,5 +1,6 @@
 package com.example.dgtechhealthcare
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.example.dgtechhealthcare.presenter.FirebasePresenter
+import com.example.dgtechhealthcare.view.NurseNavigationActivity
+import com.example.dgtechhealthcare.view.PharmacistNavigationActivity
 
 class PharmacistRegistrationFragment : Fragment() {
 
@@ -61,6 +64,9 @@ class PharmacistRegistrationFragment : Fragment() {
                     if(it.isSuccessful)
                     {
                         Toast.makeText(activity,"Account successfully created",Toast.LENGTH_LONG).show()
+                        val i = Intent(activity, PharmacistNavigationActivity::class.java)
+                        startActivity(i)
+                        activity?.finish()
                     } else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
                 }
             }
