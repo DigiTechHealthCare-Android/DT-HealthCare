@@ -8,10 +8,10 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="500dp"
+        android:layout_width="411dp"
+        android:layout_height="285dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/background"
+        android:src="@drawable/doctorimage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".27"
         app:layout_constraintHorizontal_bias="0.0"
@@ -19,8 +19,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="416dp"
+        android:layout_height="482dp"
         android:background="@drawable/view_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +56,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
             android:id="@+id/emailEV"
@@ -71,7 +72,8 @@
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userEV" />
+            app:layout_constraintTop_toBottomOf="@+id/userEV"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
             android:id="@+id/passwordEV"
@@ -87,7 +89,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailEV" />
+            app:layout_constraintTop_toBottomOf="@+id/emailEV"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
             android:id="@+id/conPassEV"
@@ -103,7 +106,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordEV" />
+            app:layout_constraintTop_toBottomOf="@+id/passwordEV"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <Button
             android:id="@+id/registerB"

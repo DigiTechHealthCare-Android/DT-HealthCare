@@ -87,9 +87,9 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         } else {
-            val i = Intent(this,SignInActivity::class.java)
-            startActivity(i)
-            finish()
+//            val i = Intent(this,SignInActivity::class.java)
+//            startActivity(i)
+//            finish()
         }
 
         signUpButton = findViewById(R.id.signupB)

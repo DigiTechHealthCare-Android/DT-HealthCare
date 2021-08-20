@@ -8,10 +8,10 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="500dp"
+        android:layout_width="411dp"
+        android:layout_height="282dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/background"
+        android:src="@drawable/doctorimage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".27"
         app:layout_constraintHorizontal_bias="0.0"
@@ -19,8 +19,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="414dp"
+        android:layout_height="481dp"
         android:background="@drawable/view_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="76dp"
-            android:text="Login here"
+            android:text="Login Here"
             android:textColor="@color/purple_700"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -55,7 +55,8 @@
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
             android:id="@+id/passE"
@@ -70,7 +71,8 @@
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailE" />
+            app:layout_constraintTop_toBottomOf="@+id/emailE"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <Button
             android:id="@+id/loginB"

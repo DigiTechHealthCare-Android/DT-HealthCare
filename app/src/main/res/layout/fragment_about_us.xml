@@ -16,7 +16,7 @@
         android:id="@+id/imageView"
         android:layout_width="174dp"
         android:layout_height="149dp"
-        android:src="@drawable/logo"
+        android:src="@drawable/logonew"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
