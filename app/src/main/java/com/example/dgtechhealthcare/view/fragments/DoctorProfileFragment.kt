@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.dgtechhealthcare.R
+import com.example.dgtechhealthcare.editProfile.EditDoctorProfileFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -60,7 +61,10 @@ class DoctorProfileFragment : Fragment() {
     }
 
     private fun editUserProfile() {
-        TODO("Not yet implemented")
+        val frag = EditDoctorProfileFragment()
+        activity?.supportFragmentManager
+            ?.beginTransaction()?.replace(R.id.doctorProfileFrame,frag)
+            ?.addToBackStack(null)?.commit()
     }
 
     private fun populateDoctorProfile() {

@@ -44,7 +44,7 @@ class EditPatientProfileFragment : Fragment() {
 
         initializeValues(view)
 
-        val patientDetails = PatientEditData(editName,editPhone,editDob,editRG,editFather,editMother,editOther,editDoctor,editHospital)
+        val patientDetails = PatientClass(editName,editPhone,editDob,editRG,editFather,editMother,editOther,editDoctor,editHospital)
         editPresenter.populateEditPatientProfile(patientDetails)
 
         editUpdate.setOnClickListener {

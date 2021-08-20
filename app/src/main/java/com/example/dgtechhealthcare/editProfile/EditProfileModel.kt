@@ -3,7 +3,6 @@ package com.example.dgtechhealthcare.editProfile
 import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
-import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -13,7 +12,7 @@ class EditProfileModel(val view: View) {
 
     val reference = FirebasePresenter(view)
 
-    fun editPatientInfo(patientDetails : PatientEditData){
+    fun editPatientInfo(patientDetails : PatientClass){
 
         reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -31,7 +30,7 @@ class EditProfileModel(val view: View) {
         })
     }
 
-    fun updatePatientProfile(patientDetails: PatientEditData) {
+    fun updatePatientProfile(patientDetails: PatientClass) {
         reference.userReference.child(reference.currentUserId!!).child("username").setValue(patientDetails.name.text.toString())
         reference.userReference.child(reference.currentUserId!!).child("contactNo").setValue(patientDetails.mob.text.toString())
         reference.userReference.child(reference.currentUserId!!).child("dateOfBirth").setValue(patientDetails.dob.text.toString())
@@ -70,8 +69,35 @@ class EditProfileModel(val view: View) {
                 override fun onCancelled(error: DatabaseError) {}
             })
         }
-
-
     }
 
+    fun editDoctorInfo(doctorDetails: DoctorClass){
+        reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val name = snapshot.child("username").value.toString()
+                val mob = snapshot.child("contact").value.toString()
+                val hospital = snapshot.child("hospital").value.toString()
+                val special = snapshot.child("specialization").value.toString()
+
+                doctorDetails.name.setText(name)
+                doctorDetails.contact.setText(mob)
+                doctorDetails.hospital.setText(hospital)
+                doctorDetails.specialization.setText(special)
+            }
+            override fun onCancelled(error: DatabaseError) {}
+        })
+    }
+
+    fun updateDoctorProfile(doctorDetails: DoctorClass){
+        val hm = HashMap<String,Any>()
+        hm["username"] = doctorDetails.name.text.toString()
+        hm["contact"] = doctorDetails.contact.text.toString()
+        hm["hospital"] = doctorDetails.hospital.text.toString()
+        hm["specialization"] = doctorDetails.specialization.text.toString()
+
+        reference.userReference.child(reference.currentUserId!!).updateChildren(hm).addOnCompleteListener {
+            if(it.isSuccessful) Toast.makeText(view.context,"Profile Updated",Toast.LENGTH_LONG).show()
+            else Toast.makeText(view.context,"Error: ${it.exception?.message}",Toast.LENGTH_LONG).show()
+        }
+    }
 }
