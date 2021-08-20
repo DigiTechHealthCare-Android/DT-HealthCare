@@ -16,6 +16,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.example.dgtechhealthcare.R
+import com.example.dgtechhealthcare.editProfile.EditPatientProfileFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.utils.ViewPdfActivity
 import com.google.firebase.database.DataSnapshot
@@ -28,6 +29,7 @@ class PatientProfileFragment : Fragment() {
     lateinit var reference : FirebasePresenter
 
     lateinit var userprofileImg : ImageView
+    lateinit var editProfileIV : ImageView
     lateinit var username : TextView
     lateinit var mobile : TextView
     lateinit var userdob : TextView
@@ -59,6 +61,7 @@ class PatientProfileFragment : Fragment() {
         reference = FirebasePresenter(view)
 
         userprofileImg = view.findViewById(R.id.patientIV)
+        editProfileIV = view.findViewById(R.id.editProfileB)
         username = view.findViewById(R.id.patientName)
         mobile = view.findViewById(R.id.patientMob)
         userdob = view.findViewById(R.id.patientDob)
@@ -72,6 +75,10 @@ class PatientProfileFragment : Fragment() {
             gallery.setType("image/*")
             choice = 1
             startActivityForResult(gallery,galleryPick)
+        }
+
+        editProfileIV.setOnClickListener {
+            editProfilePT()
         }
 
         uploadReport.setOnClickListener {
@@ -131,6 +138,13 @@ class PatientProfileFragment : Fragment() {
             override fun onCancelled(error: DatabaseError) {}
 
         })
+    }
+
+    private fun editProfilePT() {
+        val frag = EditPatientProfileFragment()
+        activity?.supportFragmentManager?.beginTransaction()
+            ?.replace(R.id.patientProfileFrame,frag)
+            ?.addToBackStack(null)?.commit()
     }
 
     private fun uploadMedicalReport(reportUri : Uri) {

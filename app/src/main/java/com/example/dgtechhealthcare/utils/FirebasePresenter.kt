@@ -17,5 +17,6 @@ class FirebasePresenter(val view: View) {
     val userReportRef : StorageReference = FirebaseStorage.getInstance().getReference().child("userReports")
 
     val userReference : DatabaseReference = FirebaseDatabase.getInstance().reference.child("Users")
+    val doctorReference : DatabaseReference = FirebaseDatabase.getInstance().reference.child("Doctors")
 
 }

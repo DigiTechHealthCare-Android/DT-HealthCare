@@ -66,12 +66,21 @@ class DoctorRegistrationFragment : Fragment() {
                 reference.userReference.child(reference.currentUserId!!).updateChildren(hm).addOnCompleteListener {
                     if(it.isSuccessful)
                     {
-                        Toast.makeText(activity,"Account successfully created",Toast.LENGTH_LONG).show()
-                        val i = Intent(activity, DoctorNavigationActivity::class.java)
-                        startActivity(i)
-                        activity?.finish()
+                        val dm = HashMap<String,Any>()
+                        dm["duid"] = reference.currentUserId.toString()
+                        dm["username"] = name.toString()
+                        dm["hospital"] = hospital.toString()
+                        reference.doctorReference.child(reference.currentUserId!!).updateChildren(dm).addOnCompleteListener {
+                            if(it.isSuccessful) {
+                                Toast.makeText(activity,"Account successfully created",Toast.LENGTH_LONG).show()
+                                val i = Intent(activity, DoctorNavigationActivity::class.java)
+                                startActivity(i)
+                                activity?.finish()
+                            }
+                        }
                     } else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
                 }
+
             }
         }
     }
