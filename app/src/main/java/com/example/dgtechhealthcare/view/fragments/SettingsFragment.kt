@@ -1,6 +1,8 @@
 package com.example.dgtechhealthcare.view.fragments
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -57,10 +59,18 @@ class SettingsFragment : Fragment() {
         settingsUserData(reference,reference.currentUserId!!,requireActivity())
 
         logoutB.setOnClickListener {
-            reference.auth.signOut()
-            val i = Intent(activity,SignInActivity::class.java)
-            startActivity(i)
-            activity?.finish()
+            val builder = AlertDialog.Builder(activity)
+            builder.setTitle("Do you want to logout?")
+            builder.setPositiveButton("Yes, Logout",DialogInterface.OnClickListener { dialog, which ->
+                reference.auth.signOut()
+                val i = Intent(activity,SignInActivity::class.java)
+                startActivity(i)
+                activity?.finish()
+            })
+            builder.setNegativeButton("Cancel",DialogInterface.OnClickListener { dialog, which ->
+                activity?.finish()
+            })
+            builder.show()
         }
 
         aboutus.setOnClickListener {

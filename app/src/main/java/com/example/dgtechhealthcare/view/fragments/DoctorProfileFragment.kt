@@ -5,29 +5,30 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import com.example.dgtechhealthcare.R
+import com.example.dgtechhealthcare.utils.FirebasePresenter
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [DoctorProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DoctorProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    lateinit var username : TextView
+    lateinit var useremail : TextView
+    lateinit var userhospital : TextView
+    lateinit var userspecial : TextView
+    lateinit var usercontact : TextView
+    lateinit var profileIV : ImageView
+    lateinit var editProfile : ImageView
+
+    lateinit var reference : FirebasePresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        arguments?.let {}
     }
 
     override fun onCreateView(
@@ -38,23 +39,48 @@ class DoctorProfileFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_doctor_profile, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DoctorProfileFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DoctorProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        reference = FirebasePresenter(view)
+
+        username = view.findViewById(R.id.doctorName)
+        useremail = view.findViewById(R.id.doctorEmail)
+        userhospital = view.findViewById(R.id.doctorHospital)
+        userspecial = view.findViewById(R.id.doctorSpecial)
+        usercontact = view.findViewById(R.id.doctorContact)
+        profileIV = view.findViewById(R.id.doctorIV)
+        editProfile = view.findViewById(R.id.editDoctorProfile)
+
+        populateDoctorProfile()
+
+        editProfile.setOnClickListener {
+            editUserProfile()
+        }
+    }
+
+    private fun editUserProfile() {
+        TODO("Not yet implemented")
+    }
+
+    private fun populateDoctorProfile() {
+
+        reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.hasChild("profileImage")) {
+                    val img = snapshot.child("profileImage").value.toString()
+                    Picasso.get().load(img).into(profileIV)
                 }
+
+                username.text = snapshot.child("username").value.toString()
+                useremail.text = "Email: " + snapshot.child("email").value.toString()
+                userhospital.text = "Hospital: " + snapshot.child("hospital").value.toString()
+                userspecial.text = "Specialization: " + snapshot.child("specialization").value.toString()
+                usercontact.text = "Contact number: " + snapshot.child("contact").value.toString()
             }
+
+            override fun onCancelled(error: DatabaseError) {}
+
+        })
     }
 }
