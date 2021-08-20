@@ -17,7 +17,10 @@ class PatientsNavigationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patients_navigation)
 
+
+
         patientBottomNavigationView = findViewById(R.id.patientNavigationView)
+        replaceFragment(patientsArticleFragment)
 
         patientBottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {

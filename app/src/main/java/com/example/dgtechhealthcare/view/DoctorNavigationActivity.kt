@@ -20,9 +20,9 @@ class DoctorNavigationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_doctor_navigation)
-        replaceFragment(docProfileFragment)
-        doctorBottomNavigationView = findViewById(R.id.drNavigationView)
 
+        doctorBottomNavigationView = findViewById(R.id.drNavigationView)
+        replaceFragment(patientInfoFrag)
         doctorBottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.drProfile -> replaceFragment(docProfileFragment)

@@ -21,7 +21,10 @@ class PharmacistNavigationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pharmacist_navigation)
 
+
+
         pharmaBottomNavigationView = findViewById(R.id.pharmaNavigationView)
+        replaceFragment(pharmaRequestFragment)
 
         pharmaBottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {

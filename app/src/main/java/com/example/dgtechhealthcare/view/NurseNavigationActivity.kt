@@ -21,7 +21,10 @@ class NurseNavigationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nurse_navigation)
 
+
+
         nurseBottomNavigationView = findViewById(R.id.nurseNavigationView)
+        replaceFragment(articleFragment)
 
         nurseBottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
