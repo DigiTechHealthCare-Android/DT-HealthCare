@@ -42,9 +42,13 @@ class PatientProfileFragment : Fragment() {
     var imgUri : Uri = Uri.parse("")
     var reportUri : Uri = Uri.parse("")
 
+    var userKey : String? = ""
+    var from : String? = ""
+
+    var userID = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {}
     }
 
     override fun onCreateView(
@@ -58,7 +62,15 @@ class PatientProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        reference = FirebasePresenter(view)
+        reference = FirebasePresenter(requireView())
+
+        userKey = arguments?.getString("userKey","")
+        Toast.makeText(activity,"$userKey",Toast.LENGTH_LONG).show()
+        //from = arguments?.getString("from","")!!
+
+        if(userKey?.isNotEmpty() == true){
+            userID = userKey.toString()
+        }else userID = reference.currentUserId!!
 
         userprofileImg = view.findViewById(R.id.patientIV)
         editProfileIV = view.findViewById(R.id.editProfileB)
@@ -68,6 +80,16 @@ class PatientProfileFragment : Fragment() {
         usergender = view.findViewById(R.id.patientGender)
         viewReport = view.findViewById(R.id.patientReport)
         uploadReport = view.findViewById(R.id.uploadReportB)
+
+        if(userID?.compareTo(reference.currentUserId!!) != 0){
+            userprofileImg.isClickable = false
+            uploadReport.visibility = View.INVISIBLE
+            editProfileIV.visibility = View.INVISIBLE
+        }else {
+            userprofileImg.isClickable = true
+            uploadReport.visibility = View.VISIBLE
+            editProfileIV.visibility = View.VISIBLE
+        }
 
         userprofileImg.setOnClickListener {
             val gallery : Intent = Intent()
@@ -92,7 +114,7 @@ class PatientProfileFragment : Fragment() {
         var report = ""
 
         viewReport.setOnClickListener {
-            reference.userReference.child(reference.currentUserId!!).addListenerForSingleValueEvent(object : ValueEventListener{
+            reference.userReference.child(userID).addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if(snapshot.hasChild("report")) {
                         report = snapshot.child("report").value.toString()
@@ -118,7 +140,7 @@ class PatientProfileFragment : Fragment() {
             builder.show()
         }
 
-        reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
+        reference.userReference.child(userID).addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.hasChild("profileImage")) {
                     val img = snapshot.child("profileImage").value.toString()

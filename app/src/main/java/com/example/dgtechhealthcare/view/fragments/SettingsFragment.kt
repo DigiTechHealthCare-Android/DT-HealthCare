@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.SignInActivity
 import com.example.dgtechhealthcare.utils.AboutUsFragment
@@ -81,9 +82,13 @@ class SettingsFragment : Fragment() {
         }
 
         rateus.setOnClickListener {
-            val i = Intent(Intent.ACTION_VIEW)
-            i.setData(Uri.parse("market://details?id=com.example.dgtechhealthcare"))
-            startActivity(i)
+            try{
+                val i = Intent(Intent.ACTION_VIEW)
+                i.setData(Uri.parse("market://details?id=com.example.dgtechhealthcare"))
+                startActivity(i)
+            } catch (e: Exception){
+                Toast.makeText(activity,"Your system doesn't have the required marketstore",Toast.LENGTH_LONG).show()
+            }
         }
 
         feedback.setOnClickListener {
