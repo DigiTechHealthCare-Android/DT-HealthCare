@@ -16,6 +16,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.example.dgtechhealthcare.R
+import com.example.dgtechhealthcare.doctorPrescribeMedicine.DoctorPrescribeMedicineFragment
 import com.example.dgtechhealthcare.editProfile.EditPatientProfileFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.utils.ViewPdfActivity
@@ -35,7 +36,9 @@ class PatientProfileFragment : Fragment() {
     lateinit var userdob : TextView
     lateinit var usergender : TextView
     lateinit var viewReport : TextView
+    lateinit var viewPrescription : TextView
     lateinit var uploadReport : Button
+    lateinit var prescribeMedB : Button
 
     var galleryPick : Int = 0
     var choice = 0
@@ -79,16 +82,40 @@ class PatientProfileFragment : Fragment() {
         userdob = view.findViewById(R.id.patientDob)
         usergender = view.findViewById(R.id.patientGender)
         viewReport = view.findViewById(R.id.patientReport)
+        viewPrescription = view.findViewById(R.id.viewPrescription)
         uploadReport = view.findViewById(R.id.uploadReportB)
+        prescribeMedB = view.findViewById(R.id.prescribeMedB)
 
         if(userID?.compareTo(reference.currentUserId!!) != 0){
             userprofileImg.isClickable = false
             uploadReport.visibility = View.INVISIBLE
             editProfileIV.visibility = View.INVISIBLE
+            prescribeMedB.visibility = View.VISIBLE
         }else {
             userprofileImg.isClickable = true
             uploadReport.visibility = View.VISIBLE
             editProfileIV.visibility = View.VISIBLE
+            prescribeMedB.visibility = View.INVISIBLE
+        }
+
+        viewPrescription.setOnClickListener {
+            val frag = DoctorPrescribeMedicineFragment()
+            val bundle = Bundle()
+            bundle.putString("patientID",userID)
+            frag.arguments = bundle
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.patientProfileFrame,frag)
+                ?.addToBackStack(null)?.commit()
+        }
+
+        prescribeMedB.setOnClickListener {
+            val frag = DoctorPrescribeMedicineFragment()
+            val bundle = Bundle()
+            bundle.putString("patientID",userID)
+            frag.arguments = bundle
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.patientProfileFrame,frag)
+                ?.addToBackStack(null)?.commit()
         }
 
         userprofileImg.setOnClickListener {
