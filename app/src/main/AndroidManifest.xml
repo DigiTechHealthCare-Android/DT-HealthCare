@@ -23,10 +23,10 @@
             android:name=".view.DoctorNavigationActivity"
             android:exported="true" />
         <activity
-            android:name=".view.NurseNavigationActivity"
+            android:name=".nurse.view.NurseNavigationActivity"
             android:exported="true" />
         <activity
-            android:name=".view.PharmacistNavigationActivity"
+            android:name=".pharmacist.view.PharmacistNavigationActivity"
             android:exported="true" />
         <activity
             android:name=".SplashActivity"

@@ -1,11 +1,11 @@
-package com.example.dgtechhealthcare.view
+package com.example.dgtechhealthcare.nurse.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.dgtechhealthcare.R
-import com.example.dgtechhealthcare.view.fragments.NurseArticleFragment
-import com.example.dgtechhealthcare.view.fragments.NurseProfileFragment
+import com.example.dgtechhealthcare.nurse.view.NurseArticleFragment
+import com.example.dgtechhealthcare.nurse.view.NurseProfileFragment
 import com.example.dgtechhealthcare.view.fragments.SettingsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

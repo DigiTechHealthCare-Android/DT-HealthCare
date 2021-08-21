@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.NurseNavigationActivity">
+    tools:context=".nurse.view.NurseNavigationActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nurseNavigationView"
@@ -22,7 +22,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerNurse"
-        android:name="com.example.dgtechhealthcare.view.fragments.NurseProfileFragment"
+        android:name="com.example.dgtechhealthcare.nurse.view.NurseProfileFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/nurseNavigationView"

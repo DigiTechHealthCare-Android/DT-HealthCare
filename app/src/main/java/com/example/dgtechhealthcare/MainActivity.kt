@@ -10,8 +10,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import com.example.dgtechhealthcare.view.DoctorNavigationActivity
-import com.example.dgtechhealthcare.view.NurseNavigationActivity
-import com.example.dgtechhealthcare.view.PharmacistNavigationActivity
+import com.example.dgtechhealthcare.nurse.view.NurseNavigationActivity
+import com.example.dgtechhealthcare.pharmacist.view.PharmacistNavigationActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
