@@ -78,7 +78,7 @@
             android:id="@+id/loginB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="48dp"
             android:background="@drawable/button_bg"
             android:onClick="signInB"
             android:text="LOGIN"
@@ -112,5 +112,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView2"
             app:layout_constraintTop_toBottomOf="@+id/loginB" />
+
+        <TextView
+            android:id="@+id/forgotPassTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="196dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="104dp"
+            android:text="Forgot password?"
+            android:textColor="#3F51B5"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passE" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

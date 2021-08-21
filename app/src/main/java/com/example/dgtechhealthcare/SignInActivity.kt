@@ -1,5 +1,6 @@
 package com.example.dgtechhealthcare
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.AsyncTask
@@ -47,6 +48,26 @@ class SignInActivity : AppCompatActivity() {
         registerT.setOnClickListener {
             val i = Intent(this,SignUpActivity::class.java)
             startActivity(i)
+        }
+
+        val forgotPassT = findViewById<TextView>(R.id.forgotPassTV)
+        forgotPassT.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            val dialogLayout = layoutInflater.inflate(R.layout.forgot_password_layout,null)
+            builder.setView(dialogLayout)
+            var email = dialogLayout.findViewById<EditText>(R.id.forgotPassEV)
+
+            with(builder){
+                setTitle("Enter your registered Email ID")
+                setPositiveButton("Ok"){dialog,which ->
+                    val userEmail = email.text.toString()
+                    auth.sendPasswordResetEmail(userEmail).addOnCompleteListener {
+                        if(it.isSuccessful) Toast.makeText(this@SignInActivity,"Password reset mail sent",Toast.LENGTH_LONG).show()
+                    }
+                }
+                setNegativeButton("Cancel"){dialog,which -> Toast.makeText(this@SignInActivity,"Error",Toast.LENGTH_LONG).show()}
+            }
+            builder.show()
         }
     }
 

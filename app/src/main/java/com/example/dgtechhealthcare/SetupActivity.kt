@@ -28,6 +28,21 @@ class SetupActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         spinner.adapter = ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,roles)
         spinner.onItemSelectedListener = this
 
+        val extra : Bundle? = intent.extras
+        val role = extra?.getString("role")
+        if(role?.compareTo("patient")==0){
+            val frag = PatientRegistrationFragment()
+            supportFragmentManager.beginTransaction().replace(R.id.setupFrame,frag).commit()
+        } else if(role?.compareTo("doctor")==0){
+            val frag = DoctorRegistrationFragment()
+            supportFragmentManager.beginTransaction().replace(R.id.setupFrame,frag).commit()
+        } else if(role?.compareTo("nurse")==0) {
+            val frag = NurseRegistrationFragment()
+            supportFragmentManager.beginTransaction().replace(R.id.setupFrame,frag).commit()
+        } else if(role?.compareTo("pharmacist")==0){
+            val frag = PharmacistRegistrationFragment()
+            supportFragmentManager.beginTransaction().replace(R.id.setupFrame,frag).commit()
+        }
 
         /*val logout = findViewById<Button>(R.id.logoutB)
 
@@ -51,8 +66,8 @@ class SetupActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 supportFragmentManager.beginTransaction().replace(R.id.setupFrame,frag).commit()
             }
             "Nurse" -> {
-                val frag = NurseRegistrationFragment()
-                supportFragmentManager.beginTransaction().replace(R.id.setupFrame,frag).commit()
+                /*val frag = NurseRegistrationFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.setupFrame,frag).commit()*/
             }
             "Pharmacist" -> {
                 val frag = PharmacistRegistrationFragment()
