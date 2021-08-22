@@ -9,10 +9,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.example.dgtechhealthcare.R
+import com.example.dgtechhealthcare.editProfile.EditPatientProfileFragment
 import com.example.dgtechhealthcare.nurse.model.ProfileData
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.firebase.database.DataSnapshot
@@ -28,6 +27,10 @@ class NurseProfileFragment : Fragment() {
     lateinit var nameTextView : TextView
     lateinit var mobileTextView : TextView
     lateinit var hospitalNameTextView : TextView
+    lateinit var emailTextView: TextView
+    lateinit var dobTextView: TextView
+    lateinit var genderTextView: TextView
+    lateinit var editButton: ImageButton
 
     private val imagePick = 0
     lateinit var imageUri : Uri
@@ -53,6 +56,18 @@ class NurseProfileFragment : Fragment() {
         nameTextView = view.findViewById(R.id.nurseNameTV)
         mobileTextView = view.findViewById(R.id.nurseContactTV)
         hospitalNameTextView = view.findViewById(R.id.hospitalNameTV)
+        emailTextView = view.findViewById(R.id.emailTV)
+        dobTextView = view.findViewById(R.id.birthTV)
+        genderTextView = view.findViewById(R.id.genderTV)
+        editButton = view.findViewById(R.id.editB)
+
+        editButton.setOnClickListener {
+            val transaction = activity?.supportFragmentManager?.beginTransaction()
+            val frag = editNurseProfileFragment()
+            transaction?.replace(R.id.fragmentContainerNurse, frag)
+            transaction?.addToBackStack(null)
+            transaction?.commit()
+        }
 
         nurseProfileImg.setOnClickListener {
             val image = Intent().setAction(Intent.ACTION_GET_CONTENT)
@@ -62,12 +77,21 @@ class NurseProfileFragment : Fragment() {
 
         reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                val nurserData = snapshot.getValue(ProfileData::class.java)
+                val nurseData = snapshot.getValue(ProfileData::class.java)
 
-                Picasso.get().load(nurserData?.profileImage).into(nurseProfileImg)
-                nameTextView.text = nurserData?.username
-                mobileTextView.text = "Contact Number: ${nurserData?.contact}"
-                hospitalNameTextView.text = "Hospital Name: ${nurserData?.hospital}"
+                if (nurseData?.profileImage == null){
+                    nurseProfileImg.setImageResource(R.drawable.profile)
+                }
+                else{
+                    Picasso.get().load(nurseData?.profileImage).into(nurseProfileImg)
+                }
+
+                nameTextView.text = nurseData?.username
+                mobileTextView.text = "${nurseData?.contact}"
+                hospitalNameTextView.text = "${nurseData?.hospital}"
+                emailTextView.text = "${nurseData?.email}"
+                dobTextView.text = "${nurseData?.dateOfBirth}"
+                genderTextView.text = "${nurseData?.gender}"
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -82,12 +106,12 @@ class NurseProfileFragment : Fragment() {
 
         if (requestCode == imagePick && resultCode == RESULT_OK && data != null){
             imageUri = data.data!!
-            uploadImageToStrorage()
+            uploadImageToStorage()
             nurseProfileImg.setImageURI(imageUri)
         }
     }
 
-    private fun uploadImageToStrorage() {
+    private fun uploadImageToStorage() {
         val imgPath = reference.userProfileImgRef.child("${reference.currentUserId}.jpg")
 
         imgPath.putFile(imageUri).addOnSuccessListener {

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RadioGroup
 import android.widget.Toast
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.nurse.view.NurseNavigationActivity
@@ -18,6 +19,8 @@ class NurseRegistrationFragment : Fragment() {
     lateinit var hospitalE : EditText
     lateinit var contactE : EditText
     lateinit var registerD : Button
+    lateinit var dobE : EditText
+    lateinit var gender : RadioGroup
 
     lateinit var reference : FirebasePresenter
 
@@ -43,11 +46,20 @@ class NurseRegistrationFragment : Fragment() {
         hospitalE = view.findViewById(R.id.hospitalN)
         contactE = view.findViewById(R.id.contactNoN)
         registerD = view.findViewById(R.id.registerN)
+        dobE = view.findViewById(R.id.dateOfBirth)
+        gender =view.findViewById(R.id.Gender_RG)
+
+        var genderP = ""
+        gender.setOnCheckedChangeListener { group, checkedId ->
+            if(checkedId == R.id.maleRadio) genderP = "Male"
+            if(checkedId == R.id.femaleRadio) genderP = "Female"
+        }
 
         registerD.setOnClickListener {
             val name = nameE.text
             val hospital = hospitalE.text
             val contact = contactE.text
+            val dob = dobE.text
 
             if(name.isEmpty()) Toast.makeText(activity,"Name is empty", Toast.LENGTH_LONG).show()
             else if(hospital.isEmpty()) Toast.makeText(activity,"Hospital name is empty",Toast.LENGTH_LONG).show()
@@ -58,6 +70,8 @@ class NurseRegistrationFragment : Fragment() {
                 hm["email"] = reference.auth.currentUser?.email.toString()
                 hm["hospital"] = hospital.toString()
                 hm["contact"] = contact.toString()
+                hm["dateOfBirth"] = dob.toString()
+                hm["gender"] = genderP.toString()
                 hm["accountType"] = "nurse"
                 reference.userReference.child(reference.currentUserId!!).updateChildren(hm).addOnCompleteListener {
                     if(it.isSuccessful)

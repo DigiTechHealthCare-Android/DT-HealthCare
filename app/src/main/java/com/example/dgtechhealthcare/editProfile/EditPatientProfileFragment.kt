@@ -65,7 +65,7 @@ class EditPatientProfileFragment : Fragment() {
         editName = view.findViewById(R.id.editPName)
         editPhone = view.findViewById(R.id.editPPhone)
         editDob = view.findViewById(R.id.editPDob)
-        editRG = view.findViewById(R.id.editPGRG)
+        editRG = view.findViewById(R.id.editNurseGender)
         editFather = view.findViewById(R.id.editPFatherName)
         editMother = view.findViewById(R.id.editPMotherName)
         editOther = view.findViewById(R.id.editPFamilyInfo)

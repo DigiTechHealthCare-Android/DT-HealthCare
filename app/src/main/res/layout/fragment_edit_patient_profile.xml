@@ -67,7 +67,7 @@
                 android:text="Gender" />
 
             <RadioGroup
-                android:id="@+id/editPGRG"
+                android:id="@+id/editNurseGender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">

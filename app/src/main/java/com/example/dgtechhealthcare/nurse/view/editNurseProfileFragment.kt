@@ -5,29 +5,29 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.*
 import com.example.dgtechhealthcare.R
+import com.example.dgtechhealthcare.nurse.model.ProfileData
+import com.example.dgtechhealthcare.utils.FirebasePresenter
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [editNurseProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class editNurseProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    lateinit var reference : FirebasePresenter
+
+    lateinit var nameTextView : TextView
+    lateinit var mobileTextView : TextView
+    lateinit var hospitalNameTextView : TextView
+    lateinit var emailTextView: TextView
+    lateinit var dobTextView: TextView
+    lateinit var genderTextView: RadioGroup
+    lateinit var updateButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        arguments?.let { }
     }
 
     override fun onCreateView(
@@ -38,23 +38,75 @@ class editNurseProfileFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_edit_nurse_profile, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment editNurseProfileFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            editNurseProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        reference = FirebasePresenter(view)
+
+        nameTextView = view.findViewById(R.id.editNurseName)
+        mobileTextView = view.findViewById(R.id.editNurseContact)
+        hospitalNameTextView = view.findViewById(R.id.editNurseHospital)
+        emailTextView = view.findViewById(R.id.editNurseEmail)
+        dobTextView = view.findViewById(R.id.editNurseBirth)
+        genderTextView = view.findViewById(R.id.editNurseGender)
+        updateButton = view.findViewById(R.id.updateNurseB)
+
+        // get data from Firebase
+        reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val nurseData = snapshot.getValue(ProfileData::class.java)
+
+                nameTextView.text = nurseData?.username
+                mobileTextView.text = "${nurseData?.contact}"
+                hospitalNameTextView.text = "${nurseData?.hospital}"
+                emailTextView.text = "${nurseData?.email}"
+                dobTextView.text = "${nurseData?.dateOfBirth}"
+//                genderTextView.text = "${nurseData?.gender}"
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+        var genderP = ""
+        genderTextView.setOnCheckedChangeListener { group, checkedId ->
+            if (checkedId == R.id.editPMale) genderP = "Male"
+            if (checkedId == R.id.editPFemale) genderP = "Female"
+            if (checkedId == R.id.editPOther) genderP = "Other"
+        }
+
+        // update data on clicking update button
+
+        updateButton.setOnClickListener {
+            //updateData()
+            if(nameTextView.text.isEmpty()) Toast.makeText(activity,"Name is empty", Toast.LENGTH_LONG).show()
+            else if(hospitalNameTextView.text.isEmpty()) Toast.makeText(activity,"Hospital name is empty", Toast.LENGTH_LONG).show()
+            else if(mobileTextView.text.length > 10)  Toast.makeText(activity,"Invalid mobile number", Toast.LENGTH_LONG).show()
+            else if (dobTextView.text.isEmpty()) Toast.makeText(activity,"Date of Birth is empty", Toast.LENGTH_LONG).show()
+            else {
+                val nurseProfileData = HashMap<String,Any>()
+                nurseProfileData["username"] = nameTextView.text.toString()
+                nurseProfileData["email"] = reference.auth.currentUser?.email.toString()
+                nurseProfileData["hospital"] = hospitalNameTextView.text.toString()
+                nurseProfileData["contact"] = mobileTextView.text.toString()
+                nurseProfileData["dateOfBirth"] = dobTextView.text.toString()
+                nurseProfileData["gender"] = genderP
+                nurseProfileData["accountType"] = "nurse"
+
+                reference.userReference.child(reference.currentUserId!!).updateChildren(nurseProfileData).addOnCompleteListener {
+                    if (it.isSuccessful){
+                        Toast.makeText(activity, "Updated Successfully", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
+
+            val transaction = activity?.supportFragmentManager?.beginTransaction()
+            val frag = editNurseProfileFragment()
+            transaction?.replace(R.id.nurseProfileFragment, frag)
+            transaction?.addToBackStack(null)
+            transaction?.commit()
+        }
     }
 }
