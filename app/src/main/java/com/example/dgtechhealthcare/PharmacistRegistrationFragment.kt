@@ -15,6 +15,7 @@ import com.example.dgtechhealthcare.pharmacist.view.PharmacistNavigationActivity
 class PharmacistRegistrationFragment : Fragment() {
 
     lateinit var nameE : EditText
+    lateinit var pharmacyName: EditText
     lateinit var locationE : EditText
     lateinit var contactE : EditText
     lateinit var registerB : Button
@@ -39,22 +40,26 @@ class PharmacistRegistrationFragment : Fragment() {
 
         reference = FirebasePresenter(view)
 
-        nameE = view.findViewById(R.id.pharmacyName)
+        nameE = view.findViewById(R.id.userPharmacistName)
+        pharmacyName = view.findViewById(R.id.pharmacyName)
         locationE = view.findViewById(R.id.locationPharmacy)
         contactE = view.findViewById(R.id.contactPharmacy)
         registerB = view.findViewById(R.id.registerPharmacy)
 
         registerB.setOnClickListener {
             val name = nameE.text
+            val pharmacyName = pharmacyName.text
             val location = locationE.text
             val contact = contactE.text
 
             if(name.isEmpty()) Toast.makeText(activity,"Name is empty",Toast.LENGTH_LONG).show()
+            else if (pharmacyName.isEmpty()) Toast.makeText(activity, "Pharmacy Name is empty", Toast.LENGTH_LONG).show()
             else if(location.isEmpty()) Toast.makeText(activity,"Location is empty",Toast.LENGTH_LONG).show()
             else if(contact.length > 10) Toast.makeText(activity,"Invalid mobile number",Toast.LENGTH_LONG).show()
             else {
                 val hm = HashMap<String,Any>()
                 hm["username"] = name.toString()
+                hm["pharmacyName"] = pharmacyName.toString()
                 hm["email"] = reference.auth.currentUser?.email.toString()
                 hm["location"] = location.toString()
                 hm["contact"] = contact.toString()

@@ -43,13 +43,13 @@ class editNurseProfileFragment : Fragment() {
 
         reference = FirebasePresenter(view)
 
-        nameTextView = view.findViewById(R.id.editNurseName)
-        mobileTextView = view.findViewById(R.id.editNurseContact)
-        hospitalNameTextView = view.findViewById(R.id.editNurseHospital)
-        emailTextView = view.findViewById(R.id.editNurseEmail)
-        dobTextView = view.findViewById(R.id.editNurseBirth)
+        nameTextView = view.findViewById(R.id.editPharmacistName)
+        mobileTextView = view.findViewById(R.id.editPharmacistContact)
+        hospitalNameTextView = view.findViewById(R.id.editPharmacyName)
+        emailTextView = view.findViewById(R.id.editPharmacistEmail)
+        dobTextView = view.findViewById(R.id.editPharmacistLocation)
         genderTextView = view.findViewById(R.id.editNurseGender)
-        updateButton = view.findViewById(R.id.updateNurseB)
+        updateButton = view.findViewById(R.id.updatePharmacistB)
 
         // get data from Firebase
         reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
@@ -103,8 +103,8 @@ class editNurseProfileFragment : Fragment() {
             }
 
             val transaction = activity?.supportFragmentManager?.beginTransaction()
-            val frag = editNurseProfileFragment()
-            transaction?.replace(R.id.nurseProfileFragment, frag)
+            val frag = NurseProfileFragment()
+            transaction?.replace(R.id.fragmentContainerNurse, frag)
             transaction?.addToBackStack(null)
             transaction?.commit()
         }

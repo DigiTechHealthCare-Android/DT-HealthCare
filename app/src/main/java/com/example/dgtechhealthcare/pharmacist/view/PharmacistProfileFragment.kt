@@ -1,18 +1,25 @@
 package com.example.dgtechhealthcare.pharmacist.view
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.example.dgtechhealthcare.R
+import com.example.dgtechhealthcare.nurse.view.editNurseProfileFragment
 import com.example.dgtechhealthcare.pharmacist.model.PharmacistData
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
 
 class PharmacistProfileFragment : Fragment() {
 
@@ -20,8 +27,13 @@ class PharmacistProfileFragment : Fragment() {
 
     lateinit var pharmacistProfileImg : ImageView
     lateinit var nameTextView : TextView
+    lateinit var pharmacyNameTextView: TextView
     lateinit var mobileTextView : TextView
     lateinit var locationTextView : TextView
+    lateinit var editButtonView : ImageButton
+
+    private val imagePick = 0
+    lateinit var imageUri : Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,16 +54,41 @@ class PharmacistProfileFragment : Fragment() {
 
         pharmacistProfileImg = view.findViewById(R.id.pharmacistIV)
         nameTextView = view.findViewById(R.id.usernameTV)
+        pharmacyNameTextView = view.findViewById(R.id.pharmacyNameTV)
         mobileTextView = view.findViewById(R.id.contactTV)
         locationTextView = view.findViewById(R.id.locationTV)
+        editButtonView = view.findViewById(R.id.editBV)
+
+        editButtonView.setOnClickListener {
+            val transaction = activity?.supportFragmentManager?.beginTransaction()
+            val frag = EditPharmacistFragment()
+            transaction?.replace(R.id.fragmentContainerPharmacist, frag)
+            transaction?.addToBackStack(null)
+            transaction?.commit()
+        }
+
+        pharmacistProfileImg.setOnClickListener {
+            val image = Intent().setAction(Intent.ACTION_GET_CONTENT)
+            image.setType("image/*")
+            startActivityForResult(image, imagePick)
+        }
+
 
         reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 val pharmacist = snapshot.getValue(PharmacistData::class.java)
 
+                if (pharmacist?.profileImage == null){
+                    pharmacistProfileImg.setImageResource(R.drawable.profile)
+                }
+                else{
+                    Picasso.get().load(pharmacist?.profileImage).into(pharmacistProfileImg)
+                }
+
                 nameTextView.text = pharmacist?.username
-                mobileTextView.text = "Contact Number: ${pharmacist?.contact}"
-                locationTextView.text = "Location: ${pharmacist?.location}"
+                pharmacyNameTextView.text = pharmacist?.pharmacyName
+                mobileTextView.text = "${pharmacist?.contact}"
+                locationTextView.text = "${pharmacist?.location}"
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -59,5 +96,33 @@ class PharmacistProfileFragment : Fragment() {
             }
 
         })
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == imagePick && resultCode == Activity.RESULT_OK && data != null){
+            imageUri = data.data!!
+            uploadImageToStorage()
+            pharmacistProfileImg.setImageURI(imageUri)
+        }
+    }
+
+    private fun uploadImageToStorage() {
+        val imgPath = reference.userProfileImgRef.child("${reference.currentUserId}.jpg")
+
+        imgPath.putFile(imageUri).addOnSuccessListener {
+            imgPath.downloadUrl.addOnSuccessListener {
+                val downloadUri = it.toString()
+
+                // save Image to Firebase Realtime Database
+                reference.userReference.child(reference.currentUserId!!).child("profileImage").setValue(downloadUri)
+                    .addOnCompleteListener {
+                        if (it.isSuccessful){
+                            Toast.makeText(this.activity, "Image Uploaded", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+            }
+        }
     }
 }

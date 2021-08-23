@@ -21,7 +21,7 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/editNurseName"
+                android:id="@+id/editPharmacistName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -35,7 +35,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editNurseContact"
+                android:id="@+id/editPharmacistContact"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="34dp"
@@ -46,10 +46,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editNurseName" />
+                app:layout_constraintTop_toBottomOf="@+id/editPharmacistName" />
 
             <EditText
-                android:id="@+id/editNurseHospital"
+                android:id="@+id/editPharmacyName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="43dp"
@@ -60,10 +60,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editNurseContact" />
+                app:layout_constraintTop_toBottomOf="@+id/editPharmacistContact" />
 
             <EditText
-                android:id="@+id/editNurseEmail"
+                android:id="@+id/editPharmacistEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="44dp"
@@ -74,10 +74,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editNurseHospital" />
+                app:layout_constraintTop_toBottomOf="@+id/editPharmacyName" />
 
             <EditText
-                android:id="@+id/editNurseBirth"
+                android:id="@+id/editPharmacistLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="45dp"
@@ -88,7 +88,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editNurseEmail" />
+                app:layout_constraintTop_toBottomOf="@+id/editPharmacistEmail" />
 
             <RadioGroup
                 android:id="@+id/editNurseGender"
@@ -99,7 +99,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editNurseBirth">
+                app:layout_constraintTop_toBottomOf="@+id/editPharmacistLocation">
 
                 <RadioButton
                     android:id="@+id/editPMale"
@@ -121,7 +121,7 @@
             </RadioGroup>
 
             <Button
-                android:id="@+id/updateNurseB"
+                android:id="@+id/updatePharmacistB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="58dp"
