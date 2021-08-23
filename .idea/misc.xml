@@ -53,10 +53,17 @@
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/activity_patients_navigation.xml" value="0.36666666666666664" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/activity_splash.xml" value="0.36666666666666664" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/activity_view_pdf.xml" value="0.36666666666666664" />
+        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/all_patient_layout.xml" value="0.275" />
+        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/choose_pharmacy_layout.xml" value="0.275" />
+        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/forgot_password_layout.xml" value="0.275" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_about_us.xml" value="0.36666666666666664" />
+        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_doctor_prescribe_medicine.xml" value="0.275" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_doctor_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_edit_patient_profile.xml" value="0.14166666666666666" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_patient_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_patient_registration.xml" value="0.36666666666666664" />
+        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_request.xml" value="0.275" />
+        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_request_description.xml" value="0.275" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_settings.xml" value="0.36666666666666664" />
       </map>
     </option>

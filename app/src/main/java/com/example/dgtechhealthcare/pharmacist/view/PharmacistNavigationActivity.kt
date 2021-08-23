@@ -4,8 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.dgtechhealthcare.R
-import com.example.dgtechhealthcare.pharmacist.view.PharmacistProfileFragment
-import com.example.dgtechhealthcare.view.fragments.RequestFragment
 import com.example.dgtechhealthcare.view.fragments.SettingsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

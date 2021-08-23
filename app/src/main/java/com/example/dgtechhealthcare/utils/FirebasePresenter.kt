@@ -18,5 +18,6 @@ class FirebasePresenter(val view: View) {
 
     val userReference : DatabaseReference = FirebaseDatabase.getInstance().reference.child("Users")
     val doctorReference : DatabaseReference = FirebaseDatabase.getInstance().reference.child("Doctors")
+    val pharmaReference : DatabaseReference = FirebaseDatabase.getInstance().reference.child("Pharmacists")
 
 }

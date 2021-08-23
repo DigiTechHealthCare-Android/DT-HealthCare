@@ -1,20 +1,19 @@
 package com.example.dgtechhealthcare.doctorPrescribeMedicine
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 
-class DoctorPrescribeMedicineFragment : Fragment() {
+class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     lateinit var morningMed : EditText
     lateinit var afternoonMed : EditText
@@ -26,6 +25,12 @@ class DoctorPrescribeMedicineFragment : Fragment() {
 
     var patientID :String? = ""
     var userType : String? = ""
+
+    val nameList = arrayListOf<String>()
+    var choice = ""
+    val newHM = HashMap<String,String>()
+
+    lateinit var pharmaChoice : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,9 +79,57 @@ class DoctorPrescribeMedicineFragment : Fragment() {
 
         })
 
+        val builder = AlertDialog.Builder(activity)
+        val dialogLayout = layoutInflater.inflate(R.layout.choose_pharmacy_layout,null)
+        builder.setView(dialogLayout)
+
+        val pharmaSpinner = dialogLayout.findViewById<Spinner>(R.id.pharmaNameSpinner)
+        pharmaChoice = dialogLayout.findViewById<TextView>(R.id.pharmaNameChoiceTV)
         prescribeB.setOnClickListener {
             if(prescribeB.text.toString().compareTo("Request prescription")==0){
-                Toast.makeText(activity,"Request Sent",Toast.LENGTH_SHORT).show()
+                reference.pharmaReference.child("pharmacyNames").addValueEventListener(object : ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        for (data in snapshot.children){
+                            nameList.add(data.key.toString())
+                            newHM.put(data.key.toString(),data.value.toString())
+                        }
+                        val adapter = ArrayAdapter<String>(it.context,R.layout.support_simple_spinner_dropdown_item,nameList)
+                        pharmaSpinner.adapter = adapter
+                        pharmaSpinner.onItemSelectedListener = this@DoctorPrescribeMedicineFragment
+                    }
+                    override fun onCancelled(error: DatabaseError) {}
+                })
+
+                with(builder){
+                    setTitle("Choose your preferred pharmacy")
+                    setPositiveButton("Request"){dialog,which ->
+                        reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                if(snapshot.hasChild("prescribedMedicine")){
+                                    val med1 = snapshot.child("prescribedMedicine").child("morning").child("name").value.toString()
+                                    val med2 = snapshot.child("prescribedMedicine").child("afternoon").child("name").value.toString()
+                                    val med3 = snapshot.child("prescribedMedicine").child("evening").child("name").value.toString()
+                                    val med4 = snapshot.child("prescribedMedicine").child("night").child("name").value.toString()
+
+                                    val hashMap = HashMap<String,Any>()
+                                    hashMap["puid"] = reference.currentUserId!!
+                                    hashMap["med1"] = med1
+                                    hashMap["med2"] = med2
+                                    hashMap["med3"] = med3
+                                    hashMap["med4"] = med4
+
+                                    reference.pharmaReference.child(choice).child("requests").child(reference.currentUserId!!).updateChildren(hashMap).addOnCompleteListener {
+                                        Toast.makeText(activity,"Request Sent",Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                            }
+
+                            override fun onCancelled(error: DatabaseError) {}
+                        })
+                    }
+                    setNegativeButton("Cancel"){dialog,which->}
+                }
+                builder.show()
             }else if(prescribeB.text.toString().compareTo("Prescribe Medicine")==0) {
                 val ref = reference.userReference.child(patientID!!).child("prescribedMedicine")
                 ref.child("morning").child("name").setValue(morningMed.text.toString())
@@ -95,4 +148,17 @@ class DoctorPrescribeMedicineFragment : Fragment() {
         nightMed = view.findViewById(R.id.nightMed)
         prescribeB = view.findViewById(R.id.addMedicineB)
     }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        val name = parent?.selectedItem
+        for(h in newHM){
+            if(h.key.toString().compareTo(name.toString())==0){
+                choice = h.value.toString()
+                Toast.makeText(activity,"${h.value.toString()}",Toast.LENGTH_LONG).show()
+            }
+        }
+        pharmaChoice.setText(name.toString())
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {}
 }
