@@ -25,6 +25,7 @@ class DoctorPrescribeMedicineFragment : Fragment() {
     lateinit var reference : FirebasePresenter
 
     var patientID :String? = ""
+    var userType : String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,17 +46,23 @@ class DoctorPrescribeMedicineFragment : Fragment() {
 
         initializeValues(view)
 
-        reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
+        if(patientID.isNullOrEmpty()){
+            userType = reference.currentUserId
+        } else {
+            userType = patientID
+        }
+
+        reference.userReference.child(userType!!).addValueEventListener(object : ValueEventListener{
             var accountType = ""
             override fun onDataChange(snapshot: DataSnapshot) {
                 accountType = snapshot.child("accountType").value.toString()
-                if(accountType.compareTo("patient")==0){
+                if(accountType.compareTo("patient")==0 && userType!!.compareTo(reference.currentUserId!!)==0){
                     prescribeB.setText("Request prescription")
                     morningMed.isEnabled = false
                     afternoonMed.isEnabled = false
                     eveningMed.isEnabled = false
                     nightMed.isEnabled = false
-                } else if(accountType.compareTo("doctor")==0){
+                } else if(accountType.compareTo("doctor")==0 || userType!!.compareTo(reference.currentUserId!!)!=0){
                     prescribeB.setText("Prescribe Medicine")
                 }
                 morningMed.setText(snapshot.child("prescribedMedicine").child("morning").child("name").value.toString())
