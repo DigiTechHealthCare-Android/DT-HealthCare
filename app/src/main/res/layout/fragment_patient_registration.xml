@@ -104,7 +104,6 @@
 
         <Button
             android:id="@+id/registerP"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="110dp"
             android:layout_height="49dp"
             android:layout_marginTop="32dp"

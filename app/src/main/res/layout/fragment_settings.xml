@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#86B1E3"
+        android:background="#3449AE"
         tools:context=".SettingsFragment">
 
         <de.hdodenhof.circleimageview.CircleImageView
