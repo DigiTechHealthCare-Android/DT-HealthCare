@@ -13,6 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DGTechHealthCare">
+        <activity android:name=".view.PatientDrawerNavigationActivity"
+            android:exported="true"/>
         <activity
             android:name=".utils.ViewPdfActivity"
             android:exported="true" />

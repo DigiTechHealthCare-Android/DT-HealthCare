@@ -14,7 +14,7 @@
         android:background="#86B1E3"
         tools:context=".SettingsFragment">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/settingsUserIV"
             android:layout_width="128dp"
             android:layout_height="144dp"

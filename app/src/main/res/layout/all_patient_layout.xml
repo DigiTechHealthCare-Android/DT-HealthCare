@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:layout_margin="8dp">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/patientCardIV"
             android:layout_width="50dp"
             android:layout_height="50dp"

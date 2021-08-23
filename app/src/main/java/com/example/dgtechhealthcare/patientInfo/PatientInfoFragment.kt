@@ -36,7 +36,7 @@ class PatientInfoFragment : Fragment() {
         layout.stackFromEnd = true
         patientRecycleView.layoutManager = layout
 
-        patientInfoPresenter.displayAllPatients(patientRecycleView,requireActivity())
+        patientInfoPresenter.displayAllPatients(patientRecycleView,requireActivity(),layout)
     }
 
     fun initializeValues(view: View){

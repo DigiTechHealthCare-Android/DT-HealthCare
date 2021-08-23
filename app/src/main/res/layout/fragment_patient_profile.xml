@@ -12,10 +12,10 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/patientIV"
-            android:layout_width="94dp"
-            android:layout_height="86dp"
+            android:layout_width="121dp"
+            android:layout_height="118dp"
             android:layout_marginTop="93dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
