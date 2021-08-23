@@ -12,6 +12,7 @@ import android.widget.Toast
 import com.example.dgtechhealthcare.view.DoctorNavigationActivity
 import com.example.dgtechhealthcare.nurse.view.NurseNavigationActivity
 import com.example.dgtechhealthcare.pharmacist.view.PharmacistNavigationActivity
+import com.example.dgtechhealthcare.view.PatientDrawerNavigationActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                 Thread.sleep(4000)
 
                 if(type?.compareTo("patient") ==0){
-                    val i = Intent(this@MainActivity, PatientsNavigationActivity::class.java)
+                    val i = Intent(this@MainActivity, PatientDrawerNavigationActivity::class.java)
                     startActivity(i)
                     loadingBar.dismiss()
                     finish()

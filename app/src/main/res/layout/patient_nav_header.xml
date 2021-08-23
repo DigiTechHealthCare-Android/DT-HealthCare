@@ -14,7 +14,7 @@
         android:id="@+id/drawerUserIV"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        tools:srcCompat="@drawable/bgimage" />
+        tools:srcCompat="@drawable/imageicon" />
 
     <TextView
         android:id="@+id/drawerUserName"
