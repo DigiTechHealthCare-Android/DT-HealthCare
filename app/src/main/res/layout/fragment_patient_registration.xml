@@ -45,8 +45,11 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/dobP"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="DD/MM/YYYY" />
+                android:layout_height="55dp"
+                android:drawableLeft="@drawable/datedrawableimage"
+                android:drawablePadding="16dp"
+                android:hint="DOB(DD/MM/YYYY)"
+                android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -65,8 +68,11 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/contactP"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Contact Number" />
+                android:layout_height="55dp"
+                android:drawableLeft="@drawable/contactnumberimage"
+                android:drawablePadding="16dp"
+                android:hint="Contact Number"
+                android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -87,7 +93,10 @@
                 android:id="@+id/fullNameP"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:hint="Full Name" />
+                android:drawableLeft="@drawable/namedrawableicon"
+                android:drawablePadding="16dp"
+                android:hint="Full Name"
+                android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <RadioGroup
@@ -127,6 +136,7 @@
             android:layout_height="49dp"
             android:layout_marginTop="36dp"
             android:text="Register"
+            android:background="@drawable/button_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
