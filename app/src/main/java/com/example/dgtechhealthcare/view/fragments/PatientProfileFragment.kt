@@ -179,9 +179,9 @@ class PatientProfileFragment : Fragment() {
                 val gender = snapshot.child("gender").value.toString()
 
                 username.text = name
-                mobile.text = "Contact number : $mob"
-                userdob.text = "Date of Birth : $dob"
-                usergender.text = "Sex : $gender"
+                mobile.text = "$mob"
+                userdob.text = "$dob"
+                usergender.text = "$gender"
             }
 
             override fun onCancelled(error: DatabaseError) {}
