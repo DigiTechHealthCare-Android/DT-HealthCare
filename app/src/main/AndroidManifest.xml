@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DGTechHealthCare">
         <activity
+            android:name=".contentManager.CRUDContentActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.DoctorDrawerNavigationActivity"
             android:exported="true" />
         <activity

@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.example.dgtechhealthcare.contentManager.CRUDContentActivity
 import com.example.dgtechhealthcare.view.DoctorNavigationActivity
 import com.example.dgtechhealthcare.nurse.view.NurseNavigationActivity
 import com.example.dgtechhealthcare.pharmacist.view.PharmacistNavigationActivity
@@ -120,6 +121,14 @@ class SignInActivity : AppCompatActivity() {
                     runOnUiThread {
                         Toast.makeText(this@SignInActivity,"Shop's open",Toast.LENGTH_LONG).show()
                         val i = Intent(this@SignInActivity, PharmacistNavigationActivity::class.java)
+                        startActivity(i)
+                        finish()
+                    }
+                } else if(type?.compareTo("contentManager")==0){
+                    loadingBar.dismiss()
+                    runOnUiThread {
+                        Toast.makeText(this@SignInActivity,"Time to post content",Toast.LENGTH_LONG).show()
+                        val i = Intent(this@SignInActivity,CRUDContentActivity::class.java)
                         startActivity(i)
                         finish()
                     }

@@ -1,82 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".editProfile.EditDoctorProfileFragment">
 
-    <ScrollView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/white"
+        tools:context=".EditDoctorProfileFragment">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView10"
-                android:layout_width="match_parent"
+                android:id="@+id/textView28"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Name" />
+                android:layout_marginTop="96dp"
+                android:text="Doctor's Information"
+                android:textColor="@color/purple_700"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="56dp"
+                android:text="Name"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
             <EditText
                 android:id="@+id/editDName"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="52dp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:hint="Name"
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView30" />
 
             <TextView
-                android:id="@+id/textView13"
-                android:layout_width="match_parent"
+                android:id="@+id/textView32"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Mobile number" />
+                android:layout_marginTop="64dp"
+                android:text="Contact"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView30"
+                app:layout_constraintStart_toStartOf="@+id/textView30"
+                app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
             <EditText
                 android:id="@+id/editDPhone"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="phone" />
+                android:hint="Min 10 digits"
+                android:inputType="phone"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="@+id/editDName"
+                app:layout_constraintStart_toStartOf="@+id/editDName"
+                app:layout_constraintTop_toTopOf="@+id/textView32" />
 
             <TextView
-                android:id="@+id/textView20"
-                android:layout_width="match_parent"
+                android:id="@+id/textView35"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Hospital" />
+                android:layout_marginTop="64dp"
+                android:text="Hospital"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView32"
+                app:layout_constraintStart_toStartOf="@+id/textView32"
+                app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
             <EditText
                 android:id="@+id/editDHospital"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:hint="Hospital Name"
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="@+id/editDPhone"
+                app:layout_constraintStart_toStartOf="@+id/editDPhone"
+                app:layout_constraintTop_toTopOf="@+id/textView35" />
 
             <TextView
-                android:id="@+id/textView21"
-                android:layout_width="match_parent"
+                android:id="@+id/textView37"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Specialization" />
+                android:layout_marginTop="68dp"
+                android:text="Specialisation"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView35"
+                app:layout_constraintStart_toStartOf="@+id/textView35"
+                app:layout_constraintTop_toBottomOf="@+id/textView35" />
 
             <EditText
                 android:id="@+id/editDSpecial"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:hint="Specialisation"
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="@+id/editDHospital"
+                app:layout_constraintStart_toStartOf="@+id/editDHospital"
+                app:layout_constraintTop_toTopOf="@+id/textView37" />
 
             <Button
                 android:id="@+id/editDUpdateB"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Update" />
-        </LinearLayout>
-    </ScrollView>
+                android:layout_width="109dp"
+                android:layout_height="59dp"
+                android:layout_marginTop="56dp"
+                android:text="Update"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editDSpecial" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 </FrameLayout>
