@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DGTechHealthCare">
         <activity
+            android:name=".view.PharmacistDrawerNavigationActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.NurseDrawerNavigationActivity"
             android:exported="true" />
         <activity

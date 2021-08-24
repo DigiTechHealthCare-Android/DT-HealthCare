@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/requestPharma"
+            android:icon="@drawable/medicalrequest"
+            android:title="Request" />
+        <item
+            android:id="@+id/oldReqPharma"
+            android:icon="@drawable/oldrequest"
+            android:title="Old Request" />
+        <item
+            android:id="@+id/profilePharma"
+            android:icon="@drawable/profile"
+            android:title="Profile" />
+        <item
+            android:id="@+id/settingsPharma"
+            android:icon="@drawable/settings"
+            android:title="Settings" />
+        <item
+            android:id="@+id/logoutPharma"
+            android:icon="@drawable/round_logout_black_24dp"
+            android:title="Logout" />
+
+    </group>
+
+</menu>

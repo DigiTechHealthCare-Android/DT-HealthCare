@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.pharmacist.view.PharmacistNavigationActivity
+import com.example.dgtechhealthcare.view.PharmacistDrawerNavigationActivity
 
 class PharmacistRegistrationFragment : Fragment() {
 
@@ -75,7 +76,7 @@ class PharmacistRegistrationFragment : Fragment() {
                             if(it.isSuccessful){
                                 reference.pharmaReference.child("pharmacyNames").child(pharmacyName.toString() + ", " + location.toString()).setValue(reference.currentUserId.toString())
                                 Toast.makeText(activity,"Account successfully created",Toast.LENGTH_LONG).show()
-                                val i = Intent(activity, PharmacistNavigationActivity::class.java)
+                                val i = Intent(activity, PharmacistDrawerNavigationActivity::class.java)
                                 startActivity(i)
                                 activity?.finish()
                             }
