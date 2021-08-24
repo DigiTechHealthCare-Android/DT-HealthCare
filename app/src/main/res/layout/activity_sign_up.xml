@@ -64,7 +64,7 @@
                 android:drawableLeft="@drawable/usernameicon"
                 android:drawablePadding="16dp"
                 android:gravity="center"
-                android:hint="Username"
+                android:hint="User Name"
                 android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
