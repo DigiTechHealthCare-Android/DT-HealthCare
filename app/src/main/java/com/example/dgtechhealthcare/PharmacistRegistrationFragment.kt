@@ -67,10 +67,19 @@ class PharmacistRegistrationFragment : Fragment() {
                 reference.userReference.child(reference.currentUserId!!).updateChildren(hm).addOnCompleteListener {
                     if(it.isSuccessful)
                     {
-                        Toast.makeText(activity,"Account successfully created",Toast.LENGTH_LONG).show()
-                        val i = Intent(activity, PharmacistNavigationActivity::class.java)
-                        startActivity(i)
-                        activity?.finish()
+                        val hm = HashMap<String,Any>()
+                        hm["phuid"] = reference.currentUserId.toString()
+                        hm["username"] = pharmacyName.toString()
+                        hm["location"] = location.toString()
+                        reference.pharmaReference.child(reference.currentUserId!!).updateChildren(hm).addOnCompleteListener {
+                            if(it.isSuccessful){
+                                reference.pharmaReference.child("pharmacyNames").child(pharmacyName.toString() + ", " + location.toString()).setValue(reference.currentUserId.toString())
+                                Toast.makeText(activity,"Account successfully created",Toast.LENGTH_LONG).show()
+                                val i = Intent(activity, PharmacistNavigationActivity::class.java)
+                                startActivity(i)
+                                activity?.finish()
+                            }
+                        }
                     } else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
                 }
             }
