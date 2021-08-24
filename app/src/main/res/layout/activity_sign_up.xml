@@ -91,6 +91,7 @@
                 android:drawablePadding="16dp"
                 android:gravity="center"
                 android:hint="Email Address"
+                android:inputType="textEmailAddress"
                 android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -117,6 +118,7 @@
                 android:drawablePadding="16dp"
                 android:gravity="center"
                 android:hint="Password"
+                android:inputType="textPassword"
                 android:paddingTop="9dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
