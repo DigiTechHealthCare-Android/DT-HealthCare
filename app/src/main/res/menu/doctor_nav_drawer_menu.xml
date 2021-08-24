@@ -4,13 +4,13 @@
     tools:showIn="navigation_view">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/profileDr"
-            android:icon="@drawable/profile"
-            android:title="Profile" />
-        <item
             android:id="@+id/patientInfoDr"
             android:icon="@drawable/patient"
             android:title="Patient Information" />
+        <item
+            android:id="@+id/profileDr"
+            android:icon="@drawable/profile"
+            android:title="Profile" />
         <item
             android:id="@+id/settingsDr"
             android:icon="@drawable/settings"

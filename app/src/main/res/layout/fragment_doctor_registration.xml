@@ -49,8 +49,8 @@
                 android:layout_height="55dp"
                 android:drawableLeft="@drawable/specializationicon"
                 android:drawablePadding="16dp"
-                android:paddingTop="9dp"
-                android:hint="Specialization" />
+                android:hint="Specialization"
+                android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -124,8 +124,9 @@
                 android:layout_height="55dp"
                 android:drawableLeft="@drawable/namedrawableicon"
                 android:drawablePadding="16dp"
-                android:paddingTop="9dp"
-                android:hint="Full Name" />
+                android:gravity="center"
+                android:hint="Full Name"
+                android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
