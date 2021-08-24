@@ -38,6 +38,7 @@
             android:layout_marginEnd="32dp"
             app:helperText="Required*"
             app:helperTextTextColor="#F44336"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,6 +50,7 @@
                 android:layout_height="55dp"
                 android:drawableLeft="@drawable/specializationicon"
                 android:drawablePadding="16dp"
+                android:gravity="center"
                 android:hint="Specialization"
                 android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -62,6 +64,7 @@
             android:layout_marginEnd="32dp"
             app:helperText="Required*"
             app:helperTextTextColor="#F44336"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -73,6 +76,7 @@
                 android:layout_height="55dp"
                 android:drawableLeft="@drawable/contactnumberimage"
                 android:drawablePadding="16dp"
+                android:gravity="center"
                 android:hint="Contact Number"
                 android:inputType="phone"
                 android:paddingTop="9dp" />
@@ -113,6 +117,7 @@
             android:layout_marginEnd="32dp"
             app:helperText="Required*"
             app:helperTextTextColor="#F44336"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -138,6 +143,7 @@
             android:layout_marginEnd="32dp"
             app:helperText="Required*"
             app:helperTextTextColor="#F44336"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -149,8 +155,9 @@
                 android:layout_height="55dp"
                 android:drawableLeft="@drawable/hospitalimageicon"
                 android:drawablePadding="16dp"
-                android:paddingTop="9dp"
-                android:hint="Hospital Name" />
+                android:gravity="center"
+                android:hint="Hospital Name"
+                android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
