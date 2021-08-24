@@ -14,6 +14,7 @@ import android.widget.Toast
 import com.example.dgtechhealthcare.view.DoctorNavigationActivity
 import com.example.dgtechhealthcare.nurse.view.NurseNavigationActivity
 import com.example.dgtechhealthcare.pharmacist.view.PharmacistNavigationActivity
+import com.example.dgtechhealthcare.view.DoctorDrawerNavigationActivity
 import com.example.dgtechhealthcare.view.PatientDrawerNavigationActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
@@ -102,7 +103,7 @@ class SignInActivity : AppCompatActivity() {
                     loadingBar.dismiss()
                     runOnUiThread {
                         Toast.makeText(this@SignInActivity,"Welcome Doctor",Toast.LENGTH_LONG).show()
-                        val i = Intent(this@SignInActivity, DoctorNavigationActivity::class.java)
+                        val i = Intent(this@SignInActivity, DoctorDrawerNavigationActivity::class.java)
                         startActivity(i)
                         finish()
                     }

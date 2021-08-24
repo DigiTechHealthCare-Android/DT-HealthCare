@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.example.dgtechhealthcare.utils.FirebasePresenter
+import com.example.dgtechhealthcare.view.DoctorDrawerNavigationActivity
 import com.example.dgtechhealthcare.view.DoctorNavigationActivity
 
 class DoctorRegistrationFragment : Fragment() {
@@ -73,7 +74,7 @@ class DoctorRegistrationFragment : Fragment() {
                         reference.doctorReference.child(reference.currentUserId!!).updateChildren(dm).addOnCompleteListener {
                             if(it.isSuccessful) {
                                 Toast.makeText(activity,"Account successfully created",Toast.LENGTH_LONG).show()
-                                val i = Intent(activity, DoctorNavigationActivity::class.java)
+                                val i = Intent(activity, DoctorDrawerNavigationActivity::class.java)
                                 startActivity(i)
                                 activity?.finish()
                             }
