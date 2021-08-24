@@ -70,12 +70,12 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/contactNoD"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Contact Number"
+                android:layout_height="55dp"
                 android:drawableLeft="@drawable/contactnumberimage"
                 android:drawablePadding="16dp"
-                android:paddingTop="9dp"
-                android:inputType="phone" />
+                android:hint="Contact Number"
+                android:inputType="phone"
+                android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
