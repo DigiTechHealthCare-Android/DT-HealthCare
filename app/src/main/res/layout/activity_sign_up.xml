@@ -32,7 +32,7 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="76dp"
+            android:layout_marginTop="12dp"
             android:text="Register Here"
             android:textColor="@color/purple_700"
             android:textSize="20sp"
@@ -42,73 +42,84 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/userEV"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout10"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/edit_text_bg"
-            android:drawableLeft="@drawable/user"
-            android:ems="10"
-            android:hint="Username"
-            android:inputType="textPersonName"
-            android:textAlignment="center"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            app:helperText="Required*"
+            app:helperTextTextColor="#F44336"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
-            tools:ignore="TouchTargetSizeCheck" />
+            app:layout_constraintTop_toBottomOf="@+id/textView4">
 
-        <EditText
-            android:id="@+id/emailEV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/edit_text_bg"
-            android:drawableLeft="@drawable/mail"
-            android:ems="10"
-            android:hint="Email"
-            android:inputType="textPersonName"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userEV"
-            tools:ignore="TouchTargetSizeCheck" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/userEV"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:drawableLeft="@drawable/usernameicon"
+                android:drawablePadding="16dp"
+                android:gravity="center"
+                android:hint="Username"
+                android:paddingTop="9dp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/passwordEV"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout11"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/edit_text_bg"
-            android:drawableLeft="@drawable/password"
-            android:ems="10"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:textAlignment="center"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            app:helperText="Required*"
+            app:helperTextTextColor="#F44336"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailEV"
-            tools:ignore="TouchTargetSizeCheck" />
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout10">
 
-        <EditText
-            android:id="@+id/conPassEV"
-            android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailEV"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:drawableLeft="@drawable/emailimageicon"
+                android:drawablePadding="16dp"
+                android:gravity="center"
+                android:hint="Email Address"
+                android:paddingTop="9dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout12"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/edit_text_bg"
-            android:drawableLeft="@drawable/password"
-            android:ems="10"
-            android:hint="Confirm Password"
-            android:inputType="textPassword"
-            android:textAlignment="center"
-            android:visibility="gone"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            app:helperText="Required*"
+            app:helperTextTextColor="#F44336"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordEV"
-            tools:ignore="TouchTargetSizeCheck" />
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout11">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordEV"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:drawableLeft="@drawable/passwordimageicon"
+                android:drawablePadding="16dp"
+                android:gravity="center"
+                android:hint="Password"
+                android:paddingTop="9dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/registerB"
@@ -133,6 +144,7 @@
             android:text="Already Registered?"
             android:textAlignment="textEnd"
             android:textColor="#1C1919"
+            android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/loginT"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/registerB" />
@@ -142,8 +154,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Login here"
+            android:text="Login Here"
             android:textColor="#3F51B5"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView5"
@@ -153,10 +166,10 @@
             android:id="@+id/roleSpinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordEV"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout12"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

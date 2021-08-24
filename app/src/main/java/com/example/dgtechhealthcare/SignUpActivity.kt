@@ -34,7 +34,7 @@ class SignUpActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         userName = findViewById(R.id.userEV)
         userEmail = findViewById(R.id.emailEV)
         userPass = findViewById(R.id.passwordEV)
-        userConfirm = findViewById(R.id.conPassEV)
+      //  userConfirm = findViewById(R.id.conPassEV)
 
         val loginT = findViewById<TextView>(R.id.loginT)
         loginT.setOnClickListener {
@@ -49,7 +49,7 @@ class SignUpActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         val nameT = userName.text.toString()
         val emailT = userEmail.text.toString()
         val passT = userPass.text.toString()
-        val confirmT = userConfirm.text.toString()
+      //  val confirmT = userConfirm.text.toString()
 
         if(nameT.isEmpty()) Toast.makeText(this,"Please enter your name",Toast.LENGTH_LONG).show()
         else if(emailT.isEmpty()) Toast.makeText(this,"Please enter your email!", Toast.LENGTH_SHORT).show()
