@@ -12,6 +12,7 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.nurse.view.NurseNavigationActivity
+import com.example.dgtechhealthcare.view.NurseDrawerNavigationActivity
 
 class NurseRegistrationFragment : Fragment() {
 
@@ -77,7 +78,7 @@ class NurseRegistrationFragment : Fragment() {
                     if(it.isSuccessful)
                     {
                         Toast.makeText(activity,"Account successfully created",Toast.LENGTH_LONG).show()
-                        val i = Intent(activity, NurseNavigationActivity::class.java)
+                        val i = Intent(activity, NurseDrawerNavigationActivity::class.java)
                         startActivity(i)
                         activity?.finish()
                     } else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()

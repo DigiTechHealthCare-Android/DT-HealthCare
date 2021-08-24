@@ -13,6 +13,7 @@ import com.example.dgtechhealthcare.view.DoctorNavigationActivity
 import com.example.dgtechhealthcare.nurse.view.NurseNavigationActivity
 import com.example.dgtechhealthcare.pharmacist.view.PharmacistNavigationActivity
 import com.example.dgtechhealthcare.view.DoctorDrawerNavigationActivity
+import com.example.dgtechhealthcare.view.NurseDrawerNavigationActivity
 import com.example.dgtechhealthcare.view.PatientDrawerNavigationActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
@@ -74,7 +75,7 @@ class MainActivity : AppCompatActivity() {
                     loadingBar.dismiss()
                     runOnUiThread {
                         Toast.makeText(this@MainActivity,"Welcome",Toast.LENGTH_LONG).show()
-                        val i = Intent(this@MainActivity, NurseNavigationActivity::class.java)
+                        val i = Intent(this@MainActivity, NurseDrawerNavigationActivity::class.java)
                         startActivity(i)
                         finish()
                     }
