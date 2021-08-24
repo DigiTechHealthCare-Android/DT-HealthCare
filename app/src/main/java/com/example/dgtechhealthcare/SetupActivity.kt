@@ -8,6 +8,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
+import com.example.dgtechhealthcare.contentManager.ContentManagerRegistrationFragment
 import com.google.firebase.auth.FirebaseAuth
 
 class SetupActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
@@ -41,6 +42,9 @@ class SetupActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             supportFragmentManager.beginTransaction().replace(R.id.setupFrame,frag).commit()
         } else if(role?.compareTo("pharmacist")==0){
             val frag = PharmacistRegistrationFragment()
+            supportFragmentManager.beginTransaction().replace(R.id.setupFrame,frag).commit()
+        } else if(role?.compareTo("manager")==0){
+            val frag = ContentManagerRegistrationFragment()
             supportFragmentManager.beginTransaction().replace(R.id.setupFrame,frag).commit()
         }
 

@@ -86,6 +86,9 @@ class SignUpActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             "Pharmacist" -> {
                 roleChoice = "pharmacist"
             }
+            "Content Manager" -> {
+                roleChoice = "manager"
+            }
             /*"Patient" -> {
                 val frag = PatientRegistrationFragment()
                 supportFragmentManager.beginTransaction().replace(R.id.setupFrame,frag).commit()

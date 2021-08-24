@@ -24,11 +24,16 @@ class RequestModel(val view : View) {
 
     val reference = FirebasePresenter(view)
 
-    fun displayAllRequests(requestList:RecyclerView,activity: FragmentActivity){
+    fun displayAllRequests(requestList:RecyclerView,activity: FragmentActivity,type:String){
+
+        var node = ""
+        if(type.compareTo("history")==0) node = "requestHistory"
+        else if(type.compareTo("requests")==0) node = "requests"
+
 
         val options = FirebaseRecyclerOptions.Builder<PatientInfoDataClass>()
             .setQuery(reference.pharmaReference.child(reference.currentUserId!!)
-                .child("requests"),PatientInfoDataClass::class.java).build()
+                .child(node),PatientInfoDataClass::class.java).build()
 
         val firebaseRecyclerAdapter : FirebaseRecyclerAdapter<PatientInfoDataClass,PatientViewHolder> =
             object : FirebaseRecyclerAdapter<PatientInfoDataClass,PatientViewHolder>(options){
@@ -65,6 +70,7 @@ class RequestModel(val view : View) {
                         val frag = RequestDescriptionFragment()
                         val bundle = Bundle()
                         bundle.putString("userID",userID)
+                        bundle.putString("type",node)
                         frag.arguments = bundle
                         activity.supportFragmentManager.beginTransaction()
                             .replace(R.id.pharmRequestFrame,frag)

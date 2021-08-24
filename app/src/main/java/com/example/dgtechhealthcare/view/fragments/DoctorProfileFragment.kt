@@ -77,10 +77,10 @@ class DoctorProfileFragment : Fragment() {
                 }
 
                 username.text = snapshot.child("username").value.toString()
-                useremail.text = "Email: " + snapshot.child("email").value.toString()
-                userhospital.text = "Hospital: " + snapshot.child("hospital").value.toString()
-                userspecial.text = "Specialization: " + snapshot.child("specialization").value.toString()
-                usercontact.text = "Contact number: " + snapshot.child("contact").value.toString()
+                useremail.text = snapshot.child("email").value.toString()
+                userhospital.text = snapshot.child("hospital").value.toString()
+                userspecial.text = snapshot.child("specialization").value.toString()
+                usercontact.text = snapshot.child("contact").value.toString()
             }
 
             override fun onCancelled(error: DatabaseError) {}

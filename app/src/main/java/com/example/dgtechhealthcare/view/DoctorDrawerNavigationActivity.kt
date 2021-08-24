@@ -64,23 +64,23 @@ class DoctorDrawerNavigationActivity : AppCompatActivity(),
         doctorIV = headerView.findViewById(R.id.drawerDoctorIV)
 
         reference = FirebasePresenter(View(this))
-//        reference.userReference.child(reference.currentUserId!!).addValueEventListener(object:
-//            ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                if(snapshot.hasChild("profileImage")) {
-//                    val img = snapshot.child("profileImage").value.toString()
-//                    Picasso.get().load(img).into(doctorIV)
-//                }
-//                val name = snapshot.child("username").value.toString()
-//                val email = snapshot.child("email").value.toString()
-//
-//                doctorName.setText(name)
-//                doctorEmail.setText(email)
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {}
-//
-//        })
+        reference.userReference.child(reference.currentUserId!!).addValueEventListener(object:
+            ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.hasChild("profileImage")) {
+                    val img = snapshot.child("profileImage").value.toString()
+                    Picasso.get().load(img).into(doctorIV)
+                }
+                val name = snapshot.child("username").value.toString()
+                val email = snapshot.child("email").value.toString()
+
+                doctorName.setText(name)
+                doctorEmail.setText(email)
+            }
+
+            override fun onCancelled(error: DatabaseError) {}
+
+        })
 
         navMenuDoctor.setNavigationItemSelectedListener(this)
 

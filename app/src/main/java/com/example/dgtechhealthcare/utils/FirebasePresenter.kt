@@ -15,9 +15,12 @@ class FirebasePresenter(val view: View) {
 
     val userProfileImgRef : StorageReference = FirebaseStorage.getInstance().getReference().child("profileImgs")
     val userReportRef : StorageReference = FirebaseStorage.getInstance().getReference().child("userReports")
+    val contentPostRef : StorageReference = FirebaseStorage.getInstance().getReference().child("contentMedia")
 
     val userReference : DatabaseReference = FirebaseDatabase.getInstance().reference.child("Users")
     val doctorReference : DatabaseReference = FirebaseDatabase.getInstance().reference.child("Doctors")
     val pharmaReference : DatabaseReference = FirebaseDatabase.getInstance().reference.child("Pharmacists")
+    val managerReference : DatabaseReference = FirebaseDatabase.getInstance().reference.child("ContentManager")
+    val articleReference : DatabaseReference = FirebaseDatabase.getInstance().reference.child("Articles")
 
 }
