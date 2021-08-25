@@ -14,6 +14,7 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.SignInActivity
+import com.example.dgtechhealthcare.doctorPrescribeMedicine.DoctorPrescribeMedicineFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.android.material.navigation.NavigationView
 import com.example.dgtechhealthcare.view.fragments.PatientArticleFragment
@@ -91,6 +92,11 @@ class PatientDrawerNavigationActivity : AppCompatActivity(),
             R.id.settingsPatient ->{
                 setToolbarTitle("Settings")
                 changeFragment(SettingsFragment())
+            }
+            R.id.reportPatient -> {
+
+
+
             }
             R.id.logout ->{
                 val builder = AlertDialog.Builder(this)
