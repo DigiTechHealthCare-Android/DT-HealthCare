@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,104 +7,189 @@
     tools:context=".NurseRegistrationFragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="411dp"
+        android:layout_height="285dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/doctorimage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".27"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="0dp"
+        android:layout_height="482dp"
+        android:background="@drawable/view_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.78"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <EditText
-            android:id="@+id/fullNameN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="84dp"
-            android:ems="10"
-            android:hint="Full Name"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/hospitalN"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout13"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:ems="10"
-            android:hint="Hospital Name"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fullNameN" />
+            app:layout_constraintTop_toBottomOf="@+id/textView56">
 
-        <EditText
-            android:id="@+id/contactNoN"
-            android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fullNameN"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:drawableLeft="@drawable/namedrawableicon"
+                android:drawablePadding="16dp"
+                android:gravity="center"
+                android:hint="Full Name"
+                android:paddingTop="9dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout14"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:ems="10"
-            android:hint="Contact Number"
-            android:inputType="phone"
-            android:minHeight="48dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/hospitalN" />
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout13">
 
-        <EditText
-            android:id="@+id/dateOfBirth"
-            android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/hospitalN"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:drawableLeft="@drawable/hospitalimageicon"
+                android:drawablePadding="16dp"
+                android:gravity="center"
+                android:hint="Hospital Name"
+                android:paddingTop="9dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout15"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:ems="10"
-            android:hint="DD/MM/YYYY"
-            android:inputType="phone"
-            android:minHeight="48dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/contactNoN" />
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout14">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/contactNoN"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:drawableLeft="@drawable/contactnumberimage"
+                android:drawablePadding="16dp"
+                android:gravity="center"
+                android:hint="Contact Number"
+                android:inputType="phone"
+                android:paddingTop="9dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout15">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dateOfBirth"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:drawableLeft="@drawable/datedrawableimage"
+                android:drawablePadding="16dp"
+                android:gravity="center"
+                android:hint="DOB(DD/MM/YYYY)"
+                android:paddingTop="9dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <RadioGroup
             android:id="@+id/Gender_RG"
             android:layout_width="200dp"
-            android:layout_height="57dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="12dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dateOfBirth">
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout16">
 
             <RadioButton
                 android:id="@+id/maleRadio"
                 android:layout_width="90dp"
-                android:layout_height="57dp"
+                android:layout_height="43dp"
                 android:layout_marginEnd="10dp"
+                android:buttonTint="@color/purple_700"
+                android:shadowColor="@color/purple_500"
                 android:text="Male"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
                 android:id="@+id/femaleRadio"
                 android:layout_width="90dp"
-                android:layout_height="57dp"
+                android:layout_height="43dp"
                 android:layout_marginStart="10dp"
+                android:buttonTint="@color/purple_700"
+                android:shadowColor="@color/purple_500"
                 android:text="Female"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="TouchTargetSizeCheck" />
         </RadioGroup>
 
         <Button
             android:id="@+id/registerN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="16dp"
             android:text="Register"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Gender_RG" />
+            app:layout_constraintTop_toBottomOf="@+id/Gender_RG"
+            tools:layout_conversion_absoluteHeight="48dp"
+            tools:layout_conversion_absoluteWidth="106dp" />
+
+        <TextView
+            android:id="@+id/textView56"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Enter Details"
+            android:textColor="@color/purple_700"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
