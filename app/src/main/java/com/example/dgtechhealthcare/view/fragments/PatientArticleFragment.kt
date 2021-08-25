@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.contentManager.ContentMangerShowContentFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
@@ -14,6 +15,7 @@ import com.example.dgtechhealthcare.utils.FirebasePresenter
 class PatientArticleFragment : Fragment() {
 
     lateinit var recyclerView: RecyclerView
+    lateinit var swipeLayout : SwipeRefreshLayout
 
     lateinit var reference : FirebasePresenter
     lateinit var showContent : ContentMangerShowContentFragment
@@ -41,11 +43,16 @@ class PatientArticleFragment : Fragment() {
         recyclerView.layoutManager = layout
 
         showContent.displayContent(recyclerView,requireActivity(),"patient")
+
+        swipeLayout.setOnRefreshListener {
+            swipeLayout.isRefreshing = false
+        }
     }
 
     private fun initializeValues(view: View) {
         recyclerView = view.findViewById(R.id.patientArticleRV)
         reference = FirebasePresenter(view)
+        swipeLayout = view.findViewById(R.id.swipeLayout)
         showContent = ContentMangerShowContentFragment(view)
     }
 }
