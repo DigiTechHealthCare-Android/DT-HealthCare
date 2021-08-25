@@ -14,6 +14,7 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.SignInActivity
+import com.example.dgtechhealthcare.editProfile.EditDoctorProfileFragment
 import com.example.dgtechhealthcare.patientInfo.PatientInfoFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.view.fragments.DoctorProfileFragment
@@ -38,6 +39,7 @@ class DoctorDrawerNavigationActivity : AppCompatActivity(),
     lateinit var doctorName: TextView
     lateinit var doctorEmail: TextView
     lateinit var doctorIV: ImageView
+    lateinit var editUser: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +64,12 @@ class DoctorDrawerNavigationActivity : AppCompatActivity(),
         doctorName = headerView.findViewById(R.id.drawerDoctorName)
         doctorEmail = headerView.findViewById(R.id.drawerDoctorEmail)
         doctorIV = headerView.findViewById(R.id.drawerDoctorIV)
+        editUser = headerView.findViewById(R.id.editImageVIewDoctor)
+
+        editUser.setOnClickListener {
+            setToolbarTitle("Profile")
+            changeFragment(EditDoctorProfileFragment())
+        }
 
         reference = FirebasePresenter(View(this))
         reference.userReference.child(reference.currentUserId!!).addValueEventListener(object:

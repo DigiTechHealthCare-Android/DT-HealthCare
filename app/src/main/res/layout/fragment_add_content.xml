@@ -64,14 +64,14 @@
                 android:id="@+id/publishContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="32dp"
                 android:text="Button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/contentAddDesc" />
 
             <RadioGroup
-                android:id="@+id/radioGroup"
+                android:id="@+id/contentRG"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -81,16 +81,23 @@
                 app:layout_constraintTop_toBottomOf="@+id/contentAddTitle">
 
                 <RadioButton
-                    android:id="@+id/radioButton"
+                    android:id="@+id/contentImageR"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="RadioButton" />
+                    android:text="Image" />
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/contentVideoR"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="RadioButton" />
+                    android:text="Video" />
+
+                <RadioButton
+                    android:id="@+id/contentResearchR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Research Paper" />
             </RadioGroup>
 
             <ImageView
@@ -100,7 +107,7 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+                app:layout_constraintTop_toBottomOf="@+id/contentRG"
                 tools:src="@color/design_default_color_error" />
 
             <EditText

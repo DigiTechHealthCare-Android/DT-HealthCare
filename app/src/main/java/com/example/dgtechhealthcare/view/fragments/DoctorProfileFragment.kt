@@ -1,5 +1,8 @@
 package com.example.dgtechhealthcare.view.fragments
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.editProfile.EditDoctorProfileFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
@@ -26,6 +31,8 @@ class DoctorProfileFragment : Fragment() {
     lateinit var editProfile : ImageView
 
     lateinit var reference : FirebasePresenter
+    var galleryPick : Int = 0
+    var imgUri : Uri = Uri.parse("")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,9 +62,42 @@ class DoctorProfileFragment : Fragment() {
 
         populateDoctorProfile()
 
+        profileIV.setOnClickListener {
+            val gallery : Intent = Intent()
+            gallery.setAction(Intent.ACTION_GET_CONTENT)
+            gallery.setType("image/*")
+            startActivityForResult(gallery,galleryPick)
+        }
+
         editProfile.setOnClickListener {
             editUserProfile()
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == galleryPick && resultCode == Activity.RESULT_OK && data != null) {
+                imgUri = data.data!!
+                uploadToStorage(reference,reference.currentUserId,imgUri,requireActivity())
+        } else Toast.makeText(activity,"ERROR!!", Toast.LENGTH_LONG).show()
+    }
+
+    private fun uploadToStorage(reference: FirebasePresenter, currentUserId: String?, imgUri: Uri, requireActivity: FragmentActivity) {
+        val resultUri = imgUri
+        val path = reference.userProfileImgRef.child("$currentUserId.jpg")
+        path.putFile(resultUri).addOnCompleteListener {
+            if(it.isSuccessful) {
+                Toast.makeText(activity,"Profile image changed",Toast.LENGTH_SHORT).show()
+                path.downloadUrl.addOnSuccessListener {
+                    val downloadUrl = it.toString()
+                    reference.userReference.child(currentUserId!!).child("profileImage").setValue(downloadUrl).addOnCompleteListener {
+                        if(it.isSuccessful) Toast.makeText(activity,"Image stored",Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
+        }
+        profileIV.setImageURI(imgUri)
     }
 
     private fun editUserProfile() {
