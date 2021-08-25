@@ -47,13 +47,14 @@
                 android:id="@+id/morningMed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="53dp"
                 android:layout_marginEnd="32dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView39"
+                app:layout_constraintTop_toBottomOf="@+id/textView38"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <TextView
@@ -73,13 +74,14 @@
                 android:id="@+id/afternoonMed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="58dp"
                 android:layout_marginEnd="32dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView40"
+                app:layout_constraintTop_toBottomOf="@+id/morningMed"
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             <TextView
@@ -99,13 +101,14 @@
                 android:id="@+id/eveningMed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="62dp"
                 android:layout_marginEnd="32dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView41"
+                app:layout_constraintTop_toBottomOf="@+id/afternoonMed"
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             <TextView
@@ -126,13 +129,14 @@
                 android:id="@+id/nightMed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="51dp"
                 android:layout_marginEnd="32dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView42"
+                app:layout_constraintTop_toBottomOf="@+id/eveningMed"
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             <Button
