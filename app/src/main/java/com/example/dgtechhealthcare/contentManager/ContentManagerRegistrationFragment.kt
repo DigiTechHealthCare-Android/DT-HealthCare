@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.utils.FirebasePresenter
+import com.example.dgtechhealthcare.view.ContentManagerDrawerNavigationActivity
 import com.example.dgtechhealthcare.view.DoctorDrawerNavigationActivity
 
 class ContentManagerRegistrationFragment : Fragment() {
@@ -58,7 +59,7 @@ class ContentManagerRegistrationFragment : Fragment() {
                         reference.managerReference.child(reference.currentUserId!!).updateChildren(cm).addOnCompleteListener {
                             if(it.isSuccessful){
                                 Toast.makeText(activity,"Account successfully created",Toast.LENGTH_LONG).show()
-                                val i = Intent(activity, CRUDContentActivity::class.java)
+                                val i = Intent(activity, ContentManagerDrawerNavigationActivity::class.java)
                                 startActivity(i)
                                 activity?.finish()
                             }

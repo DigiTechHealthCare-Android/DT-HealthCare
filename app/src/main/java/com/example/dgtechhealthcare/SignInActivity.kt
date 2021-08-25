@@ -126,7 +126,7 @@ class SignInActivity : AppCompatActivity() {
                     loadingBar.dismiss()
                     runOnUiThread {
                         Toast.makeText(this@SignInActivity,"Time to post content",Toast.LENGTH_LONG).show()
-                        val i = Intent(this@SignInActivity,CRUDContentActivity::class.java)
+                        val i = Intent(this@SignInActivity,ContentManagerDrawerNavigationActivity::class.java)
                         startActivity(i)
                         finish()
                     }
