@@ -34,28 +34,33 @@
                 android:id="@+id/textView39"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="56dp"
                 android:text="Morning"
                 android:textColor="#000000"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toStartOf="@+id/morningMed"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/textInputLayout24"
+                app:layout_constraintHorizontal_bias="0.458"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView38" />
 
-            <EditText
-                android:id="@+id/morningMed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="53dp"
-                android:layout_marginEnd="32dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:textAlignment="center"
-                android:textColor="@color/black"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout24"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="218dp"
+                android:layout_height="72dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView38"
-                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                app:layout_constraintTop_toBottomOf="@+id/textView38">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/morningMed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Morning Medicine"
+                    android:textColor="#000000" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/textView40"
@@ -65,91 +70,111 @@
                 android:text="Afternoon"
                 android:textColor="#000000"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toStartOf="@+id/afternoonMed"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="@+id/textView39"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView39" />
-
-            <EditText
-                android:id="@+id/afternoonMed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="58dp"
-                android:layout_marginEnd="32dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/morningMed"
-                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/textView41"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="76dp"
                 android:text="Evening"
                 android:textColor="#000000"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toStartOf="@+id/eveningMed"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="@+id/textView40"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView40" />
-
-            <EditText
-                android:id="@+id/eveningMed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="62dp"
-                android:layout_marginEnd="32dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/afternoonMed"
-                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/textView42"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="72dp"
+                android:layout_marginTop="76dp"
                 android:text="Night"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toStartOf="@+id/nightMed"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="@+id/textView41"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView41" />
-
-            <EditText
-                android:id="@+id/nightMed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="51dp"
-                android:layout_marginEnd="32dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/eveningMed"
-                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/addMedicineB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
-                android:backgroundTint="@android:color/holo_blue_dark"
+                android:layout_marginTop="36dp"
+                android:backgroundTint="@color/purple_700"
                 android:text="Add Medicine"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nightMed" />
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout27" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout25"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="218dp"
+                android:layout_height="72dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="20dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayout24"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/afternoonMed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Afternoon Medicine"
+                    android:textColor="#000000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout26"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="218dp"
+                android:layout_height="72dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="20dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayout25"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout25">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/eveningMed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Evening Medicine"
+                    android:textColor="#000000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout27"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="218dp"
+                android:layout_height="72dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="20dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayout26"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout26">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nightMed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Night Medicine"
+                    android:textColor="#000000" />
+            </com.google.android.material.textfield.TextInputLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
