@@ -53,6 +53,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/contentShowImg" />
 
+        <ImageButton
+            android:id="@+id/contentEdit"
+            android:layout_width="37dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/white"
+            android:src="@android:drawable/ic_menu_edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <!--<com.google.android.youtube.player.YouTubePlayerView
             android:id="@+id/contentShowVideo"
             android:layout_width="0dp"
