@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
                 android:layout_marginTop="56dp"
-                android:text="Name"
+                android:text="Name:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -46,20 +46,21 @@
                 android:id="@+id/editDName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="52dp"
+                android:layout_marginTop="44dp"
+                android:layout_marginEnd="48dp"
                 android:ems="10"
                 android:hint="Name"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView30" />
+                app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
             <TextView
                 android:id="@+id/textView32"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="64dp"
-                android:text="Contact"
+                android:text="Contact:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView30"
@@ -70,20 +71,22 @@
                 android:id="@+id/editDPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
                 android:ems="10"
                 android:hint="Min 10 digits"
                 android:inputType="phone"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="@+id/editDName"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/editDName"
-                app:layout_constraintTop_toTopOf="@+id/textView32" />
+                app:layout_constraintTop_toBottomOf="@+id/editDName" />
 
             <TextView
                 android:id="@+id/textView35"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="64dp"
-                android:text="Hospital"
+                android:text="Hospital:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView32"
@@ -94,44 +97,49 @@
                 android:id="@+id/editDHospital"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
                 android:ems="10"
                 android:hint="Hospital Name"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="@+id/editDPhone"
                 app:layout_constraintStart_toStartOf="@+id/editDPhone"
-                app:layout_constraintTop_toTopOf="@+id/textView35" />
+                app:layout_constraintTop_toBottomOf="@+id/editDPhone" />
 
             <TextView
                 android:id="@+id/textView37"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="68dp"
-                android:text="Specialisation"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="64dp"
+                android:text="Specialisation:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView35"
-                app:layout_constraintStart_toStartOf="@+id/textView35"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView35" />
 
             <EditText
                 android:id="@+id/editDSpecial"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="201dp"
+                android:layout_height="42dp"
+                android:layout_marginTop="48dp"
                 android:ems="10"
                 android:hint="Specialisation"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="@+id/editDHospital"
                 app:layout_constraintStart_toStartOf="@+id/editDHospital"
-                app:layout_constraintTop_toTopOf="@+id/textView37" />
+                app:layout_constraintTop_toBottomOf="@+id/editDHospital" />
 
             <Button
                 android:id="@+id/editDUpdateB"
                 android:layout_width="109dp"
                 android:layout_height="59dp"
                 android:layout_marginTop="56dp"
+                android:layout_marginBottom="96dp"
                 android:text="Update"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
