@@ -72,7 +72,7 @@
                 android:drawablePadding="16dp"
                 android:gravity="center"
                 android:hint="Contact Number"
-                android:inputType="number"
+                android:inputType="phone"
                 android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -150,7 +150,7 @@
             android:id="@+id/textView27"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="16dp"
             android:text="Enter Details"
             android:textColor="@color/purple_700"
             android:textSize="20sp"
