@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:hapticFeedbackEnabled="true"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="#F5F5F5"
     app:cardCornerRadius="10dp"
     app:cardElevation="4dp">
 
@@ -29,13 +29,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
+            android:drawableLeft="@drawable/cardviewname"
+            android:drawablePadding="5dp"
             android:paddingStart="20dp"
             android:text="Name"
             android:textColor="#000000"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/patientCardContact"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.666"
             app:layout_constraintStart_toEndOf="@+id/patientCardIV"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,14 +46,49 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
+            android:drawableLeft="@drawable/cardviewcontact"
+            android:drawablePadding="5dp"
             android:paddingStart="20dp"
-            android:text="contact"
+            android:text="Contact"
             android:textColor="#000000"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/patientCardIV"
             app:layout_constraintTop_toBottomOf="@+id/patientCardName" />
+
+        <TextView
+            android:id="@+id/textView57"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="     _____________________"
+            app:layout_constraintBottom_toTopOf="@+id/patientCardContact"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/patientCardIV" />
+
+        <TextView
+            android:id="@+id/textView58"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/round_navigate_next_black_24dp"
+            app:layout_constraintBottom_toTopOf="@+id/patientCardContact"
+            app:layout_constraintEnd_toEndOf="@+id/patientCardContact"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/patientCardIV" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginEnd="280dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/patientCardContact"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/verifiedicon" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -61,6 +61,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="50dp"
                 android:text="TextView"
+                android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -85,6 +86,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="50dp"
                 android:text="TextView"
+                android:textAlignment="viewStart"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -109,6 +111,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="50dp"
                 android:text="TextView"
+                android:textAlignment="viewStart"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -130,12 +133,14 @@
                 android:id="@+id/doctorHospital"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="50dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="48dp"
                 android:text="TextView"
+                android:textAlignment="viewStart"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView34" />
+                app:layout_constraintTop_toBottomOf="@+id/doctorEmail" />
 
             <TextView
                 android:id="@+id/textView36"
@@ -153,12 +158,14 @@
                 android:id="@+id/doctorSpecial"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="50dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="48dp"
                 android:text="TextView"
+                android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView36" />
+                app:layout_constraintTop_toBottomOf="@+id/doctorHospital" />
 
             <ImageView
                 android:id="@+id/editDoctorProfile"
