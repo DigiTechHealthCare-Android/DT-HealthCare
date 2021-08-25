@@ -33,7 +33,7 @@ class CRUDContentActivity : AppCompatActivity() {
         layout.stackFromEnd = true
         recyclerView.layoutManager = layout
 
-        showContent.displayContent(recyclerView,this)
+        showContent.displayContent(recyclerView,this,"contentManager")
     }
 
     private fun initializeValues() {
