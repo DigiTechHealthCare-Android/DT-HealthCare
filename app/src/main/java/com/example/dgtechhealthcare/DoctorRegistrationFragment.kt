@@ -14,7 +14,7 @@ import com.example.dgtechhealthcare.view.DoctorDrawerNavigationActivity
 import com.example.dgtechhealthcare.view.DoctorNavigationActivity
 
 class DoctorRegistrationFragment : Fragment() {
-
+//testing
     lateinit var nameD : EditText
     lateinit var hospitalD : EditText
     lateinit var specializationD : EditText
