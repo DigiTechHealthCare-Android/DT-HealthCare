@@ -14,7 +14,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/background2">
 
             <TextView
                 android:id="@+id/textView28"
@@ -52,6 +53,7 @@
                 android:hint="Name"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
@@ -76,6 +78,7 @@
                 android:hint="Min 10 digits"
                 android:inputType="phone"
                 android:textAlignment="center"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="@+id/editDName"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/editDName"
@@ -102,6 +105,7 @@
                 android:hint="Hospital Name"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="@+id/editDPhone"
                 app:layout_constraintStart_toStartOf="@+id/editDPhone"
                 app:layout_constraintTop_toBottomOf="@+id/editDPhone" />
@@ -128,6 +132,7 @@
                 android:hint="Specialisation"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="@+id/editDHospital"
                 app:layout_constraintStart_toStartOf="@+id/editDHospital"
                 app:layout_constraintTop_toBottomOf="@+id/editDHospital" />

@@ -3,6 +3,7 @@ package com.example.dgtechhealthcare.view
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -14,7 +15,10 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.SignInActivity
+import com.example.dgtechhealthcare.doctorPrescribeMedicine.DoctorPrescribeMedicineFragment
+import com.example.dgtechhealthcare.editProfile.EditPatientProfileFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
+import com.example.dgtechhealthcare.utils.ViewPdfActivity
 import com.google.android.material.navigation.NavigationView
 import com.example.dgtechhealthcare.view.fragments.PatientArticleFragment
 import com.example.dgtechhealthcare.view.fragments.PatientProfileFragment
@@ -34,6 +38,7 @@ class PatientDrawerNavigationActivity : AppCompatActivity(),
     lateinit var userName : TextView
     lateinit var userEmail : TextView
     lateinit var userIV : ImageView
+    lateinit var editUser : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +57,12 @@ class PatientDrawerNavigationActivity : AppCompatActivity(),
         userName = headerView.findViewById(R.id.drawerUserName)
         userEmail = headerView.findViewById(R.id.drawerUserEmail)
         userIV = headerView.findViewById(R.id.drawerUserIV)
+        editUser = headerView.findViewById(R.id.editImageView)
+
+        editUser.setOnClickListener {
+            setToolbarTitle("Patient Profile")
+            changeFragment(EditPatientProfileFragment())
+        }
 
         reference = FirebasePresenter(View(this))
         reference.userReference.child(reference.currentUserId!!).addValueEventListener(object: ValueEventListener{
@@ -68,7 +79,6 @@ class PatientDrawerNavigationActivity : AppCompatActivity(),
             }
 
             override fun onCancelled(error: DatabaseError) {}
-
         })
 
         nav_menu.setNavigationItemSelectedListener(this)
@@ -93,11 +103,35 @@ class PatientDrawerNavigationActivity : AppCompatActivity(),
                 changeFragment(SettingsFragment())
             }
             R.id.reportPatient -> {
+                var report = ""
+                reference.userReference.child(reference.currentUserId!!).addListenerForSingleValueEvent(object : ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if(snapshot.hasChild("report")) {
+                            report = snapshot.child("report").value.toString()
+                        }
+                    }
+                    override fun onCancelled(error: DatabaseError) {}
+                })
 
+                val options = arrayOf<CharSequence>("Download","View","Cancel")
+                val builder : AlertDialog.Builder = AlertDialog.Builder(this)
+                builder.setTitle("Do you want to?")
+                builder.setItems(options,DialogInterface.OnClickListener { dialog, which ->
+                    if(which == 0) {
+                        val i = Intent(Intent.ACTION_VIEW, Uri.parse(report))
+                        startActivity(i)
+                    }
+                    if(which == 1) {
+                        val i = Intent(this, ViewPdfActivity::class.java)
+                        i.putExtra("url",report)
+                        startActivity(i)
+                    }
+                })
+                builder.show()
             }
             R.id.prescriptionPatient ->{
-
-
+                setToolbarTitle("Patient Profile")
+                changeFragment(DoctorPrescribeMedicineFragment())
             }
             R.id.logout ->{
                 val builder = AlertDialog.Builder(this)

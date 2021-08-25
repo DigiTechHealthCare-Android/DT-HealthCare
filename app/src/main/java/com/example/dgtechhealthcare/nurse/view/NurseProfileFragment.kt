@@ -64,7 +64,7 @@ class NurseProfileFragment : Fragment() {
         editButton.setOnClickListener {
             val transaction = activity?.supportFragmentManager?.beginTransaction()
             val frag = editNurseProfileFragment()
-            transaction?.replace(R.id.fragmentContainerNurse, frag)
+            transaction?.replace(R.id.fragment_container_nurse, frag)
             transaction?.addToBackStack(null)
             transaction?.commit()
         }

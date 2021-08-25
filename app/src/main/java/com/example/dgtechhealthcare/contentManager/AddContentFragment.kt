@@ -8,13 +8,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.FragmentActivity
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.utils.FirebasePresenter
+import kotlinx.android.synthetic.main.fragment_add_content.*
 import java.sql.Time
 import java.util.*
 import kotlin.collections.HashMap
@@ -25,6 +23,7 @@ class AddContentFragment : Fragment() {
     lateinit var contentImg : ImageView
     lateinit var contentDesc : EditText
     lateinit var contentUrl : EditText
+    lateinit var contentRG : RadioGroup
     lateinit var publishB : Button
 
     lateinit var reference : FirebasePresenter
@@ -32,6 +31,7 @@ class AddContentFragment : Fragment() {
     var imgUri : Uri = Uri.parse("")
 
     var contentUid = ""
+    var type = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +50,8 @@ class AddContentFragment : Fragment() {
         initializeValues(view)
 
         contentUid = UUID.randomUUID().toString()
+        contentImg.visibility = View.INVISIBLE
+        contentDesc.visibility = View.INVISIBLE
 
         contentImg.setOnClickListener {
             val gallery = Intent()
@@ -58,12 +60,33 @@ class AddContentFragment : Fragment() {
             startActivityForResult(gallery,galleryPick)
         }
 
+        contentRG.setOnCheckedChangeListener { group, checkedId ->
+            when(checkedId){
+                R.id.contentImageR -> {
+                    contentImg.visibility = View.VISIBLE
+                    contentDesc.visibility = View.VISIBLE
+                    type = "image"
+                }
+                R.id.contentVideoR -> {
+                    type = "video"
+                    contentImg.visibility = View.INVISIBLE
+                    contentDesc.visibility = View.INVISIBLE
+                }
+                R.id.contentResearchR -> {
+                    type = "research"
+                    contentImg.visibility = View.VISIBLE
+                    contentDesc.visibility = View.INVISIBLE
+                }
+            }
+        }
+
         publishB.setOnClickListener {
             val hm = HashMap<String,Any>()
             hm["title"] = title.text.toString()
             hm["desc"] = contentDesc.text.toString()
             hm["url"] = contentUrl.text.toString()
             hm["time"] = Calendar.getInstance().time.toString()
+            hm["type"] = type
             reference.articleReference.child(contentUid.toString()).updateChildren(hm)
                 .addOnCompleteListener {
                     if(it.isSuccessful){
@@ -113,6 +136,7 @@ class AddContentFragment : Fragment() {
         contentDesc = view.findViewById(R.id.contentAddDesc)
         publishB = view.findViewById(R.id.publishContent)
         contentUrl = view.findViewById(R.id.contentUrl)
+        contentRG = view.findViewById(R.id.contentRG)
 
         reference = FirebasePresenter(view)
     }
