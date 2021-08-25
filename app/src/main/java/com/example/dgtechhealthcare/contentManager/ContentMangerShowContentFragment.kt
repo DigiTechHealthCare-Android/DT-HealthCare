@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
+import java.util.regex.Pattern
 
 class ContentMangerShowContentFragment(val view: View) {
 
@@ -65,6 +66,14 @@ class ContentMangerShowContentFragment(val view: View) {
                                 if(snapshot.hasChild("type")){
                                     if(snapshot.child("type").value.toString().compareTo("video")==0){
                                         val title = snapshot.child("title").value.toString()
+                                        val url = snapshot.child("url").value.toString()
+
+                                        var vid = ""
+                                        val pattern = Pattern.compile("^https?://.*(?:youtu.be/|v/|u/\\w/|embed/|watch?v=)([^#&?]*).*$", Pattern.CASE_INSENSITIVE)
+                                        val matcher = pattern.matcher(url)
+                                        if (matcher.matches()){
+                                            vid = matcher.group(1)
+                                        }
 
                                         holder.title.setText(title)
                                         var yplayer : YouTubePlayer? = null
@@ -78,7 +87,7 @@ class ContentMangerShowContentFragment(val view: View) {
                                                 if(!p2){
                                                     yplayer = p1
                                                     yplayer?.setFullscreen(false)
-                                                    yplayer?.loadVideo("HyHNuVaZJ-k")
+                                                    yplayer?.loadVideo(vid)
                                                 }
                                             }
                                             override fun onInitializationFailure(
@@ -171,6 +180,14 @@ class ContentMangerShowContentFragment(val view: View) {
                                 if(snapshot.hasChild("type")){
                                     if(snapshot.child("type").value.toString().compareTo("video")==0){
                                         val title = snapshot.child("title").value.toString()
+                                        val url = snapshot.child("url").value.toString()
+
+                                        var vid = ""
+                                        val pattern = Pattern.compile("^https?://.*(?:youtu.be/|v/|u/\\w/|embed/|watch?v=)([^#&?]*).*$", Pattern.CASE_INSENSITIVE)
+                                        val matcher = pattern.matcher(url)
+                                        if (matcher.matches()){
+                                            vid = matcher.group(1)
+                                        }
 
                                         holder.title.setText(title)
                                         var yplayer : YouTubePlayer? = null
@@ -184,7 +201,8 @@ class ContentMangerShowContentFragment(val view: View) {
                                                 if(!p2){
                                                     yplayer = p1
                                                     yplayer?.setFullscreen(false)
-                                                    yplayer?.loadVideo("HyHNuVaZJ-k")
+                                                    yplayer?.loadVideo(vid)
+                                                    yplayer?.play()
                                                 }
                                             }
                                             override fun onInitializationFailure(
