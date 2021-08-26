@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
 import com.example.dgtechhealthcare.R
+import com.example.dgtechhealthcare.nurse.model.NurseData
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -83,6 +84,33 @@ class EditProfileModel(val view: View) {
                 }
 
                 override fun onCancelled(error: DatabaseError) {}
+            })
+        }
+
+        // data PatientData in Nurse Node in Firebase
+
+        if (patientDetails.name.text.isNotEmpty() && patientDetails.hospital.text.isNotEmpty()){
+
+            reference.nurseReference.addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (snp in snapshot.children){
+                        val nurseClass = snp.getValue(NurseData::class.java)
+
+                        if (nurseClass?.hospitalName?.equals(patientDetails.hospital.text.toString()) == true){
+                            val pData = HashMap<String, Any>()
+                            pData["puid"] = reference.currentUserId.toString()
+                            pData["pName"] = patientDetails.name.text.toString()
+
+                            reference.nurseReference.child(snp.child("nuid").value.toString()).child("patients").child(reference.currentUserId).updateChildren(pData)
+
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
             })
         }
     }
