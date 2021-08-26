@@ -70,10 +70,18 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
                 } else if(accountType.compareTo("doctor")==0 || userType!!.compareTo(reference.currentUserId!!)!=0){
                     prescribeB.setText("Prescribe Medicine")
                 }
-                morningMed.setText(snapshot.child("prescribedMedicine").child("morning").child("name").value.toString())
-                afternoonMed.setText(snapshot.child("prescribedMedicine").child("afternoon").child("name").value.toString())
-                eveningMed.setText(snapshot.child("prescribedMedicine").child("evening").child("name").value.toString())
-                nightMed.setText(snapshot.child("prescribedMedicine").child("night").child("name").value.toString())
+                if(snapshot.child("prescribedMedicine").hasChild("morning")){
+                    morningMed.setText(snapshot.child("prescribedMedicine").child("morning").child("name").value.toString())
+                }
+                if(snapshot.child("prescribedMedicine").hasChild("afternoon")){
+                    afternoonMed.setText(snapshot.child("prescribedMedicine").child("afternoon").child("name").value.toString())
+                }
+                if(snapshot.child("prescribedMedicine").hasChild("evening")){
+                    eveningMed.setText(snapshot.child("prescribedMedicine").child("evening").child("name").value.toString())
+                }
+                if(snapshot.child("prescribedMedicine").hasChild("night")){
+                    nightMed.setText(snapshot.child("prescribedMedicine").child("night").child("name").value.toString())
+                }
             }
             override fun onCancelled(error: DatabaseError) {}
 
@@ -154,7 +162,6 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
         for(h in newHM){
             if(h.key.toString().compareTo(name.toString())==0){
                 choice = h.value.toString()
-                Toast.makeText(activity,"${h.value.toString()}",Toast.LENGTH_LONG).show()
             }
         }
         pharmaChoice.setText(name.toString())

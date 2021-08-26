@@ -42,7 +42,7 @@ class CRUDContentActivity : Fragment() {
         layout.stackFromEnd = true
         recyclerView.layoutManager = layout
 
-        showContent.displayContent(recyclerView,requireActivity(),"contentManager")
+        showContent.displayOnlyArticles(recyclerView,requireActivity(),"contentManager")
     }
 
     private fun initializeValues(view: View) {

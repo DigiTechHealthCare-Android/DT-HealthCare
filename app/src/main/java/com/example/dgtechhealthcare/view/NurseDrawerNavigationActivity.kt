@@ -16,6 +16,7 @@ import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.SignInActivity
 import com.example.dgtechhealthcare.nurse.view.NursePatientFragment
 import com.example.dgtechhealthcare.nurse.view.NurseProfileFragment
+import com.example.dgtechhealthcare.nurse.view.editNurseProfileFragment
 import com.example.dgtechhealthcare.patientInfo.PatientInfoFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.view.fragments.DoctorProfileFragment
@@ -38,6 +39,7 @@ class NurseDrawerNavigationActivity : AppCompatActivity(),
     lateinit var nurseName: TextView
     lateinit var nurseEmail: TextView
     lateinit var nurseIV: ImageView
+    lateinit var editB : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,25 +64,31 @@ class NurseDrawerNavigationActivity : AppCompatActivity(),
         nurseName = headerView.findViewById(R.id.drawerNurseName)
         nurseEmail = headerView.findViewById(R.id.drawerNurseEmail)
         nurseIV = headerView.findViewById(R.id.drawerNurseIV)
+        editB = headerView.findViewById(R.id.editImageViewNurse)
+
+        editB.setOnClickListener {
+            setToolbarTitle("Nurse Profile")
+            changeFragment(editNurseProfileFragment())
+        }
 
         reference = FirebasePresenter(View(this))
-//        reference.userReference.child(reference.currentUserId!!).addValueEventListener(object:
-//            ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                if(snapshot.hasChild("profileImage")) {
-//                    val img = snapshot.child("profileImage").value.toString()
-//                    Picasso.get().load(img).into(nurseIV)
-//                }
-//                val name = snapshot.child("username").value.toString()
-//                val email = snapshot.child("email").value.toString()
-//
-//                nurseName.setText(name)
-//                nurseEmail.setText(email)
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {}
-//
-//        })
+        reference.userReference.child(reference.currentUserId!!).addValueEventListener(object:
+            ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.hasChild("profileImage")) {
+                    val img = snapshot.child("profileImage").value.toString()
+                    Picasso.get().load(img).into(nurseIV)
+                }
+                val name = snapshot.child("username").value.toString()
+                val email = snapshot.child("email").value.toString()
+
+                nurseName.setText(name)
+                nurseEmail.setText(email)
+            }
+
+            override fun onCancelled(error: DatabaseError) {}
+
+        })
 
         navMenuNurse.setNavigationItemSelectedListener(this)
 

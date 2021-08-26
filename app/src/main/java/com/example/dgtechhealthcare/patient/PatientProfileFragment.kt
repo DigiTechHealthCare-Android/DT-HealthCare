@@ -70,7 +70,6 @@ class PatientProfileFragment : Fragment() {
         reference = FirebasePresenter(requireView())
 
         userKey = arguments?.getString("userKey","")
-        Toast.makeText(activity,"$userKey",Toast.LENGTH_LONG).show()
         //from = arguments?.getString("from","")!!
 
         if(userKey?.isNotEmpty() == true){
@@ -159,25 +158,26 @@ class PatientProfileFragment : Fragment() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if(snapshot.hasChild("report")) {
                         report = snapshot.child("report").value.toString()
-                    }
+                        val options = arrayOf<CharSequence>("Download","View","Cancel")
+                        val builder : AlertDialog.Builder = AlertDialog.Builder(activity)
+                        builder.setTitle("Do you want to?")
+                        builder.setItems(options,DialogInterface.OnClickListener { dialog, which ->
+                            if(which == 0) {
+                                val i = Intent(Intent.ACTION_VIEW,Uri.parse(report))
+                                startActivity(i)
+                            }
+                            if(which == 1) {
+                                val i = Intent(activity,ViewPdfActivity::class.java)
+                                i.putExtra("url",report)
+                                startActivity(i)
+                            }
+                        })
+                        builder.show()
+                    } else Toast.makeText(activity,"No report found",Toast.LENGTH_LONG).show()
                 }
                 override fun onCancelled(error: DatabaseError) {}
             })
-            val options = arrayOf<CharSequence>("Download","View","Cancel")
-            val builder : AlertDialog.Builder = AlertDialog.Builder(activity)
-            builder.setTitle("Do you want to?")
-            builder.setItems(options,DialogInterface.OnClickListener { dialog, which ->
-                if(which == 0) {
-                    val i = Intent(Intent.ACTION_VIEW,Uri.parse(report))
-                    startActivity(i)
-                }
-                if(which == 1) {
-                    val i = Intent(activity,ViewPdfActivity::class.java)
-                    i.putExtra("url",report)
-                    startActivity(i)
-                }
-            })
-            builder.show()
+
         }
 
         reference.userReference.child(userID).addValueEventListener(object : ValueEventListener{

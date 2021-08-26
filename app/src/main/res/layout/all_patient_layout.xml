@@ -20,6 +20,7 @@
             android:id="@+id/patientCardIV"
             android:layout_width="88dp"
             android:layout_height="93dp"
+            android:src="@drawable/cardviewname"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
