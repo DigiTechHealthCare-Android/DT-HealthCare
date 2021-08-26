@@ -270,6 +270,8 @@
                         android:layout_height="wrap_content"
                         android:paddingEnd="4dp"
                         android:text="Male"
+                        android:buttonTint="@color/purple_700"
+                        android:shadowColor="@color/purple_500"
                         tools:ignore="TouchTargetSizeCheck" />
 
                     <RadioButton
@@ -278,6 +280,8 @@
                         android:layout_height="wrap_content"
                         android:paddingEnd="4dp"
                         android:text="Female"
+                        android:buttonTint="@color/purple_700"
+                        android:shadowColor="@color/purple_500"
                         tools:ignore="TouchTargetSizeCheck" />
 
                     <RadioButton
@@ -285,6 +289,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="Other"
+                        android:buttonTint="@color/purple_700"
+                        android:shadowColor="@color/purple_500"
                         tools:ignore="TouchTargetSizeCheck" />
                 </RadioGroup>
             </RadioGroup>
