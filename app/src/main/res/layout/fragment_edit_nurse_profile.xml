@@ -26,7 +26,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@drawable/background1">
 
                 <TextView
                     android:id="@+id/textView43"
@@ -47,7 +48,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="48dp"
-                    android:text="Name"
+                    android:text="Name:"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toStartOf="@+id/editPharmacistName"
@@ -59,6 +60,8 @@
                     android:id="@+id/editPharmacistName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="36dp"
                     android:ems="10"
                     android:hint="Username"
                     android:inputType="textPersonName"
@@ -66,9 +69,7 @@
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/textView44"
-                    app:layout_constraintTop_toTopOf="@+id/textView44"
+                    app:layout_constraintTop_toBottomOf="@+id/textView43"
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <TextView
@@ -76,7 +77,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="64dp"
-                    android:text="Contact"
+                    android:text="Contact:"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toStartOf="@+id/editPharmacistContact"
@@ -88,15 +89,15 @@
                     android:id="@+id/editPharmacistContact"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="44dp"
+                    android:layout_marginEnd="40dp"
                     android:ems="10"
                     android:hint="Min 10 digits"
                     android:inputType="textPersonName"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/textView45"
-                    app:layout_constraintTop_toTopOf="@+id/textView45"
+                    app:layout_constraintTop_toBottomOf="@+id/editPharmacistName"
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <TextView
@@ -104,7 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="64dp"
-                    android:text="Hospital "
+                    android:text="Hospital:"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toStartOf="@+id/editPharmacyName"
@@ -116,15 +117,15 @@
                     android:id="@+id/editPharmacyName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="44dp"
+                    android:layout_marginEnd="40dp"
                     android:ems="10"
                     android:hint="Hospital Name"
                     android:inputType="textPersonName"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/textView46"
-                    app:layout_constraintTop_toTopOf="@+id/textView46"
+                    app:layout_constraintTop_toBottomOf="@+id/editPharmacistContact"
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <TextView
@@ -132,7 +133,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="64dp"
-                    android:text="Email"
+                    android:text="Email:"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toStartOf="@+id/editPharmacistEmail"
@@ -144,14 +145,14 @@
                     android:id="@+id/editPharmacistEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="44dp"
+                    android:layout_marginEnd="40dp"
                     android:ems="10"
                     android:hint="Email Id"
                     android:inputType="textPersonName"
                     android:textAlignment="center"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/textView47"
-                    app:layout_constraintTop_toTopOf="@+id/textView47"
+                    app:layout_constraintTop_toBottomOf="@+id/editPharmacyName"
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <TextView
@@ -159,7 +160,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="64dp"
-                    android:text="DOB"
+                    android:text="DOB:"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toStartOf="@+id/editPharmacistLocation"
@@ -171,15 +172,15 @@
                     android:id="@+id/editPharmacistLocation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="48dp"
+                    android:layout_marginEnd="36dp"
                     android:ems="10"
                     android:hint="Date Of Birth"
                     android:inputType="textPersonName"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/textView48"
-                    app:layout_constraintTop_toTopOf="@+id/textView48"
+                    app:layout_constraintTop_toBottomOf="@+id/editPharmacistEmail"
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <TextView
@@ -188,11 +189,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="36dp"
                     android:layout_marginTop="64dp"
-                    android:text="Gender"
+                    android:text="Gender:"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toStartOf="@+id/radioGroup2"
-                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_bias="0.29"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView48" />
 
@@ -200,9 +201,10 @@
                     android:id="@+id/radioGroup2"
                     android:layout_width="213dp"
                     android:layout_height="52dp"
-                    android:layout_marginStart="45dp"
-                    app:layout_constraintStart_toEndOf="@+id/textView49"
-                    app:layout_constraintTop_toTopOf="@+id/textView49">
+                    android:layout_marginTop="48dp"
+                    android:layout_marginEnd="36dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editPharmacistLocation">
 
                     <RadioGroup
                         android:id="@+id/editNurseGender"
@@ -214,6 +216,7 @@
                             android:id="@+id/editPMale"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingEnd="5dp"
                             android:text="Male" />
 
                         <RadioButton
@@ -235,7 +238,9 @@
                     android:layout_width="137dp"
                     android:layout_height="56dp"
                     android:layout_marginTop="64dp"
+                    android:layout_marginBottom="56dp"
                     android:text="Update"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.504"
                     app:layout_constraintStart_toStartOf="parent"
