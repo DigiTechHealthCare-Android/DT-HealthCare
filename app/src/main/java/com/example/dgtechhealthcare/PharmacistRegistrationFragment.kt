@@ -10,8 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.example.dgtechhealthcare.utils.FirebasePresenter
-import com.example.dgtechhealthcare.pharmacist.view.PharmacistNavigationActivity
-import com.example.dgtechhealthcare.view.PharmacistDrawerNavigationActivity
+import com.example.dgtechhealthcare.pharmacist.PharmacistDrawerNavigationActivity
 
 class PharmacistRegistrationFragment : Fragment() {
 

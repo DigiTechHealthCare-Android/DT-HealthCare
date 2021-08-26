@@ -48,15 +48,6 @@ class EditPatientProfileFragment : Fragment() {
         editPresenter.populateEditPatientProfile(patientDetails)
 
         editUpdate.setOnClickListener {
-
-            /*editRG.setOnCheckedChangeListener { group, checkedId ->
-                when(checkedId){
-                    R.id.editPMale -> gender = "Male"
-                    R.id.editPFemale -> gender = "Female"
-                    R.id.editPOther -> gender = "Other"
-                }
-                Toast.makeText(activity,"$gender",Toast.LENGTH_SHORT).show()
-            }*/
             editPresenter.updatePatientProfile(patientDetails)
         }
     }

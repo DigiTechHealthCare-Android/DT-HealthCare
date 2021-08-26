@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dgtechhealthcare.R
@@ -14,6 +15,7 @@ class HistoryFragment : Fragment() {
 
     lateinit var recyclerView: RecyclerView
     lateinit var requestModel : RequestModel
+    lateinit var noRequest : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,12 +38,13 @@ class HistoryFragment : Fragment() {
         layout.reverseLayout = true
         layout.stackFromEnd = true
         recyclerView.layoutManager = layout
-        requestModel.displayAllRequests(recyclerView,requireActivity(),"history")
+        requestModel.displayAllRequests(recyclerView,requireActivity(),"history",noRequest)
 
     }
 
     private fun initializeValues(view: View) {
         recyclerView = view.findViewById(R.id.historyRV)
         requestModel = RequestModel(view)
+        noRequest = view.findViewById(R.id.noRecordsTV)
     }
 }

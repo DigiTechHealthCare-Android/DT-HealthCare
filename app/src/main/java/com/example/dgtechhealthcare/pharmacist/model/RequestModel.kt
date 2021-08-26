@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -24,7 +25,7 @@ class RequestModel(val view : View) {
 
     val reference = FirebasePresenter(view)
 
-    fun displayAllRequests(requestList:RecyclerView,activity: FragmentActivity,type:String){
+    fun displayAllRequests(requestList:RecyclerView,activity: FragmentActivity,type:String,norequest: TextView){
 
         var node = ""
         if(type.compareTo("history")==0) node = "requestHistory"
@@ -50,6 +51,22 @@ class RequestModel(val view : View) {
                     model: PatientInfoDataClass) {
 
                     val userID = getRef(position).key
+
+                    reference.pharmaReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            if(snapshot.hasChild("requests") || snapshot.hasChild("requestHistory")){
+                                norequest.visibility = View.INVISIBLE
+                            } else {
+                                norequest.visibility = View.VISIBLE
+                            }
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                            TODO("Not yet implemented")
+                        }
+
+                    })
+
                     reference.userReference.child(userID!!).addValueEventListener(object :
                         ValueEventListener {
                         override fun onDataChange(snapshot: DataSnapshot) {
@@ -72,14 +89,29 @@ class RequestModel(val view : View) {
                         bundle.putString("userID",userID)
                         bundle.putString("type",node)
                         frag.arguments = bundle
-                        activity.supportFragmentManager.beginTransaction()
-                            .replace(R.id.pharmRequestFrame,frag)
-                            .addToBackStack(null).commit()
+                        if (node.compareTo("requestHistory")==0){
+                            activity.supportFragmentManager.beginTransaction()
+                                .replace(R.id.pharmHistoryFrame,frag)
+                                .addToBackStack(null).commit()
+                        } else {
+                            activity.supportFragmentManager.beginTransaction()
+                                .replace(R.id.pharmRequestFrame,frag)
+                                .addToBackStack(null).commit()
+                        }
+
                     }
+                }
+
+                override fun getItemCount(): Int {
+                    return super.getItemCount()
                 }
 
             }
         requestList.adapter = firebaseRecyclerAdapter
+        /*if(firebaseRecyclerAdapter.itemCount==0){
+            Toast.makeText(activity,"${firebaseRecyclerAdapter.itemCount}",Toast.LENGTH_LONG).show()
+
+        }*/
         firebaseRecyclerAdapter.startListening()
     }
 

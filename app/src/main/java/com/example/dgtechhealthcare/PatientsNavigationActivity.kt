@@ -3,6 +3,8 @@ package com.example.dgtechhealthcare
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.example.dgtechhealthcare.patient.PatientArticleFragment
+import com.example.dgtechhealthcare.patient.PatientProfileFragment
 import com.example.dgtechhealthcare.view.fragments.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

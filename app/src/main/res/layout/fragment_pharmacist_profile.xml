@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background1"
-    tools:context=".view.fragments.PharmacistProfileFragment">
+    tools:context=".pharmacist.view.PharmacistProfileFragment">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/pharmacistIV"
         android:layout_width="100dp"
         android:layout_height="100dp"

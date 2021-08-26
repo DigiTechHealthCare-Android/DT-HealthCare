@@ -18,8 +18,6 @@ import com.example.dgtechhealthcare.editProfile.EditDoctorProfileFragment
 import com.example.dgtechhealthcare.patientInfo.PatientInfoFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.view.fragments.DoctorProfileFragment
-import com.example.dgtechhealthcare.view.fragments.PatientArticleFragment
-import com.example.dgtechhealthcare.view.fragments.PatientProfileFragment
 import com.example.dgtechhealthcare.view.fragments.SettingsFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DataSnapshot
@@ -27,9 +25,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_doctor_drawer_navigation.*
-import kotlinx.android.synthetic.main.activity_patient_drawer_navigation.*
 import kotlinx.android.synthetic.main.doctor_nav_toolbar.*
-import kotlinx.android.synthetic.main.patient_nav_toolbar.*
 
 class DoctorDrawerNavigationActivity : AppCompatActivity(),
     NavigationView.OnNavigationItemSelectedListener {

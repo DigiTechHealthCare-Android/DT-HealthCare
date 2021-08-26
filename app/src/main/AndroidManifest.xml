@@ -17,7 +17,7 @@
             android:name=".view.ContentManagerDrawerNavigationActivity"
             android:exported="true" />
         <activity
-            android:name=".view.PharmacistDrawerNavigationActivity"
+            android:name=".pharmacist.PharmacistDrawerNavigationActivity"
             android:exported="true" />
         <activity
             android:name=".view.NurseDrawerNavigationActivity"
