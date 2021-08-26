@@ -63,6 +63,7 @@ class DoctorDrawerNavigationActivity : AppCompatActivity(),
         editUser = headerView.findViewById(R.id.editImageVIewDoctor)
 
         editUser.setOnClickListener {
+            drawerLayoutDoctor.closeDrawer(GravityCompat.START)
             setToolbarTitle("Profile")
             changeFragment(EditDoctorProfileFragment())
         }
