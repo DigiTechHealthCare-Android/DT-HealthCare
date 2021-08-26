@@ -3,7 +3,6 @@ package com.example.dgtechhealthcare.view
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -15,13 +14,11 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.SignInActivity
-import com.example.dgtechhealthcare.doctorPrescribeMedicine.DoctorPrescribeMedicineFragment
 import com.example.dgtechhealthcare.editProfile.EditPatientProfileFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
-import com.example.dgtechhealthcare.utils.ViewPdfActivity
 import com.google.android.material.navigation.NavigationView
-import com.example.dgtechhealthcare.view.fragments.PatientArticleFragment
-import com.example.dgtechhealthcare.view.fragments.PatientProfileFragment
+import com.example.dgtechhealthcare.patient.PatientArticleFragment
+import com.example.dgtechhealthcare.patient.PatientProfileFragment
 import com.example.dgtechhealthcare.view.fragments.SettingsFragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

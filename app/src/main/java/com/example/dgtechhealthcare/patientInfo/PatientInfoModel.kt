@@ -1,32 +1,23 @@
 package com.example.dgtechhealthcare.patientInfo
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.utils.FirebasePresenter
-import com.example.dgtechhealthcare.view.fragments.PatientProfileFragment
+import com.example.dgtechhealthcare.patient.PatientProfileFragment
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.firebase.ui.database.paging.DatabasePagingOptions
-import com.firebase.ui.database.paging.FirebaseRecyclerPagingAdapter
-import com.firebase.ui.database.paging.LoadingState
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 
 class PatientInfoModel(val view:View) {

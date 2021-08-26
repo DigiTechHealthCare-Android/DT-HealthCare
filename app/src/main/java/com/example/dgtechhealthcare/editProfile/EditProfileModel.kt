@@ -3,6 +3,7 @@ package com.example.dgtechhealthcare.editProfile
 import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
+import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -19,10 +20,25 @@ class EditProfileModel(val view: View) {
                 val name = snapshot.child("username").value.toString()
                 val mobile = snapshot.child("contactNo").value.toString()
                 val dateOBirth = snapshot.child("dateOfBirth").value.toString()
+                val gender = snapshot.child("gender").value.toString()
+                val father = snapshot.child("fatherName").value.toString()
+                val mother = snapshot.child("motherName").value.toString()
+                val other = snapshot.child("otherDetes").value.toString()
+                val doctor = snapshot.child("doctorName").value.toString()
+                val hospital = snapshot.child("hostpitalName").value.toString()
 
                 patientDetails.name.setText(name)
                 patientDetails.mob.setText(mobile)
                 patientDetails.dob.setText(dateOBirth)
+                if(gender.compareTo("Male")==0){
+                    patientDetails.gender.check(R.id.editPMale)
+                } else if(gender.compareTo("Female")==0) patientDetails.gender.check(R.id.editPFemale)
+                else if(gender.compareTo("Other")==0) patientDetails.gender.check(R.id.editPOther)
+                patientDetails.father.setText(father)
+                patientDetails.mother.setText(mother)
+                patientDetails.details.setText(other)
+                patientDetails.doctor.setText(doctor)
+                patientDetails.hospital.setText(hospital)
             }
 
             override fun onCancelled(error: DatabaseError) {}

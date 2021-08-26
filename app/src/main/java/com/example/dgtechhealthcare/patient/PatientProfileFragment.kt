@@ -1,4 +1,4 @@
-package com.example.dgtechhealthcare.view.fragments
+package com.example.dgtechhealthcare.patient
 
 import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
@@ -39,6 +39,7 @@ class PatientProfileFragment : Fragment() {
     lateinit var viewPrescription : TextView
     lateinit var uploadReport : Button
     lateinit var prescribeMedB : Button
+    lateinit var additianalInfo : TextView
 
     var galleryPick : Int = 0
     var choice = 0
@@ -85,6 +86,7 @@ class PatientProfileFragment : Fragment() {
         viewPrescription = view.findViewById(R.id.viewPrescription)
         uploadReport = view.findViewById(R.id.uploadReportB)
         prescribeMedB = view.findViewById(R.id.prescribeMedB)
+        additianalInfo = view.findViewById(R.id.addtionalInfoTV)
 
         if(userID?.compareTo(reference.currentUserId!!) != 0){
             userprofileImg.isClickable = false
@@ -96,6 +98,16 @@ class PatientProfileFragment : Fragment() {
             uploadReport.visibility = View.VISIBLE
             editProfileIV.visibility = View.VISIBLE
             prescribeMedB.visibility = View.INVISIBLE
+        }
+
+        additianalInfo.setOnClickListener {
+            val frag = PatientAddtionalFragment()
+            val bundle = Bundle()
+            bundle.putString("patientID",userID)
+            frag.arguments = bundle
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.patientProfileFrame,frag)
+                ?.addToBackStack(null)?.commit()
         }
 
         viewPrescription.setOnClickListener {
@@ -149,7 +161,6 @@ class PatientProfileFragment : Fragment() {
                 }
                 override fun onCancelled(error: DatabaseError) {}
             })
-
             val options = arrayOf<CharSequence>("Download","View","Cancel")
             val builder : AlertDialog.Builder = AlertDialog.Builder(activity)
             builder.setTitle("Do you want to?")

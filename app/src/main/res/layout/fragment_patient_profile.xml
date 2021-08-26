@@ -5,7 +5,7 @@
     android:id="@+id/patientProfileFrame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragments.PatientProfileFragment">
+    tools:context=".patient.PatientProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -95,7 +95,7 @@
                 android:id="@+id/uploadReportB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="60dp"
                 android:backgroundTint="@color/purple_700"
                 android:text="Upload Report"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -106,13 +106,12 @@
                 android:id="@+id/prescribeMedB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="68dp"
+                android:layout_marginTop="16dp"
                 android:backgroundTint="@color/purple_700"
                 android:text="Prescribe medicine"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewPrescription" />
+                app:layout_constraintTop_toBottomOf="@+id/addtionalInfoTV" />
 
             <TextView
                 android:id="@+id/viewPrescription"
@@ -210,6 +209,19 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/patientGender" />
+
+            <TextView
+                android:id="@+id/addtionalInfoTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Additional Information"
+                android:textColor="@color/purple_700"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/viewPrescription" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
