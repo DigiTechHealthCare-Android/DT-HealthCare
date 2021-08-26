@@ -11,27 +11,27 @@
         android:id="@+id/nurseProfileFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background1"
+        android:background="@drawable/profilebgnew"
         tools:context=".nurse.view.NurseProfileFragment">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/nurseIV"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="100dp"
             android:src="@drawable/user"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.533"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/editB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
-            android:src="@android:drawable/ic_menu_edit"
+            android:src="@drawable/editiconwhite"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

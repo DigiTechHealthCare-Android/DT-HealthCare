@@ -30,7 +30,7 @@ class PharmacistProfileFragment : Fragment() {
     lateinit var pharmacyNameTextView: TextView
     lateinit var mobileTextView : TextView
     lateinit var locationTextView : TextView
-    lateinit var editButtonView : ImageButton
+    lateinit var editButtonView : ImageView
 
     private val imagePick = 0
     lateinit var imageUri : Uri
