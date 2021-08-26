@@ -15,7 +15,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
-import java.lang.ref.Reference
 
 class RequestDescriptionFragment : Fragment() {
 
@@ -29,6 +28,7 @@ class RequestDescriptionFragment : Fragment() {
     lateinit var declineB : Button
 
     var userID = ""
+    var type = ""
 
     lateinit var reference: FirebasePresenter
 
@@ -37,6 +37,7 @@ class RequestDescriptionFragment : Fragment() {
         arguments?.let {}
 
         userID = arguments?.getString("userID","")!!
+        type = arguments?.getString("type","")!!
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -50,34 +51,57 @@ class RequestDescriptionFragment : Fragment() {
 
         initializeValues(view)
 
-        populateDescription()
+        populateDescription(type)
     }
 
-    private fun populateDescription() {
+    private fun populateDescription(type: String) {
 
         var m1 = ""
         var m2 = ""
         var m3 = ""
         var m4 = ""
 
+        if (type.compareTo("requestHistory")==0){
+            acceptB.visibility = View.GONE
+            declineB.visibility = View.GONE
+        }
+
         reference.userReference.child(userID).addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 name.setText(snapshot.child("username").value.toString())
                 Picasso.get().load(snapshot.child("profileImage").value.toString()).into(img)
-                reference.pharmaReference.child(reference.currentUserId!!).child("requests").child(userID).addValueEventListener(object : ValueEventListener{
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        m1 = snapshot.child("med1").value.toString()
-                        m2 = snapshot.child("med2").value.toString()
-                        m3 = snapshot.child("med3").value.toString()
-                        m4 = snapshot.child("med4").value.toString()
+                if(type.compareTo("requestHistory")==0){
+                    reference.pharmaReference.child(reference.currentUserId!!).child("requestHistory").child(userID).addValueEventListener(object : ValueEventListener{
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            m1 = snapshot.child("med1").value.toString()
+                            m2 = snapshot.child("med2").value.toString()
+                            m3 = snapshot.child("med3").value.toString()
+                            m4 = snapshot.child("med4").value.toString()
 
-                        med1.setText(m1)
-                        med2.setText(m2)
-                        med3.setText(m3)
-                        med4.setText(m4)
-                    }
-                    override fun onCancelled(error: DatabaseError) {}
-                })
+                            med1.setText(m1)
+                            med2.setText(m2)
+                            med3.setText(m3)
+                            med4.setText(m4)
+                        }
+                        override fun onCancelled(error: DatabaseError) {}
+                    })
+                } else {
+                    reference.pharmaReference.child(reference.currentUserId!!).child("requests").child(userID).addValueEventListener(object : ValueEventListener{
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            m1 = snapshot.child("med1").value.toString()
+                            m2 = snapshot.child("med2").value.toString()
+                            m3 = snapshot.child("med3").value.toString()
+                            m4 = snapshot.child("med4").value.toString()
+
+                            med1.setText(m1)
+                            med2.setText(m2)
+                            med3.setText(m3)
+                            med4.setText(m4)
+                        }
+                        override fun onCancelled(error: DatabaseError) {}
+                    })
+                }
+
             }
             override fun onCancelled(error: DatabaseError) {}
 
