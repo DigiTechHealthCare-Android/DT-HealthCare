@@ -20,6 +20,10 @@ import com.example.dgtechhealthcare.nurse.view.NurseProfileFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.view.fragments.SettingsFragment
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_content_manager_drawer_navigation.*
 import kotlinx.android.synthetic.main.activity_nurse_drawer_navigation.*
 import kotlinx.android.synthetic.main.content_manager_nav_toolbar.*
@@ -60,23 +64,19 @@ class ContentManagerDrawerNavigationActivity : AppCompatActivity(),
         contentManagerIV = headerView.findViewById(R.id.drawerCMIV)
 
         reference = FirebasePresenter(View(this))
-//        reference.userReference.child(reference.currentUserId!!).addValueEventListener(object:
-//            ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                if(snapshot.hasChild("profileImage")) {
-//                    val img = snapshot.child("profileImage").value.toString()
-//                    Picasso.get().load(img).into(nurseIV)
-//                }
-//                val name = snapshot.child("username").value.toString()
-//                val email = snapshot.child("email").value.toString()
-//
-//                nurseName.setText(name)
-//                nurseEmail.setText(email)
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {}
-//
-//        })
+        reference.userReference.child(reference.currentUserId!!).addValueEventListener(object:
+            ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.hasChild("profileImage")){
+                    val img = snapshot.child("profileImage").value.toString()
+                    Picasso.get().load(img).into(contentManagerIV)
+                }
+                contentManagerName.setText(snapshot.child("username").value.toString())
+                contentManagerEmail.setText(snapshot.child("email").value.toString())
+            }
+
+            override fun onCancelled(error: DatabaseError) {}
+        })
 
         navMenuCM.setNavigationItemSelectedListener(this)
 
@@ -94,7 +94,7 @@ class ContentManagerDrawerNavigationActivity : AppCompatActivity(),
             }
             R.id.articleManager -> {
                 setToolbarTitle("Article")
-                // changeFragment()
+                changeFragment(CRUDContentActivity())
             }
             R.id.settingsManager -> {
                 setToolbarTitle("Settings")
