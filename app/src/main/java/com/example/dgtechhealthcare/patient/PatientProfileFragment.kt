@@ -18,6 +18,7 @@ import android.widget.Toast
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.doctorPrescribeMedicine.DoctorPrescribeMedicineFragment
 import com.example.dgtechhealthcare.editProfile.EditPatientProfileFragment
+import com.example.dgtechhealthcare.nurse.model.NurseData
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.utils.ViewPdfActivity
 import com.google.firebase.database.DataSnapshot
@@ -93,7 +94,8 @@ class PatientProfileFragment : Fragment() {
             uploadReport.visibility = View.INVISIBLE
             editProfileIV.visibility = View.INVISIBLE
             prescribeMedB.visibility = View.VISIBLE
-        }else {
+        }
+        else {
             userprofileImg.isClickable = true
             uploadReport.visibility = View.VISIBLE
             editProfileIV.visibility = View.VISIBLE
