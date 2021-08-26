@@ -36,6 +36,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
+            app:helperText="* Required Fields"
             app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
             app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
@@ -48,7 +49,7 @@
                 android:drawableLeft="@drawable/datedrawableimage"
                 android:drawablePadding="16dp"
                 android:gravity="center"
-                android:hint="DOB(DD/MM/YYYY)"
+                android:hint="DOB(DD/MM/YYYY) *"
                 android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,7 +72,7 @@
                 android:drawableLeft="@drawable/contactnumberimage"
                 android:drawablePadding="16dp"
                 android:gravity="center"
-                android:hint="Contact Number"
+                android:hint="Contact Number *"
                 android:inputType="phone"
                 android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -96,7 +97,7 @@
                 android:drawableLeft="@drawable/namedrawableicon"
                 android:drawablePadding="16dp"
                 android:gravity="center"
-                android:hint="Full Name"
+                android:hint="Full Name *"
                 android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -160,44 +161,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView41"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="*"
-            android:textColor="#F44336"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.238"
-            app:layout_constraintStart_toEndOf="@+id/textInputLayout"
-            app:layout_constraintTop_toTopOf="@+id/textInputLayout" />
-
-        <TextView
-            android:id="@+id/textView42"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="*"
-            android:textColor="#F44336"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.238"
-            app:layout_constraintStart_toEndOf="@+id/textInputLayout2"
-            app:layout_constraintTop_toTopOf="@+id/textInputLayout2" />
-
-        <TextView
-            android:id="@+id/textView43"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="*"
-            android:textColor="#F44336"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.238"
-            app:layout_constraintStart_toEndOf="@+id/textInputLayout3"
-            app:layout_constraintTop_toTopOf="@+id/textInputLayout3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

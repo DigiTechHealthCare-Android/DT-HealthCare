@@ -50,7 +50,7 @@
                 android:drawableLeft="@drawable/namedrawableicon"
                 android:drawablePadding="16dp"
                 android:gravity="center"
-                android:hint="Full Name"
+                android:hint="Full Name *"
                 android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,7 +74,7 @@
                 android:drawableLeft="@drawable/hospitalimageicon"
                 android:drawablePadding="16dp"
                 android:gravity="center"
-                android:hint="Hospital Name"
+                android:hint="Hospital Name *"
                 android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,7 +98,7 @@
                 android:drawableLeft="@drawable/contactnumberimage"
                 android:drawablePadding="16dp"
                 android:gravity="center"
-                android:hint="Contact Number"
+                android:hint="Contact Number *"
                 android:inputType="phone"
                 android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -111,6 +111,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
+            app:helperText="* Required Fields"
             app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -124,7 +125,7 @@
                 android:drawableLeft="@drawable/datedrawableimage"
                 android:drawablePadding="16dp"
                 android:gravity="center"
-                android:hint="DOB(DD/MM/YYYY)"
+                android:hint="DOB(DD/MM/YYYY) *"
                 android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -189,58 +190,6 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView64"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="*"
-            android:textColor="#F44336"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.238"
-            app:layout_constraintStart_toEndOf="@+id/textInputLayout13"
-            app:layout_constraintTop_toTopOf="@+id/textInputLayout13" />
-
-        <TextView
-            android:id="@+id/textView65"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="*"
-            android:textColor="#F44336"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.238"
-            app:layout_constraintStart_toEndOf="@+id/textInputLayout14"
-            app:layout_constraintTop_toTopOf="@+id/textInputLayout14" />
-
-        <TextView
-            android:id="@+id/textView66"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="*"
-            android:textColor="#F44336"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.238"
-            app:layout_constraintStart_toEndOf="@+id/textInputLayout15"
-            app:layout_constraintTop_toTopOf="@+id/textInputLayout15" />
-
-        <TextView
-            android:id="@+id/textView67"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="*"
-            android:textColor="#F44336"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.238"
-            app:layout_constraintStart_toEndOf="@+id/textInputLayout16"
-            app:layout_constraintTop_toTopOf="@+id/textInputLayout16" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -36,6 +36,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
+            app:helperText="* Required Fields"
             app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -49,7 +50,7 @@
                 android:drawableLeft="@drawable/location"
                 android:drawablePadding="16dp"
                 android:gravity="center"
-                android:hint="Location"
+                android:hint="Location *"
                 android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -73,7 +74,7 @@
                 android:drawableLeft="@drawable/contactnumberimage"
                 android:drawablePadding="16dp"
                 android:gravity="center"
-                android:hint="Contact Number"
+                android:hint="Contact Number *"
                 android:inputType="phone"
                 android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -125,47 +126,9 @@
                 android:drawableLeft="@drawable/namedrawableicon"
                 android:drawablePadding="16dp"
                 android:gravity="center"
-                android:hint="Manager Name"
+                android:hint="Manager Name *"
                 android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/textView69"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="*"
-            android:textColor="#F44336"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.238"
-            app:layout_constraintStart_toEndOf="@+id/textInputLayout21"
-            app:layout_constraintTop_toTopOf="@+id/textInputLayout21" />
-
-        <TextView
-            android:id="@+id/textView70"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="*"
-            android:textColor="#F44336"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.238"
-            app:layout_constraintStart_toEndOf="@+id/textInputLayout22"
-            app:layout_constraintTop_toTopOf="@+id/textInputLayout22" />
-
-        <TextView
-            android:id="@+id/textView71"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="*"
-            android:textColor="#F44336"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.238"
-            app:layout_constraintStart_toEndOf="@+id/textInputLayout23"
-            app:layout_constraintTop_toTopOf="@+id/textInputLayout23" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
