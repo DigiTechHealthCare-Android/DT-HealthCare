@@ -79,8 +79,8 @@ class PharmacistDrawerNavigationActivity : AppCompatActivity(),
 
         navMenuPharmacist.setNavigationItemSelectedListener(this)
 
-        setToolbarTitle("Profile")
-        changeFragment(PharmacistProfileFragment())
+        setToolbarTitle("Requests")
+        changeFragment(RequestFragment())
 
     }
 
