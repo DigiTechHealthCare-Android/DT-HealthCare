@@ -30,7 +30,7 @@ class NurseProfileFragment : Fragment() {
     lateinit var emailTextView: TextView
     lateinit var dobTextView: TextView
     lateinit var genderTextView: TextView
-    lateinit var editButton: ImageButton
+    lateinit var editButton: ImageView
 
     private val imagePick = 0
     lateinit var imageUri : Uri
