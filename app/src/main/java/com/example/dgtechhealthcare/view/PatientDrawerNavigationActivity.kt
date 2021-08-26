@@ -102,37 +102,6 @@ class PatientDrawerNavigationActivity : AppCompatActivity(),
                 setToolbarTitle("Settings")
                 changeFragment(SettingsFragment())
             }
-            R.id.reportPatient -> {
-                var report = ""
-                reference.userReference.child(reference.currentUserId!!).addListenerForSingleValueEvent(object : ValueEventListener{
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        if(snapshot.hasChild("report")) {
-                            report = snapshot.child("report").value.toString()
-                        }
-                    }
-                    override fun onCancelled(error: DatabaseError) {}
-                })
-
-                val options = arrayOf<CharSequence>("Download","View","Cancel")
-                val builder : AlertDialog.Builder = AlertDialog.Builder(this)
-                builder.setTitle("Do you want to?")
-                builder.setItems(options,DialogInterface.OnClickListener { dialog, which ->
-                    if(which == 0) {
-                        val i = Intent(Intent.ACTION_VIEW, Uri.parse(report))
-                        startActivity(i)
-                    }
-                    if(which == 1) {
-                        val i = Intent(this, ViewPdfActivity::class.java)
-                        i.putExtra("url",report)
-                        startActivity(i)
-                    }
-                })
-                builder.show()
-            }
-            R.id.prescriptionPatient ->{
-                setToolbarTitle("Patient Profile")
-                changeFragment(DoctorPrescribeMedicineFragment())
-            }
             R.id.logout ->{
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Do you want to logout?")

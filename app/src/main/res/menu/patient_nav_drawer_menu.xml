@@ -12,14 +12,7 @@
             android:id="@+id/profilePatient"
             android:icon="@drawable/profile"
             android:title="Profile" />
-        <item
-            android:id="@+id/reportPatient"
-            android:icon="@drawable/hospitalimageicon"
-            android:title="View Report" />
-        <item
-            android:id="@+id/prescriptionPatient"
-            android:icon="@drawable/viewprescription"
-            android:title="View Prescription" />
+
         <item
             android:id="@+id/settingsPatient"
             android:icon="@drawable/settings"
