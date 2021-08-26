@@ -12,4 +12,8 @@ class PatientInfoPresenter(val view: View) {
     fun displayAllPatients(patientList:RecyclerView,activity:FragmentActivity,layoutManager: LinearLayoutManager){
         model.displayAllPatients(patientList,activity,layoutManager)
     }
+
+    fun displayNursePatients(patientList: RecyclerView, activity: FragmentActivity, layoutManager: LinearLayoutManager){
+        model.displayNursePatients(patientList, activity, layoutManager)
+    }
 }

@@ -37,7 +37,7 @@ class NursePatientFragment : Fragment() {
         val layout = LinearLayoutManager(activity)
         recyclerView.layoutManager = layout
 
-        patientInfoPresenter.displayAllPatients(recyclerView,requireActivity(),layout)
+        patientInfoPresenter.displayNursePatients(recyclerView,requireActivity(),layout)
     }
 
     private fun initializeValues(view: View) {

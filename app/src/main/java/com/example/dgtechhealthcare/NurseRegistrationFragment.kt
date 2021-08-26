@@ -77,11 +77,21 @@ class NurseRegistrationFragment : Fragment() {
                 reference.userReference.child(reference.currentUserId!!).updateChildren(hm).addOnCompleteListener {
                     if(it.isSuccessful)
                     {
-                        Toast.makeText(activity,"Account successfully created",Toast.LENGTH_LONG).show()
-                        val i = Intent(activity, NurseDrawerNavigationActivity::class.java)
-                        startActivity(i)
-                        activity?.finish()
-                    } else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
+                        val nurseHashMap = HashMap<String, Any>()
+                        nurseHashMap["nuid"] = reference.currentUserId.toString()
+                        nurseHashMap["name"] = name.toString()
+                        nurseHashMap["hospitalName"] = hospital.toString()
+
+                        reference.nurseReference.child(reference.currentUserId!!).updateChildren(nurseHashMap).addOnCompleteListener {
+                            if (it.isSuccessful){
+                                Toast.makeText(activity,"Account successfully created",Toast.LENGTH_LONG).show()
+                                val i = Intent(activity, NurseNavigationActivity::class.java)
+                                startActivity(i)
+                                activity?.finish()
+                            }
+                        }
+                    }
+                    else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
                 }
             }
         }
