@@ -215,6 +215,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:drawableLeft="@drawable/additionalinfoicon"
                 android:text="Additional Information"
                 android:textColor="@color/purple_700"
                 android:textSize="16sp"
