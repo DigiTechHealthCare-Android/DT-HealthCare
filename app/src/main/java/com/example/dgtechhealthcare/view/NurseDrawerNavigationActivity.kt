@@ -84,7 +84,7 @@ class NurseDrawerNavigationActivity : AppCompatActivity(),
 
         navMenuNurse.setNavigationItemSelectedListener(this)
 
-        setToolbarTitle("Article")
+        setToolbarTitle("Patients")
         changeFragment(NursePatientFragment())
     }
 
@@ -96,7 +96,7 @@ class NurseDrawerNavigationActivity : AppCompatActivity(),
                 changeFragment(NurseProfileFragment())
             }
             R.id.articleNurse -> {
-                setToolbarTitle("Article")
+                setToolbarTitle("Patients")
                 changeFragment(NursePatientFragment())
             }
             R.id.settingsNurse -> {

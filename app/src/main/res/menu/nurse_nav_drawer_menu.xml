@@ -6,7 +6,7 @@
         <item
             android:id="@+id/articleNurse"
             android:icon="@drawable/article"
-            android:title="Article" />
+            android:title="Patients" />
         <item
             android:id="@+id/profileNurse"
             android:icon="@drawable/profile"
