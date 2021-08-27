@@ -8,8 +8,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/background2">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -101,7 +100,8 @@
                 android:background="@drawable/background1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/contentRG" />
+                app:layout_constraintTop_toBottomOf="@+id/contentRG"
+                app:srcCompat="@drawable/uploadicon" />
 
             <EditText
                 android:id="@+id/contentUrl"
