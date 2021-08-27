@@ -85,12 +85,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:layout_marginEnd="50dp"
                 android:text="TextView"
                 android:textAlignment="viewStart"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/doctorName"
+                app:layout_constraintStart_toStartOf="@+id/doctorName"
                 app:layout_constraintTop_toBottomOf="@+id/doctorName" />
 
             <TextView
@@ -110,12 +110,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:layout_marginEnd="50dp"
                 android:text="TextView"
                 android:textAlignment="viewStart"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/doctorContact"
+                app:layout_constraintStart_toStartOf="@+id/doctorContact"
                 app:layout_constraintTop_toBottomOf="@+id/doctorContact" />
 
             <TextView
@@ -135,12 +135,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:layout_marginEnd="48dp"
                 android:text="TextView"
                 android:textAlignment="viewStart"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/doctorEmail"
+                app:layout_constraintStart_toStartOf="@+id/doctorEmail"
                 app:layout_constraintTop_toBottomOf="@+id/doctorEmail" />
 
             <TextView
@@ -160,12 +160,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:layout_marginEnd="48dp"
                 android:text="TextView"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/doctorHospital"
+                app:layout_constraintStart_toStartOf="@+id/doctorHospital"
                 app:layout_constraintTop_toBottomOf="@+id/doctorHospital" />
 
             <ImageView
