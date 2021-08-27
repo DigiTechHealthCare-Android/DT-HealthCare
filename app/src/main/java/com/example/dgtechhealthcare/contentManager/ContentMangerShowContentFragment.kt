@@ -60,6 +60,11 @@ class ContentMangerShowContentFragment(val view: View) {
                                 else holder.desc.setText(desc)
                                 val title = snapshot.child("title").value.toString()
                                 holder.title.setText(title)
+
+                                val name = snapshot.child("publisherName").value.toString()
+                                holder.name.setText(name)
+                                val img = snapshot.child("publisherImage").value.toString()
+                                Picasso.get().load(img).into(holder.img)
                             }
                             override fun onCancelled(error: DatabaseError) {}
                         })
@@ -102,6 +107,11 @@ class ContentMangerShowContentFragment(val view: View) {
                                 else holder.desc.setText(desc)
                                 val title = snapshot.child("title").value.toString()
                                 holder.title.setText(title)
+
+                                val name = snapshot.child("publisherName").value.toString()
+                                holder.name.setText(name)
+                                val img = snapshot.child("publisherImage").value.toString()
+                                Picasso.get().load(img).into(holder.img)
                             }
                             override fun onCancelled(error: DatabaseError) {}
                         })
@@ -126,6 +136,8 @@ class ContentMangerShowContentFragment(val view: View) {
     inner class ArticleViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val title = itemView.findViewById<TextView>(R.id.articleTitle)
         val desc = itemView.findViewById<TextView>(R.id.articleDesc)
+        val name = itemView.findViewById<TextView>(R.id.articlePostedByName)
+        val img = itemView.findViewById<ImageView>(R.id.articlePostIView)
         val card = itemView.findViewById<CardView>(R.id.contentShowCV)
     }
 }

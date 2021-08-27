@@ -18,6 +18,7 @@ import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
 
 class ContentManagerProfileFragment : Fragment() {
 
@@ -54,6 +55,7 @@ class ContentManagerProfileFragment : Fragment() {
                 contact.setText(snapshot.child("contact").value.toString())
                 loc.setText(snapshot.child("location").value.toString())
                 email.setText(snapshot.child("email").value.toString())
+                Picasso.get().load(snapshot.child("profileImage").value.toString()).into(image)
             }
             override fun onCancelled(error: DatabaseError) {}
         })

@@ -12,6 +12,9 @@ import android.widget.*
 import androidx.fragment.app.FragmentActivity
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.utils.FirebasePresenter
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_add_content.*
 import java.sql.Time
 import java.util.*
@@ -50,8 +53,7 @@ class AddContentFragment : Fragment() {
         initializeValues(view)
 
         contentUid = UUID.randomUUID().toString()
-        contentImg.visibility = View.INVISIBLE
-        contentDesc.visibility = View.INVISIBLE
+        contentImg.visibility = View.GONE
 
         contentImg.setOnClickListener {
             val gallery = Intent()
@@ -69,35 +71,64 @@ class AddContentFragment : Fragment() {
                 }
                 R.id.contentVideoR -> {
                     type = "video"
-                    contentImg.visibility = View.INVISIBLE
-                    contentDesc.visibility = View.INVISIBLE
+                    contentImg.visibility = View.GONE
                 }
                 R.id.contentResearchR -> {
                     type = "research"
                     contentImg.visibility = View.VISIBLE
-                    contentDesc.visibility = View.INVISIBLE
                 }
             }
         }
 
         publishB.setOnClickListener {
-            val hm = HashMap<String,Any>()
-            hm["title"] = title.text.toString()
-            hm["desc"] = contentDesc.text.toString()
-            hm["url"] = contentUrl.text.toString()
-            hm["time"] = Calendar.getInstance().time.toString()
-            hm["type"] = type
-            reference.articleReference.child(contentUid.toString()).updateChildren(hm)
-                .addOnCompleteListener {
-                    if(it.isSuccessful){
-                        val h = HashMap<String,Any>()
-                        h["contentUid"] = contentUid
-                        h["time"] = Calendar.getInstance().time.toString()
-                        reference.managerReference.child(reference.currentUserId!!).child("articles").child(contentUid).updateChildren(h).addOnCompleteListener {
-                            Toast.makeText(activity,"Content published",Toast.LENGTH_LONG).show()
+
+            reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val img = snapshot.child("profileImage").value.toString()
+                    val username = snapshot.child("username").value.toString()
+
+                    val hm = HashMap<String,Any>()
+                    hm["publisherName"] = username
+                    hm["publisherImage"] = img
+                    hm["title"] = title.text.toString()
+                    hm["desc"] = contentDesc.text.toString()
+                    hm["url"] = contentUrl.text.toString()
+                    hm["time"] = Calendar.getInstance().time.toString()
+                    hm["type"] = type
+                    if(type.compareTo("video")==0 || type.compareTo("research")==0){
+                        if (contentUrl.text.toString().isNullOrEmpty()){
+                            Toast.makeText(activity,"Youtube Video link required",Toast.LENGTH_LONG).show()
+                        }else {
+                            reference.articleReference.child(contentUid.toString()).updateChildren(hm)
+                                .addOnCompleteListener {
+                                    if(it.isSuccessful){
+                                        val h = HashMap<String,Any>()
+                                        h["contentUid"] = contentUid
+                                        h["time"] = Calendar.getInstance().time.toString()
+                                        reference.managerReference.child(reference.currentUserId!!).child("articles").child(contentUid).updateChildren(h).addOnCompleteListener {
+                                            Toast.makeText(activity,"Content published",Toast.LENGTH_LONG).show()
+                                        }
+                                    }
+                                }
                         }
                     }
-            }
+                    if (type.compareTo("image")==0){
+                        reference.articleReference.child(contentUid.toString()).updateChildren(hm)
+                            .addOnCompleteListener {
+                                if(it.isSuccessful){
+                                    val h = HashMap<String,Any>()
+                                    h["contentUid"] = contentUid
+                                    h["time"] = Calendar.getInstance().time.toString()
+                                    reference.managerReference.child(reference.currentUserId!!).child("articles").child(contentUid).updateChildren(h).addOnCompleteListener {
+                                        Toast.makeText(activity,"Content published",Toast.LENGTH_LONG).show()
+                                    }
+                                }
+                            }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {}
+            })
         }
     }
 

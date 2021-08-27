@@ -14,6 +14,9 @@ import android.widget.Toast
 import com.example.dgtechhealthcare.pharmacist.PharmacistDrawerNavigationActivity
 import com.example.dgtechhealthcare.view.*
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.installations.FirebaseInstallations
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -82,6 +85,14 @@ class SignInActivity : AppCompatActivity() {
             loadingBar.setMessage("Please wait!")
             loadingBar.setCanceledOnTouchOutside(false)
             loadingBar.show()
+
+            /*FirebaseMessaging.getInstance().token.addOnCompleteListener {
+                if (it.isSuccessful){
+                    val token = it.result.toString()
+                    Toast.makeText(this,"${token}",Toast.LENGTH_LONG).show()
+                    FirebaseDatabase.getInstance().reference.child("Users").child(auth.currentUser!!.uid).child("token").setValue(token)
+                }
+            }*/
 
             val job = CoroutineScope(Dispatchers.Default).launch {
                 val result = CoroutineScope(Dispatchers.Default).async {
