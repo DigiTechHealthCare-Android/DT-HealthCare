@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="100dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 android:text="Contact:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -72,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="100dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 android:text="DOB:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -84,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="100dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 android:text="Gender:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -95,10 +95,11 @@
                 android:id="@+id/uploadReportB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="16dp"
                 android:backgroundTint="@color/purple_700"
                 android:text="Upload Report"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/prescribeMedB"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/viewPrescription" />
 
@@ -111,14 +112,14 @@
                 android:text="Prescribe medicine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addtionalInfoTV" />
+                app:layout_constraintTop_toBottomOf="@+id/viewPrescription" />
 
             <TextView
                 android:id="@+id/viewPrescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="80dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="30dp"
                 android:drawableLeft="@drawable/viewprescription"
                 android:text="View Prescription"
@@ -128,7 +129,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/patientReport"
                 app:layout_constraintHorizontal_bias="0.318"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView16" />
+                app:layout_constraintTop_toBottomOf="@+id/addtionalInfoTV" />
 
             <ImageView
                 android:id="@+id/editProfileB"
@@ -159,7 +160,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="58dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="95dp"
                 android:text="TextView"
                 android:textColor="@color/black"
@@ -173,7 +174,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="88dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="95dp"
                 android:text="TextView"
                 android:textColor="@color/black"
@@ -187,7 +188,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="64dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="95dp"
                 android:text="TextView"
                 android:textColor="@color/black"
@@ -200,7 +201,7 @@
                 android:id="@+id/patientReport"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="68dp"
                 android:drawableLeft="@drawable/hospitalicondark"
                 android:text="View Report"
@@ -208,21 +209,22 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/patientGender" />
+                app:layout_constraintTop_toBottomOf="@+id/addtionalInfoTV" />
 
             <TextView
                 android:id="@+id/addtionalInfoTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="32dp"
                 android:drawableLeft="@drawable/additionalinfoicon"
                 android:text="Additional Information"
                 android:textColor="@color/purple_700"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewPrescription" />
+                app:layout_constraintTop_toBottomOf="@+id/textView16" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
