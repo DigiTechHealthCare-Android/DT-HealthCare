@@ -70,6 +70,15 @@ class ContentMangerShowContentFragment(val view: View) {
                         })
 
                         holder.card.setOnClickListener {
+
+                            reference.articleReference.child(userID).addListenerForSingleValueEvent(object : ValueEventListener{
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    val views = snapshot.child("views").value.toString()
+                                    val v : Int = views.toInt()
+                                    reference.articleReference.child(userID).child("views").setValue(v + 1)
+                                }
+                                override fun onCancelled(error: DatabaseError) {}
+                            })
                             val frag = ArticleDetailsFragment()
                             val bundle = Bundle()
                             bundle.putString("articleID",userID)

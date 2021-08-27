@@ -95,6 +95,7 @@ class AddContentFragment : Fragment() {
                     hm["url"] = contentUrl.text.toString()
                     hm["time"] = Calendar.getInstance().time.toString()
                     hm["type"] = type
+                    hm["views"] = 0
                     if(type.compareTo("video")==0 || type.compareTo("research")==0){
                         if (contentUrl.text.toString().isNullOrEmpty()){
                             Toast.makeText(activity,"Youtube Video link required",Toast.LENGTH_LONG).show()

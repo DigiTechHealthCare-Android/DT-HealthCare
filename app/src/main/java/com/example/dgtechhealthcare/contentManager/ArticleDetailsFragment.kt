@@ -34,6 +34,9 @@ class ArticleDetailsFragment : Fragment() {
     lateinit var cImg : ImageView
     lateinit var cEdit : ImageView
     lateinit var cDesc : TextView
+    lateinit var userImage : ImageView
+    lateinit var userName : TextView
+    lateinit var articleViews : TextView
 
     var articleID = ""
     var type = ""
@@ -59,7 +62,6 @@ class ArticleDetailsFragment : Fragment() {
 
         editArticle(view,requireActivity(),articleID)
         populateArtcile(view,requireActivity())
-
     }
 
     private fun editArticle(view: View, requireActivity: FragmentActivity, articleID: String) {
@@ -69,9 +71,7 @@ class ArticleDetailsFragment : Fragment() {
                     cEdit.visibility = View.INVISIBLE
                 }
             }
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
+            override fun onCancelled(error: DatabaseError) {}
         })
 
         cEdit.setOnClickListener {
@@ -113,14 +113,25 @@ class ArticleDetailsFragment : Fragment() {
 
                 val title = snapshot.child("title").value.toString()
                 cTitle.setText(title)
+                Picasso.get().load(snapshot.child("publisherImage").value.toString()).into(userImage)
+                userName.setText(snapshot.child("publisherName").value.toString())
+
+                val views = snapshot.child("views").value.toString()
+                val v : Int = views.toInt()
+                articleViews.setText("$v" + " views")
+
+                val desc = snapshot.child("desc").value.toString()
+                if (desc.isNullOrEmpty()){
+                    cDesc.setText("No description found.")
+                } else {
+                    cDesc.setText(desc)
+                }
+
+
                 if(type.compareTo("image")==0){
-                    //val frag = view.findViewById<FragmentContainerView>(R.id.abc)
-                    //frag.visibility = View.INVISIBLE
                     Picasso.get().load(snapshot.child("imageRef").value.toString()).into(cImg)
                     cDesc.setText(snapshot.child("desc").value.toString())
                 } else if(type.compareTo("research")==0){
-                    //val frag = view.findViewById<FragmentContainerView>(R.id.abc)
-                    //frag.visibility = View.INVISIBLE
                     Picasso.get().load(snapshot.child("imageRef").value.toString()).into(cImg)
                     val url = snapshot.child("url").value.toString()
                     cImg.setOnClickListener {
@@ -155,58 +166,9 @@ class ArticleDetailsFragment : Fragment() {
                     })
                     val transaction : FragmentTransaction = activity.supportFragmentManager.beginTransaction()
                     transaction.add(R.id.abc,player as Fragment).commit()
-
-                    /*val player : YouTubePlayerView = view.findViewById(R.id.abc)
-
-                    player.initialize("AIzaSyB9O8Gvi7gpkfsI2gKIImhVDnZODsTYiK4",object : YouTubePlayer.OnInitializedListener{
-                        override fun onInitializationSuccess(
-                            p0: YouTubePlayer.Provider?,
-                            p1: YouTubePlayer?,
-                            p2: Boolean
-                        ) {
-                            p1?.cueVideo("0jm8nnHqx80")
-                        }
-
-                        override fun onInitializationFailure(p0: YouTubePlayer.Provider?,
-                            p1: YouTubeInitializationResult?) {}
-
-                    })*/
-
-                    /*var vid = ""
-                    val pattern = Pattern.compile("^https?://.*(?:youtu.be/|v/|u/\\w/|embed/|watch?v=)([^#&?]*).*$", Pattern.CASE_INSENSITIVE)
-                    val matcher = pattern.matcher(url)
-                    if (matcher.matches()){ vid = matcher.group(1) }
-                    var yplayer : YouTubePlayer? = null
-                    val player : YouTubePlayerSupportFragment? = activity.supportFragmentManager.findFragmentById(R.id.abc) as YouTubePlayerSupportFragment?
-                    player?.initialize("AIzaSyB9O8Gvi7gpkfsI2gKIImhVDnZODsTYiK4",object : YouTubePlayer.OnInitializedListener{
-                        override fun onInitializationSuccess(
-                            p0: YouTubePlayer.Provider?,
-                            p1: YouTubePlayer?,
-                            p2: Boolean
-                        ) {
-                            if(!p2){
-                                yplayer = p1
-                                yplayer?.setFullscreen(false)
-                                yplayer?.loadVideo("0jm8nnHqx80")
-                                yplayer?.play()
-                            }
-                        }
-                        override fun onInitializationFailure(
-                            p0: YouTubePlayer.Provider?,
-                            p1: YouTubeInitializationResult?
-                        ) {}
-
-                    })*/
-
-
                 }
-
-
-
             }
-
             override fun onCancelled(error: DatabaseError) {}
-
         })
     }
 
@@ -215,6 +177,9 @@ class ArticleDetailsFragment : Fragment() {
         cImg = view.findViewById(R.id.contentShowImg)
         cDesc = view.findViewById(R.id.contentShowDesc)
         cEdit = view.findViewById(R.id.contentEdit)
+        userImage = view.findViewById(R.id.articlePImageView)
+        userName = view.findViewById(R.id.articlePTextView)
+        articleViews = view.findViewById(R.id.countViews)
 
         reference = FirebasePresenter(view)
     }
