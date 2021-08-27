@@ -16,19 +16,15 @@ import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.SignInActivity
 import com.example.dgtechhealthcare.nurse.view.NursePatientFragment
 import com.example.dgtechhealthcare.nurse.view.NurseProfileFragment
-import com.example.dgtechhealthcare.nurse.view.editNurseProfileFragment
-import com.example.dgtechhealthcare.patientInfo.PatientInfoFragment
+import com.example.dgtechhealthcare.nurse.view.EditNurseProfileFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
-import com.example.dgtechhealthcare.view.fragments.DoctorProfileFragment
 import com.example.dgtechhealthcare.view.fragments.SettingsFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_doctor_drawer_navigation.*
 import kotlinx.android.synthetic.main.activity_nurse_drawer_navigation.*
-import kotlinx.android.synthetic.main.doctor_nav_toolbar.*
 import kotlinx.android.synthetic.main.nurse_nav_toolbar.*
 
 class NurseDrawerNavigationActivity : AppCompatActivity(),
@@ -69,7 +65,7 @@ class NurseDrawerNavigationActivity : AppCompatActivity(),
         editB.setOnClickListener {
             drawerLayoutNurse.closeDrawer(GravityCompat.START)
             setToolbarTitle("Nurse Profile")
-            changeFragment(editNurseProfileFragment())
+            changeFragment(EditNurseProfileFragment())
         }
 
         reference = FirebasePresenter(View(this))

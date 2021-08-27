@@ -20,6 +20,10 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
     lateinit var eveningMed : EditText
     lateinit var nightMed : EditText
     lateinit var prescribeB : Button
+    lateinit var morningCheckBox: CheckBox
+    lateinit var afternoonCheckBox: CheckBox
+    lateinit var eveningCheckBox: CheckBox
+    lateinit var nightCheckBox: CheckBox
 
     lateinit var reference : FirebasePresenter
 
@@ -67,20 +71,47 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
                     afternoonMed.isEnabled = false
                     eveningMed.isEnabled = false
                     nightMed.isEnabled = false
+                    morningCheckBox.isEnabled = false
+                    afternoonCheckBox.isEnabled = false
+                    eveningCheckBox.isEnabled = false
+                    nightCheckBox.isEnabled = false
                 } else if(accountType.compareTo("doctor")==0 || userType!!.compareTo(reference.currentUserId!!)!=0){
-                    prescribeB.setText("Prescribe Medicine")
+                    prescribeB.text = "Prescribe Medicine"
+//                    morningCheckBox.isEnabled = false
+//                    afternoonCheckBox.isEnabled = false
+//                    eveningCheckBox.isEnabled = false
+//                    nightCheckBox.isEnabled = false
                 }
+//                else if (accountType.compareTo("nurse")==0 || userType!!.compareTo(reference.currentUserId!!)!=0){
+//                    prescribeB.setText("Update Status")
+//                    morningMed.isEnabled = false
+//                    afternoonMed.isEnabled = false
+//                    eveningMed.isEnabled = false
+//                    nightMed.isEnabled = false
+//                }
                 if(snapshot.child("prescribedMedicine").hasChild("morning")){
                     morningMed.setText(snapshot.child("prescribedMedicine").child("morning").child("name").value.toString())
+                    if (snapshot.child("prescribedMedicine").child("morning").child("status").value.toString() == "medicine given"){
+                        morningCheckBox.isChecked = true
+                    }
                 }
                 if(snapshot.child("prescribedMedicine").hasChild("afternoon")){
                     afternoonMed.setText(snapshot.child("prescribedMedicine").child("afternoon").child("name").value.toString())
+                    if (snapshot.child("prescribedMedicine").child("afternoon").child("status").value.toString() == "medicine given"){
+                        afternoonCheckBox.isChecked = true
+                    }
                 }
                 if(snapshot.child("prescribedMedicine").hasChild("evening")){
                     eveningMed.setText(snapshot.child("prescribedMedicine").child("evening").child("name").value.toString())
+                    if (snapshot.child("prescribedMedicine").child("evening").child("status").value.toString() == "medicine given"){
+                        eveningCheckBox.isChecked = true
+                    }
                 }
                 if(snapshot.child("prescribedMedicine").hasChild("night")){
                     nightMed.setText(snapshot.child("prescribedMedicine").child("night").child("name").value.toString())
+                    if (snapshot.child("prescribedMedicine").child("night").child("status").value.toString() == "medicine given"){
+                        nightCheckBox.isChecked = true
+                    }
                 }
             }
             override fun onCancelled(error: DatabaseError) {}
@@ -141,9 +172,39 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
             }else if(prescribeB.text.toString().compareTo("Prescribe Medicine")==0) {
                 val ref = reference.userReference.child(patientID!!).child("prescribedMedicine")
                 ref.child("morning").child("name").setValue(morningMed.text.toString())
+                val mref = ref.child("morning").child("status")
+                if (morningCheckBox.isChecked){
+                    mref.setValue("medicine given") }
+                else{
+                    mref.setValue("medicine not given") }
+
                 ref.child("afternoon").child("name").setValue(afternoonMed.text.toString())
+                val aref = ref.child("afternoon").child("status")
+                if (afternoonCheckBox.isChecked){
+                    aref.setValue("medicine given")
+                }
+                else{
+                    aref.setValue("medicine not given")
+                }
+
                 ref.child("evening").child("name").setValue(eveningMed.text.toString())
+                val eref = ref.child("evening").child("status")
+                if (eveningCheckBox.isChecked){
+                    eref.setValue("medicine given")
+                }
+                else{
+                    eref.setValue("medicine not given")
+                }
+
                 ref.child("night").child("name").setValue(nightMed.text.toString())
+                val nref = ref.child("night").child("status")
+                if (nightCheckBox.isChecked){
+                    nref.setValue("medicine given")
+                }
+                else{
+                    nref.setValue("medicine not given")
+                }
+
                 Toast.makeText(activity,"Prescription given",Toast.LENGTH_LONG).show()
             }
         }
@@ -155,6 +216,10 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
         eveningMed = view.findViewById(R.id.eveningMed)
         nightMed = view.findViewById(R.id.nightMed)
         prescribeB = view.findViewById(R.id.addMedicineB)
+        morningCheckBox = view.findViewById(R.id.morningCheckBox)
+        afternoonCheckBox = view.findViewById(R.id.afternoonCheckBox)
+        eveningCheckBox = view.findViewById(R.id.eveningCheckBox)
+        nightCheckBox = view.findViewById(R.id.nightCheckBox)
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {

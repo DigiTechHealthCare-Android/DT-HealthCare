@@ -13,7 +13,7 @@ class PatientInfoPresenter(val view: View) {
         model.displayAllPatients(patientList,activity,layoutManager)
     }
 
-    fun displayNursePatients(patientList: RecyclerView, activity: FragmentActivity, layoutManager: LinearLayoutManager){
-        model.displayNursePatients(patientList, activity, layoutManager)
-    }
+//    fun displayNursePatients(patientList: RecyclerView, activity: FragmentActivity, layoutManager: LinearLayoutManager){
+//        model.displayNursePatients(patientList, activity, layoutManager)
+//    }
 }
