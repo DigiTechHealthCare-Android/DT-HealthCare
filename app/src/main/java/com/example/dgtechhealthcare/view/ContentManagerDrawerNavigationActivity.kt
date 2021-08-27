@@ -68,6 +68,7 @@ class ContentManagerDrawerNavigationActivity : AppCompatActivity(),
         contentManagerEdit = headerView.findViewById(R.id.editImageVIewCM)
 
         contentManagerEdit.setOnClickListener {
+            drawerLayoutCM.closeDrawer(GravityCompat.START)
             setToolbarTitle("Edit Profile")
             changeFragment(EditContentManagerProfileFragment())
         }

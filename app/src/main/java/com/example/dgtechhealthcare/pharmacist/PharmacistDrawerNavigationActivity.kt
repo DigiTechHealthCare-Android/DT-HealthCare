@@ -64,6 +64,7 @@ class PharmacistDrawerNavigationActivity : AppCompatActivity(),
         pharmacistEdit = headerView.findViewById(R.id.editImageViewPharmacist)
 
         pharmacistEdit.setOnClickListener {
+            drawerLayoutPharmacist.closeDrawer(GravityCompat.START)
             setToolbarTitle("Pharmacist Profile")
             changeFragment(EditPharmacistFragment())
         }

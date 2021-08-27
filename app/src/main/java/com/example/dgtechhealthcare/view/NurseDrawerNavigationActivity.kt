@@ -67,6 +67,7 @@ class NurseDrawerNavigationActivity : AppCompatActivity(),
         editB = headerView.findViewById(R.id.editImageViewNurse)
 
         editB.setOnClickListener {
+            drawerLayoutNurse.closeDrawer(GravityCompat.START)
             setToolbarTitle("Nurse Profile")
             changeFragment(editNurseProfileFragment())
         }
