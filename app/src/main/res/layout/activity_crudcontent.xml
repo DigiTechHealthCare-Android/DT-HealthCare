@@ -31,9 +31,10 @@
                 android:layout_gravity="end|bottom"
                 android:clickable="true"
                 android:elevation="6dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/contentRecyclerV"
                 app:srcCompat="@android:drawable/ic_menu_add" />
+
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
     </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
