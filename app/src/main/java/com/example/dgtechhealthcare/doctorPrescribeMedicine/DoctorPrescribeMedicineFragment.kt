@@ -1,19 +1,39 @@
 package com.example.dgtechhealthcare.doctorPrescribeMedicine
 
 import android.app.AlertDialog
+import android.content.ContentValues.TAG
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.android.volley.DefaultRetryPolicy
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.example.dgtechhealthcare.R
+import com.example.dgtechhealthcare.pushNotification.*
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.messaging.FirebaseMessagingService
+import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.json.JSONObject
+import java.lang.Exception
+
+const val TOPIC = "/topics/myTopic2"
 
 class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedListener {
+
+    val TAG = "DoctorPrescribe"
 
     lateinit var morningMed : EditText
     lateinit var afternoonMed : EditText
@@ -157,9 +177,43 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
                                     hashMap["med3"] = med3
                                     hashMap["med4"] = med4
 
+                                    val username = snapshot.child("username").value.toString()
+
                                     reference.pharmaReference.child(choice).child("requests").child(reference.currentUserId!!).updateChildren(hashMap).addOnCompleteListener {
                                         Toast.makeText(activity,"Request Sent",Toast.LENGTH_SHORT).show()
+                                        //getToken("New Request")
+                                        reference.userReference.child(choice).addValueEventListener(object : ValueEventListener{
+                                            override fun onDataChange(snapshot: DataSnapshot) {
+                                                val token = snapshot.child("token").value.toString()
+                                                FirebaseNotificationService.sharedPref = activity?.getSharedPreferences("sharedPref",Context.MODE_PRIVATE)
+                                                FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
+                                                val title = "New Order"
+                                                val message = "Request from $username"
+                                                PushNotification(NotificationData(title,message)
+                                                    , token
+                                                ).also {
+                                                    sendNotification(it)
+                                                }
+                                            }
+                                            override fun onCancelled(error: DatabaseError) {
+                                                TODO("Not yet implemented")
+                                            }
+
+                                        })
                                     }
+                                }
+                            }
+
+                            private fun sendNotification(it: PushNotification) = CoroutineScope(Dispatchers.IO).launch {
+                                try {
+                                    val response = RetrofitInstance.api.postNotification(it)
+                                    if (response.isSuccessful){
+                                        Log.d(TAG,"Response: ${Gson().toJson(response)}")
+                                    } else {
+                                        Log.e(TAG,response.errorBody().toString())
+                                    }
+                                } catch (e : Exception){
+                                    Log.e(TAG, e.toString())
                                 }
                             }
 
@@ -209,6 +263,56 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
             }
         }
     }
+
+    /*private fun getToken(s: String) {
+
+        reference.userReference.child(choice).addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    val token = snapshot.child("token").value.toString()
+                    val name = snapshot.child("username").value.toString()
+
+                    val to = JSONObject()
+                    val data = JSONObject()
+
+                    data.put("uid",choice)
+                    data.put("message",s)
+                    data.put("title",name)
+
+                    to.put("to",token)
+                    to.put("data",data)
+                    sendNotification(to)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {}
+        })
+    }
+
+    private fun sendNotification(to: JSONObject) {
+        val request: JsonObjectRequest = object : JsonObjectRequest(Method.POST, NOTIFICATION_URL,to,
+            Response.Listener { response: JSONObject ->
+                Log.d("TAG","onResponse: $response")
+            },Response.ErrorListener {
+                Log.d("TAG","onError: $it")
+            }) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val map: MutableMap<String,String> = HashMap()
+
+                map["Authorization"] = "key=" + SERVER_KEY
+                map["Content-type"] = "application/json"
+
+                return map
+            }
+
+            override fun getBodyContentType(): String {
+                return "application/json"
+            }
+        }
+
+        val requestQueue = Volley.newRequestQueue(activity)
+        request.retryPolicy = DefaultRetryPolicy(3000,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy,)
+    }*/
 
     private fun initializeValues(view: View) {
         morningMed = view.findViewById(R.id.morningMed)

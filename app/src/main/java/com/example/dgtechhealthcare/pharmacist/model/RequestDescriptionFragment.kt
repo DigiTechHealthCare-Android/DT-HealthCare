@@ -1,6 +1,8 @@
 package com.example.dgtechhealthcare.pharmacist.model
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,11 +12,22 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.example.dgtechhealthcare.R
+import com.example.dgtechhealthcare.doctorPrescribeMedicine.TOPIC
+import com.example.dgtechhealthcare.pushNotification.FirebaseNotificationService
+import com.example.dgtechhealthcare.pushNotification.NotificationData
+import com.example.dgtechhealthcare.pushNotification.PushNotification
+import com.example.dgtechhealthcare.pushNotification.RetrofitInstance
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.messaging.FirebaseMessaging
+import com.google.gson.Gson
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class RequestDescriptionFragment : Fragment() {
 
@@ -29,6 +42,8 @@ class RequestDescriptionFragment : Fragment() {
 
     var userID = ""
     var type = ""
+
+    val TAG = "DoctorPrescribe"
 
     lateinit var reference: FirebasePresenter
 
@@ -118,6 +133,27 @@ class RequestDescriptionFragment : Fragment() {
                 if(it.isSuccessful){
                     reference.pharmaReference.child(reference.currentUserId!!).child("requests").child(userID).removeValue().addOnCompleteListener {
                         if(it.isSuccessful){
+                            reference.userReference.child(userID).addValueEventListener(object : ValueEventListener{
+                                override fun onDataChange(snapshot: DataSnapshot) {
+
+                                    val username = snapshot.child("username").value.toString()
+                                    val token = snapshot.child("token").value.toString()
+
+                                    FirebaseNotificationService.sharedPref = activity?.getSharedPreferences("sharedPref",
+                                        Context.MODE_PRIVATE)
+                                    FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
+                                    val title = "New Order"
+                                    val message = "Request from $username"
+                                    PushNotification(
+                                        NotificationData(title,message)
+                                        , token
+                                    ).also {
+                                        sendNotification(it)
+                                    }
+                                }
+                                override fun onCancelled(error: DatabaseError) {}
+
+                            })
                             Toast.makeText(activity,"Request Approved",Toast.LENGTH_LONG).show()
                             activity?.supportFragmentManager?.popBackStack()
                         }
@@ -132,6 +168,19 @@ class RequestDescriptionFragment : Fragment() {
                     Toast.makeText(activity,"Request Declined",Toast.LENGTH_LONG).show()
                 }
             }
+        }
+    }
+
+    private fun sendNotification(it: PushNotification) = CoroutineScope(Dispatchers.IO).launch {
+        try {
+            val response = RetrofitInstance.api.postNotification(it)
+            if (response.isSuccessful){
+                Log.d(TAG,"Response: ${Gson().toJson(response)}")
+            } else {
+                Log.e(TAG,response.errorBody().toString())
+            }
+        } catch (e : Exception){
+            Log.e(TAG, e.toString())
         }
     }
 

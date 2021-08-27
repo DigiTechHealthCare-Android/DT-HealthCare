@@ -32,7 +32,7 @@ class ArticleDetailsFragment : Fragment() {
 
     lateinit var cTitle : TextView
     lateinit var cImg : ImageView
-    lateinit var cEdit : ImageButton
+    lateinit var cEdit : ImageView
     lateinit var cDesc : TextView
 
     var articleID = ""
