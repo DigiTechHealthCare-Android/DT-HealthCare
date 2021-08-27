@@ -16,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/navMenuDoctor"
+        app:itemBackground="@drawable/menu_item_padding"
         app:headerLayout="@layout/doctor_nav_header"
         app:menu="@menu/doctor_nav_drawer_menu"
         android:layout_gravity="start"/>

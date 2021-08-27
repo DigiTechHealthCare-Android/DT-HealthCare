@@ -17,6 +17,7 @@
         android:layout_height="match_parent"
         android:id="@+id/navMenuCM"
         app:headerLayout="@layout/content_manager_nav_header"
+        app:itemBackground="@drawable/menu_item_padding"
         app:menu="@menu/content_manager_nav_drawer_menu"
         android:layout_gravity="start"/>
 

@@ -16,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/navMenuPharmacist"
+        app:itemBackground="@drawable/menu_item_padding"
         app:headerLayout="@layout/pharmacist_nav_header"
         app:menu="@menu/pharmacist_nav_drawer_menu"
         android:layout_gravity="start"/>
