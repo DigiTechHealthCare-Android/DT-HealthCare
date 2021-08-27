@@ -9,16 +9,17 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/profilebgnew">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/cmImage"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginTop="80dp"
-            android:src="@drawable/cardviewname"
+            android:layout_marginTop="48dp"
+            android:src="@drawable/user"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,7 +27,7 @@
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="100dp"
             android:layout_marginTop="65dp"
             android:text="Name:"
             android:textColor="#000000"
@@ -38,7 +39,7 @@
             android:id="@+id/textView60"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="100dp"
             android:layout_marginTop="55dp"
             android:text="Location:"
             android:textColor="#000000"
@@ -50,7 +51,7 @@
             android:id="@+id/textView61"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="100dp"
             android:layout_marginTop="55dp"
             android:text="Contact:"
             android:textColor="#000000"
@@ -62,7 +63,7 @@
             android:id="@+id/textView62"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="100dp"
             android:layout_marginTop="55dp"
             android:text="Email:"
             android:textColor="#000000"
@@ -75,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="65dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="95dp"
             android:text="TextView"
             android:textColor="#000000"
             android:textSize="20sp"
@@ -87,7 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="55dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="95dp"
             android:text="TextView"
             android:textColor="#000000"
             android:textSize="20sp"
@@ -99,7 +100,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="55dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="95dp"
             android:text="TextView"
             android:textColor="#000000"
             android:textSize="20sp"
@@ -111,7 +112,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="55dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="95dp"
             android:text="TextView"
             android:textColor="#000000"
             android:textSize="20sp"
@@ -124,7 +125,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
-            android:src="@android:drawable/ic_menu_edit"
+            android:src="@drawable/editiconwhite"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
