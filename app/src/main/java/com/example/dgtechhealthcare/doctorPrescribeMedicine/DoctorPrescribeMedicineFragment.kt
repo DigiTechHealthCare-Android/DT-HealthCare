@@ -52,6 +52,7 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
 
     val nameList = arrayListOf<String>()
     var choice = ""
+    var fromDoctor = ""
     val newHM = HashMap<String,String>()
 
     lateinit var pharmaChoice : TextView
@@ -203,20 +204,6 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
                                     }
                                 }
                             }
-
-                            private fun sendNotification(it: PushNotification) = CoroutineScope(Dispatchers.IO).launch {
-                                try {
-                                    val response = RetrofitInstance.api.postNotification(it)
-                                    if (response.isSuccessful){
-                                        Log.d(TAG,"Response: ${Gson().toJson(response)}")
-                                    } else {
-                                        Log.e(TAG,response.errorBody().toString())
-                                    }
-                                } catch (e : Exception){
-                                    Log.e(TAG, e.toString())
-                                }
-                            }
-
                             override fun onCancelled(error: DatabaseError) {}
                         })
                     }
@@ -259,60 +246,32 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
                     nref.setValue("medicine not given")
                 }
 
+                reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val username = snapshot.child("username").value.toString()
+
+                        reference.userReference.child(userType!!).addValueEventListener(object : ValueEventListener{
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                val token = snapshot.child("token").value.toString()
+                                FirebaseNotificationService.sharedPref = activity?.getSharedPreferences("sharedPref",Context.MODE_PRIVATE)
+                                FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
+                                val title = "New Prescription"
+                                val message = "From Dr. $username"
+                                PushNotification(NotificationData(title,message)
+                                    , token
+                                ).also {
+                                    sendNotification(it)
+                                }
+                            }
+                            override fun onCancelled(error: DatabaseError) {}
+                        })
+                    }
+                    override fun onCancelled(error: DatabaseError) {}
+                })
                 Toast.makeText(activity,"Prescription given",Toast.LENGTH_LONG).show()
             }
         }
     }
-
-    /*private fun getToken(s: String) {
-
-        reference.userReference.child(choice).addListenerForSingleValueEvent(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    val token = snapshot.child("token").value.toString()
-                    val name = snapshot.child("username").value.toString()
-
-                    val to = JSONObject()
-                    val data = JSONObject()
-
-                    data.put("uid",choice)
-                    data.put("message",s)
-                    data.put("title",name)
-
-                    to.put("to",token)
-                    to.put("data",data)
-                    sendNotification(to)
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {}
-        })
-    }
-
-    private fun sendNotification(to: JSONObject) {
-        val request: JsonObjectRequest = object : JsonObjectRequest(Method.POST, NOTIFICATION_URL,to,
-            Response.Listener { response: JSONObject ->
-                Log.d("TAG","onResponse: $response")
-            },Response.ErrorListener {
-                Log.d("TAG","onError: $it")
-            }) {
-            override fun getHeaders(): MutableMap<String, String> {
-                val map: MutableMap<String,String> = HashMap()
-
-                map["Authorization"] = "key=" + SERVER_KEY
-                map["Content-type"] = "application/json"
-
-                return map
-            }
-
-            override fun getBodyContentType(): String {
-                return "application/json"
-            }
-        }
-
-        val requestQueue = Volley.newRequestQueue(activity)
-        request.retryPolicy = DefaultRetryPolicy(3000,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy,)
-    }*/
 
     private fun initializeValues(view: View) {
         morningMed = view.findViewById(R.id.morningMed)
@@ -324,6 +283,19 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
         afternoonCheckBox = view.findViewById(R.id.afternoonCheckBox)
         eveningCheckBox = view.findViewById(R.id.eveningCheckBox)
         nightCheckBox = view.findViewById(R.id.nightCheckBox)
+    }
+
+    private fun sendNotification(it: PushNotification) = CoroutineScope(Dispatchers.IO).launch {
+        try {
+            val response = RetrofitInstance.api.postNotification(it)
+            if (response.isSuccessful){
+                Log.d(TAG,"Response: ${Gson().toJson(response)}")
+            } else {
+                Log.e(TAG,response.errorBody().toString())
+            }
+        } catch (e : Exception){
+            Log.e(TAG, e.toString())
+        }
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {

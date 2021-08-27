@@ -131,32 +131,10 @@ class RequestDescriptionFragment : Fragment() {
 
             reference.pharmaReference.child(reference.currentUserId!!).child("requestHistory").child(userID).updateChildren(hashMap).addOnCompleteListener {
                 if(it.isSuccessful){
+                    Toast.makeText(activity,"Request Approved",Toast.LENGTH_LONG).show()
+                    activity?.supportFragmentManager?.popBackStack()
                     reference.pharmaReference.child(reference.currentUserId!!).child("requests").child(userID).removeValue().addOnCompleteListener {
-                        if(it.isSuccessful){
-                            reference.userReference.child(userID).addValueEventListener(object : ValueEventListener{
-                                override fun onDataChange(snapshot: DataSnapshot) {
-
-                                    val username = snapshot.child("username").value.toString()
-                                    val token = snapshot.child("token").value.toString()
-
-                                    FirebaseNotificationService.sharedPref = activity?.getSharedPreferences("sharedPref",
-                                        Context.MODE_PRIVATE)
-                                    FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
-                                    val title = "New Order"
-                                    val message = "Request from $username"
-                                    PushNotification(
-                                        NotificationData(title,message)
-                                        , token
-                                    ).also {
-                                        sendNotification(it)
-                                    }
-                                }
-                                override fun onCancelled(error: DatabaseError) {}
-
-                            })
-                            Toast.makeText(activity,"Request Approved",Toast.LENGTH_LONG).show()
-                            activity?.supportFragmentManager?.popBackStack()
-                        }
+                        if(it.isSuccessful) prepareNotification("Request Approved")
                     }
                 }
             }
@@ -164,11 +142,40 @@ class RequestDescriptionFragment : Fragment() {
 
         declineB.setOnClickListener {
             reference.pharmaReference.child(reference.currentUserId!!).child("requests").child(userID).removeValue().addOnCompleteListener {
-                if(it.isSuccessful){
-                    Toast.makeText(activity,"Request Declined",Toast.LENGTH_LONG).show()
-                }
+                Toast.makeText(activity,"Request Declined",Toast.LENGTH_LONG).show()
+                activity?.supportFragmentManager?.popBackStack()
+                if(it.isSuccessful) prepareNotification("Request Declined")
             }
         }
+    }
+
+    fun prepareNotification(notificationMessage : String){
+        reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val name = snapshot.child("username").value.toString()
+
+                reference.userReference.child(userID).addValueEventListener(object : ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val token = snapshot.child("token").value.toString()
+
+                        FirebaseNotificationService.sharedPref = activity?.getSharedPreferences("sharedPref",
+                            Context.MODE_PRIVATE)
+                        FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
+                        val title = name
+                        val message = notificationMessage
+                        PushNotification(
+                            NotificationData(title,message)
+                            , token
+                        ).also {
+                            sendNotification(it)
+                        }
+                    }
+                    override fun onCancelled(error: DatabaseError) {}
+
+                })
+            }
+            override fun onCancelled(error: DatabaseError) {}
+        })
     }
 
     private fun sendNotification(it: PushNotification) = CoroutineScope(Dispatchers.IO).launch {
