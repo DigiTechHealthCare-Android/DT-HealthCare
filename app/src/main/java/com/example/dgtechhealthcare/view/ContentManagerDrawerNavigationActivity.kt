@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.SignInActivity
 import com.example.dgtechhealthcare.contentManager.CRUDContentActivity
+import com.example.dgtechhealthcare.contentManager.ContentManagerProfileFragment
+import com.example.dgtechhealthcare.editProfile.EditContentManagerProfileFragment
 import com.example.dgtechhealthcare.nurse.view.NursePatientFragment
 import com.example.dgtechhealthcare.nurse.view.NurseProfileFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
@@ -37,6 +39,7 @@ class ContentManagerDrawerNavigationActivity : AppCompatActivity(),
     lateinit var contentManagerName: TextView
     lateinit var contentManagerEmail: TextView
     lateinit var contentManagerIV: ImageView
+    lateinit var contentManagerEdit : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +65,12 @@ class ContentManagerDrawerNavigationActivity : AppCompatActivity(),
         contentManagerName = headerView.findViewById(R.id.drawerCMName)
         contentManagerEmail = headerView.findViewById(R.id.drawerCMEmail)
         contentManagerIV = headerView.findViewById(R.id.drawerCMIV)
+        contentManagerEdit = headerView.findViewById(R.id.editImageVIewCM)
+
+        contentManagerEdit.setOnClickListener {
+            setToolbarTitle("Edit Profile")
+            changeFragment(EditContentManagerProfileFragment())
+        }
 
         reference = FirebasePresenter(View(this))
         reference.userReference.child(reference.currentUserId!!).addValueEventListener(object:
@@ -90,7 +99,7 @@ class ContentManagerDrawerNavigationActivity : AppCompatActivity(),
         when (item.itemId) {
             R.id.profileManager -> {
                 setToolbarTitle("Profile")
-               // changeFragment(NurseProfileFragment())
+                changeFragment(ContentManagerProfileFragment())
             }
             R.id.articleManager -> {
                 setToolbarTitle("Article")

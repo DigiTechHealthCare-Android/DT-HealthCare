@@ -15,7 +15,6 @@ import com.example.dgtechhealthcare.utils.FirebasePresenter
 class PatientArticleFragment : Fragment() {
 
     lateinit var recyclerView: RecyclerView
-    lateinit var swipeLayout : SwipeRefreshLayout
 
     lateinit var reference : FirebasePresenter
     lateinit var showContent : ContentMangerShowContentFragment
@@ -42,17 +41,12 @@ class PatientArticleFragment : Fragment() {
         layout.stackFromEnd = true
         recyclerView.layoutManager = layout
 
-        showContent.displayContent(recyclerView,requireActivity(),"patient")
-
-        swipeLayout.setOnRefreshListener {
-            swipeLayout.isRefreshing = false
-        }
+        showContent.displayOnlyArticles(recyclerView,requireActivity(),"patient")
     }
 
     private fun initializeValues(view: View) {
         recyclerView = view.findViewById(R.id.patientArticleRV)
         reference = FirebasePresenter(view)
-        swipeLayout = view.findViewById(R.id.swipeLayout)
         showContent = ContentMangerShowContentFragment(view)
     }
 }

@@ -60,11 +60,7 @@ class RequestModel(val view : View) {
                                 norequest.visibility = View.VISIBLE
                             }
                         }
-
-                        override fun onCancelled(error: DatabaseError) {
-                            TODO("Not yet implemented")
-                        }
-
+                        override fun onCancelled(error: DatabaseError) {}
                     })
 
                     reference.userReference.child(userID!!).addValueEventListener(object :
@@ -101,17 +97,8 @@ class RequestModel(val view : View) {
 
                     }
                 }
-
-                override fun getItemCount(): Int {
-                    return super.getItemCount()
-                }
-
             }
         requestList.adapter = firebaseRecyclerAdapter
-        /*if(firebaseRecyclerAdapter.itemCount==0){
-            Toast.makeText(activity,"${firebaseRecyclerAdapter.itemCount}",Toast.LENGTH_LONG).show()
-
-        }*/
         firebaseRecyclerAdapter.startListening()
     }
 

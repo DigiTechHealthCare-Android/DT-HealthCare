@@ -14,6 +14,7 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.SignInActivity
+import com.example.dgtechhealthcare.pharmacist.view.EditPharmacistFragment
 import com.example.dgtechhealthcare.pharmacist.view.PharmacistProfileFragment
 import com.example.dgtechhealthcare.pharmacist.view.RequestFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
@@ -34,6 +35,7 @@ class PharmacistDrawerNavigationActivity : AppCompatActivity(),
     lateinit var pharmacistName: TextView
     lateinit var pharmacistEmail: TextView
     lateinit var pharmacistIV: ImageView
+    lateinit var pharmacistEdit : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +61,12 @@ class PharmacistDrawerNavigationActivity : AppCompatActivity(),
         pharmacistName = headerView.findViewById(R.id.drawerPharmacistName)
         pharmacistEmail = headerView.findViewById(R.id.drawerPharmacistEmail)
         pharmacistIV = headerView.findViewById(R.id.drawerPharmacistIV)
+        pharmacistEdit = headerView.findViewById(R.id.editImageViewPharmacist)
+
+        pharmacistEdit.setOnClickListener {
+            setToolbarTitle("Pharmacist Profile")
+            changeFragment(EditPharmacistFragment())
+        }
 
         reference = FirebasePresenter(View(this))
         reference.userReference.child(reference.currentUserId!!).addValueEventListener(object:

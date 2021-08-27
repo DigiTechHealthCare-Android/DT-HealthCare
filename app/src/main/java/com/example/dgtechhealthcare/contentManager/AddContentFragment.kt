@@ -110,8 +110,7 @@ class AddContentFragment : Fragment() {
         }
     }
 
-    private fun uploadImageToDatabase(reference: FirebasePresenter,
-        currentUserId: String?, imgUri: Uri,
+    private fun uploadImageToDatabase(reference: FirebasePresenter, currentUserId: String?, imgUri: Uri,
         requireActivity: FragmentActivity) {
 
         val resultUri = imgUri
