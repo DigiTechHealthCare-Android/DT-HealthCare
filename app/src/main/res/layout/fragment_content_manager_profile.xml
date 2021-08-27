@@ -27,8 +27,8 @@
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="65dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="64dp"
             android:text="Name:"
             android:textColor="#000000"
             android:textSize="20sp"
@@ -39,7 +39,7 @@
             android:id="@+id/textView60"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="55dp"
             android:text="Location:"
             android:textColor="#000000"
@@ -51,7 +51,7 @@
             android:id="@+id/textView61"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="55dp"
             android:text="Contact:"
             android:textColor="#000000"
@@ -63,7 +63,7 @@
             android:id="@+id/textView62"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="55dp"
             android:text="Email:"
             android:textColor="#000000"
@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="65dp"
-            android:layout_marginEnd="95dp"
+            android:layout_marginEnd="60dp"
             android:text="TextView"
             android:textColor="#000000"
             android:textSize="20sp"
@@ -88,11 +88,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="55dp"
-            android:layout_marginEnd="95dp"
             android:text="TextView"
             android:textColor="#000000"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/cmName"
+            app:layout_constraintStart_toStartOf="@+id/cmName"
             app:layout_constraintTop_toBottomOf="@+id/cmName" />
 
         <TextView
@@ -100,11 +100,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="55dp"
-            android:layout_marginEnd="95dp"
             android:text="TextView"
             android:textColor="#000000"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/cmLocation"
+            app:layout_constraintStart_toStartOf="@+id/cmLocation"
             app:layout_constraintTop_toBottomOf="@+id/cmLocation" />
 
         <TextView
@@ -112,11 +112,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="55dp"
-            android:layout_marginEnd="95dp"
             android:text="TextView"
             android:textColor="#000000"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/cmContact"
+            app:layout_constraintStart_toStartOf="@+id/cmContact"
             app:layout_constraintTop_toBottomOf="@+id/cmContact" />
 
         <ImageView

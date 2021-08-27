@@ -26,12 +26,13 @@
                     android:id="@+id/textView50"
                     android:layout_width="264dp"
                     android:layout_height="38dp"
-                    android:layout_marginTop="64dp"
+                    android:layout_marginTop="52dp"
                     android:text="Pharmacist Information"
                     android:textColor="@color/purple_700"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.496"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,12 +40,11 @@
                     android:id="@+id/textView51"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
                     android:layout_marginTop="52dp"
                     android:text="Name"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    app:layout_constraintEnd_toStartOf="@+id/editPharmacistName"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView50" />
 
@@ -67,12 +67,11 @@
                     android:id="@+id/textView52"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
                     android:layout_marginTop="64dp"
                     android:text="Contact"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    app:layout_constraintEnd_toStartOf="@+id/editPharmacistContact"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView51" />
 
@@ -95,12 +94,11 @@
                     android:id="@+id/textView53"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
                     android:layout_marginTop="64dp"
                     android:text="Pharmacy"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    app:layout_constraintEnd_toStartOf="@+id/editPharmacyName"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView52" />
 
@@ -123,12 +121,11 @@
                     android:id="@+id/textView54"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
                     android:layout_marginTop="64dp"
                     android:text="Email"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    app:layout_constraintEnd_toStartOf="@+id/editPharmacistEmail"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView53" />
 
@@ -151,12 +148,11 @@
                     android:id="@+id/textView55"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
                     android:layout_marginTop="64dp"
                     android:text="Location"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    app:layout_constraintEnd_toStartOf="@+id/editPharmacistLocation"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView54" />
 
@@ -179,12 +175,12 @@
                     android:id="@+id/updatePharmacistB"
                     android:layout_width="119dp"
                     android:layout_height="52dp"
-                    android:layout_marginTop="64dp"
+                    android:layout_marginTop="44dp"
                     android:layout_marginBottom="64dp"
                     android:text="Update"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.517"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editPharmacistLocation" />
             </androidx.constraintlayout.widget.ConstraintLayout>
