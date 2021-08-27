@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dgtechhealthcare.R
-import com.example.dgtechhealthcare.patientInfo.PatientInfoPresenter
+import com.example.dgtechhealthcare.nurse.presenter.AllPatientsInfoPresenter
 
 class NursePatientFragment : Fragment() {
 
     lateinit var recyclerView: RecyclerView
-    lateinit var patientInfoPresenter : PatientInfoPresenter
+    lateinit var patientInfoPresenter : AllPatientsInfoPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +42,6 @@ class NursePatientFragment : Fragment() {
 
     private fun initializeValues(view: View) {
         recyclerView = view.findViewById(R.id.nursePatientRV)
-        patientInfoPresenter = PatientInfoPresenter(view)
+        patientInfoPresenter = AllPatientsInfoPresenter(view)
     }
 }

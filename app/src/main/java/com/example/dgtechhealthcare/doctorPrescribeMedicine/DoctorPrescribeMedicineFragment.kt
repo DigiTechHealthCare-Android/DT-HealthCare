@@ -76,7 +76,7 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
                     eveningCheckBox.isEnabled = false
                     nightCheckBox.isEnabled = false
                 } else if(accountType.compareTo("doctor")==0 || userType!!.compareTo(reference.currentUserId!!)!=0){
-                    prescribeB.setText("Prescribe Medicine")
+                    prescribeB.text = "Prescribe Medicine"
 //                    morningCheckBox.isEnabled = false
 //                    afternoonCheckBox.isEnabled = false
 //                    eveningCheckBox.isEnabled = false

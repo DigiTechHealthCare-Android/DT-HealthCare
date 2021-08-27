@@ -1,7 +1,6 @@
 package com.example.dgtechhealthcare.nurse.view
 
 import android.app.Activity.RESULT_OK
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -11,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.example.dgtechhealthcare.R
-import com.example.dgtechhealthcare.editProfile.EditPatientProfileFragment
 import com.example.dgtechhealthcare.nurse.model.ProfileData
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.firebase.database.DataSnapshot
@@ -63,7 +61,7 @@ class NurseProfileFragment : Fragment() {
 
         editButton.setOnClickListener {
             val transaction = activity?.supportFragmentManager?.beginTransaction()
-            val frag = editNurseProfileFragment()
+            val frag = EditNurseProfileFragment()
             transaction?.replace(R.id.fragment_container_nurse, frag)
             transaction?.addToBackStack(null)
             transaction?.commit()

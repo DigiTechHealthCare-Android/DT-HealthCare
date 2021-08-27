@@ -9,7 +9,6 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.example.dgtechhealthcare.R
-import com.example.dgtechhealthcare.nurse.view.editNurseProfileFragment
 import com.example.dgtechhealthcare.pharmacist.model.PharmacistData
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.firebase.database.DataSnapshot
