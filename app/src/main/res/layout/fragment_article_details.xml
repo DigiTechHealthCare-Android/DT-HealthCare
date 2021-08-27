@@ -4,28 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/contentShowCV"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="10dp"
-    app:cardCornerRadius="10dp"
+    android:layout_height="wrap_content"
     app:cardElevation="4dp"
     tools:context=".contentManager.ContentMangerShowContentFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/contentShowTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="108dp"
             android:layout_marginEnd="8dp"
+            android:text="Title"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,21 +46,25 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"
+            android:drawableLeft="@drawable/descriptionbadge"
+            android:drawablePadding="6dp"
+            android:text="Description"
             android:textColor="#000000"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/contentShowImg" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/contentEdit"
-            android:layout_width="37dp"
-            android:layout_height="34dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="112dp"
+            android:layout_marginEnd="28dp"
             android:backgroundTint="@color/white"
-            android:src="@android:drawable/ic_menu_edit"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/editicon" />
 
         <FrameLayout
             android:id="@+id/abc"
@@ -73,6 +77,73 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/contentShowTitle" />
 
+        <TextView
+            android:id="@+id/countViews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/eyeviewicon"
+            android:drawablePadding="6dp"
+            android:text="No. of Views"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contentShowDesc" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/articlePImageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/user"
+            app:layout_constraintBottom_toTopOf="@+id/contentShowTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView90"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Name"
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/contentEdit"
+            app:layout_constraintHorizontal_bias="0.465"
+            app:layout_constraintStart_toEndOf="@+id/articlePImageView"
+            app:layout_constraintTop_toTopOf="@+id/articlePImageView" />
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="84dp"
+            android:layout_marginBottom="24dp"
+            android:src="@drawable/verifiedicon"
+            app:layout_constraintBottom_toTopOf="@+id/contentShowTitle"
+            app:layout_constraintEnd_toStartOf="@+id/textView90" />
+
+        <TextView
+            android:id="@+id/textView91"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="____________________________________________________________"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/contentShowTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.363"
+            app:layout_constraintStart_toStartOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.cardview.widget.CardView>
