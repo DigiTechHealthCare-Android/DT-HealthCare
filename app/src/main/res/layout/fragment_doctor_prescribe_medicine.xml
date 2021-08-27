@@ -43,7 +43,7 @@
                 android:textColor="#000000"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toStartOf="@+id/textInputLayout24"
-                app:layout_constraintHorizontal_bias="0.458"
+                app:layout_constraintHorizontal_bias="0.506"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView38" />
 
@@ -53,7 +53,7 @@
                 android:layout_width="218dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="56dp"
                 app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView38">
@@ -127,6 +127,7 @@
                 android:layout_marginEnd="20dp"
                 app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/textInputLayout24"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout24">
 
@@ -179,6 +180,46 @@
                     android:hint="Night Medicine"
                     android:textColor="#000000" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <CheckBox
+                android:id="@+id/morningCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/textInputLayout24"
+                app:layout_constraintTop_toTopOf="@+id/textInputLayout24" />
+
+            <CheckBox
+                android:id="@+id/afternoonCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/textInputLayout25"
+                app:layout_constraintTop_toTopOf="@+id/textInputLayout25" />
+
+            <CheckBox
+                android:id="@+id/eveningCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/textInputLayout26"
+                app:layout_constraintTop_toTopOf="@+id/textInputLayout26" />
+
+            <CheckBox
+                android:id="@+id/nightCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/textInputLayout27"
+                app:layout_constraintTop_toTopOf="@+id/textInputLayout27" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
