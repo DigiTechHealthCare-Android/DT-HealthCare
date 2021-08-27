@@ -90,8 +90,8 @@ class ContentManagerDrawerNavigationActivity : AppCompatActivity(),
 
         navMenuCM.setNavigationItemSelectedListener(this)
 
-        setToolbarTitle("Settings")
-        changeFragment(SettingsFragment())
+        setToolbarTitle("Article")
+        changeFragment(CRUDContentActivity())
 
     }
 
