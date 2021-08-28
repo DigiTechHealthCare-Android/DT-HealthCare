@@ -12,15 +12,7 @@ import android.widget.Toast
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.SignInActivity
 import com.example.dgtechhealthcare.SignUpActivity
-import com.example.dgtechhealthcare.pharmacist.view.PharmacistNavigationActivity
-import com.example.dgtechhealthcare.doctor.DoctorDrawerNavigationActivity
-import com.example.dgtechhealthcare.view.NurseDrawerNavigationActivity
-import com.example.dgtechhealthcare.view.PatientDrawerNavigationActivity
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -46,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         mauth = FirebaseAuth.getInstance()
         loadingBar = ProgressDialog(this)
 
-        if(mauth.currentUser != null) {
+        /*if(mauth.currentUser != null) {
             loadingBar.setTitle("Authenticating")
             loadingBar.setMessage("Please wait!")
             loadingBar.setCanceledOnTouchOutside(false)
@@ -94,7 +86,7 @@ class MainActivity : AppCompatActivity() {
 //            val i = Intent(this,SignInActivity::class.java)
 //            startActivity(i)
 //            finish()
-        }
+        }*/
 
         signUpButton = findViewById(R.id.signupB)
 

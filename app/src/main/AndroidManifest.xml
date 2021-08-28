@@ -34,13 +34,13 @@
             android:name=".view.ContentManagerDrawerNavigationActivity"
             android:exported="true" />
         <activity
-            android:name=".pharmacist.PharmacistDrawerNavigationActivity"
+            android:name=".view.PharmacistDrawerNavigationActivity"
             android:exported="true" />
         <activity
             android:name=".view.NurseDrawerNavigationActivity"
             android:exported="true" />
         <activity
-            android:name=".doctor.DoctorDrawerNavigationActivity"
+            android:name=".view.DoctorDrawerNavigationActivity"
             android:exported="true" />
         <activity
             android:name=".view.PatientDrawerNavigationActivity"
@@ -49,16 +49,7 @@
             android:name=".utils.ViewPdfActivity"
             android:exported="true" />
         <activity
-            android:name=".PatientsNavigationActivity"
-            android:exported="true" />
-        <activity
-            android:name=".view.DoctorNavigationActivity"
-            android:exported="true" />
-        <activity
             android:name=".nurse.view.NurseNavigationActivity"
-            android:exported="true" />
-        <activity
-            android:name=".pharmacist.view.PharmacistNavigationActivity"
             android:exported="true" />
         <activity
             android:name=".SplashActivity"

@@ -11,8 +11,8 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.example.dgtechhealthcare.doctor.DoctorDrawerNavigationActivity
-import com.example.dgtechhealthcare.pharmacist.PharmacistDrawerNavigationActivity
+import com.example.dgtechhealthcare.view.DoctorDrawerNavigationActivity
+import com.example.dgtechhealthcare.view.PharmacistDrawerNavigationActivity
 import com.example.dgtechhealthcare.view.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -71,12 +71,6 @@ class SignInActivity : AppCompatActivity() {
             }
             builder.show()
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        //sendToDashboard()
     }
 
     fun sendToDashboard(){
@@ -142,11 +136,7 @@ class SignInActivity : AppCompatActivity() {
                     }
                 }
             }
-        } else {
-//            val i = Intent(this,SignInActivity::class.java)
-//            startActivity(i)
-//            finish()
-        }
+        } else {}
     }
 
     fun getResponse(id : String) : String? {
@@ -193,10 +183,6 @@ class SignInActivity : AppCompatActivity() {
         else {
             auth.signInWithEmailAndPassword(email,password).addOnCompleteListener {
                 if(it.isSuccessful) {
-                    /*Toast.makeText(this,"Welcome!",Toast.LENGTH_LONG).show()
-                    val i = Intent(this,MainActivity::class.java)
-                    startActivity(i)
-                    finish()*/
                     sendToDashboard()
                 } else {
                     Toast.makeText(this,"Error: ${it.exception?.message}",Toast.LENGTH_LONG).show()

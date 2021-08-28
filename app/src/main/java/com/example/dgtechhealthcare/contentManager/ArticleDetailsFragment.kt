@@ -80,25 +80,22 @@ class ArticleDetailsFragment : Fragment() {
             builder.setTitle("Do you want to?")
             builder.setItems(options,
                 DialogInterface.OnClickListener { dialog, which ->
-                    if(which == 0){ editContent(articleID) }
-                    if(which ==1){ deleteContent(articleID) }
+                    if(which == 0){ editContent(articleID,requireActivity) }
+                    if(which ==1){ deleteContent(articleID,requireActivity) }
                 })
             builder.show()
         }
     }
 
-    private fun deleteContent(userID: String?) {
-        reference.articleReference.child(userID!!).removeValue().addOnCompleteListener {
-            if(it.isSuccessful){
-                reference.managerReference.child(reference.currentUserId!!).child("articles").child(userID!!).removeValue().addOnCompleteListener {
-                    if(it.isSuccessful) Toast.makeText(activity,"Article Deleted",
-                        Toast.LENGTH_LONG).show()
-                    activity?.supportFragmentManager?.popBackStack()
-                }
-            }
+    private fun deleteContent(userID: String?,activity: FragmentActivity) {
+        activity?.supportFragmentManager?.popBackStack()
+        reference.articleReference.child(userID!!).removeValue()
+        reference.managerReference.child(reference.currentUserId!!).child("articles").child(
+            userID).removeValue().addOnCompleteListener {
+            if(it.isSuccessful) Toast.makeText(activity,"Article Deleted",Toast.LENGTH_LONG).show()
         }
     }
-    private fun editContent(userID: String?) {
+    private fun editContent(userID: String?,activity: FragmentActivity) {
         val frag = EditArticlesFragment()
         val bundle = Bundle()
         bundle.putString("userID",userID)
@@ -117,8 +114,7 @@ class ArticleDetailsFragment : Fragment() {
                 userName.setText(snapshot.child("publisherName").value.toString())
 
                 val views = snapshot.child("views").value.toString()
-                val v : Int = views.toInt()
-                articleViews.setText("$v" + " views")
+                articleViews.setText("$views" + " views")
 
                 val desc = snapshot.child("desc").value.toString()
                 if (desc.isNullOrEmpty()){

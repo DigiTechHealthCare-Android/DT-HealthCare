@@ -1,4 +1,4 @@
-package com.example.dgtechhealthcare.pharmacist
+package com.example.dgtechhealthcare.pharmacist.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

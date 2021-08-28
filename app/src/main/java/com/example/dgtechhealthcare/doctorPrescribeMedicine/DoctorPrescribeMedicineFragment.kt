@@ -141,7 +141,7 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
         val builder = AlertDialog.Builder(activity)
         val dialogLayout = layoutInflater.inflate(R.layout.choose_pharmacy_layout,null)
         builder.setView(dialogLayout)
-
+        builder.setCancelable(false)
         val pharmaSpinner = dialogLayout.findViewById<Spinner>(R.id.pharmaNameSpinner)
         pharmaChoice = dialogLayout.findViewById<TextView>(R.id.pharmaNameChoiceTV)
         prescribeB.setOnClickListener {
@@ -180,7 +180,7 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
                                     val username = snapshot.child("username").value.toString()
 
                                     reference.pharmaReference.child(choice).child("requests").child(reference.currentUserId!!).updateChildren(hashMap).addOnCompleteListener {
-                                        Toast.makeText(activity,"Request Sent",Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(context,"Request Sent",Toast.LENGTH_SHORT).show()
                                         //getToken("New Request")
                                         reference.userReference.child(choice).addValueEventListener(object : ValueEventListener{
                                             override fun onDataChange(snapshot: DataSnapshot) {
@@ -190,21 +190,18 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
                                                 val title = "New Order"
                                                 val message = "Request from $username"
                                                 PushNotification(NotificationData(title,message,)
-                                                    , token
-                                                ).also {
+                                                    , token).also {
                                                     sendNotification(it)
                                                 }
                                             }
-                                            override fun onCancelled(error: DatabaseError) {
-                                                TODO("Not yet implemented")
-                                            }
-
+                                            override fun onCancelled(error: DatabaseError) {}
                                         })
                                     }
                                 }
                             }
                             override fun onCancelled(error: DatabaseError) {}
                         })
+                    requireActivity()?.supportFragmentManager?.popBackStack()
                     }
                     setNegativeButton("Cancel"){dialog,which->}
                 }
@@ -270,6 +267,14 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
                 Toast.makeText(activity,"Prescription given",Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    override fun onDestroyView() {
+        if (view != null) {
+            val parentViewGroup = requireView().parent as ViewGroup?
+            parentViewGroup?.removeAllViews();
+        }
+        super.onDestroyView()
     }
 
     private fun initializeValues(view: View) {

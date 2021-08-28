@@ -9,9 +9,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.Toast
-import com.example.dgtechhealthcare.pharmacist.PharmacistDrawerNavigationActivity
+import com.example.dgtechhealthcare.view.PharmacistDrawerNavigationActivity
 import com.example.dgtechhealthcare.view.ContentManagerDrawerNavigationActivity
-import com.example.dgtechhealthcare.doctor.DoctorDrawerNavigationActivity
+import com.example.dgtechhealthcare.view.DoctorDrawerNavigationActivity
 import com.example.dgtechhealthcare.view.NurseDrawerNavigationActivity
 import com.example.dgtechhealthcare.view.PatientDrawerNavigationActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -42,7 +42,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         val test : String? = intent.getStringExtra("test")
-        Toast.makeText(this,"$test",Toast.LENGTH_LONG).show()
+        //Toast.makeText(this,"$test",Toast.LENGTH_LONG).show()
 
         auth = FirebaseAuth.getInstance()
         loadingBar = ProgressDialog(this)
@@ -63,7 +63,7 @@ class SplashActivity : AppCompatActivity() {
                     FirebaseMessaging.getInstance().token.addOnCompleteListener {
                         if (it.isSuccessful){
                             val token = it.result.toString()
-                            Toast.makeText(this,"${token}", Toast.LENGTH_LONG).show()
+                            //Toast.makeText(this,"${token}", Toast.LENGTH_LONG).show()
                             FirebaseDatabase.getInstance().reference.child("Users")
                                 .child(auth.currentUser!!.uid).child("token").setValue(token)
                         }

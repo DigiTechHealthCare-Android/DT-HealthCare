@@ -62,13 +62,8 @@ class EditPharmacistFragment : Fragment() {
                     pharmacyNameTextView.text = pharmacistData?.pharmacyName
                     emailTextView.text = pharmacistData?.email
                     locationTextView.text = pharmacistData?.location
-                    //dobTextView.text = pharmacistData?.
                 }
-
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-
+                override fun onCancelled(error: DatabaseError) {}
             })
 
         updateButton.setOnClickListener {

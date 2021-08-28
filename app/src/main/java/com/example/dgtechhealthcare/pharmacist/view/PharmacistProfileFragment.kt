@@ -89,10 +89,7 @@ class PharmacistProfileFragment : Fragment() {
                 locationTextView.text = "${pharmacist?.location}"
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
+            override fun onCancelled(error: DatabaseError) {}
         })
     }
 

@@ -1,4 +1,4 @@
-package com.example.dgtechhealthcare.pharmacist
+package com.example.dgtechhealthcare.view
 
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -14,9 +14,9 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.SignInActivity
-import com.example.dgtechhealthcare.pharmacist.view.EditPharmacistFragment
-import com.example.dgtechhealthcare.pharmacist.view.PharmacistProfileFragment
-import com.example.dgtechhealthcare.pharmacist.view.RequestFragment
+import com.example.dgtechhealthcare.doctor.DoctorProfileFragment
+import com.example.dgtechhealthcare.editProfile.EditDoctorProfileFragment
+import com.example.dgtechhealthcare.patientInfo.PatientInfoFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.utils.SettingsFragment
 import com.google.android.material.navigation.NavigationView
@@ -24,49 +24,48 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_pharmacist_drawer_navigation.*
-import kotlinx.android.synthetic.main.pharmacist_nav_toolbar.*
+import kotlinx.android.synthetic.main.activity_doctor_drawer_navigation.*
+import kotlinx.android.synthetic.main.doctor_nav_toolbar.*
 
-class PharmacistDrawerNavigationActivity : AppCompatActivity(),
+class DoctorDrawerNavigationActivity : AppCompatActivity(),
     NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var reference: FirebasePresenter
 
-    lateinit var pharmacistName: TextView
-    lateinit var pharmacistEmail: TextView
-    lateinit var pharmacistIV: ImageView
-    lateinit var pharmacistEdit : ImageView
+    lateinit var doctorName: TextView
+    lateinit var doctorEmail: TextView
+    lateinit var doctorIV: ImageView
+    lateinit var editUser: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pharmacist_drawer_navigation)
-
-        setSupportActionBar(toolbarPharmacist)
+        setContentView(R.layout.activity_doctor_drawer_navigation)
+        setSupportActionBar(toolbarDoctor)
 
         val toggle =
             ActionBarDrawerToggle(
                 this,
-                drawerLayoutPharmacist,
-                toolbarPharmacist,
+                drawerLayoutDoctor,
+                toolbarDoctor,
                 R.string.open,
                 R.string.close
             )
         toggle.isDrawerIndicatorEnabled = true
-        drawerLayoutPharmacist.addDrawerListener(toggle)
+        drawerLayoutDoctor.addDrawerListener(toggle)
         toggle.syncState()
 
-        val navView = findViewById<NavigationView>(R.id.navMenuPharmacist)
+        val navView = findViewById<NavigationView>(R.id.navMenuDoctor)
         val headerView = navView.getHeaderView(0)
 
-        pharmacistName = headerView.findViewById(R.id.drawerPharmacistName)
-        pharmacistEmail = headerView.findViewById(R.id.drawerPharmacistEmail)
-        pharmacistIV = headerView.findViewById(R.id.drawerPharmacistIV)
-        pharmacistEdit = headerView.findViewById(R.id.editImageViewPharmacist)
+        doctorName = headerView.findViewById(R.id.drawerDoctorName)
+        doctorEmail = headerView.findViewById(R.id.drawerDoctorEmail)
+        doctorIV = headerView.findViewById(R.id.drawerDoctorIV)
+        editUser = headerView.findViewById(R.id.editImageVIewDoctor)
 
-        pharmacistEdit.setOnClickListener {
-            drawerLayoutPharmacist.closeDrawer(GravityCompat.START)
-            setToolbarTitle("Pharmacist Profile")
-            changeFragment(EditPharmacistFragment())
+        editUser.setOnClickListener {
+            drawerLayoutDoctor.closeDrawer(GravityCompat.START)
+            setToolbarTitle("Profile")
+            changeFragment(EditDoctorProfileFragment())
         }
 
         reference = FirebasePresenter(View(this))
@@ -75,44 +74,42 @@ class PharmacistDrawerNavigationActivity : AppCompatActivity(),
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.hasChild("profileImage")) {
                     val img = snapshot.child("profileImage").value.toString()
-                    Picasso.get().load(img).into(pharmacistIV)
+                    Picasso.get().load(img).into(doctorIV)
                 }
                 val name = snapshot.child("username").value.toString()
                 val email = snapshot.child("email").value.toString()
 
-                pharmacistName.setText(name)
-                pharmacistEmail.setText(email)
+                doctorName.setText(name)
+                doctorEmail.setText(email)
             }
+
             override fun onCancelled(error: DatabaseError) {}
+
         })
 
-        navMenuPharmacist.setNavigationItemSelectedListener(this)
+        navMenuDoctor.setNavigationItemSelectedListener(this)
 
-        setToolbarTitle("Requests")
-        changeFragment(RequestFragment())
+        setToolbarTitle("Patient Information")
+        changeFragment(PatientInfoFragment())
 
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        drawerLayoutPharmacist.closeDrawer(GravityCompat.START)
+        drawerLayoutDoctor.closeDrawer(GravityCompat.START)
         when (item.itemId) {
-            R.id.profilePharma -> {
+            R.id.profileDr -> {
                 setToolbarTitle("Profile")
-                changeFragment(PharmacistProfileFragment())
+                changeFragment(DoctorProfileFragment())
             }
-            R.id.oldReqPharma -> {
-                setToolbarTitle("Old Request")
-               changeFragment(HistoryFragment())
+            R.id.patientInfoDr -> {
+                setToolbarTitle("Patient Information")
+                changeFragment(PatientInfoFragment())
             }
-            R.id.requestPharma-> {
-                setToolbarTitle("Requests")
-               changeFragment(RequestFragment())
-            }
-            R.id.settingsPharma -> {
+            R.id.settingsDr -> {
                 setToolbarTitle("Settings")
                 changeFragment(SettingsFragment())
             }
-            R.id.logoutPharma -> {
+            R.id.logoutDr -> {
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Do you want to logout?")
                 builder.setPositiveButton("Yes, Logout",
@@ -127,12 +124,14 @@ class PharmacistDrawerNavigationActivity : AppCompatActivity(),
                 })
                 builder.show()
             }
+            }
+       return true
+
         }
-        return true
-    }
+
     private fun changeFragment(frag: Fragment) {
         val fragment = supportFragmentManager.beginTransaction()
-        fragment.replace(R.id.fragment_container_pharmacist,frag).commit()
+        fragment.replace(R.id.fragment_container_doctor,frag).commit()
     }
 
     private fun setToolbarTitle(title: String) {

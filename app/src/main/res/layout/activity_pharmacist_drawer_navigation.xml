@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawerLayoutPharmacist"
-    tools:context=".pharmacist.PharmacistDrawerNavigationActivity"
+    tools:context=".view.PharmacistDrawerNavigationActivity"
     android:fitsSystemWindows="true"
     tools:openDrawer="start" >
 

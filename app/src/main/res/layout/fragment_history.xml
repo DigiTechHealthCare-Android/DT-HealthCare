@@ -5,7 +5,7 @@
     android:id="@+id/pharmHistoryFrame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pharmacist.HistoryFragment">
+    tools:context=".pharmacist.view.HistoryFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

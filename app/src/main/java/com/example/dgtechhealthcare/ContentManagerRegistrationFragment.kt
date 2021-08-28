@@ -1,4 +1,4 @@
-package com.example.dgtechhealthcare.contentManager
+package com.example.dgtechhealthcare
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.view.ContentManagerDrawerNavigationActivity
 

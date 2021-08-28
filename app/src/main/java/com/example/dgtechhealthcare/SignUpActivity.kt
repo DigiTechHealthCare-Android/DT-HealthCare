@@ -49,13 +49,10 @@ class SignUpActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         val nameT = userName.text.toString()
         val emailT = userEmail.text.toString()
         val passT = userPass.text.toString()
-      //  val confirmT = userConfirm.text.toString()
 
         if(nameT.isEmpty()) Toast.makeText(this,"Please enter your name",Toast.LENGTH_LONG).show()
         else if(emailT.isEmpty()) Toast.makeText(this,"Please enter your email!", Toast.LENGTH_SHORT).show()
         else if(passT.isEmpty()) Toast.makeText(this,"Please enter your password!", Toast.LENGTH_SHORT).show()
-        //else if(confirmT.isEmpty()) Toast.makeText(this,"Please confirm your password!",Toast.LENGTH_SHORT).show()
-        //else if(passT.compareTo(confirmT) != 0) Toast.makeText(this,"password and confirm password do not match",Toast.LENGTH_SHORT).show()
         else {
             auth.createUserWithEmailAndPassword(emailT,passT).addOnCompleteListener{
                 if(it.isSuccessful) {
@@ -89,22 +86,6 @@ class SignUpActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             "Content Manager" -> {
                 roleChoice = "manager"
             }
-            /*"Patient" -> {
-                val frag = PatientRegistrationFragment()
-                supportFragmentManager.beginTransaction().replace(R.id.setupFrame,frag).commit()
-            }
-            "Doctor" -> {
-                val frag = DoctorRegistrationFragment()
-                supportFragmentManager.beginTransaction().replace(R.id.setupFrame,frag).commit()
-            }
-            "Nurse" -> {
-                val frag = NurseRegistrationFragment()
-                supportFragmentManager.beginTransaction().replace(R.id.setupFrame,frag).commit()
-            }
-            "Pharmacist" -> {
-                val frag = PharmacistRegistrationFragment()
-                supportFragmentManager.beginTransaction().replace(R.id.setupFrame,frag).commit()
-            }*/
         }
     }
 

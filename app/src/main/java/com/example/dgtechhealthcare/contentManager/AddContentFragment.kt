@@ -108,6 +108,7 @@ class AddContentFragment : Fragment() {
                                         h["time"] = Calendar.getInstance().time.toString()
                                         reference.managerReference.child(reference.currentUserId!!).child("articles").child(contentUid).updateChildren(h).addOnCompleteListener {
                                             Toast.makeText(activity,"Content published",Toast.LENGTH_LONG).show()
+                                            activity?.supportFragmentManager?.popBackStack()
                                         }
                                     }
                                 }
@@ -122,6 +123,7 @@ class AddContentFragment : Fragment() {
                                     h["time"] = Calendar.getInstance().time.toString()
                                     reference.managerReference.child(reference.currentUserId!!).child("articles").child(contentUid).updateChildren(h).addOnCompleteListener {
                                         Toast.makeText(activity,"Content published",Toast.LENGTH_LONG).show()
+                                        activity?.supportFragmentManager?.popBackStack()
                                     }
                                 }
                             }
