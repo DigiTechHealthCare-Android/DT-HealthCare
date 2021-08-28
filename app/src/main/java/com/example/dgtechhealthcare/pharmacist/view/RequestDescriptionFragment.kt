@@ -1,4 +1,4 @@
-package com.example.dgtechhealthcare.pharmacist.model
+package com.example.dgtechhealthcare.pharmacist.view
 
 import android.content.Context
 import android.os.Bundle
