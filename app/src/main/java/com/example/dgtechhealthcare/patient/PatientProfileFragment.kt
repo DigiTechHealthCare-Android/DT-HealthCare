@@ -15,6 +15,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.doctorPrescribeMedicine.DoctorPrescribeMedicineFragment
 import com.example.dgtechhealthcare.editProfile.EditPatientProfileFragment
@@ -185,7 +186,9 @@ class PatientProfileFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.hasChild("profileImage")) {
                     val img = snapshot.child("profileImage").value.toString()
-                    Picasso.get().load(img).into(userprofileImg)
+                    //Picasso.get().load(img).into(userprofileImg)
+                    Glide.with(view).load(img).circleCrop().placeholder(R.drawable.loading0).into(userprofileImg)
+                    //Glide.with(view).load(R.drawable.loading0).into(userprofileImg)
                 }
                 val name = snapshot.child("username").value.toString()
                 val mob = snapshot.child("contactNo").value.toString()

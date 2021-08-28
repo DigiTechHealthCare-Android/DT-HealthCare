@@ -1,10 +1,9 @@
-package com.example.dgtechhealthcare.view.fragments
+package com.example.dgtechhealthcare.utils
 
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -16,8 +15,6 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.SignInActivity
-import com.example.dgtechhealthcare.utils.AboutUsFragment
-import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener

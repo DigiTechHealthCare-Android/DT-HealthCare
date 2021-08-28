@@ -1,4 +1,4 @@
-package com.example.dgtechhealthcare.view.fragments
+package com.example.dgtechhealthcare.doctor
 
 import android.app.Activity
 import android.content.Intent

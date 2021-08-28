@@ -5,7 +5,7 @@
     android:id="@+id/settingsFrame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragments.SettingsFragment">
+    tools:context=".utils.SettingsFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,9 +20,9 @@
             android:layout_height="144dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="28dp"
+            android:src="@drawable/cardviewname"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/user" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/settingsNameT"

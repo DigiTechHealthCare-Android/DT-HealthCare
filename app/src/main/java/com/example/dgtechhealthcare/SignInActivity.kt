@@ -11,11 +11,11 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.example.dgtechhealthcare.doctor.DoctorDrawerNavigationActivity
 import com.example.dgtechhealthcare.pharmacist.PharmacistDrawerNavigationActivity
 import com.example.dgtechhealthcare.view.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.installations.FirebaseInstallations
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -76,7 +76,7 @@ class SignInActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        sendToDashboard()
+        //sendToDashboard()
     }
 
     fun sendToDashboard(){

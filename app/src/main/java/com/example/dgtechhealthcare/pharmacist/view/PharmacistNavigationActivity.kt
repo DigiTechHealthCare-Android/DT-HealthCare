@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.pharmacist.RequestTabbedActivity
-import com.example.dgtechhealthcare.view.fragments.SettingsFragment
+import com.example.dgtechhealthcare.utils.SettingsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class PharmacistNavigationActivity : AppCompatActivity() {

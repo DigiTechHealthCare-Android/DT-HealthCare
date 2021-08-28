@@ -4,9 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.dgtechhealthcare.R
-import com.example.dgtechhealthcare.nurse.view.NursePatientFragment
-import com.example.dgtechhealthcare.nurse.view.NurseProfileFragment
-import com.example.dgtechhealthcare.view.fragments.SettingsFragment
+import com.example.dgtechhealthcare.utils.SettingsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class NurseNavigationActivity : AppCompatActivity() {

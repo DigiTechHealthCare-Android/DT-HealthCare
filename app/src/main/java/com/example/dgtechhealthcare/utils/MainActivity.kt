@@ -1,4 +1,4 @@
-package com.example.dgtechhealthcare
+package com.example.dgtechhealthcare.utils
 
 import android.app.ProgressDialog
 import android.content.Intent
@@ -9,10 +9,11 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
-import com.example.dgtechhealthcare.view.DoctorNavigationActivity
-import com.example.dgtechhealthcare.nurse.view.NurseNavigationActivity
+import com.example.dgtechhealthcare.R
+import com.example.dgtechhealthcare.SignInActivity
+import com.example.dgtechhealthcare.SignUpActivity
 import com.example.dgtechhealthcare.pharmacist.view.PharmacistNavigationActivity
-import com.example.dgtechhealthcare.view.DoctorDrawerNavigationActivity
+import com.example.dgtechhealthcare.doctor.DoctorDrawerNavigationActivity
 import com.example.dgtechhealthcare.view.NurseDrawerNavigationActivity
 import com.example.dgtechhealthcare.view.PatientDrawerNavigationActivity
 import com.google.firebase.auth.FirebaseAuth

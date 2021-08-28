@@ -9,21 +9,23 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.SignInActivity
+import com.example.dgtechhealthcare.doctorPrescribeMedicine.DoctorPrescribeMedicineFragment
 import com.example.dgtechhealthcare.editProfile.EditPatientProfileFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.android.material.navigation.NavigationView
 import com.example.dgtechhealthcare.patient.PatientArticleFragment
 import com.example.dgtechhealthcare.patient.PatientProfileFragment
-import com.example.dgtechhealthcare.view.fragments.SettingsFragment
+import com.example.dgtechhealthcare.utils.SettingsFragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_patient_drawer_navigation.*
 import kotlinx.android.synthetic.main.patient_nav_toolbar.*
 
@@ -41,6 +43,9 @@ class PatientDrawerNavigationActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_drawer_navigation)
         setSupportActionBar(toolbar)
+
+        val p = intent.getStringExtra("test")
+
 
         val toggle =
             ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
@@ -67,7 +72,8 @@ class PatientDrawerNavigationActivity : AppCompatActivity(),
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.hasChild("profileImage")) {
                     val img = snapshot.child("profileImage").value.toString()
-                    Picasso.get().load(img).into(userIV)
+                    //Picasso.get().load(img).into(userIV)
+                    Glide.with(this@PatientDrawerNavigationActivity).load(img).circleCrop().placeholder(R.drawable.loading0).into(userIV)
                 }
                 val name = snapshot.child("username").value.toString()
                 val email = snapshot.child("email").value.toString()
@@ -83,6 +89,13 @@ class PatientDrawerNavigationActivity : AppCompatActivity(),
 
         setToolbarTitle("Patient Article")
         changeFragment(PatientArticleFragment())
+
+        Toast.makeText(this,"$p",Toast.LENGTH_LONG).show()
+        if(p?.compareTo("doctor")==0){
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container,DoctorPrescribeMedicineFragment())
+                .addToBackStack(null).commit()
+        }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

@@ -1,14 +1,13 @@
 package com.example.dgtechhealthcare
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Button
 import android.widget.Spinner
 import com.example.dgtechhealthcare.contentManager.ContentManagerRegistrationFragment
+import com.example.dgtechhealthcare.doctor.DoctorRegistrationFragment
 import com.google.firebase.auth.FirebaseAuth
 
 class SetupActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {

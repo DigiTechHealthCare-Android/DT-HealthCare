@@ -17,19 +17,15 @@ import com.example.dgtechhealthcare.SignInActivity
 import com.example.dgtechhealthcare.contentManager.CRUDContentActivity
 import com.example.dgtechhealthcare.contentManager.ContentManagerProfileFragment
 import com.example.dgtechhealthcare.editProfile.EditContentManagerProfileFragment
-import com.example.dgtechhealthcare.nurse.view.NursePatientFragment
-import com.example.dgtechhealthcare.nurse.view.NurseProfileFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
-import com.example.dgtechhealthcare.view.fragments.SettingsFragment
+import com.example.dgtechhealthcare.utils.SettingsFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_content_manager_drawer_navigation.*
-import kotlinx.android.synthetic.main.activity_nurse_drawer_navigation.*
 import kotlinx.android.synthetic.main.content_manager_nav_toolbar.*
-import kotlinx.android.synthetic.main.nurse_nav_toolbar.*
 
 class ContentManagerDrawerNavigationActivity : AppCompatActivity(),
     NavigationView.OnNavigationItemSelectedListener {

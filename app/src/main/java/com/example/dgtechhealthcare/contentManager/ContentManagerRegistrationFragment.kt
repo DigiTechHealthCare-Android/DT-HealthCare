@@ -12,7 +12,6 @@ import android.widget.Toast
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.view.ContentManagerDrawerNavigationActivity
-import com.example.dgtechhealthcare.view.DoctorDrawerNavigationActivity
 
 class ContentManagerRegistrationFragment : Fragment() {
 

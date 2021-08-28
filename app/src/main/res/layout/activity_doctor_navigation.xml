@@ -17,7 +17,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainer"
-        android:name="com.example.dgtechhealthcare.view.fragments.DoctorProfileFragment"
+        android:name="com.example.dgtechhealthcare.doctor.DoctorProfileFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/drNavigationView"

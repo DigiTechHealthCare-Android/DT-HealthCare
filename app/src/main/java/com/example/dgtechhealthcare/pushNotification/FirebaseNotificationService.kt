@@ -16,6 +16,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.SignInActivity
+import com.example.dgtechhealthcare.SplashActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -50,7 +51,10 @@ class FirebaseNotificationService : FirebaseMessagingService() {
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
 
-        val intent = Intent(this, SignInActivity::class.java)
+        val i = message.data["intent"]
+
+        val intent = Intent(this, SplashActivity::class.java)
+        intent.putExtra("test",i)
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val notificationID = Random.nextInt()
 

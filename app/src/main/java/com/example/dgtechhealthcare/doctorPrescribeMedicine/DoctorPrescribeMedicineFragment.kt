@@ -189,7 +189,7 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
                                                 FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
                                                 val title = "New Order"
                                                 val message = "Request from $username"
-                                                PushNotification(NotificationData(title,message)
+                                                PushNotification(NotificationData(title,message,)
                                                     , token
                                                 ).also {
                                                     sendNotification(it)
@@ -256,7 +256,7 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
                                 FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
                                 val title = "New Prescription"
                                 val message = "From Dr. $username"
-                                PushNotification(NotificationData(title,message)
+                                PushNotification(NotificationData(title,message,"doctor")
                                     , token
                                 ).also {
                                     sendNotification(it)
