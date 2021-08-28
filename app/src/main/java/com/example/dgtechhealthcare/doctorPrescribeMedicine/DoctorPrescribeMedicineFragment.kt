@@ -87,7 +87,7 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
             override fun onDataChange(snapshot: DataSnapshot) {
                 accountType = snapshot.child("accountType").value.toString()
                 if(accountType.compareTo("patient")==0 && userType!!.compareTo(reference.currentUserId!!)==0){
-                    prescribeB.setText("Request prescription")
+                    prescribeB.text = "Request prescription"
                     morningMed.isEnabled = false
                     afternoonMed.isEnabled = false
                     eveningMed.isEnabled = false
@@ -96,7 +96,8 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
                     afternoonCheckBox.isEnabled = false
                     eveningCheckBox.isEnabled = false
                     nightCheckBox.isEnabled = false
-                } else if(accountType.compareTo("doctor")==0 || userType!!.compareTo(reference.currentUserId!!)!=0){
+                }
+                else if(accountType.compareTo("doctor")==0 || userType!!.compareTo(reference.currentUserId!!)!=0){
                     prescribeB.text = "Prescribe Medicine"
 //                    morningCheckBox.isEnabled = false
 //                    afternoonCheckBox.isEnabled = false

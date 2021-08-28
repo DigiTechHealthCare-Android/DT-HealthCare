@@ -11,8 +11,8 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dgtechhealthcare.R
+import com.example.dgtechhealthcare.nurse.model.PatientInfoDataClass
 import com.example.dgtechhealthcare.patient.PatientProfileFragment
-import com.example.dgtechhealthcare.patientInfo.PatientInfoDataClass
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions

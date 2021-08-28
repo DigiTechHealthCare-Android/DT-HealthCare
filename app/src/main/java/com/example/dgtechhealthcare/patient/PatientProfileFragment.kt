@@ -74,7 +74,8 @@ class PatientProfileFragment : Fragment() {
 
         if(userKey?.isNotEmpty() == true){
             userID = userKey.toString()
-        }else userID = reference.currentUserId!!
+        }
+        else userID = reference.currentUserId!!
 
         userprofileImg = view.findViewById(R.id.patientIV)
         editProfileIV = view.findViewById(R.id.editProfileB)
