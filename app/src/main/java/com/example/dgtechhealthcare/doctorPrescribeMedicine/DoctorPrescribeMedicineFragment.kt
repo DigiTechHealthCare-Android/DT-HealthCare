@@ -113,15 +113,13 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
 //                }
                 if(snapshot.child("prescribedMedicine").hasChild("morning")){
                     morningMed.setText(snapshot.child("prescribedMedicine").child("morning").child("name").value.toString())
-                    if (snapshot.child("prescribedMedicine").child("morning").child("status").value.toString() == "medicine given"){
-                        morningCheckBox.isChecked = true
-                    }
+                    morningCheckBox.isChecked =
+                        snapshot.child("prescribedMedicine").child("morning").child("status").value.toString() == "medicine given"
                 }
                 if(snapshot.child("prescribedMedicine").hasChild("afternoon")){
                     afternoonMed.setText(snapshot.child("prescribedMedicine").child("afternoon").child("name").value.toString())
-                    if (snapshot.child("prescribedMedicine").child("afternoon").child("status").value.toString() == "medicine given"){
-                        afternoonCheckBox.isChecked = true
-                    }
+                    afternoonCheckBox.isChecked =
+                        snapshot.child("prescribedMedicine").child("afternoon").child("status").value.toString() == "medicine given"
                 }
                 if(snapshot.child("prescribedMedicine").hasChild("evening")){
                     eveningMed.setText(snapshot.child("prescribedMedicine").child("evening").child("name").value.toString())
