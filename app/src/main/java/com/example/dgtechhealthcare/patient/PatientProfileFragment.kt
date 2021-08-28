@@ -7,6 +7,9 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.os.Looper
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,21 +18,36 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.doctorPrescribeMedicine.DoctorPrescribeMedicineFragment
 import com.example.dgtechhealthcare.editProfile.EditPatientProfileFragment
 import com.example.dgtechhealthcare.nurse.model.NurseData
 import com.example.dgtechhealthcare.utils.FirebasePresenter
+import com.example.dgtechhealthcare.utils.ViewImageActivity
 import com.example.dgtechhealthcare.utils.ViewPdfActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.io.File
+import java.io.IOException
+import java.net.HttpURLConnection
+import java.net.URL
+import java.net.URLConnection
+import java.text.SimpleDateFormat
+import java.util.*
 
 class PatientProfileFragment : Fragment() {
 
     lateinit var reference : FirebasePresenter
+    lateinit var currentPhotoPath: String
+
+    val REQUEST_IMAGE_CAPTURE = 1
 
     lateinit var userprofileImg : ImageView
     lateinit var editProfileIV : ImageView
@@ -146,11 +164,27 @@ class PatientProfileFragment : Fragment() {
         }
 
         uploadReport.setOnClickListener {
-            val gallery : Intent = Intent()
-            gallery.setAction(Intent.ACTION_GET_CONTENT)
-            gallery.setType("*/*")
-            choice = 2
-            startActivityForResult(gallery,galleryPick)
+            val options = arrayOf<CharSequence>("Take from Camera","Upload from gallery","Cancel")
+            val builder : AlertDialog.Builder = AlertDialog.Builder(activity)
+            builder.setTitle("Do you want to?")
+            builder.setItems(options,DialogInterface.OnClickListener { dialog, which ->
+                if(which == 0) {
+                    /*val i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    if(i.resolveActivity(activity?.packageManager!!)!=null){
+                        startActivityForResult(i,111)
+                    }*/
+                    dispatchTakePictureIntent()
+                    //startActivity(i)
+                }
+                if(which == 1) {
+                    val gallery : Intent = Intent()
+                    gallery.setAction(Intent.ACTION_GET_CONTENT)
+                    gallery.setType("*/*")
+                    choice = 2
+                    startActivityForResult(gallery,galleryPick)
+                }
+            })
+            builder.show()
         }
 
         var report = ""
@@ -169,9 +203,30 @@ class PatientProfileFragment : Fragment() {
                                 startActivity(i)
                             }
                             if(which == 1) {
-                                val i = Intent(activity,ViewPdfActivity::class.java)
-                                i.putExtra("url",report)
-                                startActivity(i)
+
+                                var connection : URLConnection? = null
+                                try{
+                                    connection = URL(report).openConnection()
+                                } catch (e : IOException){
+                                    e.printStackTrace()
+                                }
+                                CoroutineScope(Dispatchers.IO).launch {
+                                    val contentType = connection?.getHeaderField("Content-Type")
+                                    val img = contentType?.startsWith("image/")
+                                    if(img!!){
+                                        activity?.runOnUiThread {
+                                            Toast.makeText(activity,"it's an image",Toast.LENGTH_LONG).show()
+                                            val i = Intent(activity,ViewImageActivity::class.java)
+                                            i.putExtra("url",report)
+                                            startActivity(i)
+                                        }
+                                    } else {
+                                        val i = Intent(activity,ViewPdfActivity::class.java)
+                                        i.putExtra("url",report)
+                                        startActivity(i)
+                                    }
+                                }
+
                             }
                         })
                         builder.show()
@@ -240,7 +295,61 @@ class PatientProfileFragment : Fragment() {
                 reportUri = data.data!!
                 uploadMedicalReport(reportUri)
             }
+        } else if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode== RESULT_OK) {
+
+            val f : File = File(currentPhotoPath)
+            Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE).also { mediaScanIntent ->
+                mediaScanIntent.data = Uri.fromFile(f)
+                activity?.sendBroadcast(mediaScanIntent)
+
+                uploadReportToFirebase(f.name,Uri.fromFile(f))
+            }
+
         } else Toast.makeText(activity,"ERROR!!",Toast.LENGTH_LONG).show()
+    }
+
+
+
+    @Throws(IOException::class)
+    private fun createImageFile(): File {
+        // Create an image file name
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val storageDir: File = activity?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!
+        //val storageDir : File = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+
+        return File.createTempFile(
+            "JPEG_${timeStamp}_", /* prefix */
+            ".jpg", /* suffix */
+            storageDir /* directory */
+        ).apply {
+            // Save a file: path for use with ACTION_VIEW intents
+            currentPhotoPath = absolutePath
+        }
+    }
+
+    private fun dispatchTakePictureIntent() {
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            // Ensure that there's a camera activity to handle the intent
+            takePictureIntent.resolveActivity(activity?.packageManager!!)?.also {
+                // Create the File where the photo should go
+                val photoFile: File? = try {
+                    createImageFile()
+                } catch (ex: IOException) {
+                    // Error occurred while creating the File
+                    null
+                }
+                // Continue only if the File was successfully created
+                photoFile?.also {
+                    val photoURI: Uri = FileProvider.getUriForFile(
+                        requireActivity(),
+                        "com.example.android.fileprovider",
+                        it
+                    )
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+                }
+            }
+        }
     }
 
     private fun uploadToStorage(reference: FirebasePresenter, currentUserId: String?, imgUri: Uri, activity: Context) {
@@ -259,5 +368,20 @@ class PatientProfileFragment : Fragment() {
             } else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
         }
         userprofileImg.setImageURI(imgUri)
+    }
+
+    fun uploadReportToFirebase(f: String,uri : Uri){
+        val path = reference.userReportRef.child("${f}.pdf")
+        path.putFile(uri).addOnCompleteListener {
+            if(it.isSuccessful) {
+                Toast.makeText(activity,"Report Uploaded",Toast.LENGTH_SHORT).show()
+                path.downloadUrl.addOnSuccessListener {
+                    val downloadUrl = it.toString()
+                    reference.userReference.child(reference.currentUserId!!).child("report").setValue(downloadUrl).addOnCompleteListener {
+                        if(it.isSuccessful) Toast.makeText(activity,"Report Uploaded",Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
+        }
     }
 }
