@@ -60,21 +60,16 @@ class EditArticlesFragment : Fragment() {
                 }
                 if(type.compareTo("image")==0){
                     contentRG.check(R.id.contentImageRE)
-                    title.setText(snapshot.child("title").value.toString())
-                    contentDesc.setText(snapshot.child("desc").value.toString())
-                    contentUrl.setText(snapshot.child("url").value.toString())
                     contentImg.setImageURI(Uri.parse(snapshot.child("imageRef").value.toString()))
                 } else if(type.compareTo("video")==0){
                     contentRG.check(R.id.contentVideoRE)
-                    title.setText(snapshot.child("title").value.toString())
-                    contentUrl.setText(snapshot.child("url").value.toString())
                 } else if(type.compareTo("research")==0){
                     contentRG.check(R.id.contentResearchRE)
-                    title.setText(snapshot.child("title").value.toString())
-                    contentDesc.setText(snapshot.child("desc").value.toString())
-                    contentUrl.setText(snapshot.child("url").value.toString())
                     contentImg.setImageURI(Uri.parse(snapshot.child("imageRef").value.toString()))
                 }
+                title.setText(snapshot.child("title").value.toString())
+                contentDesc.setText(snapshot.child("desc").value.toString())
+                contentUrl.setText(snapshot.child("url").value.toString())
             }
             override fun onCancelled(error: DatabaseError) {}
         })
@@ -105,11 +100,11 @@ class EditArticlesFragment : Fragment() {
 
         if(requestCode == galleryPick && resultCode == Activity.RESULT_OK && data!=null) {
             imgUri = data.data!!
-            uploadImageToDatabase(reference,reference.currentUserId,imgUri)
+            uploadImageToDatabase(reference,contentUid,imgUri)
         }
     }
 
-    private fun uploadImageToDatabase(reference: FirebasePresenter, currentUserId: String?, imgUri: Uri) {
+    private fun uploadImageToDatabase(reference: FirebasePresenter, contentUid: String, imgUri: Uri) {
         val resultUri = imgUri
         val path = reference.contentPostRef.child(contentUid + ".jpg")
         path.putFile(resultUri).addOnCompleteListener {

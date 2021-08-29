@@ -10,18 +10,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import com.example.dgtechhealthcare.R
-import com.example.dgtechhealthcare.pharmacist.model.PharmacistData
+import com.example.dgtechhealthcare.pharmacist.model.PharmacistProfileData
+import com.example.dgtechhealthcare.pharmacist.presenter.PharmacistPresenter
+import com.example.dgtechhealthcare.pharmacist.presenter.UploadImagePresenter
 import com.example.dgtechhealthcare.utils.FirebasePresenter
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.squareup.picasso.Picasso
 
 class PharmacistProfileFragment : Fragment() {
 
     lateinit var reference : FirebasePresenter
+    lateinit var uploadReference : UploadImagePresenter
+    lateinit var presenter : PharmacistPresenter
 
     lateinit var pharmacistProfileImg : ImageView
     lateinit var nameTextView : TextView
@@ -33,14 +32,8 @@ class PharmacistProfileFragment : Fragment() {
     private val imagePick = 0
     lateinit var imageUri : Uri
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_pharmacist_profile, container, false)
     }
@@ -48,14 +41,11 @@ class PharmacistProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        reference = FirebasePresenter(view)
+        initializeValues(view)
 
-        pharmacistProfileImg = view.findViewById(R.id.pharmacistIV)
-        nameTextView = view.findViewById(R.id.usernameTV)
-        pharmacyNameTextView = view.findViewById(R.id.pharmacyNameTV)
-        mobileTextView = view.findViewById(R.id.contactTV)
-        locationTextView = view.findViewById(R.id.locationTV)
-        editButtonView = view.findViewById(R.id.editBV)
+
+        val data = PharmacistProfileData(pharmacistProfileImg,nameTextView,pharmacyNameTextView,mobileTextView,locationTextView)
+        presenter.populateProfile(data)
 
         editButtonView.setOnClickListener {
             val transaction = activity?.supportFragmentManager?.beginTransaction()
@@ -70,27 +60,19 @@ class PharmacistProfileFragment : Fragment() {
             image.setType("image/*")
             startActivityForResult(image, imagePick)
         }
+    }
 
+    private fun initializeValues(view: View) {
+        reference = FirebasePresenter(view)
+        presenter = PharmacistPresenter(view)
+        uploadReference = UploadImagePresenter(view)
 
-        reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val pharmacist = snapshot.getValue(PharmacistData::class.java)
-
-                if (pharmacist?.profileImage == null){
-                    pharmacistProfileImg.setImageResource(R.drawable.profile)
-                }
-                else{
-                    Picasso.get().load(pharmacist?.profileImage).into(pharmacistProfileImg)
-                }
-
-                nameTextView.text = pharmacist?.username
-                pharmacyNameTextView.text = pharmacist?.pharmacyName
-                mobileTextView.text = "${pharmacist?.contact}"
-                locationTextView.text = "${pharmacist?.location}"
-            }
-
-            override fun onCancelled(error: DatabaseError) {}
-        })
+        pharmacistProfileImg = view.findViewById(R.id.pharmacistIV)
+        nameTextView = view.findViewById(R.id.usernameTV)
+        pharmacyNameTextView = view.findViewById(R.id.pharmacyNameTV)
+        mobileTextView = view.findViewById(R.id.contactTV)
+        locationTextView = view.findViewById(R.id.locationTV)
+        editButtonView = view.findViewById(R.id.editBV)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -98,26 +80,11 @@ class PharmacistProfileFragment : Fragment() {
 
         if (requestCode == imagePick && resultCode == Activity.RESULT_OK && data != null){
             imageUri = data.data!!
-            uploadImageToStorage()
+            uploadReference.uploadImageToStorage(imageUri,requireActivity())
+
             pharmacistProfileImg.setImageURI(imageUri)
         }
     }
 
-    private fun uploadImageToStorage() {
-        val imgPath = reference.userProfileImgRef.child("${reference.currentUserId}.jpg")
 
-        imgPath.putFile(imageUri).addOnSuccessListener {
-            imgPath.downloadUrl.addOnSuccessListener {
-                val downloadUri = it.toString()
-
-                // save Image to Firebase Realtime Database
-                reference.userReference.child(reference.currentUserId!!).child("profileImage").setValue(downloadUri)
-                    .addOnCompleteListener {
-                        if (it.isSuccessful){
-                            Toast.makeText(this.activity, "Image Uploaded", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-            }
-        }
-    }
 }

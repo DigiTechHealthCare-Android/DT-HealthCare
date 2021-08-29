@@ -90,7 +90,7 @@ class PatientDrawerNavigationActivity : AppCompatActivity(),
         setToolbarTitle("Patient Article")
         changeFragment(PatientArticleFragment())
 
-        Toast.makeText(this,"$p",Toast.LENGTH_LONG).show()
+        //Toast.makeText(this,"$p",Toast.LENGTH_LONG).show()
         if(p?.compareTo("doctor")==0){
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container,DoctorPrescribeMedicineFragment())

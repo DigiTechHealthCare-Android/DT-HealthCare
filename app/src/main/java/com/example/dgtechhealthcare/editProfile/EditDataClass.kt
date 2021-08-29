@@ -7,6 +7,7 @@ data class PatientClass(var name : EditText, var mob : EditText, var dob:EditTex
                          var gender:RadioGroup, var father: EditText, var mother: EditText,
                          var details:EditText, var doctor: EditText, var hospital: EditText)
 
-data class DoctorClass(var name: EditText,var contact: EditText, var hospital: EditText,var specialization:EditText)
+data class DoctorClass(var name: EditText,var contact: EditText,
+                       var hospital: EditText,var specialization:EditText)
 
 

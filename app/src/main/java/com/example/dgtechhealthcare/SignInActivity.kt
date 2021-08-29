@@ -83,7 +83,7 @@ class SignInActivity : AppCompatActivity() {
             FirebaseMessaging.getInstance().token.addOnCompleteListener {
                 if (it.isSuccessful){
                     val token = it.result.toString()
-                    Toast.makeText(this,"${token}",Toast.LENGTH_LONG).show()
+                    //Toast.makeText(this,"${token}",Toast.LENGTH_LONG).show()
                     FirebaseDatabase.getInstance().reference.child("Users")
                         .child(auth.currentUser!!.uid).child("token").setValue(token)
                 }

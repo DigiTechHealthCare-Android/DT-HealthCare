@@ -42,14 +42,8 @@ class DoctorDrawerNavigationActivity : AppCompatActivity(),
         setContentView(R.layout.activity_doctor_drawer_navigation)
         setSupportActionBar(toolbarDoctor)
 
-        val toggle =
-            ActionBarDrawerToggle(
-                this,
-                drawerLayoutDoctor,
-                toolbarDoctor,
-                R.string.open,
-                R.string.close
-            )
+        val toggle = ActionBarDrawerToggle(this, drawerLayoutDoctor, toolbarDoctor,
+                R.string.open, R.string.close)
         toggle.isDrawerIndicatorEnabled = true
         drawerLayoutDoctor.addDrawerListener(toggle)
         toggle.syncState()
@@ -91,7 +85,6 @@ class DoctorDrawerNavigationActivity : AppCompatActivity(),
 
         setToolbarTitle("Patient Information")
         changeFragment(PatientInfoFragment())
-
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

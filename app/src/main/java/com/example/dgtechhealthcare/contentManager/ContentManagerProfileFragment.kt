@@ -83,7 +83,7 @@ class ContentManagerProfileFragment : Fragment() {
         }
     }
 
-    private fun uploadToStorage(reference: FirebasePresenter, currentUserId: String?, imgUri: Uri, activity: FragmentActivity) {
+    fun uploadToStorage(reference: FirebasePresenter, currentUserId: String?, imgUri: Uri, activity: FragmentActivity) {
         val resultUri = imgUri
         val path = reference.userProfileImgRef.child("$currentUserId.jpg")
         path.putFile(resultUri).addOnCompleteListener {

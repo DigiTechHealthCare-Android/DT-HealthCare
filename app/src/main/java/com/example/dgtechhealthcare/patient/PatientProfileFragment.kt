@@ -24,6 +24,7 @@ import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.doctorPrescribeMedicine.DoctorPrescribeMedicineFragment
 import com.example.dgtechhealthcare.editProfile.EditPatientProfileFragment
 import com.example.dgtechhealthcare.nurse.model.NurseData
+import com.example.dgtechhealthcare.patient.presenter.PatientUploadClass
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.utils.ViewImageActivity
 import com.example.dgtechhealthcare.utils.ViewPdfActivity
@@ -45,6 +46,7 @@ import java.util.*
 class PatientProfileFragment : Fragment() {
 
     lateinit var reference : FirebasePresenter
+    lateinit var uploadClassReference : PatientUploadClass
     lateinit var currentPhotoPath: String
 
     val REQUEST_IMAGE_CAPTURE = 1
@@ -71,10 +73,6 @@ class PatientProfileFragment : Fragment() {
 
     var userID = ""
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -86,7 +84,7 @@ class PatientProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        reference = FirebasePresenter(requireView())
+        initializeValues(view)
 
         userKey = arguments?.getString("userKey","")
         //from = arguments?.getString("from","")!!
@@ -96,17 +94,7 @@ class PatientProfileFragment : Fragment() {
         }
         else userID = reference.currentUserId!!
 
-        userprofileImg = view.findViewById(R.id.patientIV)
-        editProfileIV = view.findViewById(R.id.editProfileB)
-        username = view.findViewById(R.id.patientName)
-        mobile = view.findViewById(R.id.patientMob)
-        userdob = view.findViewById(R.id.patientDob)
-        usergender = view.findViewById(R.id.patientGender)
-        viewReport = view.findViewById(R.id.patientReport)
-        viewPrescription = view.findViewById(R.id.viewPrescription)
-        uploadReport = view.findViewById(R.id.uploadReportB)
-        prescribeMedB = view.findViewById(R.id.prescribeMedB)
-        additianalInfo = view.findViewById(R.id.addtionalInfoTV)
+
 
         if(userID?.compareTo(reference.currentUserId!!) != 0){
             userprofileImg.isClickable = false
@@ -126,7 +114,9 @@ class PatientProfileFragment : Fragment() {
             val bundle = Bundle()
             bundle.putString("patientID",userID)
             frag.arguments = bundle
-            activity?.supportFragmentManager?.beginTransaction()
+            activity?.supportFragmentManager?.beginTransaction()?.setCustomAnimations(
+                R.anim.fade_in,R.anim.fade_out,R.anim.slide_in,R.anim.slide_out
+            )
                 ?.replace(R.id.patientProfileFrame,frag)
                 ?.addToBackStack(null)?.commit()
         }
@@ -169,12 +159,7 @@ class PatientProfileFragment : Fragment() {
             builder.setTitle("Do you want to?")
             builder.setItems(options,DialogInterface.OnClickListener { dialog, which ->
                 if(which == 0) {
-                    /*val i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                    if(i.resolveActivity(activity?.packageManager!!)!=null){
-                        startActivityForResult(i,111)
-                    }*/
                     dispatchTakePictureIntent()
-                    //startActivity(i)
                 }
                 if(which == 1) {
                     val gallery : Intent = Intent()
@@ -203,7 +188,6 @@ class PatientProfileFragment : Fragment() {
                                 startActivity(i)
                             }
                             if(which == 1) {
-
                                 var connection : URLConnection? = null
                                 try{
                                     connection = URL(report).openConnection()
@@ -226,7 +210,6 @@ class PatientProfileFragment : Fragment() {
                                         startActivity(i)
                                     }
                                 }
-
                             }
                         })
                         builder.show()
@@ -237,13 +220,15 @@ class PatientProfileFragment : Fragment() {
 
         }
 
+        populateProfile(view)
+    }
+
+    private fun populateProfile(view: View) {
         reference.userReference.child(userID).addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.hasChild("profileImage")) {
                     val img = snapshot.child("profileImage").value.toString()
-                    //Picasso.get().load(img).into(userprofileImg)
                     Glide.with(view).load(img).circleCrop().placeholder(R.drawable.loading0).into(userprofileImg)
-                    //Glide.with(view).load(R.drawable.loading0).into(userprofileImg)
                 }
                 val name = snapshot.child("username").value.toString()
                 val mob = snapshot.child("contactNo").value.toString()
@@ -255,9 +240,7 @@ class PatientProfileFragment : Fragment() {
                 userdob.text = "$dob"
                 usergender.text = "$gender"
             }
-
             override fun onCancelled(error: DatabaseError) {}
-
         })
     }
 
@@ -268,32 +251,17 @@ class PatientProfileFragment : Fragment() {
             ?.addToBackStack(null)?.commit()
     }
 
-    private fun uploadMedicalReport(reportUri : Uri) {
-        val resultUri = reportUri
-        val path = reference.userReportRef.child("${reference.currentUserId}.pdf")
-        path.putFile(resultUri).addOnCompleteListener {
-            if(it.isSuccessful) {
-                Toast.makeText(activity,"Report Uploaded",Toast.LENGTH_SHORT).show()
-                path.downloadUrl.addOnSuccessListener {
-                    val downloadUrl = it.toString()
-                    reference.userReference.child(reference.currentUserId!!).child("report").setValue(downloadUrl).addOnCompleteListener {
-                        if(it.isSuccessful) Toast.makeText(activity,"Report Uploaded",Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
-        }
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if(requestCode == galleryPick && resultCode == RESULT_OK && data != null) {
             if(choice == 1) {
                 imgUri = data.data!!
-                uploadToStorage(reference,reference.currentUserId,imgUri,requireActivity())
+                uploadClassReference.uploadToStorage(reference,reference.currentUserId,imgUri,requireActivity())
+                userprofileImg.setImageURI(imgUri)
             } else if(choice == 2) {
                 reportUri = data.data!!
-                uploadMedicalReport(reportUri)
+                uploadClassReference.uploadMedicalReport(reportUri,requireActivity())
             }
         } else if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode== RESULT_OK) {
 
@@ -302,7 +270,7 @@ class PatientProfileFragment : Fragment() {
                 mediaScanIntent.data = Uri.fromFile(f)
                 activity?.sendBroadcast(mediaScanIntent)
 
-                uploadReportToFirebase(f.name,Uri.fromFile(f))
+                uploadClassReference.uploadReportToFirebase(f.name,Uri.fromFile(f),requireActivity())
             }
 
         } else Toast.makeText(activity,"ERROR!!",Toast.LENGTH_LONG).show()
@@ -352,36 +320,20 @@ class PatientProfileFragment : Fragment() {
         }
     }
 
-    private fun uploadToStorage(reference: FirebasePresenter, currentUserId: String?, imgUri: Uri, activity: Context) {
+    private fun initializeValues(view: View) {
+        userprofileImg = view.findViewById(R.id.patientIV)
+        editProfileIV = view.findViewById(R.id.editProfileB)
+        username = view.findViewById(R.id.patientName)
+        mobile = view.findViewById(R.id.patientMob)
+        userdob = view.findViewById(R.id.patientDob)
+        usergender = view.findViewById(R.id.patientGender)
+        viewReport = view.findViewById(R.id.patientReport)
+        viewPrescription = view.findViewById(R.id.viewPrescription)
+        uploadReport = view.findViewById(R.id.uploadReportB)
+        prescribeMedB = view.findViewById(R.id.prescribeMedB)
+        additianalInfo = view.findViewById(R.id.addtionalInfoTV)
 
-        val resultUri = imgUri
-        val path = reference.userProfileImgRef.child("$currentUserId.jpg")
-        path.putFile(resultUri).addOnCompleteListener {
-            if(it.isSuccessful) {
-                Toast.makeText(activity,"Profile image changed",Toast.LENGTH_SHORT).show()
-                path.downloadUrl.addOnSuccessListener {
-                    val downloadUrl = it.toString()
-                    reference.userReference.child(currentUserId!!).child("profileImage").setValue(downloadUrl).addOnCompleteListener {
-                        if(it.isSuccessful) Toast.makeText(activity,"Image stored",Toast.LENGTH_SHORT).show()
-                    }
-                }
-            } else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
-        }
-        userprofileImg.setImageURI(imgUri)
-    }
-
-    fun uploadReportToFirebase(f: String,uri : Uri){
-        val path = reference.userReportRef.child("${f}.pdf")
-        path.putFile(uri).addOnCompleteListener {
-            if(it.isSuccessful) {
-                Toast.makeText(activity,"Report Uploaded",Toast.LENGTH_SHORT).show()
-                path.downloadUrl.addOnSuccessListener {
-                    val downloadUrl = it.toString()
-                    reference.userReference.child(reference.currentUserId!!).child("report").setValue(downloadUrl).addOnCompleteListener {
-                        if(it.isSuccessful) Toast.makeText(activity,"Report Uploaded",Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
-        }
+        reference = FirebasePresenter(requireView())
+        uploadClassReference = PatientUploadClass(view)
     }
 }

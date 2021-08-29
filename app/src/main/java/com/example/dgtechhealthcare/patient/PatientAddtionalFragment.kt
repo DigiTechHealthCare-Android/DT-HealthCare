@@ -13,8 +13,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.FragmentActivity
 import com.example.dgtechhealthcare.R
+import com.example.dgtechhealthcare.patient.model.PatientDataClass
+import com.example.dgtechhealthcare.patient.presenter.PatientPresenter
+import com.example.dgtechhealthcare.patient.presenter.PatientUploadClass
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.utils.ViewPdfActivity
 import com.google.firebase.database.DataSnapshot
@@ -32,6 +34,9 @@ class PatientAddtionalFragment : Fragment() {
     lateinit var upload : Button
 
     lateinit var reference : FirebasePresenter
+    lateinit var uploadClass : PatientUploadClass
+    lateinit var presenter : PatientPresenter
+
     var patientID = ""
     var userType = ""
     var galleryPick : Int = 0
@@ -93,7 +98,8 @@ class PatientAddtionalFragment : Fragment() {
             startActivityForResult(gallery,galleryPick)
         }
 
-        populateView()
+        val data = PatientDataClass(fname,mname,address,dname,hname,upload)
+        presenter.populateAdditionalInfo(userType,data)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -101,45 +107,8 @@ class PatientAddtionalFragment : Fragment() {
 
         if(requestCode == galleryPick && resultCode == Activity.RESULT_OK && data != null) {
             imgUri = data.data!!
-            uploadToStorage(imgUri,requireActivity())
+            uploadClass.uploadHistoryToStorage(imgUri,requireActivity())
         } else Toast.makeText(activity,"ERROR!!", Toast.LENGTH_LONG).show()
-    }
-
-    private fun uploadToStorage(reportUri: Uri, requireActivity: FragmentActivity) {
-        val resultUri = reportUri
-        val path = reference.oldReportRef.child("${reference.currentUserId}.pdf")
-        path.putFile(resultUri).addOnCompleteListener {
-            if(it.isSuccessful) {
-                Toast.makeText(activity,"Report Uploaded",Toast.LENGTH_SHORT).show()
-                path.downloadUrl.addOnSuccessListener {
-                    val downloadUrl = it.toString()
-                    reference.userReference.child(reference.currentUserId!!).child("medicalHistory").setValue(downloadUrl).addOnCompleteListener {
-                        if(it.isSuccessful) Toast.makeText(activity,"Report Uploaded",Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun populateView() {
-        reference.userReference.child(userType).addValueEventListener(object : ValueEventListener{
-            var accountType = ""
-            override fun onDataChange(snapshot: DataSnapshot) {
-                accountType = snapshot.child("accountType").value.toString()
-                if(accountType.compareTo("patient")==0 && userType.compareTo(reference.currentUserId!!)==0){
-
-                } else if(accountType.compareTo("doctor")==0 || userType.compareTo(reference.currentUserId!!)!=0) {
-                    upload.visibility = View.INVISIBLE
-                }
-
-                fname.setText(snapshot.child("fatherName").value.toString())
-                mname.setText(snapshot.child("motherName").value.toString())
-                address.setText(snapshot.child("otherDetes").value.toString())
-                dname.setText(snapshot.child("doctorName").value.toString())
-                hname.setText(snapshot.child("hostpitalName").value.toString())
-            }
-            override fun onCancelled(error: DatabaseError) {}
-        })
     }
 
     private fun initializeValues(view: View) {
@@ -152,5 +121,7 @@ class PatientAddtionalFragment : Fragment() {
         upload = view.findViewById(R.id.uploadHistory)
 
         reference = FirebasePresenter(view)
+        uploadClass = PatientUploadClass(view)
+        presenter = PatientPresenter(view)
     }
 }

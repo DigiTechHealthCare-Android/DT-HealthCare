@@ -85,7 +85,7 @@ class ContentMangerShowContentFragment(val view: View) {
                             bundle.putString("type", type)
                             frag.arguments = bundle
                             activity?.supportFragmentManager?.beginTransaction()
-                                ?.replace(R.id.contentFrame,frag).addToBackStack(null).commit()
+                                ?.replace(R.id.fragment_container_content_manager,frag).addToBackStack(null).commit()
                         }
                     }
                 }

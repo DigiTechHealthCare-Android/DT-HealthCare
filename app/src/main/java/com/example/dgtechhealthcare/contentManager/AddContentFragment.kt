@@ -9,16 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.fragment.app.FragmentActivity
 import com.example.dgtechhealthcare.R
+import com.example.dgtechhealthcare.contentManager.presenter.AddContentPresenter
 import com.example.dgtechhealthcare.utils.FirebasePresenter
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.fragment_add_content.*
-import java.sql.Time
 import java.util.*
-import kotlin.collections.HashMap
 
 class AddContentFragment : Fragment() {
 
@@ -30,6 +24,7 @@ class AddContentFragment : Fragment() {
     lateinit var publishB : Button
 
     lateinit var reference : FirebasePresenter
+    lateinit var presenter : AddContentPresenter
     var galleryPick : Int = 0
     var imgUri : Uri = Uri.parse("")
 
@@ -81,57 +76,11 @@ class AddContentFragment : Fragment() {
         }
 
         publishB.setOnClickListener {
+            val title = title.text.toString()
+            val desc = contentDesc.text.toString()
+            val url = contentUrl.text.toString()
 
-            reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val img = snapshot.child("profileImage").value.toString()
-                    val username = snapshot.child("username").value.toString()
-
-                    val hm = HashMap<String,Any>()
-                    hm["publisherName"] = username
-                    hm["publisherImage"] = img
-                    hm["title"] = title.text.toString()
-                    hm["desc"] = contentDesc.text.toString()
-                    hm["url"] = contentUrl.text.toString()
-                    hm["time"] = Calendar.getInstance().time.toString()
-                    hm["type"] = type
-                    hm["views"] = 0
-                    if(type.compareTo("video")==0 || type.compareTo("research")==0){
-                        if (contentUrl.text.toString().isNullOrEmpty()){
-                            Toast.makeText(activity,"Youtube Video link required",Toast.LENGTH_LONG).show()
-                        }else {
-                            reference.articleReference.child(contentUid.toString()).updateChildren(hm)
-                                .addOnCompleteListener {
-                                    if(it.isSuccessful){
-                                        val h = HashMap<String,Any>()
-                                        h["contentUid"] = contentUid
-                                        h["time"] = Calendar.getInstance().time.toString()
-                                        reference.managerReference.child(reference.currentUserId!!).child("articles").child(contentUid).updateChildren(h).addOnCompleteListener {
-                                            Toast.makeText(activity,"Content published",Toast.LENGTH_LONG).show()
-                                            activity?.supportFragmentManager?.popBackStack()
-                                        }
-                                    }
-                                }
-                        }
-                    }
-                    if (type.compareTo("image")==0){
-                        reference.articleReference.child(contentUid.toString()).updateChildren(hm)
-                            .addOnCompleteListener {
-                                if(it.isSuccessful){
-                                    val h = HashMap<String,Any>()
-                                    h["contentUid"] = contentUid
-                                    h["time"] = Calendar.getInstance().time.toString()
-                                    reference.managerReference.child(reference.currentUserId!!).child("articles").child(contentUid).updateChildren(h).addOnCompleteListener {
-                                        Toast.makeText(activity,"Content published",Toast.LENGTH_LONG).show()
-                                        activity?.supportFragmentManager?.popBackStack()
-                                    }
-                                }
-                            }
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {}
-            })
+            presenter.publishArticle(title,desc,url,type,contentUid,requireActivity())
         }
     }
 
@@ -140,27 +89,9 @@ class AddContentFragment : Fragment() {
 
         if(requestCode == galleryPick && resultCode == RESULT_OK && data!=null) {
             imgUri = data.data!!
-            uploadImageToDatabase(reference,reference.currentUserId,imgUri,requireActivity())
+            presenter.uploadImage(reference,reference.currentUserId!!,imgUri,requireActivity(),contentUid)
+            contentImg.setImageURI(imgUri)
         }
-    }
-
-    private fun uploadImageToDatabase(reference: FirebasePresenter, currentUserId: String?, imgUri: Uri,
-        requireActivity: FragmentActivity) {
-
-        val resultUri = imgUri
-        val time = Calendar.getInstance().time.toString()
-        val path = reference.contentPostRef.child(currentUserId + time + ".jpg")
-        path.putFile(resultUri).addOnCompleteListener {
-            if(it.isSuccessful){
-                path.downloadUrl.addOnSuccessListener {
-                    val downloadUrl = it.toString()
-                    reference.articleReference.child(contentUid).child("imageRef").setValue(downloadUrl).addOnCompleteListener {
-                        if(it.isSuccessful) Toast.makeText(activity,"$downloadUrl",Toast.LENGTH_LONG).show()
-                    }
-                }
-            } else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_LONG).show()
-        }
-        contentImg.setImageURI(imgUri)
     }
 
     private fun initializeValues(view: View) {
@@ -172,5 +103,6 @@ class AddContentFragment : Fragment() {
         contentRG = view.findViewById(R.id.contentRG)
 
         reference = FirebasePresenter(view)
+        presenter = AddContentPresenter(view)
     }
 }

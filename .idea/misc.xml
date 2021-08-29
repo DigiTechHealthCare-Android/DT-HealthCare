@@ -101,6 +101,9 @@
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/activity_pharmacist_drawer_navigation.xml" value="0.275" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/activity_pharmacist_navigation.xml" value="0.14427083333333332" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/activity_request_tabbed.xml" value="0.275" />
+        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/activity_setup.xml" value="0.27076923076923076" />
+        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/activity_sign_up.xml" value="0.27076923076923076" />
+        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/activity_signin.xml" value="0.27076923076923076" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/activity_splash.xml" value="0.264" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/activity_view_image.xml" value="0.275" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/activity_view_pdf.xml" value="0.36666666666666664" />
@@ -114,7 +117,7 @@
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_about_us.xml" value="0.36666666666666664" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_add_content.xml" value="0.264" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_article_details.xml" value="0.264" />
-        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_content_manager_profile.xml" value="0.6" />
+        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_content_manager_profile.xml" value="0.2" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_content_manager_registration.xml" value="0.275" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_content_manger_show_content.xml" value="0.264" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_dashboard.xml" value="0.275" />
@@ -126,6 +129,7 @@
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_edit_doctor_profile.xml" value="0.275" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_edit_nurse_profile.xml" value="0.275" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_edit_patient_profile.xml" value="0.264" />
+        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_edit_pharmacist.xml" value="0.27076923076923076" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_history.xml" value="0.275" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_home.xml" value="0.275" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_notifications.xml" value="0.275" />
@@ -138,10 +142,12 @@
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_patient_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_patient_registration.xml" value="0.36666666666666664" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_pharmacist_profile.xml" value="0.275" />
+        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_pharmacist_registration.xml" value="0.27076923076923076" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_request.xml" value="0.275" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_request_description.xml" value="0.275" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_settings.xml" value="0.36666666666666664" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/nurse_nav_header.xml" value="0.275" />
+        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/nurse_nav_toolbar.xml" value="0.27076923076923076" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/patient_nav_header.xml" value="0.275" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/patient_nav_toolbar.xml" value="0.275" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/pharmacist_nav_header.xml" value="0.275" />
