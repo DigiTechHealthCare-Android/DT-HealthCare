@@ -82,35 +82,10 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
             userType = patientID
         }
 
+        checkAccountType()
+
         reference.userReference.child(userType!!).addValueEventListener(object : ValueEventListener{
-            var accountType = ""
             override fun onDataChange(snapshot: DataSnapshot) {
-                accountType = snapshot.child("accountType").value.toString()
-                if(accountType.compareTo("patient")==0 && userType!!.compareTo(reference.currentUserId!!)==0){
-                    prescribeB.text = "Request prescription"
-                    morningMed.isEnabled = false
-                    afternoonMed.isEnabled = false
-                    eveningMed.isEnabled = false
-                    nightMed.isEnabled = false
-                    morningCheckBox.isEnabled = false
-                    afternoonCheckBox.isEnabled = false
-                    eveningCheckBox.isEnabled = false
-                    nightCheckBox.isEnabled = false
-                }
-                else if(accountType.compareTo("doctor")==0 || userType!!.compareTo(reference.currentUserId!!)!=0){
-                    prescribeB.text = "Prescribe Medicine"
-//                    morningCheckBox.isEnabled = false
-//                    afternoonCheckBox.isEnabled = false
-//                    eveningCheckBox.isEnabled = false
-//                    nightCheckBox.isEnabled = false
-                }
-//                else if (accountType.compareTo("nurse")==0 || userType!!.compareTo(reference.currentUserId!!)!=0){
-//                    prescribeB.setText("Update Status")
-//                    morningMed.isEnabled = false
-//                    afternoonMed.isEnabled = false
-//                    eveningMed.isEnabled = false
-//                    nightMed.isEnabled = false
-//                }
                 if(snapshot.child("prescribedMedicine").hasChild("morning")){
                     morningMed.setText(snapshot.child("prescribedMedicine").child("morning").child("name").value.toString())
                     morningCheckBox.isChecked =
@@ -135,7 +110,6 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
                 }
             }
             override fun onCancelled(error: DatabaseError) {}
-
         })
 
         val builder = AlertDialog.Builder(activity)
@@ -209,38 +183,9 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
             }else if(prescribeB.text.toString().compareTo("Prescribe Medicine")==0) {
                 val ref = reference.userReference.child(patientID!!).child("prescribedMedicine")
                 ref.child("morning").child("name").setValue(morningMed.text.toString())
-                val mref = ref.child("morning").child("status")
-                if (morningCheckBox.isChecked){
-                    mref.setValue("medicine given") }
-                else{
-                    mref.setValue("medicine not given") }
-
                 ref.child("afternoon").child("name").setValue(afternoonMed.text.toString())
-                val aref = ref.child("afternoon").child("status")
-                if (afternoonCheckBox.isChecked){
-                    aref.setValue("medicine given")
-                }
-                else{
-                    aref.setValue("medicine not given")
-                }
-
                 ref.child("evening").child("name").setValue(eveningMed.text.toString())
-                val eref = ref.child("evening").child("status")
-                if (eveningCheckBox.isChecked){
-                    eref.setValue("medicine given")
-                }
-                else{
-                    eref.setValue("medicine not given")
-                }
-
                 ref.child("night").child("name").setValue(nightMed.text.toString())
-                val nref = ref.child("night").child("status")
-                if (nightCheckBox.isChecked){
-                    nref.setValue("medicine given")
-                }
-                else{
-                    nref.setValue("medicine not given")
-                }
 
                 reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
                     override fun onDataChange(snapshot: DataSnapshot) {
@@ -265,8 +210,65 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
                     override fun onCancelled(error: DatabaseError) {}
                 })
                 Toast.makeText(activity,"Prescription given",Toast.LENGTH_LONG).show()
+
+            } else if(prescribeB.text.toString().compareTo("Update Status")==0){
+                val ref = reference.userReference.child(patientID!!).child("prescribedMedicine")
+
+                val mref = ref.child("morning").child("status")
+                if (morningCheckBox.isChecked) mref.setValue("medicine given")
+                else mref.setValue("medicine not given")
+
+                val aref = ref.child("afternoon").child("status")
+                if (afternoonCheckBox.isChecked) aref.setValue("medicine given")
+                else aref.setValue("medicine not given")
+
+                val eref = ref.child("evening").child("status")
+                if (eveningCheckBox.isChecked) eref.setValue("medicine given")
+                else eref.setValue("medicine not given")
+
+                val nref = ref.child("night").child("status")
+                if (nightCheckBox.isChecked) nref.setValue("medicine given")
+                else nref.setValue("medicine not given")
+
+                Toast.makeText(activity,"Status Updated",Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    private fun checkAccountType() {
+        reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
+            var accountType = ""
+            override fun onDataChange(snapshot: DataSnapshot) {
+                accountType = snapshot.child("accountType").value.toString()
+                if(accountType.compareTo("patient")==0 && userType!!.compareTo(reference.currentUserId!!)==0){
+                    prescribeB.text = "Request prescription"
+                    morningMed.isEnabled = false
+                    afternoonMed.isEnabled = false
+                    eveningMed.isEnabled = false
+                    nightMed.isEnabled = false
+                    morningCheckBox.visibility = View.INVISIBLE
+                    afternoonCheckBox.visibility = View.INVISIBLE
+                    eveningCheckBox.visibility = View.INVISIBLE
+                    nightCheckBox.visibility = View.INVISIBLE
+                }
+                else if(accountType.compareTo("doctor")==0 && userType!!.compareTo(reference.currentUserId!!)!=0){
+                    prescribeB.text = "Prescribe Medicine"
+                    morningCheckBox.visibility = View.INVISIBLE
+                    afternoonCheckBox.visibility = View.INVISIBLE
+                    eveningCheckBox.visibility = View.INVISIBLE
+                    nightCheckBox.visibility = View.INVISIBLE
+
+                }
+                else if (accountType.compareTo("nurse")==0 && userType!!.compareTo(reference.currentUserId!!)!=0){
+                    prescribeB.setText("Update Status")
+                    morningMed.isEnabled = false
+                    afternoonMed.isEnabled = false
+                    eveningMed.isEnabled = false
+                    nightMed.isEnabled = false
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {}
+        })
     }
 
     override fun onDestroyView() {

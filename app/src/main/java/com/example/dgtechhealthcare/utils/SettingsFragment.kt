@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.SignInActivity
 import com.google.firebase.database.DataSnapshot
@@ -112,7 +113,7 @@ class SettingsFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.hasChild("profileImage")) {
                     val img = snapshot.child("profileImage").value.toString()
-                    Picasso.get().load(img).into(userImageV)
+                    Glide.with(activity).load(img).circleCrop().placeholder(R.drawable.loading0).into(userImageV)
                 }
                 if(snapshot.hasChild("username")) {
                     val name = snapshot.child("username").value.toString()
