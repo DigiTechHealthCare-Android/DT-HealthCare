@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
+import com.bumptech.glide.Glide
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.contentManager.EditArticlesFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
@@ -79,7 +80,9 @@ class ArticleDetailsModel(view : View) {
 
                 val title = snapshot.child("title").value.toString()
                 cTitle.setText(title)
-                Picasso.get().load(snapshot.child("publisherImage").value.toString()).into(userImage)
+                Glide.with(requireActivity).load(snapshot.child("publisherImage").value.toString())
+                    .placeholder(R.drawable.loading1).into(userImage)
+                //Picasso.get().load(snapshot.child("publisherImage").value.toString()).into(userImage)
                 userName.setText(snapshot.child("publisherName").value.toString())
 
                 val views = snapshot.child("views").value.toString()
@@ -94,14 +97,28 @@ class ArticleDetailsModel(view : View) {
 
 
                 if(type.compareTo("image")==0){
-                    Picasso.get().load(snapshot.child("imageRef").value.toString()).into(cImg)
+                    Glide.with(requireActivity)
+                        .load(snapshot.child("imageRef").value.toString())
+                        .placeholder(R.drawable.loading1).into(cImg)
+                    //Picasso.get().load(snapshot.child("imageRef").value.toString()).into(cImg)
                     cDesc.setText(snapshot.child("desc").value.toString())
                 } else if(type.compareTo("research")==0){
                     Picasso.get().load(snapshot.child("imageRef").value.toString()).into(cImg)
-                    val url = snapshot.child("url").value.toString()
-                    cImg.setOnClickListener {
+
+                    var url = ""
+                    if(snapshot.hasChild("researchRef")) {
+                        url = snapshot.child("researchRef").value.toString()
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                         requireActivity.startActivity(intent)
+                        requireActivity.supportFragmentManager.popBackStack()
+                        /*cImg.setOnClickListener {
+
+                        }*/
+                    } else if(snapshot.hasChild("url")){
+                        url = snapshot.child("url").value.toString()
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                        requireActivity.startActivity(intent)
+                        requireActivity.supportFragmentManager.popBackStack()
                     }
                 } else if(type.compareTo("video")==0){
                     val url = snapshot.child("url").value.toString()

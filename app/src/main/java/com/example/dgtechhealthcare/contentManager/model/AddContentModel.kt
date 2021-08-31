@@ -16,7 +16,7 @@ class AddContentModel(view : View) {
     val reference = FirebasePresenter(view)
 
     fun publishArticle(title: String, desc: String, url: String, type: String, contentUid: String,
-        requireActivity: FragmentActivity) {
+        requireActivity: FragmentActivity,pdfUpload : Boolean) {
 
         reference.userReference.child(reference.currentUserId!!).addValueEventListener(object :
             ValueEventListener {
@@ -34,8 +34,8 @@ class AddContentModel(view : View) {
                 hm["type"] = type
                 hm["views"] = 0
                 if(type.compareTo("video")==0 || type.compareTo("research")==0){
-                    if (url.isNullOrEmpty()){
-                        Toast.makeText(requireActivity,"Youtube Video link required", Toast.LENGTH_LONG).show()
+                    if (url.isNullOrEmpty() && type.compareTo("video")==0){
+                        Toast.makeText(requireActivity,"Url required", Toast.LENGTH_LONG).show()
                     }else {
                         reference.articleReference.child(contentUid.toString()).updateChildren(hm)
                             .addOnCompleteListener {

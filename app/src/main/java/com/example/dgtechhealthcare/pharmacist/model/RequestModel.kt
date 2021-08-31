@@ -54,7 +54,7 @@ class RequestModel(val view : View) {
                     reference.pharmaReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
                         override fun onDataChange(snapshot: DataSnapshot) {
                             if(snapshot.hasChild("requests") || snapshot.hasChild("requestHistory")){
-                                norequest.visibility = View.INVISIBLE
+                                //norequest.visibility = View.INVISIBLE
                             } else {
                                 norequest.visibility = View.VISIBLE
                             }

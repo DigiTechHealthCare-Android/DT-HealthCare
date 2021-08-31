@@ -55,6 +55,8 @@ class EditArticlesFragment : Fragment() {
         reference.articleReference.child(contentUid).addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 val type = snapshot.child("type").value.toString()
+                contentRG.visibility = View.GONE
+                contentImg.visibility = View.GONE
                 for(i in 0..contentRG.childCount-1){
                     contentRG.getChildAt(i).isEnabled = false
                 }
@@ -65,7 +67,7 @@ class EditArticlesFragment : Fragment() {
                     contentRG.check(R.id.contentVideoRE)
                 } else if(type.compareTo("research")==0){
                     contentRG.check(R.id.contentResearchRE)
-                    contentImg.setImageURI(Uri.parse(snapshot.child("imageRef").value.toString()))
+                    //contentImg.setImageURI(Uri.parse(snapshot.child("imageRef").value.toString()))
                 }
                 title.setText(snapshot.child("title").value.toString())
                 contentDesc.setText(snapshot.child("desc").value.toString())

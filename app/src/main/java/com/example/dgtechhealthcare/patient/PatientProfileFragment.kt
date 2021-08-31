@@ -141,13 +141,13 @@ class PatientProfileFragment : Fragment() {
                 ?.addToBackStack(null)?.commit()
         }
 
-        userprofileImg.setOnClickListener {
-            val gallery : Intent = Intent()
-            gallery.setAction(Intent.ACTION_GET_CONTENT)
-            gallery.setType("image/*")
-            choice = 1
-            startActivityForResult(gallery,galleryPick)
-        }
+//        userprofileImg.setOnClickListener {
+//            val gallery : Intent = Intent()
+//            gallery.setAction(Intent.ACTION_GET_CONTENT)
+//            gallery.setType("image/*")
+//            choice = 1
+//            startActivityForResult(gallery,galleryPick)
+//        }
 
         editProfileIV.setOnClickListener {
             editProfilePT()

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".contentManager.AddContentFragment">
 
     <ScrollView
@@ -101,10 +102,10 @@
                 android:layout_height="149dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/background1"
+                android:src="@drawable/uploadicon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/contentEditRG"
-                tools:src="@drawable/uploadicon" />
+                app:layout_constraintTop_toBottomOf="@+id/contentEditRG" />
 
             <EditText
                 android:id="@+id/contentEditUrl"
@@ -140,6 +141,7 @@
                 android:text="Article Type"
                 android:textColor="#000000"
                 android:textStyle="bold"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/contentEditTitle" />

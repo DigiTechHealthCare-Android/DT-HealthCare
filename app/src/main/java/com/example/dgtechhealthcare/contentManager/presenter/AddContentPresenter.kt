@@ -11,8 +11,8 @@ class AddContentPresenter(view : View) {
     val model = AddContentModel(view)
 
     fun publishArticle(title: String, desc: String, url: String, type: String, contentUid: String,
-        requireActivity: FragmentActivity) {
-        model.publishArticle(title,desc,url,type,contentUid,requireActivity)
+        requireActivity: FragmentActivity,uploadPdf:Boolean) {
+        model.publishArticle(title,desc,url,type,contentUid,requireActivity,uploadPdf)
     }
 
     fun uploadImage(reference: FirebasePresenter, currentUserId: String, imgUri: Uri,

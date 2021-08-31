@@ -38,6 +38,7 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView69" />
@@ -54,6 +55,7 @@
                 android:inputType="textMultiLine"
                 android:maxLength="140"
                 android:textAlignment="center"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView81" />
@@ -82,20 +84,23 @@
                     android:id="@+id/contentImageR"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Image" />
+                    android:text="Image"
+                    android:textColor="#000000" />
 
                 <RadioButton
                     android:id="@+id/contentVideoR"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Video" />
+                    android:text="Video"
+                    android:textColor="#000000" />
 
                 <RadioButton
                     android:id="@+id/contentResearchR"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Research Paper" />
+                    android:text="Research Paper"
+                    android:textColor="#000000" />
             </RadioGroup>
 
             <ImageView
@@ -113,13 +118,15 @@
                 android:id="@+id/contentUrl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="32dp"
                 android:ems="10"
+                android:hint="Enter Url"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:textColor="#000000"
+                app:layout_constraintEnd_toStartOf="@+id/uploadResearchB"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView71" />
+                app:layout_constraintTop_toBottomOf="@+id/researchRG" />
 
             <TextView
                 android:id="@+id/textView69"
@@ -148,19 +155,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/contentAddTitle" />
 
             <TextView
-                android:id="@+id/textView71"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Url"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/contentAddImage" />
-
-            <TextView
                 android:id="@+id/textView81"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -172,6 +166,41 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/contentUrl" />
+
+            <RadioGroup
+                android:id="@+id/researchRG"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contentAddImage">
+
+                <RadioButton
+                    android:id="@+id/storageRB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Upload from storage"
+                    android:textColor="#000000" />
+
+                <RadioButton
+                    android:id="@+id/urlRB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Enter Url"
+                    android:textColor="#000000" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/uploadResearchB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Upload"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/contentUrl"
+                app:layout_constraintTop_toBottomOf="@+id/researchRG" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

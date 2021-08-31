@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.FragmentActivity
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.contentManager.presenter.AddContentPresenter
 import com.example.dgtechhealthcare.utils.FirebasePresenter
@@ -21,6 +22,8 @@ class AddContentFragment : Fragment() {
     lateinit var contentDesc : EditText
     lateinit var contentUrl : EditText
     lateinit var contentRG : RadioGroup
+    lateinit var researchRG : RadioGroup
+    lateinit var uploadResearchB : Button
     lateinit var publishB : Button
 
     lateinit var reference : FirebasePresenter
@@ -45,10 +48,15 @@ class AddContentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        var uploadpdf = false
+
         initializeValues(view)
 
         contentUid = UUID.randomUUID().toString()
         contentImg.visibility = View.GONE
+        researchRG.visibility = View.GONE
+        contentUrl.visibility = View.GONE
+        uploadResearchB.visibility = View.GONE
 
         contentImg.setOnClickListener {
             val gallery = Intent()
@@ -62,17 +70,47 @@ class AddContentFragment : Fragment() {
                 R.id.contentImageR -> {
                     contentImg.visibility = View.VISIBLE
                     contentDesc.visibility = View.VISIBLE
+                    researchRG.visibility = View.GONE
+                    contentUrl.visibility = View.GONE
+                    uploadResearchB.visibility = View.GONE
                     type = "image"
                 }
                 R.id.contentVideoR -> {
                     type = "video"
                     contentImg.visibility = View.GONE
+                    contentUrl.visibility = View.VISIBLE
+                    researchRG.visibility = View.GONE
+                    uploadResearchB.visibility = View.GONE
                 }
                 R.id.contentResearchR -> {
                     type = "research"
-                    contentImg.visibility = View.VISIBLE
+                    contentImg.visibility = View.GONE
+                    researchRG.visibility = View.VISIBLE
+                    contentUrl.visibility = View.GONE
                 }
             }
+        }
+
+        researchRG.setOnCheckedChangeListener { group, checkedId ->
+            when(checkedId){
+                R.id.storageRB -> {
+                    uploadResearchB.visibility = View.VISIBLE
+                    contentUrl.visibility = View.GONE
+                    uploadpdf = true
+                }
+                R.id.urlRB -> {
+                    contentUrl.visibility = View.VISIBLE
+                    uploadResearchB.visibility = View.GONE
+                    uploadpdf = false
+                }
+            }
+        }
+
+        uploadResearchB.setOnClickListener {
+            val gallery = Intent()
+            gallery.setAction(Intent.ACTION_GET_CONTENT)
+            gallery.setType("*/*")
+            startActivityForResult(gallery,1)
         }
 
         publishB.setOnClickListener {
@@ -80,7 +118,7 @@ class AddContentFragment : Fragment() {
             val desc = contentDesc.text.toString()
             val url = contentUrl.text.toString()
 
-            presenter.publishArticle(title,desc,url,type,contentUid,requireActivity())
+            presenter.publishArticle(title,desc,url,type,contentUid,requireActivity(),uploadpdf)
         }
     }
 
@@ -91,6 +129,27 @@ class AddContentFragment : Fragment() {
             imgUri = data.data!!
             presenter.uploadImage(reference,reference.currentUserId!!,imgUri,requireActivity(),contentUid)
             contentImg.setImageURI(imgUri)
+        } else if(requestCode == 1 && resultCode == RESULT_OK && data!= null) {
+            imgUri = data.data!!
+            uploadImageToDatabase(reference,reference.currentUserId!!,imgUri,requireActivity(),contentUid)
+        }
+    }
+
+    fun uploadImageToDatabase(reference: FirebasePresenter, currentUserId: String?, imgUri: Uri,
+                              requireActivity: FragmentActivity, contentUid: String) {
+
+        val resultUri = imgUri
+        val time = Calendar.getInstance().time.toString()
+        val path = reference.contentPostRef.child(currentUserId + time + "RESEARCH")
+        path.putFile(resultUri).addOnCompleteListener {
+            if(it.isSuccessful){
+                path.downloadUrl.addOnSuccessListener {
+                    val downloadUrl = it.toString()
+                    reference.articleReference.child(contentUid).child("researchRef").setValue(downloadUrl).addOnCompleteListener {
+                        if(it.isSuccessful) Toast.makeText(requireActivity,"$downloadUrl",Toast.LENGTH_LONG).show()
+                    }
+                }
+            } else Toast.makeText(requireActivity,"Error: ${it.exception?.message}",Toast.LENGTH_LONG).show()
         }
     }
 
@@ -101,6 +160,8 @@ class AddContentFragment : Fragment() {
         publishB = view.findViewById(R.id.publishContent)
         contentUrl = view.findViewById(R.id.contentUrl)
         contentRG = view.findViewById(R.id.contentRG)
+        researchRG = view.findViewById(R.id.researchRG)
+        uploadResearchB = view.findViewById(R.id.uploadResearchB)
 
         reference = FirebasePresenter(view)
         presenter = AddContentPresenter(view)
