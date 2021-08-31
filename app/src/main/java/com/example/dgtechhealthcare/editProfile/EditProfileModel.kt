@@ -56,9 +56,24 @@ class EditProfileModel(val view: View) {
         val rB : RadioButton = view.findViewById(genderID)
 
         reference.userReference.child(reference.currentUserId!!).child("gender").setValue(rB.text.toString())
-        reference.userReference.child(reference.currentUserId!!).child("fatherName").setValue(patientDetails.father.text.toString())
-        reference.userReference.child(reference.currentUserId!!).child("motherName").setValue(patientDetails.mother.text.toString())
-        reference.userReference.child(reference.currentUserId!!).child("otherDetes").setValue(patientDetails.details.text.toString())
+        if (patientDetails.father.text.toString().isNotEmpty()){
+            reference.userReference.child(reference.currentUserId!!).child("fatherName").setValue(patientDetails.father.text.toString())
+        }
+        else{
+            reference.userReference.child(reference.currentUserId!!).child("fatherName").setValue("NA")
+        }
+        if (patientDetails.mother.text.toString().isNotEmpty()){
+            reference.userReference.child(reference.currentUserId!!).child("motherName").setValue(patientDetails.mother.text.toString())
+        }
+        else{
+            reference.userReference.child(reference.currentUserId!!).child("motherName").setValue("NA")
+        }
+        if (patientDetails.details.text.toString().isNotEmpty()){
+            reference.userReference.child(reference.currentUserId!!).child("otherDetes").setValue(patientDetails.details.text.toString())
+        }
+        else{
+            reference.userReference.child(reference.currentUserId!!).child("otherDetes").setValue("NA")
+        }
 
         if (patientDetails.doctor.text.toString().isNotEmpty() && patientDetails.hospital.text.toString().isNotEmpty()) {
             reference.userReference.child(reference.currentUserId!!).child("doctorName").setValue(patientDetails.doctor.text.toString())

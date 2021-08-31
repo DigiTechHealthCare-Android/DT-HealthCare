@@ -33,7 +33,9 @@ const val TOPIC = "/topics/myTopic2"
 
 class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
-    val TAG = "DoctorPrescribe"
+    private val TAG = "DoctorPrescribe"
+
+    var countCheckedBox = 0
 
     lateinit var morningMed : EditText
     lateinit var afternoonMed : EditText
@@ -177,10 +179,11 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
                         })
                     requireActivity()?.supportFragmentManager?.popBackStack()
                     }
-                    setNegativeButton("Cancel"){dialog,which->}
+                    setNegativeButton("Cancel"){ _, _ ->}
                 }
                 builder.show()
-            }else if(prescribeB.text.toString().compareTo("Prescribe Medicine")==0) {
+            }
+            else if(prescribeB.text.toString().compareTo("Prescribe Medicine")==0) {
                 val ref = reference.userReference.child(patientID!!).child("prescribedMedicine")
                 ref.child("morning").child("name").setValue(morningMed.text.toString())
                 ref.child("afternoon").child("name").setValue(afternoonMed.text.toString())
@@ -211,26 +214,37 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
                 })
                 Toast.makeText(activity,"Prescription given",Toast.LENGTH_LONG).show()
 
-            } else if(prescribeB.text.toString().compareTo("Update Status")==0){
+            }
+            else if(prescribeB.text.toString().compareTo("Update Status")==0) {
                 val ref = reference.userReference.child(patientID!!).child("prescribedMedicine")
 
-                val mref = ref.child("morning").child("status")
-                if (morningCheckBox.isChecked) mref.setValue("medicine given")
-                else mref.setValue("medicine not given")
+                if (morningCheckBox.isChecked) countCheckedBox += 1
+                if (afternoonCheckBox.isChecked) countCheckedBox += 1
+                if (eveningCheckBox.isChecked) countCheckedBox += 1
+                if (nightCheckBox.isChecked) countCheckedBox += 1
 
-                val aref = ref.child("afternoon").child("status")
-                if (afternoonCheckBox.isChecked) aref.setValue("medicine given")
-                else aref.setValue("medicine not given")
+                if (countCheckedBox >= 1){
+                    val mref = ref.child("morning").child("status")
+                    if (morningCheckBox.isChecked) mref.setValue("medicine given")
+                    else mref.setValue("medicine not given")
 
-                val eref = ref.child("evening").child("status")
-                if (eveningCheckBox.isChecked) eref.setValue("medicine given")
-                else eref.setValue("medicine not given")
+                    val aref = ref.child("afternoon").child("status")
+                    if (afternoonCheckBox.isChecked) aref.setValue("medicine given")
+                    else aref.setValue("medicine not given")
 
-                val nref = ref.child("night").child("status")
-                if (nightCheckBox.isChecked) nref.setValue("medicine given")
-                else nref.setValue("medicine not given")
+                    val eref = ref.child("evening").child("status")
+                    if (eveningCheckBox.isChecked) eref.setValue("medicine given")
+                    else eref.setValue("medicine not given")
 
-                Toast.makeText(activity,"Status Updated",Toast.LENGTH_LONG).show()
+                    val nref = ref.child("night").child("status")
+                    if (nightCheckBox.isChecked) nref.setValue("medicine given")
+                    else nref.setValue("medicine not given")
+
+                    Toast.makeText(activity, "Status Updated", Toast.LENGTH_LONG).show()
+                }
+                else{
+                    Toast.makeText(activity, "Select AtLeast One CheckBox", Toast.LENGTH_LONG).show()
+                }
             }
         }
     }
@@ -260,7 +274,7 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
 
                 }
                 else if (accountType.compareTo("nurse")==0 && userType!!.compareTo(reference.currentUserId!!)!=0){
-                    prescribeB.setText("Update Status")
+                    prescribeB.text = "Update Status"
                     morningMed.isEnabled = false
                     afternoonMed.isEnabled = false
                     eveningMed.isEnabled = false
