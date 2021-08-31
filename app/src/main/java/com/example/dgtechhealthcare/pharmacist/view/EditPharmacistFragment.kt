@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.pharmacist.model.EditPharmacistData
@@ -17,6 +18,7 @@ class EditPharmacistFragment : Fragment() {
     lateinit var reference: FirebasePresenter
     lateinit var presenter : PharmacistPresenter
 
+    lateinit var pharmacistProfileImageView: ImageView
     lateinit var nameTextView: TextView
     lateinit var mobileTextView: TextView
     lateinit var pharmacyNameTextView: TextView

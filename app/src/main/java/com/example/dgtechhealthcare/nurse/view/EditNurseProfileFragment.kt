@@ -1,5 +1,8 @@
 package com.example.dgtechhealthcare.nurse.view
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,11 +15,13 @@ import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
 
 class EditNurseProfileFragment : Fragment() {
 
     lateinit var reference : FirebasePresenter
 
+    lateinit var profileImageView: ImageView
     lateinit var nameTextView : TextView
     lateinit var mobileTextView : TextView
     lateinit var hospitalNameTextView : TextView
@@ -24,6 +29,9 @@ class EditNurseProfileFragment : Fragment() {
     lateinit var dobTextView: TextView
     lateinit var genderTextView: RadioGroup
     lateinit var updateButton: Button
+
+    private val imagePick = 0
+    lateinit var imageUri : Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +51,7 @@ class EditNurseProfileFragment : Fragment() {
 
         reference = FirebasePresenter(view)
 
+        profileImageView = view.findViewById(R.id.editNurseIV)
         nameTextView = view.findViewById(R.id.editPharmacistName)
         mobileTextView = view.findViewById(R.id.editPharmacistContact)
         hospitalNameTextView = view.findViewById(R.id.editPharmacyName)
@@ -55,6 +64,13 @@ class EditNurseProfileFragment : Fragment() {
         reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 val nurseData = snapshot.getValue(ProfileData::class.java)
+
+                if (nurseData?.profileImage == null){
+                    profileImageView.setImageResource(R.drawable.profile)
+                }
+                else{
+                    Picasso.get().load(nurseData?.profileImage).into(profileImageView)
+                }
 
                 nameTextView.text = nurseData?.username
                 mobileTextView.text = "${nurseData?.contact}"
@@ -107,6 +123,41 @@ class EditNurseProfileFragment : Fragment() {
             transaction?.replace(R.id.fragment_container_nurse, frag)
             transaction?.addToBackStack(null)
             transaction?.commit()
+        }
+
+        // Update profile Image
+        profileImageView.setOnClickListener {
+            val image = Intent().setAction(Intent.ACTION_GET_CONTENT)
+            image.setType("image/*")
+            startActivityForResult(image, imagePick)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == imagePick && resultCode == Activity.RESULT_OK && data != null){
+            imageUri = data.data!!
+            uploadImageToStorage()
+            profileImageView.setImageURI(imageUri)
+        }
+    }
+
+    private fun uploadImageToStorage() {
+        val imgPath = reference.userProfileImgRef.child("${reference.currentUserId}.jpg")
+
+        imgPath.putFile(imageUri).addOnSuccessListener {
+            imgPath.downloadUrl.addOnSuccessListener {
+                val downloadUri = it.toString()
+
+                // save Image to Firebase Realtime Database
+                reference.userReference.child(reference.currentUserId!!).child("profileImage").setValue(downloadUri)
+                    .addOnCompleteListener {
+                        if (it.isSuccessful){
+                            Toast.makeText(this.activity, "Image Uploaded", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+            }
         }
     }
 }

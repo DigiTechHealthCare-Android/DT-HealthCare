@@ -218,6 +218,8 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
             else if(prescribeB.text.toString().compareTo("Update Status")==0) {
                 val ref = reference.userReference.child(patientID!!).child("prescribedMedicine")
 
+
+
                 if (morningCheckBox.isChecked) countCheckedBox += 1
                 if (afternoonCheckBox.isChecked) countCheckedBox += 1
                 if (eveningCheckBox.isChecked) countCheckedBox += 1
