@@ -149,6 +149,7 @@ class EditProfileModel(val view: View) {
 
             })
         }
+        Toast.makeText(view.context,"Profile Updated",Toast.LENGTH_LONG).show()
     }
 
     fun editDoctorInfo(doctorDetails: DoctorClass){
