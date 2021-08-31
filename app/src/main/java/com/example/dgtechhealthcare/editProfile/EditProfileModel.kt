@@ -86,8 +86,19 @@ class EditProfileModel(val view: View) {
         }
 
         if (patientDetails.doctor.text.toString().isNotEmpty() && patientDetails.hospital.text.toString().isNotEmpty()) {
-            reference.userReference.child(reference.currentUserId!!).child("doctorName").setValue(patientDetails.doctor.text.toString())
-            reference.userReference.child(reference.currentUserId!!).child("hostpitalName").setValue(patientDetails.hospital.text.toString())
+            if (patientDetails.doctor.text.toString().isNotEmpty()){
+                reference.userReference.child(reference.currentUserId!!).child("doctorName").setValue(patientDetails.doctor.text.toString())
+            }
+            else{
+                reference.userReference.child(reference.currentUserId!!).child("doctorName").setValue("NA")
+            }
+            if (patientDetails.hospital.text.toString().isNotEmpty()){
+                reference.userReference.child(reference.currentUserId!!).child("hostpitalName").setValue(patientDetails.hospital.text.toString())
+            }
+            else{
+                reference.userReference.child(reference.currentUserId!!).child("hostpitalName").setValue("NA")
+            }
+
 
             reference.doctorReference.addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
