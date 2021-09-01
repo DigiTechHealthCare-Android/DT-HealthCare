@@ -13,8 +13,10 @@ import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.utils.FirebasePresenter
+import com.example.dgtechhealthcare.utils.ViewPdfActivity
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.android.youtube.player.YouTubeInitializationResult
@@ -106,11 +108,17 @@ class ContentMangerShowContentFragment(val view: View) {
                     override fun onBindViewHolder(holder: ArticleViewHolder,
                         position: Int,model: ContentDataClass) {
                         var type = ""
+                        var researchUrl = ""
+                        var url = ""
+                        var checkUrl : Boolean = false
                         val userID = getRef(position).key
                         reference.articleReference.child(userID!!).addValueEventListener(object : ValueEventListener{
                             override fun onDataChange(snapshot: DataSnapshot) {
                                 type = snapshot.child("type").value.toString()
-                                //holder.type.setText(type)
+                                researchUrl = snapshot.child("researchRef").value.toString()
+                                url = snapshot.child("url").value.toString()
+                                if (snapshot.hasChild("researchRef")) checkUrl = true
+
                                 val desc = snapshot.child("desc").value.toString()
                                 if(desc.isNullOrEmpty()) holder.desc.setText("No Description Found")
                                 else holder.desc.setText(desc)
@@ -120,7 +128,9 @@ class ContentMangerShowContentFragment(val view: View) {
                                 val name = snapshot.child("publisherName").value.toString()
                                 holder.name.setText(name)
                                 val img = snapshot.child("publisherImage").value.toString()
-                                Picasso.get().load(img).into(holder.img)
+                                //Picasso.get().load(img).into(holder.img)
+                                Glide.with(view.context).load(img)
+                                    .placeholder(R.drawable.loading1).into(holder.img)
                             }
                             override fun onCancelled(error: DatabaseError) {}
                         })
@@ -134,13 +144,27 @@ class ContentMangerShowContentFragment(val view: View) {
                                 }
                                 override fun onCancelled(error: DatabaseError) {}
                             })
-                            val frag = ArticleDetailsFragment()
-                            val bundle = Bundle()
-                            bundle.putString("articleID",userID)
-                            bundle.putString("type", type)
-                            frag.arguments = bundle
-                            activity?.supportFragmentManager?.beginTransaction()
-                                ?.replace(R.id.swipeLayout,frag).addToBackStack(null).commit()
+                            Toast.makeText(activity,"$type",Toast.LENGTH_LONG).show()
+                            if(type.compareTo("research")==0){
+                                if (checkUrl){
+                                    val i = Intent(activity, ViewPdfActivity::class.java)
+                                    i.putExtra("url",researchUrl)
+                                    activity.startActivity(i)
+                                } else {
+                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                                    activity.startActivity(intent)
+                                    activity.supportFragmentManager.popBackStack()
+                                }
+
+                            } else {
+                                val frag = ArticleDetailsFragment()
+                                val bundle = Bundle()
+                                bundle.putString("articleID",userID)
+                                bundle.putString("type", type)
+                                frag.arguments = bundle
+                                activity?.supportFragmentManager?.beginTransaction()
+                                    ?.replace(R.id.swipeLayout,frag).addToBackStack(null).commit()
+                            }
                         }
                     }
 

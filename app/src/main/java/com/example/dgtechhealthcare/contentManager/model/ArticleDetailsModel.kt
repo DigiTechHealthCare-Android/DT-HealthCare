@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
@@ -16,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.contentManager.EditArticlesFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
+import com.example.dgtechhealthcare.utils.ViewPdfActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import com.google.android.youtube.player.YouTubePlayerSupportFragment
@@ -103,13 +105,17 @@ class ArticleDetailsModel(view : View) {
                     //Picasso.get().load(snapshot.child("imageRef").value.toString()).into(cImg)
                     cDesc.setText(snapshot.child("desc").value.toString())
                 } else if(type.compareTo("research")==0){
-                    Picasso.get().load(snapshot.child("imageRef").value.toString()).into(cImg)
+                    //below line // Picasso.get().load(snapshot.child("imageRef").value.toString()).into(cImg)
+                    Glide.with(requireActivity).load(snapshot.child("imageRef").value.toString())
+                        .placeholder(R.drawable.loading1).into(cImg)
+
 
                     var url = ""
                     if(snapshot.hasChild("researchRef")) {
                         url = snapshot.child("researchRef").value.toString()
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                        requireActivity.startActivity(intent)
+                        val i = Intent(requireActivity, ViewPdfActivity::class.java)
+                        i.putExtra("url",url)
+                        requireActivity.startActivity(i)
                         requireActivity.supportFragmentManager.popBackStack()
                         /*cImg.setOnClickListener {
 

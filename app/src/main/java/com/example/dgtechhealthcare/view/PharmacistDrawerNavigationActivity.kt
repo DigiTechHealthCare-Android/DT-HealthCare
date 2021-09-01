@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.SignInActivity
 import com.example.dgtechhealthcare.pharmacist.view.HistoryFragment
@@ -76,7 +77,9 @@ class PharmacistDrawerNavigationActivity : AppCompatActivity(),
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.hasChild("profileImage")) {
                     val img = snapshot.child("profileImage").value.toString()
-                    Picasso.get().load(img).into(pharmacistIV)
+                    //Picasso.get().load(img).into(pharmacistIV)
+                    Glide.with(this@PharmacistDrawerNavigationActivity).load(img)
+                        .placeholder(R.drawable.loading1).into(pharmacistIV)
                 }
                 val name = snapshot.child("username").value.toString()
                 val email = snapshot.child("email").value.toString()
