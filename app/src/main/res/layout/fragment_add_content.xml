@@ -71,7 +71,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:gravity="center"
+                    android:gravity="center|top"
                     android:hint="Description"
                     android:inputType="textMultiLine"
                     android:lines="10"
