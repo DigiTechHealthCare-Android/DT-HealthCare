@@ -26,6 +26,7 @@ import com.example.dgtechhealthcare.utils.SettingsFragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_patient_drawer_navigation.*
 import kotlinx.android.synthetic.main.patient_nav_toolbar.*
 
@@ -72,8 +73,8 @@ class PatientDrawerNavigationActivity : AppCompatActivity(),
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.hasChild("profileImage")) {
                     val img = snapshot.child("profileImage").value.toString()
-                    //Picasso.get().load(img).into(userIV)
-                    Glide.with(this@PatientDrawerNavigationActivity).load(img).circleCrop().placeholder(R.drawable.loading0).into(userIV)
+                    Picasso.get().load(img).into(userIV)
+                    //Glide.with(this@PatientDrawerNavigationActivity).load(img).circleCrop().placeholder(R.drawable.loading0).into(userIV)
                 }
                 val name = snapshot.child("username").value.toString()
                 val email = snapshot.child("email").value.toString()

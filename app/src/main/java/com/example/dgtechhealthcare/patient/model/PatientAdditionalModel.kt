@@ -21,11 +21,20 @@ class PatientAdditionalModel(view : View) {
                     data.uploadB.visibility = View.INVISIBLE
                 }
 
-                data.fname.setText(snapshot.child("fatherName").value.toString())
-                data.mname.setText(snapshot.child("motherName").value.toString())
-                data.address.setText(snapshot.child("otherDetes").value.toString())
-                data.dname.setText(snapshot.child("doctorName").value.toString())
-                data.hname.setText(snapshot.child("hostpitalName").value.toString())
+                if(snapshot.hasChild("fatherName")) data.fname.setText(snapshot.child("fatherName").value.toString())
+                else data.fname.setText("N/A")
+
+                if (snapshot.hasChild("motherName")) data.mname.setText(snapshot.child("motherName").value.toString())
+                else data.mname.setText("N/A")
+
+                if (snapshot.hasChild("otherDetes")) data.address.setText(snapshot.child("otherDetes").value.toString())
+                else data.address.setText("N/A")
+
+                if (snapshot.hasChild("docotorName")) data.dname.setText(snapshot.child("doctorName").value.toString())
+                else data.dname.setText("N/A")
+
+                if (snapshot.hasChild("hospitalName")) data.hname.setText(snapshot.child("hostpitalName").value.toString())
+                else data.hname.setText("N/A")
             }
             override fun onCancelled(error: DatabaseError) {}
         })
