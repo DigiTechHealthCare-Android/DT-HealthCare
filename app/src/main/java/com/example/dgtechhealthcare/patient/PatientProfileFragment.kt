@@ -37,6 +37,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.IOException
+import java.lang.Exception
 import java.net.HttpURLConnection
 import java.net.URL
 import java.net.URLConnection
@@ -314,7 +315,11 @@ class PatientProfileFragment : Fragment() {
                         it
                     )
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+                    try {
+                        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+                    }catch (e : Exception){
+                        Toast.makeText(activity,"Camera Error",Toast.LENGTH_LONG).show()
+                    }
                 }
             }
         }

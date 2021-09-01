@@ -145,7 +145,7 @@ class ArticleDetailsModel(view : View) {
                                 var p : YouTubePlayer = p1!!
                                 p.setFullscreen(false)
                                 p.loadVideo(vid)
-                                p.play()
+                                //p.play()
                             }
                         }
 

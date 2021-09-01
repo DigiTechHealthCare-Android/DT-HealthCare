@@ -1,6 +1,7 @@
 package com.example.dgtechhealthcare.pharmacist.presenter
 
 import android.view.View
+import androidx.fragment.app.FragmentActivity
 import com.example.dgtechhealthcare.pharmacist.model.EditPharmacistData
 import com.example.dgtechhealthcare.pharmacist.model.EditPharmacistModel
 import com.example.dgtechhealthcare.pharmacist.model.PharmacistProfileData
@@ -15,7 +16,7 @@ class PharmacistPresenter(view : View) {
         model.editPharmacistInfo(pharmacyDetails,view)
     }
 
-    fun populateProfile(data: PharmacistProfileData) {
-        profileModel.populateProfile(data)
+    fun populateProfile(data: PharmacistProfileData, activity: FragmentActivity?) {
+        profileModel.populateProfile(data,activity)
     }
 }

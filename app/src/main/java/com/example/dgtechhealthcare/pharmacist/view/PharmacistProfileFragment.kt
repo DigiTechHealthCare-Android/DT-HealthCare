@@ -45,7 +45,7 @@ class PharmacistProfileFragment : Fragment() {
 
 
         val data = PharmacistProfileData(pharmacistProfileImg,nameTextView,pharmacyNameTextView,mobileTextView,locationTextView)
-        presenter.populateProfile(data)
+        presenter.populateProfile(data,activity)
 
         editButtonView.setOnClickListener {
             val transaction = activity?.supportFragmentManager?.beginTransaction()
