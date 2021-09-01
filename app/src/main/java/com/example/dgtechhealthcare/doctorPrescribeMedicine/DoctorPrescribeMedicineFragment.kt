@@ -88,28 +88,28 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
 
         reference.userReference.child(userType!!).addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.child("prescribedMedicine").hasChild("morning")){
+                if(snapshot.child("prescribedMedicine").child("morning").hasChild("name")){
                     morningMed.setText(snapshot.child("prescribedMedicine").child("morning").child("name").value.toString())
                     morningCheckBox.isChecked =
                         snapshot.child("prescribedMedicine").child("morning").child("status").value.toString() == "medicine given"
-                }
-                if(snapshot.child("prescribedMedicine").hasChild("afternoon")){
+                } else morningMed.setText("")
+                if(snapshot.child("prescribedMedicine").child("afternoon").hasChild("name")){
                     afternoonMed.setText(snapshot.child("prescribedMedicine").child("afternoon").child("name").value.toString())
                     afternoonCheckBox.isChecked =
                         snapshot.child("prescribedMedicine").child("afternoon").child("status").value.toString() == "medicine given"
-                }
-                if(snapshot.child("prescribedMedicine").hasChild("evening")){
+                } else afternoonMed.setText("")
+                if(snapshot.child("prescribedMedicine").child("evening").hasChild("name")){
                     eveningMed.setText(snapshot.child("prescribedMedicine").child("evening").child("name").value.toString())
                     if (snapshot.child("prescribedMedicine").child("evening").child("status").value.toString() == "medicine given"){
                         eveningCheckBox.isChecked = true
                     }
-                }
-                if(snapshot.child("prescribedMedicine").hasChild("night")){
+                } else eveningMed.setText("")
+                if(snapshot.child("prescribedMedicine").child("night").hasChild("name")){
                     nightMed.setText(snapshot.child("prescribedMedicine").child("night").child("name").value.toString())
                     if (snapshot.child("prescribedMedicine").child("night").child("status").value.toString() == "medicine given"){
                         nightCheckBox.isChecked = true
                     }
-                }
+                } else nightMed.setText("")
             }
             override fun onCancelled(error: DatabaseError) {}
         })

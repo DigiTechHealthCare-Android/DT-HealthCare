@@ -52,11 +52,17 @@ class ContentMangerShowContentFragment(val view: View) {
                         position: Int, model: ManagerDataClass) {
 
                         var type = ""
+                        var researchUrl = ""
+                        var url = ""
+                        var checkUrl : Boolean = false
                         val userID = getRef(position).key
                         reference.articleReference.child(userID!!).addValueEventListener(object : ValueEventListener{
                             override fun onDataChange(snapshot: DataSnapshot) {
                                 type = snapshot.child("type").value.toString()
-                                //holder.type.setText(type)
+                                researchUrl = snapshot.child("researchRef").value.toString()
+                                url = snapshot.child("url").value.toString()
+                                if (snapshot.hasChild("researchRef")) checkUrl = true
+
                                 val desc = snapshot.child("desc").value.toString()
                                 if(desc.isNullOrEmpty()) holder.desc.setText("No Description Found")
                                 else holder.desc.setText(desc)
@@ -81,13 +87,26 @@ class ContentMangerShowContentFragment(val view: View) {
                                 }
                                 override fun onCancelled(error: DatabaseError) {}
                             })
-                            val frag = ArticleDetailsFragment()
-                            val bundle = Bundle()
-                            bundle.putString("articleID",userID)
-                            bundle.putString("type", type)
-                            frag.arguments = bundle
-                            activity?.supportFragmentManager?.beginTransaction()
-                                ?.replace(R.id.fragment_container_content_manager,frag).addToBackStack(null).commit()
+                            if(type.compareTo("research")==0){
+                                if (checkUrl){
+                                    val i = Intent(activity, ViewPdfActivity::class.java)
+                                    i.putExtra("url",researchUrl)
+                                    activity.startActivity(i)
+                                } else {
+                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                                    activity.startActivity(intent)
+                                    activity.supportFragmentManager.popBackStack()
+                                }
+
+                            } else {
+                                val frag = ArticleDetailsFragment()
+                                val bundle = Bundle()
+                                bundle.putString("articleID",userID)
+                                bundle.putString("type", type)
+                                frag.arguments = bundle
+                                activity?.supportFragmentManager?.beginTransaction()
+                                    ?.replace(R.id.swipeLayout,frag).addToBackStack(null).commit()
+                            }
                         }
                     }
                 }
@@ -144,7 +163,7 @@ class ContentMangerShowContentFragment(val view: View) {
                                 }
                                 override fun onCancelled(error: DatabaseError) {}
                             })
-                            Toast.makeText(activity,"$type",Toast.LENGTH_LONG).show()
+                            //Toast.makeText(activity,"$type",Toast.LENGTH_LONG).show()
                             if(type.compareTo("research")==0){
                                 if (checkUrl){
                                     val i = Intent(activity, ViewPdfActivity::class.java)
