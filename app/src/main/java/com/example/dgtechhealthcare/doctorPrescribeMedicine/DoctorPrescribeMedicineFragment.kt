@@ -218,12 +218,14 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
             else if(prescribeB.text.toString().compareTo("Update Status")==0) {
                 val ref = reference.userReference.child(patientID!!).child("prescribedMedicine")
 
-
-
-                if (morningCheckBox.isChecked) countCheckedBox += 1
-                if (afternoonCheckBox.isChecked) countCheckedBox += 1
-                if (eveningCheckBox.isChecked) countCheckedBox += 1
-                if (nightCheckBox.isChecked) countCheckedBox += 1
+                if (morningCheckBox.isChecked) countCheckedBox += 1 else countCheckedBox -= 1
+//                if (afternoonCheckBox.isChecked) countCheckedBox += 1
+//                if (eveningCheckBox.isChecked) countCheckedBox += 1
+//                if (nightCheckBox.isChecked) countCheckedBox += 1
+                
+//                morningCheckBox.setOnCheckedChangeListener { buttonView, isChecked ->
+//                    countChecked(isChecked)
+//                }
 
                 if (countCheckedBox >= 1){
                     val mref = ref.child("morning").child("status")
@@ -250,6 +252,10 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
             }
         }
     }
+
+//    private fun countChecked(isChecked: Boolean) {
+//        countCheckedBox += isChecked ? 1 : -1
+//    }
 
     private fun checkAccountType() {
         reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
