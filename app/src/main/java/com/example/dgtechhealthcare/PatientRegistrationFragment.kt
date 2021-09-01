@@ -74,7 +74,7 @@ class PatientRegistrationFragment : Fragment() {
                     if(it.isSuccessful)
                     {
                         Toast.makeText(activity,"Account successfully created",Toast.LENGTH_LONG).show()
-                        val i = Intent(activity, PatientDrawerNavigationActivity::class.java)
+                        val i = Intent(activity, SignInActivity::class.java)
                         startActivity(i)
                         activity?.finish()
                     } else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()

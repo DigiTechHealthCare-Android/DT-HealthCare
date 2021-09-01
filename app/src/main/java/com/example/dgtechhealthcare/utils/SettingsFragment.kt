@@ -112,7 +112,7 @@ class SettingsFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.hasChild("profileImage")) {
                     val img = snapshot.child("profileImage").value.toString()
-                    Glide.with(activity).load(img).circleCrop().placeholder(R.drawable.loading0).into(userImageV)
+                    Glide.with(activity).load(img).placeholder(R.drawable.loading0).into(userImageV)
                 }
                 if(snapshot.hasChild("username")) {
                     val name = snapshot.child("username").value.toString()

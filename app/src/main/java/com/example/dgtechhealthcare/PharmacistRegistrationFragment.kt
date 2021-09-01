@@ -75,7 +75,7 @@ class PharmacistRegistrationFragment : Fragment() {
                             if(it.isSuccessful){
                                 reference.pharmaReference.child("pharmacyNames").child(pharmacyName.toString() + ", " + location.toString()).setValue(reference.currentUserId.toString())
                                 Toast.makeText(activity,"Account successfully created",Toast.LENGTH_LONG).show()
-                                val i = Intent(activity, PharmacistDrawerNavigationActivity::class.java)
+                                val i = Intent(activity, SignInActivity::class.java)
                                 startActivity(i)
                                 activity?.finish()
                             }

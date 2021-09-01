@@ -45,11 +45,21 @@ class EditProfileModel(val view: View) {
                     patientDetails.gender.check(R.id.editPMale)
                 } else if(gender.compareTo("Female")==0) patientDetails.gender.check(R.id.editPFemale)
                 else if(gender.compareTo("Other")==0) patientDetails.gender.check(R.id.editPOther)
-                patientDetails.father.setText(father)
-                patientDetails.mother.setText(mother)
-                patientDetails.details.setText(other)
-                patientDetails.doctor.setText(doctor)
-                patientDetails.hospital.setText(hospital)
+
+                if (father.isNullOrEmpty() || !snapshot.hasChild("fatherName")) patientDetails.father.setText("")
+                else patientDetails.father.setText(father)
+
+                if (mother.isNullOrEmpty() || !snapshot.hasChild("motherName")) patientDetails.mother.setText("")
+                else patientDetails.mother.setText(mother)
+
+                if (other.isNullOrEmpty() || !snapshot.hasChild("otherDetes")) patientDetails.details.setText("")
+                else patientDetails.details.setText(other)
+
+                if (doctor.isNullOrEmpty() || !snapshot.hasChild("doctorName")) patientDetails.doctor.setText("")
+                else patientDetails.doctor.setText(doctor)
+
+                if (hospital.isNullOrEmpty() || !snapshot.hasChild("hostpitalName")) patientDetails.hospital.setText("")
+                else patientDetails.hospital.setText(hospital)
             }
 
             override fun onCancelled(error: DatabaseError) {}
@@ -70,19 +80,19 @@ class EditProfileModel(val view: View) {
             reference.userReference.child(reference.currentUserId!!).child("fatherName").setValue(patientDetails.father.text.toString())
         }
         else{
-            reference.userReference.child(reference.currentUserId!!).child("fatherName").setValue("NA")
+            reference.userReference.child(reference.currentUserId!!).child("fatherName").setValue("-")
         }
         if (patientDetails.mother.text.toString().isNotEmpty()){
             reference.userReference.child(reference.currentUserId!!).child("motherName").setValue(patientDetails.mother.text.toString())
         }
         else{
-            reference.userReference.child(reference.currentUserId!!).child("motherName").setValue("NA")
+            reference.userReference.child(reference.currentUserId!!).child("motherName").setValue("-")
         }
         if (patientDetails.details.text.toString().isNotEmpty()){
             reference.userReference.child(reference.currentUserId!!).child("otherDetes").setValue(patientDetails.details.text.toString())
         }
         else{
-            reference.userReference.child(reference.currentUserId!!).child("otherDetes").setValue("NA")
+            reference.userReference.child(reference.currentUserId!!).child("otherDetes").setValue("-")
         }
 
         if (patientDetails.doctor.text.toString().isNotEmpty() && patientDetails.hospital.text.toString().isNotEmpty()) {
@@ -90,13 +100,13 @@ class EditProfileModel(val view: View) {
                 reference.userReference.child(reference.currentUserId!!).child("doctorName").setValue(patientDetails.doctor.text.toString())
             }
             else{
-                reference.userReference.child(reference.currentUserId!!).child("doctorName").setValue("NA")
+                reference.userReference.child(reference.currentUserId!!).child("doctorName").setValue("-")
             }
             if (patientDetails.hospital.text.toString().isNotEmpty()){
                 reference.userReference.child(reference.currentUserId!!).child("hostpitalName").setValue(patientDetails.hospital.text.toString())
             }
             else{
-                reference.userReference.child(reference.currentUserId!!).child("hostpitalName").setValue("NA")
+                reference.userReference.child(reference.currentUserId!!).child("hostpitalName").setValue("-")
             }
 
 

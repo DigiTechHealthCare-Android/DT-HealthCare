@@ -87,7 +87,14 @@ class ContentMangerShowContentFragment(val view: View) {
                                 }
                                 override fun onCancelled(error: DatabaseError) {}
                             })
-                            if(type.compareTo("research")==0){
+                            val frag = ArticleDetailsFragment()
+                            val bundle = Bundle()
+                            bundle.putString("articleID",userID)
+                            bundle.putString("type", type)
+                            frag.arguments = bundle
+                            activity?.supportFragmentManager?.beginTransaction()
+                                ?.replace(R.id.contentFrame,frag).addToBackStack(null).commit()
+                            /*if(type.compareTo("research")==0){
                                 if (checkUrl){
                                     val i = Intent(activity, ViewPdfActivity::class.java)
                                     i.putExtra("url",researchUrl)
@@ -98,15 +105,15 @@ class ContentMangerShowContentFragment(val view: View) {
                                     activity.supportFragmentManager.popBackStack()
                                 }
 
-                            } else {
+                            } else if(type.compareTo("video")==0 || type.compareTo("image")==0) {
                                 val frag = ArticleDetailsFragment()
                                 val bundle = Bundle()
                                 bundle.putString("articleID",userID)
                                 bundle.putString("type", type)
                                 frag.arguments = bundle
                                 activity?.supportFragmentManager?.beginTransaction()
-                                    ?.replace(R.id.swipeLayout,frag).addToBackStack(null).commit()
-                            }
+                                    ?.replace(R.id.contentFrame,frag).addToBackStack(null).commit()
+                            }*/
                         }
                     }
                 }

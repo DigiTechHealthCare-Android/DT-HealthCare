@@ -65,12 +65,15 @@ class ArticleDetailsModel(view : View) {
         }
     }
     private fun editContent(userID: String?,activity: FragmentActivity) {
-        val frag = EditArticlesFragment()
+        val i = Intent(activity,EditArticlesFragment::class.java)
+        i.putExtra("userID",userID)
+        activity.startActivity(i)
+        /*val frag = EditArticlesFragment()
         val bundle = Bundle()
         bundle.putString("userID",userID)
         frag.arguments = bundle
         activity?.supportFragmentManager?.beginTransaction()
-            ?.replace(R.id.contentShowCV,frag)?.addToBackStack(null)?.commit()
+            ?.replace(R.id.contentShowCV,frag)?.addToBackStack(null)?.commit()*/
     }
 
     fun populateArtcile(articleID: String, cTitle: TextView, userName: TextView,
@@ -82,8 +85,7 @@ class ArticleDetailsModel(view : View) {
 
                 val title = snapshot.child("title").value.toString()
                 cTitle.setText(title)
-                Glide.with(requireActivity).load(snapshot.child("publisherImage").value.toString())
-                    .placeholder(R.drawable.loading1).into(userImage)
+                Glide.with(requireActivity).load(snapshot.child("publisherImage").value.toString()).into(userImage)
                 //Picasso.get().load(snapshot.child("publisherImage").value.toString()).into(userImage)
                 userName.setText(snapshot.child("publisherName").value.toString())
 
@@ -105,26 +107,25 @@ class ArticleDetailsModel(view : View) {
                     //Picasso.get().load(snapshot.child("imageRef").value.toString()).into(cImg)
                     cDesc.setText(snapshot.child("desc").value.toString())
                 } else if(type.compareTo("research")==0){
-                    //below line // Picasso.get().load(snapshot.child("imageRef").value.toString()).into(cImg)
-                    Glide.with(requireActivity).load(snapshot.child("imageRef").value.toString())
-                        .placeholder(R.drawable.loading1).into(cImg)
+                    Picasso.get().load(R.drawable.researchdemoimg).into(cImg)
+                    //Glide.with(requireActivity).load(R.drawable.researchdemoimg).into(cImg)
 
 
                     var url = ""
                     if(snapshot.hasChild("researchRef")) {
                         url = snapshot.child("researchRef").value.toString()
-                        val i = Intent(requireActivity, ViewPdfActivity::class.java)
-                        i.putExtra("url",url)
-                        requireActivity.startActivity(i)
-                        requireActivity.supportFragmentManager.popBackStack()
-                        /*cImg.setOnClickListener {
-
-                        }*/
+                        cImg.setOnClickListener {
+                            val i = Intent(requireActivity, ViewPdfActivity::class.java)
+                            i.putExtra("url",url)
+                            requireActivity.startActivity(i)
+                        }
                     } else if(snapshot.hasChild("url")){
                         url = snapshot.child("url").value.toString()
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                        requireActivity.startActivity(intent)
-                        requireActivity.supportFragmentManager.popBackStack()
+                        cImg.setOnClickListener {
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                            requireActivity.startActivity(intent)
+                        }
+
                     }
                 } else if(type.compareTo("video")==0){
                     val url = snapshot.child("url").value.toString()

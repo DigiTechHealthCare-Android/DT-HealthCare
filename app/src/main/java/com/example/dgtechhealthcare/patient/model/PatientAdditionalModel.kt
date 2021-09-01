@@ -22,19 +22,19 @@ class PatientAdditionalModel(view : View) {
                 }
 
                 if(snapshot.hasChild("fatherName")) data.fname.setText(snapshot.child("fatherName").value.toString())
-                else data.fname.setText("N/A")
+                else data.fname.setText("-")
 
                 if (snapshot.hasChild("motherName")) data.mname.setText(snapshot.child("motherName").value.toString())
-                else data.mname.setText("N/A")
+                else data.mname.setText("-")
 
                 if (snapshot.hasChild("otherDetes")) data.address.setText(snapshot.child("otherDetes").value.toString())
-                else data.address.setText("N/A")
+                else data.address.setText("-")
 
-                if (snapshot.hasChild("docotorName")) data.dname.setText(snapshot.child("doctorName").value.toString())
-                else data.dname.setText("N/A")
+                if (snapshot.hasChild("doctorName")) data.dname.setText(snapshot.child("doctorName").value.toString())
+                else data.dname.setText("-")
 
-                if (snapshot.hasChild("hospitalName")) data.hname.setText(snapshot.child("hostpitalName").value.toString())
-                else data.hname.setText("N/A")
+                if (snapshot.hasChild("hostpitalName")) data.hname.setText(snapshot.child("hostpitalName").value.toString())
+                else data.hname.setText("-")
             }
             override fun onCancelled(error: DatabaseError) {}
         })

@@ -73,6 +73,8 @@
         <activity
             android:name=".utils.MainActivity"
             android:exported="true" />
+        <activity android:name=".contentManager.EditArticlesFragment"
+            android:exported="true"/>
 
         <service
             android:name=".pushNotification.FirebaseNotificationService"

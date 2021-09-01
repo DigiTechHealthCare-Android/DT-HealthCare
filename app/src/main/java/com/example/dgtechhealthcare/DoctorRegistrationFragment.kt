@@ -73,7 +73,7 @@ class DoctorRegistrationFragment : Fragment() {
                         reference.doctorReference.child(reference.currentUserId!!).updateChildren(dm).addOnCompleteListener {
                             if(it.isSuccessful) {
                                 Toast.makeText(activity,"Account successfully created",Toast.LENGTH_LONG).show()
-                                val i = Intent(activity, DoctorDrawerNavigationActivity::class.java)
+                                val i = Intent(activity, SignInActivity::class.java)
                                 startActivity(i)
                                 activity?.finish()
                             }
