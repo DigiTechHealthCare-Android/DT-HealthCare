@@ -106,6 +106,8 @@ class SplashActivity : AppCompatActivity() {
                             runOnUiThread {
                                 Toast.makeText(this@SplashActivity,"Shop's open", Toast.LENGTH_LONG).show()
                                 val i = Intent(this@SplashActivity, PharmacistDrawerNavigationActivity::class.java)
+                                if (test?.compareTo("doctor")!=0)
+                                    i.putExtra("test",test)
                                 startActivity(i)
                                 finish()
                             }

@@ -9,16 +9,14 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.SignInActivity
-import com.example.dgtechhealthcare.pharmacist.view.HistoryFragment
-import com.example.dgtechhealthcare.pharmacist.view.EditPharmacistFragment
-import com.example.dgtechhealthcare.pharmacist.view.PharmacistProfileFragment
-import com.example.dgtechhealthcare.pharmacist.view.RequestFragment
+import com.example.dgtechhealthcare.pharmacist.view.*
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.utils.LogoutClass
 import com.example.dgtechhealthcare.utils.SettingsFragment
@@ -42,6 +40,8 @@ class PharmacistDrawerNavigationActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pharmacist_drawer_navigation)
+
+        val p = intent.getStringExtra("test")
 
         setSupportActionBar(toolbarPharmacist)
 
@@ -95,6 +95,16 @@ class PharmacistDrawerNavigationActivity : AppCompatActivity(),
         setToolbarTitle("Requests")
         changeFragment(RequestFragment())
 
+        if (!p.isNullOrEmpty()){
+            val frag = RequestDescriptionFragment()
+            val bundle = Bundle()
+            bundle.putString("userID",p)
+            bundle.putString("type","requests")
+            frag.arguments = bundle
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.pharmRequestFrame,frag)
+                .addToBackStack(null).commit()
+        }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

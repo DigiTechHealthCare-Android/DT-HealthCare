@@ -30,7 +30,7 @@ class PrepareNotification(view : View) {
         reference.userReference.child(reference.currentUserId!!).addValueEventListener(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val name = snapshot.child("username").value.toString()
+                val name = snapshot.child("pharmacyName").value.toString()
 
                 reference.userReference.child(userID).addValueEventListener(object :
                     ValueEventListener {
