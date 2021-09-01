@@ -20,12 +20,12 @@ import com.example.dgtechhealthcare.pharmacist.view.EditPharmacistFragment
 import com.example.dgtechhealthcare.pharmacist.view.PharmacistProfileFragment
 import com.example.dgtechhealthcare.pharmacist.view.RequestFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
+import com.example.dgtechhealthcare.utils.LogoutClass
 import com.example.dgtechhealthcare.utils.SettingsFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_pharmacist_drawer_navigation.*
 import kotlinx.android.synthetic.main.pharmacist_nav_toolbar.*
 
@@ -127,7 +127,6 @@ class PharmacistDrawerNavigationActivity : AppCompatActivity(),
                         finish()
                     })
                 builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which ->
-                    finish()
                 })
                 builder.show()
             }

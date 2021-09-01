@@ -9,7 +9,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
@@ -22,6 +21,7 @@ import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.android.material.navigation.NavigationView
 import com.example.dgtechhealthcare.patient.PatientArticleFragment
 import com.example.dgtechhealthcare.patient.PatientProfileFragment
+import com.example.dgtechhealthcare.utils.LogoutClass
 import com.example.dgtechhealthcare.utils.SettingsFragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -118,13 +118,12 @@ class PatientDrawerNavigationActivity : AppCompatActivity(),
                 builder.setTitle("Do you want to logout?")
                 builder.setPositiveButton("Yes, Logout",
                     DialogInterface.OnClickListener { dialog, which ->
-                    reference.auth.signOut()
-                    val i = Intent(this, SignInActivity::class.java)
-                    startActivity(i)
-                    finish()
-                })
+                        reference.auth.signOut()
+                        val i = Intent(this, SignInActivity::class.java)
+                        startActivity(i)
+                        finish()
+                    })
                 builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which ->
-                    finish()
                 })
                 builder.show()
             }

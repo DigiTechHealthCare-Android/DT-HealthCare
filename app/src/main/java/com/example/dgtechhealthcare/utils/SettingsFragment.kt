@@ -67,7 +67,6 @@ class SettingsFragment : Fragment() {
                 activity?.finish()
             })
             builder.setNegativeButton("Cancel",DialogInterface.OnClickListener { dialog, which ->
-                activity?.finish()
             })
             builder.show()
         }
