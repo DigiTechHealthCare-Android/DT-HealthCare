@@ -13,15 +13,20 @@
             android:icon="@drawable/profile"
             android:title="Profile" />
 
-        <item
-            android:id="@+id/settingsPatient"
-            android:icon="@drawable/settings"
-            android:title="Settings" />
-        <item
-            android:id="@+id/logout"
-            android:icon="@drawable/round_logout_black_24dp"
-            android:title="Logout" />
+
 
     </group>
+    <item android:title="Settings">
+        <menu>
+            <item
+                android:id="@+id/settingsPatient"
+                android:icon="@drawable/settings"
+                android:title="Settings" />
+            <item
+                android:id="@+id/logout"
+                android:icon="@drawable/round_logout_black_24dp"
+                android:title="Logout" />
+        </menu>
+    </item>
 
 </menu>

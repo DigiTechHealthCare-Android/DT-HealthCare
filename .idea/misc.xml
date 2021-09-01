@@ -36,7 +36,10 @@
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_doctor_prescribe_medicine.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_doctor_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_doctor_registration.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_edit_doctor_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_edit_nurse_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_edit_patient_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_edit_pharmacist.xml" value="0.4" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_nurse_registration.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_patient_info.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_patient_profile.xml" value="0.25416666666666665" />
@@ -49,6 +52,7 @@
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/patient_nav_toolbar.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/pharmacist_nav_header.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/pharmacist_nav_toolbar.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/menu/content_manager_nav_drawer_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/menu/doctor_nav_drawer_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/menu/doctor_nav_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/menu/nurse_nav_drawer_menu.xml" value="0.25416666666666665" />
