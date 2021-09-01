@@ -30,45 +30,88 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/contentAddTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout28"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="258dp"
+                android:layout_height="52dp"
                 android:layout_marginTop="8dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:textAlignment="center"
-                android:textColor="#000000"
+                app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView69" />
+                app:layout_constraintTop_toBottomOf="@+id/textView69">
 
-            <EditText
-                android:id="@+id/contentAddDesc"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/contentAddTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Title"
+                    android:inputType="textPersonName"
+                    android:textColor="#000000"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout29"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="380dp"
+                android:layout_height="112dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:ems="10"
-                android:gravity="start|top"
-                android:inputType="textMultiLine"
-                android:maxLength="140"
-                android:textAlignment="center"
-                android:textColor="#000000"
+                app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView81" />
+                app:layout_constraintTop_toBottomOf="@+id/textView81">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/contentAddDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Description"
+                    android:inputType="textMultiLine"
+                    android:lines="10"
+                    android:maxLength="140"
+                    android:textColor="#000000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout30"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="250dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="32dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toStartOf="@+id/uploadResearchB"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/researchRG">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/contentUrl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Enter URL"
+                    android:textColor="#000000"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/publishContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:text="Add Article"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.505"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/contentAddDesc" />
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout29" />
 
             <RadioGroup
                 android:id="@+id/contentRG"
@@ -84,6 +127,9 @@
                     android:id="@+id/contentImageR"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/purple_700"
+                    android:paddingRight="5dp"
+                    android:shadowColor="@color/purple_500"
                     android:text="Image"
                     android:textColor="#000000" />
 
@@ -91,6 +137,9 @@
                     android:id="@+id/contentVideoR"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/purple_700"
+                    android:paddingRight="5dp"
+                    android:shadowColor="@color/purple_500"
                     android:text="Video"
                     android:textColor="#000000" />
 
@@ -100,6 +149,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Research Paper"
+                    android:buttonTint="@color/purple_700"
+                    android:shadowColor="@color/purple_500"
                     android:textColor="#000000" />
             </RadioGroup>
 
@@ -113,20 +164,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/contentRG"
                 app:srcCompat="@drawable/uploadicon" />
-
-            <EditText
-                android:id="@+id/contentUrl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:ems="10"
-                android:hint="Enter Url"
-                android:inputType="textPersonName"
-                android:textAlignment="center"
-                android:textColor="#000000"
-                app:layout_constraintEnd_toStartOf="@+id/uploadResearchB"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/researchRG" />
 
             <TextView
                 android:id="@+id/textView69"
@@ -145,14 +182,14 @@
                 android:id="@+id/textView70"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:text="Article Type"
                 android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/contentAddTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout28" />
 
             <TextView
                 android:id="@+id/textView81"
@@ -165,7 +202,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/contentUrl" />
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout30" />
 
             <RadioGroup
                 android:id="@+id/researchRG"
@@ -181,14 +218,19 @@
                     android:id="@+id/storageRB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Upload from storage"
+                    android:buttonTint="@color/purple_700"
+                    android:paddingRight="5dp"
+                    android:shadowColor="@color/purple_500"
+                    android:text="Upload From Storage"
                     android:textColor="#000000" />
 
                 <RadioButton
                     android:id="@+id/urlRB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Enter Url"
+                    android:text="Enter URL"
+                    android:buttonTint="@color/purple_700"
+                    android:shadowColor="@color/purple_500"
                     android:textColor="#000000" />
             </RadioGroup>
 
@@ -199,7 +241,7 @@
                 android:layout_marginTop="32dp"
                 android:text="Upload"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/contentUrl"
+                app:layout_constraintStart_toEndOf="@+id/textInputLayout30"
                 app:layout_constraintTop_toBottomOf="@+id/researchRG" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

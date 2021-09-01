@@ -29,71 +29,57 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/contentEditTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:textAlignment="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView82" />
-
-            <EditText
-                android:id="@+id/contentEditDesc"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:ems="10"
-                android:gravity="start|top"
-                android:inputType="textMultiLine"
-                android:textAlignment="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView85" />
-
             <Button
                 android:id="@+id/publishEditContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:text="Update"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/contentEditDesc" />
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout32" />
 
             <RadioGroup
                 android:id="@+id/contentEditRG"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView83">
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout31">
 
                 <RadioButton
                     android:id="@+id/contentImageRE"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Image" />
+                    android:paddingRight="4dp"
+                    android:text="Image"
+                    android:buttonTint="@color/purple_700"
+                    android:shadowColor="@color/purple_500"
+                    android:textColor="#000000"/>
 
                 <RadioButton
                     android:id="@+id/contentVideoRE"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Video" />
+                    android:paddingRight="4dp"
+                    android:text="Video"
+                    android:buttonTint="@color/purple_700"
+                    android:shadowColor="@color/purple_500"
+                    android:textColor="#000000"/>
 
                 <RadioButton
                     android:id="@+id/contentResearchRE"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Research Paper" />
+                    android:text="Research Paper"
+                    android:buttonTint="@color/purple_700"
+                    android:shadowColor="@color/purple_500"
+                    android:textColor="#000000"/>
             </RadioGroup>
 
             <ImageView
@@ -106,18 +92,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/contentEditRG" />
-
-            <EditText
-                android:id="@+id/contentEditUrl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:textAlignment="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView84" />
 
             <TextView
                 android:id="@+id/textView82"
@@ -136,7 +110,6 @@
                 android:id="@+id/textView83"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
                 android:lineSpacingExtra="16sp"
                 android:text="Article Type"
                 android:textColor="#000000"
@@ -144,7 +117,7 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/contentEditTitle" />
+                tools:layout_editor_absoluteY="169dp" />
 
             <TextView
                 android:id="@+id/textView84"
@@ -152,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:lineSpacingExtra="16sp"
-                android:text="Url"
+                android:text="URL"
                 android:textColor="#000000"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -163,14 +136,87 @@
                 android:id="@+id/textView85"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:lineSpacingExtra="16sp"
                 android:text="Description"
                 android:textColor="#000000"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/contentEditUrl" />
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout33" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout31"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="258dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="8dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView82">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/contentEditTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Title"
+                    android:inputType="textPersonName"
+                    android:textColor="#000000"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout32"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="380dp"
+                android:layout_height="112dp"
+                android:layout_marginTop="8dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView85">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/contentEditDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Description"
+                    android:inputType="textMultiLine"
+                    android:lines="10"
+                    android:maxLength="140"
+                    android:textColor="#000000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout33"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="250dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="8dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView84">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/contentEditUrl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="URL"
+                    android:textColor="#000000"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
