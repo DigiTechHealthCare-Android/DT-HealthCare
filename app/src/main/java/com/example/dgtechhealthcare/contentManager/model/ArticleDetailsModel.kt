@@ -57,12 +57,12 @@ class ArticleDetailsModel(view : View) {
     }
 
     private fun deleteContent(userID: String?,activity: FragmentActivity) {
-        activity?.supportFragmentManager?.popBackStack()
         reference.articleReference.child(userID!!).removeValue()
         reference.managerReference.child(reference.currentUserId!!).child("articles").child(
             userID).removeValue().addOnCompleteListener {
             if(it.isSuccessful) Toast.makeText(activity,"Article Deleted", Toast.LENGTH_LONG).show()
         }
+        activity?.supportFragmentManager?.popBackStack()
     }
     private fun editContent(userID: String?,activity: FragmentActivity) {
         val i = Intent(activity,EditArticlesFragment::class.java)
@@ -85,8 +85,7 @@ class ArticleDetailsModel(view : View) {
 
                 val title = snapshot.child("title").value.toString()
                 cTitle.setText(title)
-                Glide.with(requireActivity).load(snapshot.child("publisherImage").value.toString()).into(userImage)
-                //Picasso.get().load(snapshot.child("publisherImage").value.toString()).into(userImage)
+                Picasso.get().load(snapshot.child("publisherImage").value.toString()).into(userImage)
                 userName.setText(snapshot.child("publisherName").value.toString())
 
                 val views = snapshot.child("views").value.toString()

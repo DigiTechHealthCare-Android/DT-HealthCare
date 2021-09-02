@@ -87,13 +87,18 @@ class ContentMangerShowContentFragment(val view: View) {
                                 }
                                 override fun onCancelled(error: DatabaseError) {}
                             })
-                            val frag = ArticleDetailsFragment()
-                            val bundle = Bundle()
-                            bundle.putString("articleID",userID)
-                            bundle.putString("type", type)
-                            frag.arguments = bundle
-                            activity?.supportFragmentManager?.beginTransaction()
-                                ?.replace(R.id.contentFrame,frag).addToBackStack(null).commit()
+                            try {
+                                val frag = ArticleDetailsFragment()
+                                val bundle = Bundle()
+                                bundle.putString("articleID",userID)
+                                bundle.putString("type", type)
+                                frag.arguments = bundle
+                                activity?.supportFragmentManager?.beginTransaction()
+                                    ?.replace(R.id.contentFrame,frag).addToBackStack(null).commit()
+                            } catch (e : Exception){
+                                Toast.makeText(activity,"Please try again",Toast.LENGTH_LONG).show()
+                            }
+
                             /*if(type.compareTo("research")==0){
                                 if (checkUrl){
                                     val i = Intent(activity, ViewPdfActivity::class.java)

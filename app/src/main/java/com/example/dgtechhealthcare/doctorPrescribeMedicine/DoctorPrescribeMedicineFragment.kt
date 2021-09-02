@@ -122,66 +122,73 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
         pharmaChoice = dialogLayout.findViewById<TextView>(R.id.pharmaNameChoiceTV)
         prescribeB.setOnClickListener {
             if(prescribeB.text.toString().compareTo("Request prescription")==0){
-                reference.pharmaReference.child("pharmacyNames").addValueEventListener(object : ValueEventListener{
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        for (data in snapshot.children){
-                            nameList.add(data.key.toString())
-                            newHM.put(data.key.toString(),data.value.toString())
+
+                if (!morningMed.text.isNullOrEmpty() || !afternoonMed.text.isNullOrEmpty() || !eveningMed.text.isNullOrEmpty() || !nightMed.text.isNullOrEmpty())
+                {
+                    reference.pharmaReference.child("pharmacyNames").addValueEventListener(object : ValueEventListener{
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            for (data in snapshot.children){
+                                nameList.add(data.key.toString())
+                                newHM.put(data.key.toString(),data.value.toString())
+                            }
+                            val adapter = ArrayAdapter<String>(it.context,R.layout.support_simple_spinner_dropdown_item,nameList)
+                            pharmaSpinner.adapter = adapter
+                            pharmaSpinner.onItemSelectedListener = this@DoctorPrescribeMedicineFragment
                         }
-                        val adapter = ArrayAdapter<String>(it.context,R.layout.support_simple_spinner_dropdown_item,nameList)
-                        pharmaSpinner.adapter = adapter
-                        pharmaSpinner.onItemSelectedListener = this@DoctorPrescribeMedicineFragment
-                    }
-                    override fun onCancelled(error: DatabaseError) {}
-                })
+                        override fun onCancelled(error: DatabaseError) {}
+                    })
 
-                with(builder){
-                    setTitle("Choose your preferred pharmacy")
-                    setPositiveButton("Request"){dialog,which ->
-                        reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
-                            override fun onDataChange(snapshot: DataSnapshot) {
-                                if(snapshot.hasChild("prescribedMedicine")){
-                                    val med1 = snapshot.child("prescribedMedicine").child("morning").child("name").value.toString()
-                                    val med2 = snapshot.child("prescribedMedicine").child("afternoon").child("name").value.toString()
-                                    val med3 = snapshot.child("prescribedMedicine").child("evening").child("name").value.toString()
-                                    val med4 = snapshot.child("prescribedMedicine").child("night").child("name").value.toString()
+                    with(builder){
+                        setTitle("Choose your preferred pharmacy")
+                        setPositiveButton("Request"){dialog,which ->
+                            reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    if(snapshot.hasChild("prescribedMedicine")){
+                                        val med1 = snapshot.child("prescribedMedicine").child("morning").child("name").value.toString()
+                                        val med2 = snapshot.child("prescribedMedicine").child("afternoon").child("name").value.toString()
+                                        val med3 = snapshot.child("prescribedMedicine").child("evening").child("name").value.toString()
+                                        val med4 = snapshot.child("prescribedMedicine").child("night").child("name").value.toString()
 
-                                    val hashMap = HashMap<String,Any>()
-                                    hashMap["puid"] = reference.currentUserId!!
-                                    hashMap["med1"] = med1
-                                    hashMap["med2"] = med2
-                                    hashMap["med3"] = med3
-                                    hashMap["med4"] = med4
+                                        val hashMap = HashMap<String,Any>()
+                                        hashMap["puid"] = reference.currentUserId!!
+                                        hashMap["med1"] = med1
+                                        hashMap["med2"] = med2
+                                        hashMap["med3"] = med3
+                                        hashMap["med4"] = med4
 
-                                    val username = snapshot.child("username").value.toString()
+                                        val username = snapshot.child("username").value.toString()
 
-                                    reference.pharmaReference.child(choice).child("requests").child(reference.currentUserId!!).updateChildren(hashMap).addOnCompleteListener {
-                                        Toast.makeText(context,"Request Sent",Toast.LENGTH_SHORT).show()
-                                        //getToken("New Request")
-                                        reference.userReference.child(choice).addValueEventListener(object : ValueEventListener{
-                                            override fun onDataChange(snapshot: DataSnapshot) {
-                                                val token = snapshot.child("token").value.toString()
-                                                FirebaseNotificationService.sharedPref = activity?.getSharedPreferences("sharedPref",Context.MODE_PRIVATE)
-                                                FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
-                                                val title = "New Order"
-                                                val message = "Request from $username"
-                                                PushNotification(NotificationData(title,message,reference.currentUserId!!)
-                                                    , token).also {
-                                                    sendNotification(it)
+                                        reference.pharmaReference.child(choice).child("requests").child(reference.currentUserId!!).updateChildren(hashMap).addOnCompleteListener {
+                                            Toast.makeText(context,"Request Sent",Toast.LENGTH_SHORT).show()
+                                            //getToken("New Request")
+                                            reference.userReference.child(choice).addValueEventListener(object : ValueEventListener{
+                                                override fun onDataChange(snapshot: DataSnapshot) {
+                                                    val token = snapshot.child("token").value.toString()
+                                                    FirebaseNotificationService.sharedPref = activity?.getSharedPreferences("sharedPref",Context.MODE_PRIVATE)
+                                                    FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
+                                                    val title = "New Order"
+                                                    val message = "Request from $username"
+                                                    PushNotification(NotificationData(title,message,reference.currentUserId!!)
+                                                        , token).also {
+                                                        sendNotification(it)
+                                                    }
                                                 }
-                                            }
-                                            override fun onCancelled(error: DatabaseError) {}
-                                        })
+                                                override fun onCancelled(error: DatabaseError) {}
+                                            })
+                                        }
                                     }
                                 }
-                            }
-                            override fun onCancelled(error: DatabaseError) {}
-                        })
-                    requireActivity()?.supportFragmentManager?.popBackStack()
+                                override fun onCancelled(error: DatabaseError) {}
+                            })
+                            requireActivity()?.supportFragmentManager?.popBackStack()
+                        }
+                        setNegativeButton("Cancel"){ _, _ ->}
                     }
-                    setNegativeButton("Cancel"){ _, _ ->}
+                    builder.show()
+                } else {
+                    Toast.makeText(activity,"Prescription is Empty",Toast.LENGTH_LONG).show()
                 }
-                builder.show()
+
             }
             else if(prescribeB.text.toString().compareTo("Prescribe Medicine")==0) {
                 val ref = reference.userReference.child(patientID!!).child("prescribedMedicine")
