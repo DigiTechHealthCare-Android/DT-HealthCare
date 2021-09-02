@@ -75,7 +75,7 @@ class EditArticlesFragment : AppCompatActivity() {
             reference.articleReference.child(contentUid).updateChildren(hm).addOnCompleteListener {
                 if(it.isSuccessful){
                     Toast.makeText(this,"Article Updated",Toast.LENGTH_LONG).show()
-                    this?.supportFragmentManager?.popBackStack()
+                    finish()
                 }
             }
         }

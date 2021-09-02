@@ -159,9 +159,9 @@ class ContentMangerShowContentFragment(val view: View) {
                                 val name = snapshot.child("publisherName").value.toString()
                                 holder.name.setText(name)
                                 val img = snapshot.child("publisherImage").value.toString()
-                                //Picasso.get().load(img).into(holder.img)
-                                Glide.with(view.context).load(img)
-                                    .placeholder(R.drawable.loading1).into(holder.img)
+                                Picasso.get().load(img).into(holder.img)
+                                /*Glide.with(view.context).load(img)
+                                    .placeholder(R.drawable.loading1).into(holder.img)*/
                             }
                             override fun onCancelled(error: DatabaseError) {}
                         })

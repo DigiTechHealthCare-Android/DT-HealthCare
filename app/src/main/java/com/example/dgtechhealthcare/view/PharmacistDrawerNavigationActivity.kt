@@ -24,6 +24,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_pharmacist_drawer_navigation.*
 import kotlinx.android.synthetic.main.pharmacist_nav_toolbar.*
 
@@ -77,9 +78,9 @@ class PharmacistDrawerNavigationActivity : AppCompatActivity(),
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.hasChild("profileImage")) {
                     val img = snapshot.child("profileImage").value.toString()
-                    //Picasso.get().load(img).into(pharmacistIV)
-                    Glide.with(this@PharmacistDrawerNavigationActivity).load(img)
-                        .placeholder(R.drawable.loading1).into(pharmacistIV)
+                    Picasso.get().load(img).into(pharmacistIV)
+                    /*Glide.with(this@PharmacistDrawerNavigationActivity).load(img)
+                        .placeholder(R.drawable.loading1).into(pharmacistIV)*/
                 }
                 val name = snapshot.child("username").value.toString()
                 val email = snapshot.child("email").value.toString()
