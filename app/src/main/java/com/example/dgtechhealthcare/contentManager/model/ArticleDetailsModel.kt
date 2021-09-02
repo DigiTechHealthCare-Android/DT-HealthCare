@@ -130,7 +130,10 @@ class ArticleDetailsModel(view : View) {
                         ) {
                             if(!p2){
                                 var p : YouTubePlayer = p1!!
-                                p.setFullscreen(false)
+                                p.fullscreenControlFlags = YouTubePlayer.FULLSCREEN_FLAG_CUSTOM_LAYOUT
+                                p.setShowFullscreenButton(false)
+                                //p.setPlayerStyle(YouTubePlayer.PlayerStyle.MINIMAL)
+                                //p.setFullscreen(false)
                                 p.loadVideo(vid)
                                 //p.play()
                             }
