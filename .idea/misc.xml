@@ -17,6 +17,7 @@
         <entry key="..\:/Users/91982/Desktop/HealthCareProject/HealthCare/DT-HealthCare/app/src/main/res/layout/fragment_patient_registration.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/drawable/cardviewcontact.xml" value="0.2703125" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/drawable/cardviewname.xml" value="0.2703125" />
+        <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/drawable/custom_input.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/drawable/ic_arrow_down.xml" value="0.2703125" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/drawable/spinnerbg.xml" value="0.2703125" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/drawable/verifiedicon.xml" value="0.2703125" />
@@ -43,6 +44,7 @@
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_doctor_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_doctor_registration.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_edit_articles.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_edit_content_manager_profile.xml" value="0.25" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_edit_doctor_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_edit_nurse_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_edit_patient_profile.xml" value="0.25416666666666665" />

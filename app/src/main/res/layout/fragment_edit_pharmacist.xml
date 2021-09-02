@@ -51,10 +51,11 @@
 
                 <EditText
                     android:id="@+id/editPharmacistName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="207dp"
+                    android:layout_height="40dp"
                     android:layout_marginTop="24dp"
-                    android:layout_marginEnd="36dp"
+                    android:layout_marginEnd="40dp"
+                    android:background="@drawable/custom_input"
                     android:ems="10"
                     android:hint="Username"
                     android:inputType="textPersonName"
@@ -79,10 +80,11 @@
 
                 <EditText
                     android:id="@+id/editPharmacistContact"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="44dp"
+                    android:layout_width="207dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="52dp"
                     android:layout_marginEnd="40dp"
+                    android:background="@drawable/custom_input"
                     android:ems="10"
                     android:hint="Min 10 digits"
                     android:inputType="textPersonName"
@@ -107,10 +109,11 @@
 
                 <EditText
                     android:id="@+id/editPharmacyName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="44dp"
+                    android:layout_width="207dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="52dp"
                     android:layout_marginEnd="40dp"
+                    android:background="@drawable/custom_input"
                     android:ems="10"
                     android:hint="Pharmacy Name"
                     android:inputType="textPersonName"
@@ -135,10 +138,11 @@
 
                 <EditText
                     android:id="@+id/editPharmacistEmail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="48dp"
+                    android:layout_width="207dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="52dp"
                     android:layout_marginEnd="40dp"
+                    android:background="@drawable/custom_input"
                     android:ems="10"
                     android:hint="Email id"
                     android:inputType="textPersonName"
@@ -163,10 +167,11 @@
 
                 <EditText
                     android:id="@+id/editPharmacistLocation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="48dp"
+                    android:layout_width="207dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="50dp"
                     android:layout_marginEnd="40dp"
+                    android:background="@drawable/custom_input"
                     android:ems="10"
                     android:hint="Location"
                     android:inputType="textPersonName"

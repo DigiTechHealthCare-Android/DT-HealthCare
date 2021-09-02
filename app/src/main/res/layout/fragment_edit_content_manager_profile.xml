@@ -65,11 +65,13 @@
 
         <EditText
             android:id="@+id/editCMName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="46dp"
+            android:layout_width="207dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="44dp"
             android:layout_marginEnd="40dp"
+            android:background="@drawable/custom_input"
             android:ems="10"
+            android:hint="Manager Name"
             android:inputType="textPersonName"
             android:textAlignment="center"
             android:textColor="#000000"
@@ -78,10 +80,12 @@
 
         <EditText
             android:id="@+id/editCMLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="207dp"
+            android:layout_height="48dp"
             android:layout_marginTop="50dp"
+            android:background="@drawable/custom_input"
             android:ems="10"
+            android:hint="Manager Location"
             android:inputType="textPersonName"
             android:textAlignment="center"
             android:textColor="#000000"
@@ -91,10 +95,12 @@
 
         <EditText
             android:id="@+id/editCMEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
+            android:layout_width="207dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="51dp"
+            android:background="@drawable/custom_input"
             android:ems="10"
+            android:hint="Manager Email"
             android:inputType="textEmailAddress"
             android:textAlignment="center"
             android:textColor="#000000"
@@ -105,10 +111,12 @@
 
         <EditText
             android:id="@+id/editCMPhone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="56dp"
+            android:layout_width="207dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="46dp"
+            android:background="@drawable/custom_input"
             android:ems="10"
+            android:hint="Contact No"
             android:inputType="phone"
             android:textAlignment="center"
             android:textColor="#000000"

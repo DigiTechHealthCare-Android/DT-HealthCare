@@ -32,17 +32,17 @@
 
             <EditText
                 android:id="@+id/editPName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="207dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="40dp"
+                android:layout_marginEnd="48dp"
+                android:background="@drawable/custom_input"
                 android:ems="10"
                 android:hint="Name"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/textView18"
                 app:layout_constraintTop_toBottomOf="@+id/textView23"
                 tools:ignore="TouchTargetSizeCheck" />
 
@@ -63,16 +63,18 @@
 
             <EditText
                 android:id="@+id/editPPhone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_width="207dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="38dp"
                 android:layout_marginEnd="48dp"
+                android:background="@drawable/custom_input"
                 android:ems="10"
                 android:hint="Contact No(min 10 digits)"
                 android:inputType="phone"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editPName"
                 app:layout_constraintTop_toBottomOf="@+id/editPName"
                 tools:ignore="TouchTargetSizeCheck" />
 
@@ -91,9 +93,10 @@
 
             <EditText
                 android:id="@+id/editPDob"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_width="207dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/custom_input"
                 android:ems="10"
                 android:hint="Date of Birth"
                 android:inputType="date"
@@ -161,10 +164,11 @@
 
             <EditText
                 android:id="@+id/editPFather"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_width="207dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="34dp"
                 android:layout_marginEnd="24dp"
+                android:background="@drawable/custom_input"
                 android:ems="10"
                 android:hint="Father's Name"
                 android:inputType="textPersonName"
@@ -189,9 +193,10 @@
 
             <EditText
                 android:id="@+id/editPMother"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_width="207dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="38dp"
+                android:background="@drawable/custom_input"
                 android:ems="10"
                 android:hint="Mother's Name"
                 android:inputType="textPersonName"
@@ -218,9 +223,10 @@
 
             <EditText
                 android:id="@+id/editPFamily"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_width="207dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/custom_input"
                 android:ems="10"
                 android:hint="Address and Contact No."
                 android:inputType="textPersonName"
@@ -246,9 +252,10 @@
 
             <EditText
                 android:id="@+id/editPDoctor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_width="207dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/custom_input"
                 android:ems="10"
                 android:hint="Doctor's Name"
                 android:inputType="textPersonName"
@@ -319,10 +326,11 @@
 
             <EditText
                 android:id="@+id/editPHospital"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_width="207dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="38dp"
                 android:layout_marginBottom="52dp"
+                android:background="@drawable/custom_input"
                 android:ems="10"
                 android:hint="Hospital Name"
                 android:inputType="textPersonName"
