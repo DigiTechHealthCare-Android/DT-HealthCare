@@ -132,5 +132,15 @@
             android:src="@drawable/editiconwhite"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/managerCameraEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="144dp"
+            android:layout_marginBottom="72dp"
+            android:src="@drawable/cameraaddwhite"
+            app:layout_constraintBottom_toTopOf="@+id/cmName"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
