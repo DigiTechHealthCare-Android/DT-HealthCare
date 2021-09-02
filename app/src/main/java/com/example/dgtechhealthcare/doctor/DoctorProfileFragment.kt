@@ -24,6 +24,7 @@ class DoctorProfileFragment : Fragment() {
     lateinit var usercontact : TextView
     lateinit var profileIV : ImageView
     lateinit var editProfile : ImageView
+    lateinit var cameraEdit : ImageView
 
     lateinit var reference : FirebasePresenter
     lateinit var presenter : DoctorProfilePresenter
@@ -50,7 +51,7 @@ class DoctorProfileFragment : Fragment() {
 
         presenter.populateProfile(data)
 
-        profileIV.setOnClickListener {
+        cameraEdit.setOnClickListener {
             val gallery : Intent = Intent()
             gallery.setAction(Intent.ACTION_GET_CONTENT)
             gallery.setType("image/*")
@@ -73,6 +74,7 @@ class DoctorProfileFragment : Fragment() {
         usercontact = view.findViewById(R.id.doctorContact)
         profileIV = view.findViewById(R.id.doctorIV)
         editProfile = view.findViewById(R.id.editDoctorProfile)
+        cameraEdit = view.findViewById(R.id.doctorCameraEdit)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

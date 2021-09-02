@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import com.example.dgtechhealthcare.utils.NetworkUtil
 import com.google.firebase.auth.FirebaseAuth
 
 class SignUpActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
@@ -52,17 +53,21 @@ class SignUpActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         else if(emailT.isEmpty()) Toast.makeText(this,"Please enter your email!", Toast.LENGTH_SHORT).show()
         else if(passT.isEmpty()) Toast.makeText(this,"Please enter your password!", Toast.LENGTH_SHORT).show()
         else {
-            auth.createUserWithEmailAndPassword(emailT,passT).addOnCompleteListener{
-                if(it.isSuccessful) {
-                    val i = Intent(this,SetupActivity::class.java)
-                    i.putExtra("role",roleChoice)
-                    startActivity(i)
-                    finish()
+            val networkState = NetworkUtil().checkStatus(this,this.intent)
+            if (networkState) {
+                auth.createUserWithEmailAndPassword(emailT,passT).addOnCompleteListener{
+                    if(it.isSuccessful) {
+                        val i = Intent(this,SetupActivity::class.java)
+                        i.putExtra("role",roleChoice)
+                        startActivity(i)
+                        finish()
+                    }
+                    else {
+                        Toast.makeText(this, "Error: ${it.exception?.message}", Toast.LENGTH_SHORT).show()
+                    }
                 }
-                else {
-                    Toast.makeText(this, "Error: ${it.exception?.message}", Toast.LENGTH_SHORT).show()
-                }
-            }
+            } else {}
+
         }
     }
 

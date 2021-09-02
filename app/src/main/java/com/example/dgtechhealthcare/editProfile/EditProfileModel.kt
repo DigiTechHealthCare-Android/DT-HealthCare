@@ -29,10 +29,6 @@ class EditProfileModel(val view: View) {
                 val doctor = snapshot.child("doctorName").value.toString()
                 val hospital = snapshot.child("hostpitalName").value.toString()
 
-                if (snapshot.hasChild("profileImage")){
-                    Picasso.get().load(snapshot.child("profileImage").value.toString()).into(patientDetails.image)
-                }
-
                 patientDetails.name.setText(name)
                 patientDetails.mob.setText(mobile)
                 patientDetails.dob.setText(dateOBirth)

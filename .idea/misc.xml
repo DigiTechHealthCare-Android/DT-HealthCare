@@ -7,7 +7,6 @@
         <entry key="..\:/Training/HealthCareProject/HealthCare/DT-HealthCare/app/src/main/res/layout/fragment_edit_patient_profile.xml" value="0.1796875" />
         <entry key="..\:/Training/HealthCareProject/HealthCare/DT-HealthCare/app/src/main/res/layout/fragment_edit_pharmacist.xml" value="0.1796875" />
         <entry key="..\:/Training/HealthCareProject/HealthCare/DT-HealthCare/app/src/main/res/layout/fragment_nurse_patients.xml" value="0.1796875" />
-        <entry key="..\:/Training/HealthCareProject/HealthCare/DT-HealthCare/app/src/main/res/layout/fragment_patient_info.xml" value="0.1796875" />
         <entry key="..\:/Users/91982/Desktop/HealthCareProject/HealthCare/DT-HealthCare/app/src/main/res/drawable/profile.xml" value="0.2703125" />
         <entry key="..\:/Users/91982/Desktop/HealthCareProject/HealthCare/DT-HealthCare/app/src/main/res/layout/activity_nurse_navigation.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/91982/Desktop/HealthCareProject/HealthCare/DT-HealthCare/app/src/main/res/layout/fragment_edit_nurse_profile.xml" value="0.25416666666666665" />
@@ -36,9 +35,9 @@
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/doctor_nav_header.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/doctor_nav_toolbar.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_add_content.xml" value="0.264" />
-        <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_article_details.xml" value="0.4742468415937804" />
+        <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_article_details.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_content_manager_registration.xml" value="0.264" />
-        <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_content_manger_show_content.xml" value="0.536" />
+        <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_content_manger_show_content.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_doctor_prescribe_medicine.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_doctor_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_doctor_registration.xml" value="0.25416666666666665" />
@@ -52,8 +51,6 @@
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_patient_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_patient_registration.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_pharmacist_registration.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_request.xml" value="0.25" />
-        <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_request_description.xml" value="0.25" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/fragment_settings.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/nurse_nav_header.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/layout/nurse_nav_toolbar.xml" value="0.25416666666666665" />
@@ -162,6 +159,7 @@
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_request.xml" value="0.275" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_request_description.xml" value="0.275" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/fragment_settings.xml" value="0.36666666666666664" />
+        <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/no_internet_layout.xml" value="0.264" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/nurse_nav_header.xml" value="0.275" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/nurse_nav_toolbar.xml" value="0.27076923076923076" />
         <entry key="..\:/Work/Final/DT-HealthCare/app/src/main/res/layout/patient_nav_header.xml" value="0.275" />
