@@ -47,7 +47,7 @@
                     android:id="@+id/textView44"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="6dp"
                     android:text="Name:"
                     android:textColor="@color/black"
                     android:textSize="20sp"
@@ -55,7 +55,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/editPharmacistName"
                     app:layout_constraintHorizontal_bias="0.363"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView43" />
+                    app:layout_constraintTop_toTopOf="@+id/editPharmacistName" />
 
                 <EditText
                     android:id="@+id/editPharmacistName"
@@ -78,7 +78,7 @@
                     android:id="@+id/textView45"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="64dp"
+                    android:layout_marginTop="6dp"
                     android:text="Contact:"
                     android:textColor="@color/black"
                     android:textSize="20sp"
@@ -86,7 +86,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/editPharmacistContact"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView44" />
+                    app:layout_constraintTop_toTopOf="@+id/editPharmacistContact" />
 
                 <EditText
                     android:id="@+id/editPharmacistContact"
@@ -108,7 +108,7 @@
                     android:id="@+id/textView46"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="64dp"
+                    android:layout_marginTop="6dp"
                     android:text="Hospital:"
                     android:textColor="@color/black"
                     android:textSize="20sp"
@@ -116,7 +116,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/editPharmacyName"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView45" />
+                    app:layout_constraintTop_toTopOf="@+id/editPharmacyName" />
 
                 <EditText
                     android:id="@+id/editPharmacyName"
@@ -138,7 +138,7 @@
                     android:id="@+id/textView47"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="64dp"
+                    android:layout_marginTop="6dp"
                     android:text="Email:"
                     android:textColor="@color/black"
                     android:textSize="20sp"
@@ -146,7 +146,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/editPharmacistEmail"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView46" />
+                    app:layout_constraintTop_toTopOf="@+id/editPharmacistEmail" />
 
                 <EditText
                     android:id="@+id/editPharmacistEmail"
@@ -167,7 +167,7 @@
                     android:id="@+id/textView48"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="64dp"
+                    android:layout_marginTop="6dp"
                     android:text="DOB:"
                     android:textColor="@color/black"
                     android:textSize="20sp"
@@ -175,7 +175,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/editPharmacistLocation"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView47" />
+                    app:layout_constraintTop_toTopOf="@+id/editPharmacistLocation" />
 
                 <EditText
                     android:id="@+id/editPharmacistLocation"
@@ -200,7 +200,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="36dp"
-                    android:layout_marginTop="64dp"
+                    android:layout_marginTop="9dp"
                     android:text="Gender:"
                     android:textColor="@color/black"
                     android:textSize="20sp"
@@ -208,7 +208,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/radioGroup2"
                     app:layout_constraintHorizontal_bias="0.29"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView48" />
+                    app:layout_constraintTop_toTopOf="@+id/radioGroup2" />
 
                 <RadioGroup
                     android:id="@+id/radioGroup2"

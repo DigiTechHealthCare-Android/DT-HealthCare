@@ -20,7 +20,7 @@
                 android:id="@+id/textView18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="45dp"
+                android:layout_marginTop="6dp"
                 android:text="Name:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -28,7 +28,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/editPName"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView23" />
+                app:layout_constraintTop_toTopOf="@+id/editPName" />
 
             <EditText
                 android:id="@+id/editPName"
@@ -50,7 +50,7 @@
                 android:id="@+id/textView19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="52dp"
+                android:layout_marginTop="6dp"
                 android:text="Contact:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -59,7 +59,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/editPPhone"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/textView18"
-                app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                app:layout_constraintTop_toTopOf="@+id/editPPhone" />
 
             <EditText
                 android:id="@+id/editPPhone"
@@ -82,14 +82,14 @@
                 android:id="@+id/textView20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="52dp"
+                android:layout_marginTop="6dp"
                 android:text="DOB:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/textView19"
                 app:layout_constraintStart_toStartOf="@+id/textView19"
-                app:layout_constraintTop_toBottomOf="@+id/textView19" />
+                app:layout_constraintTop_toTopOf="@+id/editPDob" />
 
             <EditText
                 android:id="@+id/editPDob"
@@ -112,7 +112,7 @@
                 android:id="@+id/textView21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="2dp"
                 android:text="Gender:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -120,7 +120,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/textView20"
                 app:layout_constraintHorizontal_bias="0.416"
                 app:layout_constraintStart_toStartOf="@+id/textView20"
-                app:layout_constraintTop_toBottomOf="@+id/textView20" />
+                app:layout_constraintTop_toTopOf="@+id/radioGroup" />
 
             <TextView
                 android:id="@+id/textView22"
@@ -154,13 +154,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="6dp"
                 android:text="Father's Name:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView22" />
+                app:layout_constraintTop_toTopOf="@+id/editPFather" />
 
             <EditText
                 android:id="@+id/editPFather"
@@ -182,14 +182,14 @@
                 android:id="@+id/textView25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="52dp"
+                android:layout_marginTop="6dp"
                 android:text="Mother's Name:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/textView24"
                 app:layout_constraintStart_toStartOf="@+id/textView24"
-                app:layout_constraintTop_toBottomOf="@+id/textView24" />
+                app:layout_constraintTop_toTopOf="@+id/editPMother" />
 
             <EditText
                 android:id="@+id/editPMother"
@@ -212,14 +212,14 @@
                 android:id="@+id/textView26"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="52dp"
+                android:layout_marginTop="6dp"
                 android:text="Address:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/textView25"
                 app:layout_constraintStart_toStartOf="@+id/textView25"
-                app:layout_constraintTop_toBottomOf="@+id/textView25" />
+                app:layout_constraintTop_toTopOf="@+id/editPFamily" />
 
             <EditText
                 android:id="@+id/editPFamily"
@@ -241,14 +241,15 @@
                 android:id="@+id/textView27"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="52dp"
+                android:layout_marginTop="6dp"
                 android:text="Doctor's Name:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/textView26"
                 app:layout_constraintStart_toStartOf="@+id/textView26"
-                app:layout_constraintTop_toBottomOf="@+id/textView26" />
+                app:layout_constraintTop_toBottomOf="@+id/textView26"
+                app:layout_constraintTop_toTopOf="@+id/editPDoctor" />
 
             <EditText
                 android:id="@+id/editPDoctor"
@@ -266,6 +267,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/editPFamily" />
 
             <RadioGroup
+                android:id="@+id/radioGroup"
                 android:layout_width="218dp"
                 android:layout_height="34dp"
                 android:layout_marginTop="40dp"
@@ -283,29 +285,29 @@
                         android:id="@+id/editPMale"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingEnd="4dp"
-                        android:text="Male"
                         android:buttonTint="@color/purple_700"
+                        android:paddingEnd="4dp"
                         android:shadowColor="@color/purple_500"
+                        android:text="Male"
                         tools:ignore="TouchTargetSizeCheck" />
 
                     <RadioButton
                         android:id="@+id/editPFemale"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingEnd="4dp"
-                        android:text="Female"
                         android:buttonTint="@color/purple_700"
+                        android:paddingEnd="4dp"
                         android:shadowColor="@color/purple_500"
+                        android:text="Female"
                         tools:ignore="TouchTargetSizeCheck" />
 
                     <RadioButton
                         android:id="@+id/editPOther"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="Other"
                         android:buttonTint="@color/purple_700"
                         android:shadowColor="@color/purple_500"
+                        android:text="Other"
                         tools:ignore="TouchTargetSizeCheck" />
                 </RadioGroup>
             </RadioGroup>
@@ -314,7 +316,7 @@
                 android:id="@+id/textView33"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="6dp"
                 android:text="Hospital Name:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -322,7 +324,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/editPDoctor"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/textView27"
-                app:layout_constraintTop_toBottomOf="@+id/textView27" />
+                app:layout_constraintTop_toTopOf="@+id/editPHospital" />
 
             <EditText
                 android:id="@+id/editPHospital"
@@ -346,7 +348,7 @@
                 android:id="@+id/editPUpdate"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="52dp"
                 android:layout_marginBottom="28dp"
                 android:text="Update"
                 app:layout_constraintBottom_toBottomOf="parent"
