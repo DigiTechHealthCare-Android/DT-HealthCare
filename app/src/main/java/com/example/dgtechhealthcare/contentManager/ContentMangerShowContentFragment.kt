@@ -143,9 +143,9 @@ class ContentMangerShowContentFragment(val view: View) {
                                     i.putExtra("url",researchUrl)
                                     activity.startActivity(i)
                                 } else {
-                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                                    activity.startActivity(intent)
-                                    activity.supportFragmentManager.popBackStack()
+                                    val i = Intent(activity,ViewPdfActivity::class.java)
+                                    i.putExtra("url",url)
+                                    activity.startActivity(i)
                                 }
 
                             } else {

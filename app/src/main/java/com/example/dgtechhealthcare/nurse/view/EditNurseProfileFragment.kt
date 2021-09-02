@@ -21,7 +21,7 @@ class EditNurseProfileFragment : Fragment() {
 
     lateinit var reference : FirebasePresenter
 
-    lateinit var profileImageView: ImageView
+    //lateinit var profileImageView: ImageView
     lateinit var nameTextView : TextView
     lateinit var mobileTextView : TextView
     lateinit var hospitalNameTextView : TextView
@@ -51,7 +51,7 @@ class EditNurseProfileFragment : Fragment() {
 
         reference = FirebasePresenter(view)
 
-        profileImageView = view.findViewById(R.id.editNurseIV)
+        //profileImageView = view.findViewById(R.id.editNurseIV)
         nameTextView = view.findViewById(R.id.editPharmacistName)
         mobileTextView = view.findViewById(R.id.editPharmacistContact)
         hospitalNameTextView = view.findViewById(R.id.editPharmacyName)
@@ -65,12 +65,12 @@ class EditNurseProfileFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val nurseData = snapshot.getValue(ProfileData::class.java)
 
-                if (nurseData?.profileImage == null){
+                /*if (nurseData?.profileImage == null){
                     profileImageView.setImageResource(R.drawable.profile)
                 }
                 else{
                     Picasso.get().load(nurseData?.profileImage).into(profileImageView)
-                }
+                }*/
 
                 nameTextView.text = nurseData?.username
                 mobileTextView.text = "${nurseData?.contact}"
@@ -124,14 +124,14 @@ class EditNurseProfileFragment : Fragment() {
         }
 
         // Update profile Image
-        profileImageView.setOnClickListener {
-            val image = Intent().setAction(Intent.ACTION_GET_CONTENT)
-            image.setType("image/*")
-            startActivityForResult(image, imagePick)
-        }
+//        profileImageView.setOnClickListener {
+//            val image = Intent().setAction(Intent.ACTION_GET_CONTENT)
+//            image.setType("image/*")
+//            startActivityForResult(image, imagePick)
+//        }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == imagePick && resultCode == Activity.RESULT_OK && data != null){
@@ -157,5 +157,5 @@ class EditNurseProfileFragment : Fragment() {
                     }
             }
         }
-    }
+    }*/
 }

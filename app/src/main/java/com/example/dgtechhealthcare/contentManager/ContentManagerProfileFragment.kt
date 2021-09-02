@@ -28,6 +28,7 @@ class ContentManagerProfileFragment : Fragment() {
     lateinit var email : TextView
     lateinit var editB : ImageView
     lateinit var image : ImageView
+    lateinit var cameraEdit : ImageView
 
     lateinit var reference : FirebasePresenter
     var galleryPick : Int = 0
@@ -60,7 +61,7 @@ class ContentManagerProfileFragment : Fragment() {
             override fun onCancelled(error: DatabaseError) {}
         })
 
-        image.setOnClickListener {
+        cameraEdit.setOnClickListener {
             val gallery : Intent = Intent()
             gallery.setAction(Intent.ACTION_GET_CONTENT)
             gallery.setType("image/*")
@@ -107,6 +108,7 @@ class ContentManagerProfileFragment : Fragment() {
         email = view.findViewById(R.id.cmEmail)
         editB = view.findViewById(R.id.cmEdit)
         image = view.findViewById(R.id.cmImage)
+        cameraEdit = view.findViewById(R.id.managerCameraEdit)
 
         reference = FirebasePresenter(view)
     }

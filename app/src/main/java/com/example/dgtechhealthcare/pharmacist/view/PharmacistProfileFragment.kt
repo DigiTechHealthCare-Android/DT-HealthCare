@@ -28,6 +28,7 @@ class PharmacistProfileFragment : Fragment() {
     lateinit var mobileTextView : TextView
     lateinit var locationTextView : TextView
     lateinit var editButtonView : ImageView
+    lateinit var cameraEdit : ImageView
 
     private val imagePick = 0
     lateinit var imageUri : Uri
@@ -55,7 +56,7 @@ class PharmacistProfileFragment : Fragment() {
             transaction?.commit()
         }
 
-        pharmacistProfileImg.setOnClickListener {
+        cameraEdit.setOnClickListener {
             val image = Intent().setAction(Intent.ACTION_GET_CONTENT)
             image.setType("image/*")
             startActivityForResult(image, imagePick)
@@ -73,6 +74,7 @@ class PharmacistProfileFragment : Fragment() {
         mobileTextView = view.findViewById(R.id.contactTV)
         locationTextView = view.findViewById(R.id.locationTV)
         editButtonView = view.findViewById(R.id.editBV)
+        cameraEdit = view.findViewById(R.id.pharmacistCameraEdit)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -28,8 +28,6 @@ class EditPatientProfileFragment : Fragment() {
     lateinit var editDoctor : EditText
     lateinit var editHospital : EditText
     lateinit var editUpdate : Button
-    lateinit var editImage : ImageView
-    lateinit var editUpload : Button
 
     var imgUri : Uri = Uri.parse("")
 
@@ -53,44 +51,11 @@ class EditPatientProfileFragment : Fragment() {
         initializeValues(view)
 
         val patientDetails = PatientClass(editName,editPhone,editDob,editRG,editFather,editMother,
-            editOther,editDoctor,editHospital,editImage,editUpload)
+            editOther,editDoctor,editHospital)
         editPresenter.populateEditPatientProfile(patientDetails)
 
         editUpdate.setOnClickListener {
             editPresenter.updatePatientProfile(patientDetails)
-        }
-
-        editUpload.setOnClickListener {
-            val gallery : Intent = Intent()
-            gallery.setAction(Intent.ACTION_GET_CONTENT)
-            gallery.setType("image/*")
-            startActivityForResult(gallery,1)
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 1 && resultCode == Activity.RESULT_OK && data != null) {
-            imgUri = data.data!!
-            uploadToStorage(reference,reference.currentUserId,imgUri,requireActivity())
-            editImage.setImageURI(imgUri)
-        } else Toast.makeText(activity,"ERROR!!",Toast.LENGTH_LONG).show()
-    }
-
-    fun uploadToStorage(reference: FirebasePresenter, currentUserId: String?, imgUri: Uri, activity: Context) {
-
-        val resultUri = imgUri
-        val path = reference.userProfileImgRef.child("$currentUserId.jpg")
-        path.putFile(resultUri).addOnCompleteListener {
-            if(it.isSuccessful) {
-                Toast.makeText(activity,"Profile image changed",Toast.LENGTH_SHORT).show()
-                path.downloadUrl.addOnSuccessListener {
-                    val downloadUrl = it.toString()
-                    reference.userReference.child(currentUserId!!).child("profileImage").setValue(downloadUrl).addOnCompleteListener {
-                        if(it.isSuccessful) Toast.makeText(activity,"Image stored",Toast.LENGTH_SHORT).show()
-                    }
-                }
-            } else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -105,7 +70,5 @@ class EditPatientProfileFragment : Fragment() {
         editDoctor = view.findViewById(R.id.editPDoctor)
         editHospital = view.findViewById(R.id.editPHospital)
         editUpdate = view.findViewById(R.id.editPUpdate)
-        editImage = view.findViewById(R.id.editProfileImageP)
-        editUpload = view.findViewById(R.id.editUploadImageP)
     }
 }

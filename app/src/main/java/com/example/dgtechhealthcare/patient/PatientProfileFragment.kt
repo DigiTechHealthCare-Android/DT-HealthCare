@@ -58,6 +58,7 @@ class PatientProfileFragment : Fragment() {
     lateinit var uploadReport : Button
     lateinit var prescribeMedB : Button
     lateinit var additianalInfo : TextView
+    lateinit var patientCamera : ImageView
 
     var galleryPick : Int = 0
     var choice = 0
@@ -138,6 +139,14 @@ class PatientProfileFragment : Fragment() {
 
         editProfileIV.setOnClickListener {
             editProfilePT()
+        }
+
+        patientCamera.setOnClickListener {
+            val gallery : Intent = Intent()
+            gallery.setAction(Intent.ACTION_GET_CONTENT)
+            gallery.setType("image/*")
+            choice = 1
+            startActivityForResult(gallery,galleryPick)
         }
 
         uploadReport.setOnClickListener {
@@ -318,6 +327,7 @@ class PatientProfileFragment : Fragment() {
         uploadReport = view.findViewById(R.id.uploadReportB)
         prescribeMedB = view.findViewById(R.id.prescribeMedB)
         additianalInfo = view.findViewById(R.id.addtionalInfoTV)
+        patientCamera = view.findViewById(R.id.patientCameraEdit)
 
         reference = FirebasePresenter(requireView())
         uploadClassReference = PatientUploadClass(view)

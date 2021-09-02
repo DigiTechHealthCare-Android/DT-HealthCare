@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.example.dgtechhealthcare.utils.NetworkUtil
 import com.example.dgtechhealthcare.view.DoctorDrawerNavigationActivity
 import com.example.dgtechhealthcare.view.PharmacistDrawerNavigationActivity
 import com.example.dgtechhealthcare.view.*
@@ -74,68 +75,72 @@ class SignInActivity : AppCompatActivity() {
     }
 
     fun sendToDashboard(){
-        if(auth.currentUser != null) {
-            loadingBar.setTitle("Authenticating")
-            loadingBar.setMessage("Please wait!")
-            loadingBar.setCanceledOnTouchOutside(false)
-            loadingBar.show()
+        val networkState = NetworkUtil().checkStatus(this,this.intent)
+        if (networkState){
+            if(auth.currentUser != null) {
+                loadingBar.setTitle("Authenticating")
+                loadingBar.setMessage("Please wait!")
+                loadingBar.setCanceledOnTouchOutside(false)
+                loadingBar.show()
 
-            FirebaseMessaging.getInstance().token.addOnCompleteListener {
-                if (it.isSuccessful){
-                    val token = it.result.toString()
-                    FirebaseDatabase.getInstance().reference.child("Users")
-                        .child(auth.currentUser!!.uid).child("token").setValue(token)
-                }
-            }
-
-            val job = CoroutineScope(Dispatchers.Default).launch {
-                val result = CoroutineScope(Dispatchers.Default).async {
-                    FlagTask().execute()
-                }
-                result.await()!!
-                Thread.sleep(4000)
-
-                if(type?.compareTo("patient") ==0){
-                    //val i = Intent(this@SignInActivity, PatientsNavigationActivity::class.java)
-                    val i = Intent(this@SignInActivity, PatientDrawerNavigationActivity::class.java)
-                    startActivity(i)
-                    loadingBar.dismiss()
-                    finish()
-                }else if(type?.compareTo("doctor") == 0) {
-                    loadingBar.dismiss()
-                    runOnUiThread {
-                        Toast.makeText(this@SignInActivity,"Welcome Doctor",Toast.LENGTH_LONG).show()
-                        val i = Intent(this@SignInActivity, DoctorDrawerNavigationActivity::class.java)
-                        startActivity(i)
-                        finish()
-                    }
-                } else if(type?.compareTo("nurse") == 0 ) {
-                    loadingBar.dismiss()
-                    runOnUiThread {
-                        Toast.makeText(this@SignInActivity,"Welcome",Toast.LENGTH_LONG).show()
-                        val i = Intent(this@SignInActivity,NurseDrawerNavigationActivity::class.java)
-                        startActivity(i)
-                        finish()
-                    }
-                } else if(type?.compareTo("pharmacist") == 0) {
-                    loadingBar.dismiss()
-                    runOnUiThread {
-                        Toast.makeText(this@SignInActivity,"Shop's open",Toast.LENGTH_LONG).show()
-                        val i = Intent(this@SignInActivity, PharmacistDrawerNavigationActivity::class.java)
-                        startActivity(i)
-                        finish()
-                    }
-                } else if(type?.compareTo("contentManager")==0){
-                    loadingBar.dismiss()
-                    runOnUiThread {
-                        Toast.makeText(this@SignInActivity,"Time to post content",Toast.LENGTH_LONG).show()
-                        val i = Intent(this@SignInActivity,ContentManagerDrawerNavigationActivity::class.java)
-                        startActivity(i)
-                        finish()
+                FirebaseMessaging.getInstance().token.addOnCompleteListener {
+                    if (it.isSuccessful){
+                        val token = it.result.toString()
+                        FirebaseDatabase.getInstance().reference.child("Users")
+                            .child(auth.currentUser!!.uid).child("token").setValue(token)
                     }
                 }
-            }
+
+                val job = CoroutineScope(Dispatchers.Default).launch {
+                    val result = CoroutineScope(Dispatchers.Default).async {
+                        FlagTask().execute()
+                    }
+                    result.await()!!
+                    Thread.sleep(4000)
+
+                    if(type?.compareTo("patient") ==0){
+                        //val i = Intent(this@SignInActivity, PatientsNavigationActivity::class.java)
+                        val i = Intent(this@SignInActivity, PatientDrawerNavigationActivity::class.java)
+                        startActivity(i)
+                        loadingBar.dismiss()
+                        finish()
+                    }else if(type?.compareTo("doctor") == 0) {
+                        loadingBar.dismiss()
+                        runOnUiThread {
+                            Toast.makeText(this@SignInActivity,"Welcome Doctor",Toast.LENGTH_LONG).show()
+                            val i = Intent(this@SignInActivity, DoctorDrawerNavigationActivity::class.java)
+                            startActivity(i)
+                            finish()
+                        }
+                    } else if(type?.compareTo("nurse") == 0 ) {
+                        loadingBar.dismiss()
+                        runOnUiThread {
+                            Toast.makeText(this@SignInActivity,"Welcome",Toast.LENGTH_LONG).show()
+                            val i = Intent(this@SignInActivity,NurseDrawerNavigationActivity::class.java)
+                            startActivity(i)
+                            finish()
+                        }
+                    } else if(type?.compareTo("pharmacist") == 0) {
+                        loadingBar.dismiss()
+                        runOnUiThread {
+                            Toast.makeText(this@SignInActivity,"Shop's open",Toast.LENGTH_LONG).show()
+                            val i = Intent(this@SignInActivity, PharmacistDrawerNavigationActivity::class.java)
+                            startActivity(i)
+                            finish()
+                        }
+                    } else if(type?.compareTo("contentManager")==0){
+                        loadingBar.dismiss()
+                        runOnUiThread {
+                            Toast.makeText(this@SignInActivity,"Time to post content",Toast.LENGTH_LONG).show()
+                            val i = Intent(this@SignInActivity,ContentManagerDrawerNavigationActivity::class.java)
+                            startActivity(i)
+                            finish()
+                        }
+                    }
+                }
+            } else {}
         } else {}
+
     }
 
     fun getResponse(id : String) : String? {

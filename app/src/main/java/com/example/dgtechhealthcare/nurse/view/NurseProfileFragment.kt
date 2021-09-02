@@ -29,6 +29,7 @@ class NurseProfileFragment : Fragment() {
     lateinit var dobTextView: TextView
     lateinit var genderTextView: TextView
     lateinit var editButton: ImageView
+    lateinit var cameraEdit : ImageView
 
     private val imagePick = 0
     lateinit var imageUri : Uri
@@ -58,6 +59,7 @@ class NurseProfileFragment : Fragment() {
         dobTextView = view.findViewById(R.id.birthTV)
         genderTextView = view.findViewById(R.id.genderTV)
         editButton = view.findViewById(R.id.editB)
+        cameraEdit = view.findViewById(R.id.nurseCameraEdit)
 
         editButton.setOnClickListener {
             val transaction = activity?.supportFragmentManager?.beginTransaction()
@@ -67,7 +69,7 @@ class NurseProfileFragment : Fragment() {
             transaction?.commit()
         }
 
-        nurseProfileImg.setOnClickListener {
+        cameraEdit.setOnClickListener {
             val image = Intent().setAction(Intent.ACTION_GET_CONTENT)
             image.setType("image/*")
             startActivityForResult(image, imagePick)
