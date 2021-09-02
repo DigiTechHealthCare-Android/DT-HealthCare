@@ -37,13 +37,13 @@
                 android:id="@+id/requestAcceptB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="68dp"
-                android:layout_marginBottom="120dp"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="40dp"
                 android:text="Accept"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/requestDeclineB"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/requestMed4"
-                app:layout_constraintVertical_bias="0.612" />
+                app:layout_constraintTop_toBottomOf="@+id/requestMed4" />
 
             <Button
                 android:id="@+id/requestDeclineB"
