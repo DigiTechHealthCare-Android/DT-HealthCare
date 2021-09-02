@@ -10,9 +10,9 @@
   <androidx.constraintlayout.widget.ConstraintLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:background="@drawable/background1">
+      android:background="@color/white">
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/imageView"
         android:layout_width="174dp"
         android:layout_height="149dp"
@@ -20,7 +20,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider6" />
+        app:layout_constraintTop_toBottomOf="@+id/divider6" />-->
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="229dp"
+        android:layout_height="188dp"
+
+        android:layout_marginTop="36dp"
+        android:layout_marginBottom="19dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/divider6"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="hospital.json"
+        app:lottie_loop="true" />
 
     <TextView
         android:id="@+id/aboutUs_TV"
