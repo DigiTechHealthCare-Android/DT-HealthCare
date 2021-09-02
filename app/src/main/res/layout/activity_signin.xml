@@ -52,18 +52,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:startIconDrawable="@drawable/emailimageicon">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/emailE"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:drawableLeft="@drawable/emailimageicon"
-                android:drawablePadding="16dp"
                 android:gravity="center"
                 android:hint="Email Address"
                 android:inputType="textEmailAddress"
-                android:paddingTop="9dp" />
+                android:paddingTop="9dp"
+                android:paddingEnd="56dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -73,17 +73,18 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
+            app:endIconMode="password_toggle"
             app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout8">
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout8"
+            app:startIconDrawable="@drawable/passwordimageicon">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passE"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:drawableLeft="@drawable/passwordimageicon"
                 android:drawablePadding="16dp"
                 android:gravity="center"
                 android:hint="Enter Password"
