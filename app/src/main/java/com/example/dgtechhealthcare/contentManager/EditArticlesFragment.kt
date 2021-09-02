@@ -51,6 +51,9 @@ class EditArticlesFragment : AppCompatActivity() {
                     contentRG.check(R.id.contentVideoRE)
                 } else if(type.compareTo("research")==0){
                     contentRG.check(R.id.contentResearchRE)
+                    contentUrl.visibility = View.GONE
+                    val t = findViewById<TextView>(R.id.textView84)
+                    t.visibility = View.GONE
                 }
                 title.setText(snapshot.child("title").value.toString())
                 contentDesc.setText(snapshot.child("desc").value.toString())
