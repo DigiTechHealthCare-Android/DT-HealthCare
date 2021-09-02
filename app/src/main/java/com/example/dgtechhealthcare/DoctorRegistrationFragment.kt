@@ -10,10 +10,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.example.dgtechhealthcare.utils.FirebasePresenter
-import com.example.dgtechhealthcare.view.DoctorDrawerNavigationActivity
 
 class DoctorRegistrationFragment : Fragment() {
-//testing
     lateinit var nameD : EditText
     lateinit var hospitalD : EditText
     lateinit var specializationD : EditText

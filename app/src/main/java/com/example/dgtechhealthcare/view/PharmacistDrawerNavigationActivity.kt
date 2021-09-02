@@ -9,7 +9,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
@@ -17,7 +16,6 @@ import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.SignInActivity
 import com.example.dgtechhealthcare.pharmacist.view.*
 import com.example.dgtechhealthcare.utils.FirebasePresenter
-import com.example.dgtechhealthcare.utils.LogoutClass
 import com.example.dgtechhealthcare.utils.SettingsFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DataSnapshot
@@ -78,8 +76,6 @@ class PharmacistDrawerNavigationActivity : AppCompatActivity(),
                 if(snapshot.hasChild("profileImage")) {
                     val img = snapshot.child("profileImage").value.toString()
                     Picasso.get().load(img).into(pharmacistIV)
-                    /*Glide.with(this@PharmacistDrawerNavigationActivity).load(img)
-                        .placeholder(R.drawable.loading1).into(pharmacistIV)*/
                 }
                 val name = snapshot.child("username").value.toString()
                 val email = snapshot.child("email").value.toString()
@@ -136,8 +132,8 @@ class PharmacistDrawerNavigationActivity : AppCompatActivity(),
                         startActivity(i)
                         finish()
                     })
-                builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which ->
-                })
+                builder.setNegativeButton("Cancel") { _, _ ->
+                }
                 builder.show()
             }
         }

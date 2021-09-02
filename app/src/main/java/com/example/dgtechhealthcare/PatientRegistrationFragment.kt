@@ -11,7 +11,6 @@ import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.Toast
 import com.example.dgtechhealthcare.utils.FirebasePresenter
-import com.example.dgtechhealthcare.view.PatientDrawerNavigationActivity
 
 class PatientRegistrationFragment : Fragment() {
 

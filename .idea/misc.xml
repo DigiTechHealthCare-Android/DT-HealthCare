@@ -7,6 +7,7 @@
         <entry key="..\:/Training/HealthCareProject/HealthCare/DT-HealthCare/app/src/main/res/layout/fragment_edit_patient_profile.xml" value="0.1796875" />
         <entry key="..\:/Training/HealthCareProject/HealthCare/DT-HealthCare/app/src/main/res/layout/fragment_edit_pharmacist.xml" value="0.1796875" />
         <entry key="..\:/Training/HealthCareProject/HealthCare/DT-HealthCare/app/src/main/res/layout/fragment_nurse_patients.xml" value="0.1796875" />
+        <entry key="..\:/Training/HealthCareProject/HealthCare/DT-HealthCare/app/src/main/res/layout/fragment_patient_info.xml" value="0.1796875" />
         <entry key="..\:/Users/91982/Desktop/HealthCareProject/HealthCare/DT-HealthCare/app/src/main/res/drawable/profile.xml" value="0.2703125" />
         <entry key="..\:/Users/91982/Desktop/HealthCareProject/HealthCare/DT-HealthCare/app/src/main/res/layout/activity_nurse_navigation.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/91982/Desktop/HealthCareProject/HealthCare/DT-HealthCare/app/src/main/res/layout/fragment_edit_nurse_profile.xml" value="0.25416666666666665" />
@@ -66,7 +67,6 @@
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/menu/nurse_nav_drawer_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/menu/nurse_nav_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/menu/patient_nav_drawer_menu.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/menu/patient_nav_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/menu/pharmacist_nav_drawer_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DT-HealthCare/app/src/main/res/menu/pharmacist_nav_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jasmeet/AndroidStudioProjects/DigiTech/DT-HealthCare/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />

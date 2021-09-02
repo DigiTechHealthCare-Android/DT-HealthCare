@@ -27,8 +27,6 @@ class RequestDescriptionFragment : Fragment() {
     var userID = ""
     var type = ""
 
-    val TAG = "DoctorPrescribe"
-
     lateinit var reference: FirebasePresenter
     lateinit var presenter : RequestDescriptionPresenter
 

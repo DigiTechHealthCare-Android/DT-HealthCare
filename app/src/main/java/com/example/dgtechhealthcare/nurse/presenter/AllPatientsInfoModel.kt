@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,7 +28,6 @@ class AllPatientsInfoModel(val view: View) {
     var lastItem : String? = null
 
     // Patients List for Nurse Section
-
     fun displayNursePatients(patientList: RecyclerView, activity: FragmentActivity, layoutManager: LinearLayoutManager){
         val options = FirebaseRecyclerOptions.Builder<PatientInfoDataClass>()
             .setQuery(reference.nurseReference.child(reference.currentUserId!!)
@@ -67,7 +65,6 @@ class AllPatientsInfoModel(val view: View) {
                     })
                     lastItem = userID
                     holder.cardView.setOnClickListener {
-//                        Toast.makeText(activity, "Patient id: ${userID.toString()}", Toast.LENGTH_LONG).show()
                         val frag = PatientProfileFragment()
                         val bundle = Bundle()
                         bundle.putString("userKey",userID.toString())

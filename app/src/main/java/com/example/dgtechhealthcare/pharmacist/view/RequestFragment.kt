@@ -55,7 +55,6 @@ class RequestFragment : Fragment() {
         layout.reverseLayout = true
         layout.stackFromEnd = true
         recyclerView.layoutManager = layout
-        //noRequest.visibility = View.INVISIBLE
         requestModel.displayAllRequests(recyclerView,requireActivity(),"requests",noRequest)
     }
 

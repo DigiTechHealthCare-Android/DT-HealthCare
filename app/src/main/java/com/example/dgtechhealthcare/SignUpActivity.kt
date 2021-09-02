@@ -17,7 +17,6 @@ class SignUpActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     lateinit var userName : EditText
     lateinit var userEmail : EditText
     lateinit var userPass : EditText
-    lateinit var userConfirm : EditText
 
     var roleChoice = ""
 
@@ -34,7 +33,6 @@ class SignUpActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         userName = findViewById(R.id.userEV)
         userEmail = findViewById(R.id.emailEV)
         userPass = findViewById(R.id.passwordEV)
-      //  userConfirm = findViewById(R.id.conPassEV)
 
         val loginT = findViewById<TextView>(R.id.loginT)
         loginT.setOnClickListener {
