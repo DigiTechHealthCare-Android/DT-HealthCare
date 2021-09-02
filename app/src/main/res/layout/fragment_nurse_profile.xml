@@ -80,6 +80,7 @@
             android:text="Name:"
             android:textColor="@color/black"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nurseIV" />
 
@@ -92,6 +93,7 @@
             android:text="Contact Number:"
             android:textColor="@color/black"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
@@ -104,6 +106,7 @@
             android:text="Hospital Name:"
             android:textColor="@color/black"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
@@ -116,6 +119,7 @@
             android:text="Email:"
             android:textColor="@color/black"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
@@ -140,6 +144,7 @@
             android:text="D.O.B:"
             android:textColor="@color/black"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
@@ -164,6 +169,7 @@
             android:text="Gender:"
             android:textColor="@color/black"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView34" />
 
