@@ -138,7 +138,7 @@
             android:layout_marginStart="60dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
-            android:text="Already Registered?"
+            android:text="Already Registered"
             android:textAlignment="textEnd"
             android:textColor="#1C1919"
             android:textSize="16sp"
