@@ -18,7 +18,6 @@ import com.example.dgtechhealthcare.contentManager.CRUDContentActivity
 import com.example.dgtechhealthcare.contentManager.ContentManagerProfileFragment
 import com.example.dgtechhealthcare.editProfile.EditContentManagerProfileFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
-import com.example.dgtechhealthcare.utils.LogoutClass
 import com.example.dgtechhealthcare.utils.SettingsFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DataSnapshot

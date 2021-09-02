@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import android.widget.*
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.utils.FirebasePresenter
-import java.io.File
 
 class EditPatientProfileFragment : Fragment() {
 

@@ -62,7 +62,6 @@ class PatientInfoModel(val view:View) {
                     })
                     lastItem = userID
                     holder.cardView.setOnClickListener {
-                        //Toast.makeText(it.context,"${userID}",Toast.LENGTH_LONG).show()
                         val frag = PatientProfileFragment()
                         val bundle = Bundle()
                         bundle.putString("userKey",userID.toString())

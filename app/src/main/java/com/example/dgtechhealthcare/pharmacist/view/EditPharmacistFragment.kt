@@ -18,7 +18,6 @@ class EditPharmacistFragment : Fragment() {
     lateinit var reference: FirebasePresenter
     lateinit var presenter : PharmacistPresenter
 
-    lateinit var pharmacistProfileImageView: ImageView
     lateinit var nameTextView: TextView
     lateinit var mobileTextView: TextView
     lateinit var pharmacyNameTextView: TextView

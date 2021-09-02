@@ -5,7 +5,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dgtechhealthcare.R
@@ -33,7 +32,6 @@ class EditArticlesFragment : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_edit_articles)
-        //contentUid = arguments?.getString("userID","")!!
         contentUid = intent.getStringExtra("userID")!!
 
         initializeValues()

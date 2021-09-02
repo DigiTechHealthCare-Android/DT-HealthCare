@@ -14,9 +14,6 @@ class NursePatientFragment : Fragment() {
 
     lateinit var recyclerView: RecyclerView
     lateinit var patientInfoPresenter : AllPatientsInfoPresenter
-//    lateinit var tempDialog: ProgressDialog
-//    lateinit var mCountDownTimer: CountDownTimer
-//    val i = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,14 +31,6 @@ class NursePatientFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        tempDialog = ProgressDialog(activity)
-//        tempDialog.setMessage("Please wait...")
-//        tempDialog.setCancelable(false)
-//        tempDialog.progress = i
-//        tempDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER)
-//        tempDialog.window?.setBackgroundDrawable(ColorDrawable(Color.GRAY))
-
-
         initializeValues(view)
 
         recyclerView.setHasFixedSize(true)
@@ -50,16 +39,6 @@ class NursePatientFragment : Fragment() {
 
         patientInfoPresenter.displayNursePatients(recyclerView,requireActivity(),layout)
 
-//        tempDialog.show()
-//        mCountDownTimer = object : CountDownTimer(2000, 1000) {
-//            override fun onTick(millisUntilFinished: Long) {
-//                tempDialog.setMessage("Please wait...")
-//            }
-//
-//            override fun onFinish() {
-//                tempDialog.dismiss()
-//            }
-//        }.start()
     }
 
     private fun initializeValues(view: View) {

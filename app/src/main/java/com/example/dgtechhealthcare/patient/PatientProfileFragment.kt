@@ -2,13 +2,11 @@ package com.example.dgtechhealthcare.patient
 
 import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.os.Looper
 import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -22,7 +20,6 @@ import androidx.core.content.FileProvider
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.doctorPrescribeMedicine.DoctorPrescribeMedicineFragment
 import com.example.dgtechhealthcare.editProfile.EditPatientProfileFragment
-import com.example.dgtechhealthcare.nurse.model.NurseData
 import com.example.dgtechhealthcare.patient.presenter.PatientUploadClass
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.utils.ViewImageActivity
@@ -37,7 +34,6 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.io.IOException
 import java.lang.Exception
-import java.net.HttpURLConnection
 import java.net.URL
 import java.net.URLConnection
 import java.text.SimpleDateFormat
@@ -87,7 +83,6 @@ class PatientProfileFragment : Fragment() {
         initializeValues(view)
 
         userKey = arguments?.getString("userKey","")
-        //from = arguments?.getString("from","")!!
 
         if(userKey?.isNotEmpty() == true){
             userID = userKey.toString()
@@ -140,14 +135,6 @@ class PatientProfileFragment : Fragment() {
                 ?.replace(R.id.patientProfileFrame,frag)
                 ?.addToBackStack(null)?.commit()
         }
-
-//        userprofileImg.setOnClickListener {
-//            val gallery : Intent = Intent()
-//            gallery.setAction(Intent.ACTION_GET_CONTENT)
-//            gallery.setType("image/*")
-//            choice = 1
-//            startActivityForResult(gallery,galleryPick)
-//        }
 
         editProfileIV.setOnClickListener {
             editProfilePT()
@@ -279,17 +266,14 @@ class PatientProfileFragment : Fragment() {
 
     @Throws(IOException::class)
     private fun createImageFile(): File {
-        // Create an image file name
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
         val storageDir: File = activity?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!
-        //val storageDir : File = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
 
         return File.createTempFile(
-            "JPEG_${timeStamp}_", /* prefix */
-            ".jpg", /* suffix */
-            storageDir /* directory */
+            "JPEG_${timeStamp}_",
+            ".jpg",
+            storageDir
         ).apply {
-            // Save a file: path for use with ACTION_VIEW intents
             currentPhotoPath = absolutePath
         }
     }
@@ -302,7 +286,6 @@ class PatientProfileFragment : Fragment() {
                 val photoFile: File? = try {
                     createImageFile()
                 } catch (ex: IOException) {
-                    // Error occurred while creating the File
                     null
                 }
                 // Continue only if the File was successfully created
