@@ -78,8 +78,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/textView39"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView39"
                 app:layout_constraintTop_toBottomOf="@+id/textView39" />
 
             <TextView
