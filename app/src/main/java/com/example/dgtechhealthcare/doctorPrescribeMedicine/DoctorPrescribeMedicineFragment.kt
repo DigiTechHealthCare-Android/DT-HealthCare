@@ -1,7 +1,6 @@
 package com.example.dgtechhealthcare.doctorPrescribeMedicine
 
 import android.app.AlertDialog
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -10,10 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.android.volley.DefaultRetryPolicy
-import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.Volley
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.pushNotification.*
 import com.example.dgtechhealthcare.utils.FirebasePresenter
@@ -21,12 +16,10 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.messaging.FirebaseMessaging
-import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.json.JSONObject
 import java.lang.Exception
 
 const val TOPIC = "/topics/myTopic2"

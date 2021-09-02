@@ -109,7 +109,6 @@ class PatientAddtionalFragment : Fragment() {
                                     val img = contentType?.startsWith("image/")
                                     if(img!!){
                                         activity?.runOnUiThread {
-                                            Toast.makeText(activity,"it's an image",Toast.LENGTH_LONG).show()
                                             val i = Intent(activity, ViewImageActivity::class.java)
                                             i.putExtra("url",report)
                                             startActivity(i)

@@ -12,7 +12,6 @@ import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.SignInActivity
 import com.example.dgtechhealthcare.doctorPrescribeMedicine.DoctorPrescribeMedicineFragment
@@ -21,7 +20,6 @@ import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.android.material.navigation.NavigationView
 import com.example.dgtechhealthcare.patient.PatientArticleFragment
 import com.example.dgtechhealthcare.patient.PatientProfileFragment
-import com.example.dgtechhealthcare.utils.LogoutClass
 import com.example.dgtechhealthcare.utils.SettingsFragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

@@ -83,7 +83,7 @@ class AddContentModel(view : View) {
                 path.downloadUrl.addOnSuccessListener {
                     val downloadUrl = it.toString()
                     reference.articleReference.child(contentUid).child("imageRef").setValue(downloadUrl).addOnCompleteListener {
-                        if(it.isSuccessful) Toast.makeText(requireActivity,"$downloadUrl",Toast.LENGTH_LONG).show()
+                        if(it.isSuccessful) Toast.makeText(requireActivity,"Image Uploaded",Toast.LENGTH_LONG).show()
                     }
                 }
             } else Toast.makeText(requireActivity,"Error: ${it.exception?.message}",Toast.LENGTH_LONG).show()

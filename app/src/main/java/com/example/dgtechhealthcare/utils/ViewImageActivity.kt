@@ -3,8 +3,8 @@ package com.example.dgtechhealthcare.utils
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
-import com.bumptech.glide.Glide
 import com.example.dgtechhealthcare.R
+import com.squareup.picasso.Picasso
 
 class ViewImageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,6 +14,6 @@ class ViewImageActivity : AppCompatActivity() {
         val i = intent.getStringExtra("url")
 
         val reportImage = findViewById<ImageView>(R.id.viewImageReport)
-        Glide.with(this).load(i).into(reportImage)
+        Picasso.get().load(i).into(reportImage)
     }
 }

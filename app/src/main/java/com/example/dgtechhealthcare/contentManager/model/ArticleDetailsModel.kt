@@ -9,11 +9,9 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
-import com.bumptech.glide.Glide
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.contentManager.EditArticlesFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
@@ -68,12 +66,6 @@ class ArticleDetailsModel(view : View) {
         val i = Intent(activity,EditArticlesFragment::class.java)
         i.putExtra("userID",userID)
         activity.startActivity(i)
-        /*val frag = EditArticlesFragment()
-        val bundle = Bundle()
-        bundle.putString("userID",userID)
-        frag.arguments = bundle
-        activity?.supportFragmentManager?.beginTransaction()
-            ?.replace(R.id.contentShowCV,frag)?.addToBackStack(null)?.commit()*/
     }
 
     fun populateArtcile(articleID: String, cTitle: TextView, userName: TextView,
@@ -100,15 +92,10 @@ class ArticleDetailsModel(view : View) {
 
 
                 if(type.compareTo("image")==0){
-                    Glide.with(requireActivity)
-                        .load(snapshot.child("imageRef").value.toString())
-                        .placeholder(R.drawable.loading1).into(cImg)
-                    //Picasso.get().load(snapshot.child("imageRef").value.toString()).into(cImg)
+                    Picasso.get().load(snapshot.child("imageRef").value.toString()).into(cImg)
                     cDesc.setText(snapshot.child("desc").value.toString())
                 } else if(type.compareTo("research")==0){
                     Picasso.get().load(R.drawable.researchdemoimg).into(cImg)
-                    //Glide.with(requireActivity).load(R.drawable.researchdemoimg).into(cImg)
-
 
                     var url = ""
                     if(snapshot.hasChild("researchRef")) {

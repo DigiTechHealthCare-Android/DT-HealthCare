@@ -13,7 +13,6 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.SignInActivity
 import com.example.dgtechhealthcare.pharmacist.view.*

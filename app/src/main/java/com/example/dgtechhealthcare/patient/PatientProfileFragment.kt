@@ -19,7 +19,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.FileProvider
-import com.bumptech.glide.Glide
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.doctorPrescribeMedicine.DoctorPrescribeMedicineFragment
 import com.example.dgtechhealthcare.editProfile.EditPatientProfileFragment
@@ -229,7 +228,7 @@ class PatientProfileFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.hasChild("profileImage")) {
                     val img = snapshot.child("profileImage").value.toString()
-                    Glide.with(view).load(img).circleCrop().placeholder(R.drawable.loading0).into(userprofileImg)
+                    Picasso.get().load(img).into(userprofileImg)
                 }
                 val name = snapshot.child("username").value.toString()
                 val mob = snapshot.child("contactNo").value.toString()
@@ -270,7 +269,6 @@ class PatientProfileFragment : Fragment() {
             Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE).also { mediaScanIntent ->
                 mediaScanIntent.data = Uri.fromFile(f)
                 activity?.sendBroadcast(mediaScanIntent)
-
                 uploadClassReference.uploadReportToFirebase(f.name,Uri.fromFile(f),requireActivity())
             }
 

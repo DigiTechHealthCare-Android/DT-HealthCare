@@ -4,8 +4,6 @@ import android.content.Intent
 import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
-import androidx.core.app.ActivityCompat.startActivityForResult
-import com.bumptech.glide.Glide
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.nurse.model.NurseData
 import com.example.dgtechhealthcare.utils.FirebasePresenter
@@ -33,9 +31,7 @@ class EditProfileModel(val view: View) {
                 val hospital = snapshot.child("hostpitalName").value.toString()
 
                 if (snapshot.hasChild("profileImage")){
-                    //Picasso.get().load(snapshot.child("profileImage").value.toString()).into(patientDetails.image)
-                    Glide.with(view).load(snapshot.child("profileImage").value.toString())
-                        .placeholder(R.drawable.loading1).into(patientDetails.image)
+                    Picasso.get().load(snapshot.child("profileImage").value.toString()).into(patientDetails.image)
                 }
 
                 patientDetails.name.setText(name)

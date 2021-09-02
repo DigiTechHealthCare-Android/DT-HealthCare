@@ -146,7 +146,7 @@ class AddContentFragment : Fragment() {
                 path.downloadUrl.addOnSuccessListener {
                     val downloadUrl = it.toString()
                     reference.articleReference.child(contentUid).child("researchRef").setValue(downloadUrl).addOnCompleteListener {
-                        if(it.isSuccessful) Toast.makeText(requireActivity,"$downloadUrl",Toast.LENGTH_LONG).show()
+                        if(it.isSuccessful) Toast.makeText(requireActivity,"Image Uploaded",Toast.LENGTH_LONG).show()
                     }
                 }
             } else Toast.makeText(requireActivity,"Error: ${it.exception?.message}",Toast.LENGTH_LONG).show()

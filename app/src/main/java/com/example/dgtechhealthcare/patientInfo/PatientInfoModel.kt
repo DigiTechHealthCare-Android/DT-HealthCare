@@ -10,7 +10,6 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.patient.PatientProfileFragment
@@ -53,9 +52,7 @@ class PatientInfoModel(val view:View) {
                             val contact = snapshot.child("contactNo").value.toString()
                             if(snapshot.hasChild("profileImage")) {
                                 val profileImg = snapshot.child("profileImage").value.toString()
-                                //Picasso.get().load(profileImg).into(holder.imgV)
-                                Glide.with(view.context).load(profileImg)
-                                    .placeholder(R.drawable.loading1).into(holder.imgV)
+                                Picasso.get().load(profileImg).into(holder.imgV)
                             }
                             holder.usernameT.setText(username)
                             holder.contactT.setText(contact)

@@ -1,33 +1,24 @@
 package com.example.dgtechhealthcare.contentManager
 
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.utils.ViewPdfActivity
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.google.android.youtube.player.YouTubeInitializationResult
-import com.google.android.youtube.player.YouTubePlayer
-import com.google.android.youtube.player.YouTubePlayerSupportFragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
-import java.util.regex.Pattern
 
 class ContentMangerShowContentFragment(val view: View) {
 
@@ -52,16 +43,10 @@ class ContentMangerShowContentFragment(val view: View) {
                         position: Int, model: ManagerDataClass) {
 
                         var type = ""
-                        var researchUrl = ""
-                        var url = ""
-                        var checkUrl : Boolean = false
                         val userID = getRef(position).key
                         reference.articleReference.child(userID!!).addValueEventListener(object : ValueEventListener{
                             override fun onDataChange(snapshot: DataSnapshot) {
                                 type = snapshot.child("type").value.toString()
-                                researchUrl = snapshot.child("researchRef").value.toString()
-                                url = snapshot.child("url").value.toString()
-                                if (snapshot.hasChild("researchRef")) checkUrl = true
 
                                 val desc = snapshot.child("desc").value.toString()
                                 if(desc.isNullOrEmpty()) holder.desc.setText("No Description Found")
@@ -98,27 +83,6 @@ class ContentMangerShowContentFragment(val view: View) {
                             } catch (e : Exception){
                                 Toast.makeText(activity,"Please try again",Toast.LENGTH_LONG).show()
                             }
-
-                            /*if(type.compareTo("research")==0){
-                                if (checkUrl){
-                                    val i = Intent(activity, ViewPdfActivity::class.java)
-                                    i.putExtra("url",researchUrl)
-                                    activity.startActivity(i)
-                                } else {
-                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                                    activity.startActivity(intent)
-                                    activity.supportFragmentManager.popBackStack()
-                                }
-
-                            } else if(type.compareTo("video")==0 || type.compareTo("image")==0) {
-                                val frag = ArticleDetailsFragment()
-                                val bundle = Bundle()
-                                bundle.putString("articleID",userID)
-                                bundle.putString("type", type)
-                                frag.arguments = bundle
-                                activity?.supportFragmentManager?.beginTransaction()
-                                    ?.replace(R.id.contentFrame,frag).addToBackStack(null).commit()
-                            }*/
                         }
                     }
                 }
@@ -160,8 +124,6 @@ class ContentMangerShowContentFragment(val view: View) {
                                 holder.name.setText(name)
                                 val img = snapshot.child("publisherImage").value.toString()
                                 Picasso.get().load(img).into(holder.img)
-                                /*Glide.with(view.context).load(img)
-                                    .placeholder(R.drawable.loading1).into(holder.img)*/
                             }
                             override fun onCancelled(error: DatabaseError) {}
                         })
@@ -175,7 +137,6 @@ class ContentMangerShowContentFragment(val view: View) {
                                 }
                                 override fun onCancelled(error: DatabaseError) {}
                             })
-                            //Toast.makeText(activity,"$type",Toast.LENGTH_LONG).show()
                             if(type.compareTo("research")==0){
                                 if (checkUrl){
                                     val i = Intent(activity, ViewPdfActivity::class.java)
