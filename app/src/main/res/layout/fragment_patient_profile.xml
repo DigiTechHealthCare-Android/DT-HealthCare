@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="410dp"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,6 +36,7 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/patientIV"
+
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="48dp"
@@ -124,7 +125,7 @@
                 android:id="@+id/viewPrescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
+                android:layout_marginStart="76dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="30dp"
                 android:drawableLeft="@drawable/viewprescription"
@@ -208,7 +209,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="68dp"
+                android:layout_marginEnd="64dp"
                 android:drawableLeft="@drawable/hospitalicondark"
                 android:text="View Report"
                 android:textColor="@color/purple_700"
