@@ -2,13 +2,10 @@ package com.example.dgtechhealthcare.pharmacist.model
 
 import android.view.View
 import android.widget.Toast
-import com.example.dgtechhealthcare.R
-import com.example.dgtechhealthcare.pharmacist.view.PharmacistProfileFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.squareup.picasso.Picasso
 
 class EditPharmacistModel(view : View) {
 
@@ -60,12 +57,6 @@ class EditPharmacistModel(view : View) {
                     }
                 }
             }
-
-            /*val transaction = //it.context?.supportFragmentManager?.beginTransaction()
-            val frag = PharmacistProfileFragment()
-            transaction?.replace(R.id.fragment_container_pharmacist, frag)
-            transaction?.addToBackStack(null)
-            transaction?.commit()*/
         }
     }
 }

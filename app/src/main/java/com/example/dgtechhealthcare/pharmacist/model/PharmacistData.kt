@@ -1,7 +1,6 @@
 package com.example.dgtechhealthcare.pharmacist.model
 
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 

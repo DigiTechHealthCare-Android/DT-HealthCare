@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var signUpButton : Button
 
-    //lateinit var reference : FirebasePresenter
     lateinit var loadingBar : ProgressDialog
 
     lateinit var mauth : FirebaseAuth
@@ -34,59 +33,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //reference = FirebasePresenter(android.view.View(this))
         mauth = FirebaseAuth.getInstance()
         loadingBar = ProgressDialog(this)
-
-        /*if(mauth.currentUser != null) {
-            loadingBar.setTitle("Authenticating")
-            loadingBar.setMessage("Please wait!")
-            loadingBar.setCanceledOnTouchOutside(false)
-            loadingBar.show()
-
-            val job = CoroutineScope(Dispatchers.Default).launch {
-                val result = CoroutineScope(Dispatchers.Default).async {
-                    FlagTask().execute()
-                }
-                result.await()!!
-                Thread.sleep(4000)
-
-                if(type?.compareTo("patient") ==0){
-                    val i = Intent(this@MainActivity, PatientDrawerNavigationActivity::class.java)
-                    startActivity(i)
-                    loadingBar.dismiss()
-                    finish()
-                }else if(type?.compareTo("doctor") == 0) {
-                    loadingBar.dismiss()
-                    runOnUiThread {
-                        Toast.makeText(this@MainActivity,"Welcome Doctor",Toast.LENGTH_LONG).show()
-                        val i = Intent(this@MainActivity, DoctorDrawerNavigationActivity::class.java)
-                        startActivity(i)
-                        finish()
-                    }
-                } else if(type?.compareTo("nurse") == 0 ) {
-                    loadingBar.dismiss()
-                    runOnUiThread {
-                        Toast.makeText(this@MainActivity,"Welcome",Toast.LENGTH_LONG).show()
-                        val i = Intent(this@MainActivity, NurseDrawerNavigationActivity::class.java)
-                        startActivity(i)
-                        finish()
-                    }
-                } else if(type?.compareTo("pharmacist") == 0) {
-                    loadingBar.dismiss()
-                    runOnUiThread {
-                        Toast.makeText(this@MainActivity,"Shop's open",Toast.LENGTH_LONG).show()
-                        val i = Intent(this@MainActivity, PharmacistNavigationActivity::class.java)
-                        startActivity(i)
-                        finish()
-                    }
-                }
-            }
-        } else {
-//            val i = Intent(this,SignInActivity::class.java)
-//            startActivity(i)
-//            finish()
-        }*/
 
         signUpButton = findViewById(R.id.signupB)
 

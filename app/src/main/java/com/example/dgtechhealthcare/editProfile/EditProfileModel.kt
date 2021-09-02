@@ -1,6 +1,5 @@
 package com.example.dgtechhealthcare.editProfile
 
-import android.content.Intent
 import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
@@ -129,7 +128,7 @@ class EditProfileModel(val view: View) {
             })
         }
 
-        // data PatientData in Nurse Node in Firebase
+        // PatientData in Nurse Node in Firebase
 
         if (patientDetails.name.text.isNotEmpty() && patientDetails.hospital.text.isNotEmpty()){
 

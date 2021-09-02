@@ -72,7 +72,6 @@ class PatientDrawerNavigationActivity : AppCompatActivity(),
                 if(snapshot.hasChild("profileImage")) {
                     val img = snapshot.child("profileImage").value.toString()
                     Picasso.get().load(img).into(userIV)
-                    //Glide.with(this@PatientDrawerNavigationActivity).load(img).circleCrop().placeholder(R.drawable.loading0).into(userIV)
                 }
                 val name = snapshot.child("username").value.toString()
                 val email = snapshot.child("email").value.toString()
@@ -89,7 +88,6 @@ class PatientDrawerNavigationActivity : AppCompatActivity(),
         setToolbarTitle("Patient Article")
         changeFragment(PatientArticleFragment())
 
-        //Toast.makeText(this,"$p",Toast.LENGTH_LONG).show()
         if(p?.compareTo("doctor")==0){
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container,DoctorPrescribeMedicineFragment())

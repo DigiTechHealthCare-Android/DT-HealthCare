@@ -77,7 +77,6 @@ class EditNurseProfileFragment : Fragment() {
                 hospitalNameTextView.text = "${nurseData?.hospital}"
                 emailTextView.text = "${nurseData?.email}"
                 dobTextView.text = "${nurseData?.dateOfBirth}"
-//                genderTextView.text = "${nurseData?.gender}"
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -96,7 +95,6 @@ class EditNurseProfileFragment : Fragment() {
         // update data on clicking update button
 
         updateButton.setOnClickListener {
-            //updateData()
             if(nameTextView.text.isEmpty()) Toast.makeText(activity,"Name is empty", Toast.LENGTH_LONG).show()
             else if(hospitalNameTextView.text.isEmpty()) Toast.makeText(activity,"Hospital name is empty", Toast.LENGTH_LONG).show()
             else if(mobileTextView.text.length > 10)  Toast.makeText(activity,"Invalid mobile number", Toast.LENGTH_LONG).show()

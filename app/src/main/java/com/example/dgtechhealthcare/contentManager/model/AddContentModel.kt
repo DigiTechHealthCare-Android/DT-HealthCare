@@ -71,7 +71,6 @@ class AddContentModel(view : View) {
         })
     }
 
-
     fun uploadImageToDatabase(reference: FirebasePresenter, currentUserId: String?, imgUri: Uri,
         requireActivity: FragmentActivity, contentUid: String) {
 

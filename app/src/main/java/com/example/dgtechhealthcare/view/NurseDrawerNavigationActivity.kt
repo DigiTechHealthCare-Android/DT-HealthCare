@@ -18,7 +18,6 @@ import com.example.dgtechhealthcare.nurse.view.NursePatientFragment
 import com.example.dgtechhealthcare.nurse.view.NurseProfileFragment
 import com.example.dgtechhealthcare.nurse.view.EditNurseProfileFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
-import com.example.dgtechhealthcare.utils.LogoutClass
 import com.example.dgtechhealthcare.utils.SettingsFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DataSnapshot

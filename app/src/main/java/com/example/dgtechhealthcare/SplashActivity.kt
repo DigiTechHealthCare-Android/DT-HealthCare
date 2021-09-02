@@ -42,7 +42,6 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         val test : String? = intent.getStringExtra("test")
-        //Toast.makeText(this,"$test",Toast.LENGTH_LONG).show()
 
         auth = FirebaseAuth.getInstance()
         loadingBar = ProgressDialog(this)
@@ -63,7 +62,6 @@ class SplashActivity : AppCompatActivity() {
                     FirebaseMessaging.getInstance().token.addOnCompleteListener {
                         if (it.isSuccessful){
                             val token = it.result.toString()
-                            //Toast.makeText(this,"${token}", Toast.LENGTH_LONG).show()
                             FirebaseDatabase.getInstance().reference.child("Users")
                                 .child(auth.currentUser!!.uid).child("token").setValue(token)
                         }
@@ -77,7 +75,6 @@ class SplashActivity : AppCompatActivity() {
                         Thread.sleep(4000)
 
                         if(type?.compareTo("patient") ==0){
-                            //val i = Intent(this@SignInActivity, PatientsNavigationActivity::class.java)
                             val i = Intent(this@SplashActivity, PatientDrawerNavigationActivity::class.java)
                             if(test?.compareTo("doctor")==0){
                                 i.putExtra("test","doctor")
@@ -129,7 +126,6 @@ class SplashActivity : AppCompatActivity() {
                     overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out)
                     finish()
                 }
-                //val i = Intent(this,MainActivity::class.java)
             }
         }
     }
