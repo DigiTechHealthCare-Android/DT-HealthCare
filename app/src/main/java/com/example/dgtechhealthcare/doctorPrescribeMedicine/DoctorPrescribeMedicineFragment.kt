@@ -184,35 +184,42 @@ class DoctorPrescribeMedicineFragment : Fragment(), AdapterView.OnItemSelectedLi
 
             }
             else if(prescribeB.text.toString().compareTo("Prescribe Medicine")==0) {
-                val ref = reference.userReference.child(patientID!!).child("prescribedMedicine")
-                ref.child("morning").child("name").setValue(morningMed.text.toString())
-                ref.child("afternoon").child("name").setValue(afternoonMed.text.toString())
-                ref.child("evening").child("name").setValue(eveningMed.text.toString())
-                ref.child("night").child("name").setValue(nightMed.text.toString())
+                if (!morningMed.text.isNullOrEmpty() || !afternoonMed.text.isNullOrEmpty() || !eveningMed.text.isNullOrEmpty() || !nightMed.text.isNullOrEmpty())
+                {
+                    val ref = reference.userReference.child(patientID!!).child("prescribedMedicine")
+                    ref.child("morning").child("name").setValue(morningMed.text.toString())
+                    ref.child("afternoon").child("name").setValue(afternoonMed.text.toString())
+                    ref.child("evening").child("name").setValue(eveningMed.text.toString())
+                    ref.child("night").child("name").setValue(nightMed.text.toString())
 
-                reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        val username = snapshot.child("username").value.toString()
+                    reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            val username = snapshot.child("username").value.toString()
 
-                        reference.userReference.child(userType!!).addValueEventListener(object : ValueEventListener{
-                            override fun onDataChange(snapshot: DataSnapshot) {
-                                val token = snapshot.child("token").value.toString()
-                                FirebaseNotificationService.sharedPref = activity?.getSharedPreferences("sharedPref",Context.MODE_PRIVATE)
-                                FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
-                                val title = "New Prescription"
-                                val message = "From Dr. $username"
-                                PushNotification(NotificationData(title,message,"doctor")
-                                    , token
-                                ).also {
-                                    sendNotification(it)
+                            reference.userReference.child(userType!!).addValueEventListener(object : ValueEventListener{
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    val token = snapshot.child("token").value.toString()
+                                    FirebaseNotificationService.sharedPref = activity?.getSharedPreferences("sharedPref",Context.MODE_PRIVATE)
+                                    FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
+                                    val title = "New Prescription"
+                                    val message = "From Dr. $username"
+                                    PushNotification(NotificationData(title,message,"doctor")
+                                        , token
+                                    ).also {
+                                        sendNotification(it)
+                                    }
                                 }
-                            }
-                            override fun onCancelled(error: DatabaseError) {}
-                        })
-                    }
-                    override fun onCancelled(error: DatabaseError) {}
-                })
-                Toast.makeText(activity,"Prescription given",Toast.LENGTH_LONG).show()
+                                override fun onCancelled(error: DatabaseError) {}
+                            })
+                        }
+                        override fun onCancelled(error: DatabaseError) {}
+                    })
+                    Toast.makeText(activity,"Prescription given",Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(activity,"Prescription is Empty",Toast.LENGTH_LONG).show()
+                }
+
+
 
             }
             else if(prescribeB.text.toString().compareTo("Update Status")==0) {
