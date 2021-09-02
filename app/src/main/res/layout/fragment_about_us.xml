@@ -10,7 +10,7 @@
   <androidx.constraintlayout.widget.ConstraintLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:background="@color/white">
+      android:background="@drawable/aboutusimage">
 
     <!--<ImageView
         android:id="@+id/imageView"
@@ -42,9 +42,9 @@
         android:id="@+id/aboutUs_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="26dp"
         android:text="About Us"
-        android:textColor="@color/purple_700"
+        android:textColor="@color/white"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +56,7 @@
         android:id="@+id/textView7"
         android:layout_width="325dp"
         android:layout_height="137dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="44dp"
         android:layout_marginBottom="40dp"
         android:text="DigiTech is a robust and comprehensive Patient repository management application created to manage end to end clinical and hospital reports management. It is used by doctors, patients, pharmacies, and diagnostci centres in effective decision making for fast and secure patient care."
         android:textAlignment="center"
