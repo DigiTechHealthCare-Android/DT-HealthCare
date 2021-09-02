@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="80dp"
-                android:text="Prescribe Medicine"
+                android:text="@string/prescribe_medicine"
                 android:textColor="@color/purple_700"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="56dp"
-                android:text="Morning"
+                android:text="@string/morning"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -64,7 +64,8 @@
                     android:id="@+id/morningMed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Morning Medicine"
+                    android:gravity="center"
+                    android:hint="@string/morning"
                     android:textColor="#000000" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -73,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="76dp"
-                android:text="Afternoon"
+                android:text="@string/afternoon"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -86,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="76dp"
-                android:text="Evening"
+                android:text="@string/evening"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -100,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="76dp"
-                android:text="Night"
+                android:text="@string/night"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="20sp"
@@ -139,7 +140,8 @@
                     android:id="@+id/afternoonMed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Afternoon Medicine"
+                    android:gravity="center"
+                    android:hint="@string/afternoon"
                     android:textColor="#000000" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -160,7 +162,8 @@
                     android:id="@+id/eveningMed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Evening Medicine"
+                    android:gravity="center"
+                    android:hint="@string/evening"
                     android:textColor="#000000" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -181,7 +184,8 @@
                     android:id="@+id/nightMed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Night Medicine"
+                    android:gravity="center"
+                    android:hint="@string/night"
                     android:textColor="#000000" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -190,6 +194,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
+                android:shadowColor="@color/purple_500"
+                android:buttonTint="@color/purple_700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textInputLayout24"
@@ -200,6 +206,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
+                android:shadowColor="@color/purple_500"
+                android:buttonTint="@color/purple_700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textInputLayout25"
@@ -210,6 +218,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
+                android:shadowColor="@color/purple_500"
+                android:buttonTint="@color/purple_700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textInputLayout26"
@@ -220,6 +230,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
+                android:shadowColor="@color/purple_500"
+                android:buttonTint="@color/purple_700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textInputLayout27"

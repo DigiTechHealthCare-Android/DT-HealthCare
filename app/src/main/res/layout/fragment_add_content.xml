@@ -22,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="Add Content"
+                android:text="@string/add_content"
                 android:textColor="@color/purple_700"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="center"
-                    android:hint="Title"
+                    android:hint="@string/content_title"
                     android:inputType="textPersonName"
                     android:textColor="#000000"
                     tools:ignore="TouchTargetSizeCheck" />
@@ -72,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="center|top"
-                    android:hint="Description"
+                    android:hint="@string/description"
                     android:inputType="textMultiLine"
                     android:lines="10"
                     android:maxLength="140"
@@ -97,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="center"
-                    android:hint="Enter URL"
+                    android:hint="@string/radio_url"
                     android:textColor="#000000"
                     tools:ignore="TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -107,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Add Article"
+                android:text="@string/add_article_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.505"
                 app:layout_constraintStart_toStartOf="parent"
@@ -130,7 +130,7 @@
                     android:buttonTint="@color/purple_700"
                     android:paddingRight="5dp"
                     android:shadowColor="@color/purple_500"
-                    android:text="Image"
+                    android:text="@string/radio_image"
                     android:textColor="#000000" />
 
                 <RadioButton
@@ -140,7 +140,7 @@
                     android:buttonTint="@color/purple_700"
                     android:paddingRight="5dp"
                     android:shadowColor="@color/purple_500"
-                    android:text="Video"
+                    android:text="@string/radio_video"
                     android:textColor="#000000" />
 
                 <RadioButton
@@ -148,9 +148,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Research Paper"
                     android:buttonTint="@color/purple_700"
                     android:shadowColor="@color/purple_500"
+                    android:text="@string/radio_rp"
                     android:textColor="#000000" />
             </RadioGroup>
 
@@ -170,7 +170,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="Title"
+                android:text="@string/content_title"
                 android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -183,7 +183,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Article Type"
+                android:text="@string/article_type"
                 android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -196,7 +196,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="Description"
+                android:text="@string/description"
                 android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -221,16 +221,16 @@
                     android:buttonTint="@color/purple_700"
                     android:paddingRight="5dp"
                     android:shadowColor="@color/purple_500"
-                    android:text="Upload From Storage"
+                    android:text="@string/radio_upload"
                     android:textColor="#000000" />
 
                 <RadioButton
                     android:id="@+id/urlRB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Enter URL"
                     android:buttonTint="@color/purple_700"
                     android:shadowColor="@color/purple_500"
+                    android:text="@string/radio_url"
                     android:textColor="#000000" />
             </RadioGroup>
 
@@ -239,7 +239,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="Upload"
+                android:text="@string/upload_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textInputLayout30"
                 app:layout_constraintTop_toBottomOf="@+id/researchRG" />

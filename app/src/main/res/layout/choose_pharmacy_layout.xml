@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="You have chosen "
+            android:text="@string/you_have_chosen"
             android:textAlignment="viewEnd" />
 
         <TextView

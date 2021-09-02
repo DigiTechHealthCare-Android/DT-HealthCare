@@ -12,4 +12,171 @@
     <string name="title_activity_request_tabbed">RequestTabbedActivity</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+
+    // Sign In layout
+    <string name="email_address">Email Address</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="register_button">Register</string>
+    <string name="login_button">Login</string>
+    <string name="forget_password">Forgot Password?</string>
+    <string name="register_here">Register Here</string>
+    <string name="login_here">Login Here</string>
+    <string name="not_registered">Not Registered Yet</string>
+
+    // Sign Up layout
+
+    <string name="username_required">Username *</string>
+    <string name="email_required">Email Address *</string>
+    <string name="password_required">Password *</string>
+    <string name="already_registered">Already Registered</string>
+    <string name="required_field">* Required Fields</string>
+
+    // Patient Registeration layout
+    <string name="enter_details">Enter Details</string>
+    <string name="fullname_required">Full Name *</string>
+    <string name="contactno_required">Contact Number *</string>
+    <string name="dob_required">DOB(DD/MM/YYYY) *</string>
+    <string name="radio_male">Male</string>
+    <string name="radio_female">Female</string>
+
+    // Doctor Registration layout
+    <string name="special_required">Specialization *</string>
+    <string name="hospital_required">Hospital Name *</string>
+
+    // Pharmacist Registration layout
+    <string name="location_required">Location *</string>
+    <string name="pharmacy_required">Pharmacy Name *</string>
+
+    // All Patient layout
+    <string name="name">Name</string>
+    <string name="contact_no">Contact Number</string>
+
+    // Choose Pharmacy layout
+
+    <string name="you_have_chosen">You Have Chosen</string>
+    <string name="pharmacy_name">Pharmacy Name</string>
+
+    // Nav Header
+
+    <string name="email">Email</string>
+
+    // Add content layout
+
+    <string name="add_content">Add Content</string>
+    <string name="content_title">Title</string>
+    <string name="article_type">Article Type</string>
+    <string name="radio_image">Image</string>
+    <string name="radio_video">Video</string>
+    <string name="radio_rp">Research Paper</string>
+    <string name="radio_upload">Upload From Storage</string>
+    <string name="radio_url">Enter URL</string>
+    <string name="upload_button">Upload</string>
+    <string name="description">Description</string>
+    <string name="add_article_button">Add Article</string>
+
+    // Edit article layout
+
+    <string name="update_article">Update Article</string>
+    <string name="update_button">Update</string>
+
+    // article details layout
+
+    <string name="no_of_views">No. of Views</string>
+
+    // content manager profile layout
+
+    <string name="name_profile">Name:</string>
+    <string name="contact_profile">Contact:</string>
+    <string name="location_profile">Location:</string>
+    <string name="email_profile">Email:</string>
+    <string name="location">Location</string>
+
+    // prescribe medicine layout
+    <string name="prescribe_medicine">Prescribe Medicine</string>
+    <string name="morning">Morning</string>
+    <string name="afternoon">Afternoon</string>
+    <string name="evening">Evening</string>
+    <string name="night">Night</string>
+
+    // Doctor profile layout
+    <string name="hospital_profile">Hospital:</string>
+    <string name="special_profile">Specialisation:</string>
+    <string name="hospital">Hospital Name</string>
+    <string name="special">Specialisation</string>
+
+    // edit content manager profile layout
+    <string name="content_manager_info">Content Manager\'s Information</string>
+
+    // edit doctor profile layout
+
+    <string name="doctor_info">Doctor\'s Information</string>
+
+    // edit nurse profile layout
+
+    <string name="nurse_info">Nurse Information</string>
+    <string name="dob_profile">DOB:</string>
+    <string name="gender_profile">Gender:</string>
+    <string name="radio_other">Other</string>
+    <string name="date_of_birth">DOB(DD/MM/YYYY)</string>
+
+    // edit patient profile layout
+
+    <string name="personal_info">Personal Information</string>
+    <string name="family_info">Family Information</string>
+    <string name="father_profile">Father\'s Name:</string>
+    <string name="mother_profile">Mother\'s Name:</string>
+    <string name="address_profile">Address:</string>
+    <string name="doctor_profile">Doctor\'s Name:</string>
+    <string name="hos_profile">Hospital Name:</string>
+    <string name="father_name">Father\'s Name</string>
+    <string name="mother_name">Mother\'s Name</string>
+    <string name="address">Address</string>
+    <string name="doc_name">Doctor\'s Name</string>
+
+    // edit pharmacist layout
+    <string name="pharmacist_info">Pharmacist Information</string>
+    <string name="pharmacy_profile">Pharmacy:</string>
+
+    // nurse profile layout
+    <string name="gender">Gender</string>
+    <string name="dob_nurse">Date of Birth</string>
+
+    // Patient Additional Layout
+    <string name="additional_info">Additional Information</string>
+    <string name="view_medical_history">View Medical History</string>
+    <string name="upload_medical_history">Upload Medical History</string>
+
+    // patient profile
+    <string name="view_prescription">View Prescription</string>
+    <string name="view_report">View Report</string>
+    <string name="prescribe_medicine_button">Prescribe Medicine</string>
+    <string name="upload_report_button">Upload Report</string>
+
+    // request decription layout
+
+    <string name="accept_button">Accept</string>
+    <string name="decline_button">Decline</string>
+    <string name="prescription_required">Prescription Required:</string>
+    <string name="med1">Medicine 1</string>
+    <string name="med2">Medicine 2</string>
+    <string name="med3">Medicine 3</string>
+    <string name="med4">Medicine 4</string>
+
+    // Settings Fragment layout
+    <string name="logout">Logout</string>
+    <string name="about_us">About Us</string>
+    <string name="feedback">Send Feedback</string>
+    <string name="playstore">Rate Us on Playstore</string>
+
+    // menu's
+
+    <string name="create_article">Create Article</string>
+    <string name="profile_drawer">Profile</string>
+    <string name="settings">Settings</string>
+    <string name="patient_infor">Patient Information</string>
+    <string name="patients">Patients</string>
+    <string name="article">Articles</string>
+    <string name="request_pharma">Request</string>
+    <string name="old_req">Old Request</string>
+
 </resources>

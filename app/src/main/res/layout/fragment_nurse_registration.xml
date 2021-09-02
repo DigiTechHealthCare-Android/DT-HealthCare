@@ -50,7 +50,7 @@
                 android:drawableLeft="@drawable/namedrawableicon"
                 android:drawablePadding="16dp"
                 android:gravity="center"
-                android:hint="Full Name *"
+                android:hint="@string/fullname_required"
                 android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,7 +74,7 @@
                 android:drawableLeft="@drawable/hospitalimageicon"
                 android:drawablePadding="16dp"
                 android:gravity="center"
-                android:hint="Hospital Name *"
+                android:hint="@string/hospital_required"
                 android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,7 +98,7 @@
                 android:drawableLeft="@drawable/contactnumberimage"
                 android:drawablePadding="16dp"
                 android:gravity="center"
-                android:hint="Contact Number *"
+                android:hint="@string/contactno_required"
                 android:inputType="phone"
                 android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -111,7 +111,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
-            app:helperText="* Required Fields"
+            app:helperText="@string/required_field"
             app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -125,7 +125,7 @@
                 android:drawableLeft="@drawable/datedrawableimage"
                 android:drawablePadding="16dp"
                 android:gravity="center"
-                android:hint="DOB(DD/MM/YYYY) *"
+                android:hint="@string/dob_required"
                 android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -148,7 +148,7 @@
                 android:layout_marginEnd="10dp"
                 android:buttonTint="@color/purple_700"
                 android:shadowColor="@color/purple_500"
-                android:text="Male"
+                android:text="@string/radio_male"
                 android:textStyle="bold"
                 tools:ignore="TouchTargetSizeCheck" />
 
@@ -159,7 +159,7 @@
                 android:layout_marginStart="10dp"
                 android:buttonTint="@color/purple_700"
                 android:shadowColor="@color/purple_500"
-                android:text="Female"
+                android:text="@string/radio_female"
                 android:textStyle="bold"
                 tools:ignore="TouchTargetSizeCheck" />
         </RadioGroup>
@@ -169,7 +169,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Register"
+            android:text="@string/register_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -182,7 +182,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Enter Details"
+            android:text="@string/enter_details"
             android:textColor="@color/purple_700"
             android:textSize="20sp"
             android:textStyle="bold"

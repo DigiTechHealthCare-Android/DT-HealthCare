@@ -6,11 +6,11 @@
         <item
             android:id="@+id/patientInfoDr"
             android:icon="@drawable/patient"
-            android:title="Patient Information" />
+            android:title="@string/patient_infor" />
         <item
             android:id="@+id/profileDr"
             android:icon="@drawable/profile"
-            android:title="Profile" />
+            android:title="@string/profile_drawer" />
 
 
     </group>
@@ -20,11 +20,11 @@
             <item
                 android:id="@+id/settingsDr"
                 android:icon="@drawable/settings"
-                android:title="Settings" />
+                android:title="@string/settings" />
             <item
                 android:id="@+id/logoutDr"
                 android:icon="@drawable/round_logout_black_24dp"
-                android:title="Logout" />
+                android:title="@string/logout" />
 
         </menu>
     </item>

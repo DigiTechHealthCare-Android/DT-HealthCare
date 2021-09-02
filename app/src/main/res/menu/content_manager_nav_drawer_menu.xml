@@ -6,25 +6,25 @@
         <item
             android:id="@+id/articleManager"
             android:icon="@drawable/article"
-            android:title="Create Article" />
+            android:title="@string/create_article" />
         <item
             android:id="@+id/profileManager"
             android:icon="@drawable/profile"
-            android:title="Profile" />
+            android:title="@string/profile_drawer" />
 
 
     </group>
     <item android:title="Settings">
         <menu>
 
-    <item
-        android:id="@+id/settingsManager"
-        android:icon="@drawable/settings"
-        android:title="Settings" />
-    <item
-        android:id="@+id/logoutManager"
-        android:icon="@drawable/round_logout_black_24dp"
-        android:title="Logout" />
+            <item
+                android:id="@+id/settingsManager"
+                android:icon="@drawable/settings"
+                android:title="@string/settings" />
+            <item
+                android:id="@+id/logoutManager"
+                android:icon="@drawable/round_logout_black_24dp"
+                android:title="@string/logout" />
         </menu>
     </item>
 

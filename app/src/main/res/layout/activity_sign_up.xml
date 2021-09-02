@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Register Here"
+            android:text="@string/register_here"
             android:textColor="@color/purple_700"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -62,7 +62,7 @@
                 android:drawableLeft="@drawable/usernameicon"
                 android:drawablePadding="16dp"
                 android:gravity="center"
-                android:hint="Username *"
+                android:hint="@string/username_required"
                 android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,7 +86,7 @@
                 android:drawableLeft="@drawable/emailimageicon"
                 android:drawablePadding="16dp"
                 android:gravity="center"
-                android:hint="Email Address *"
+                android:hint="@string/email_required"
                 android:inputType="textEmailAddress"
                 android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -98,7 +98,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
-            app:helperText="* Required Fields"
+            app:helperText="@string/required_field"
             app:helperTextTextColor="#000000"
             app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
@@ -113,7 +113,7 @@
                 android:drawableLeft="@drawable/passwordimageicon"
                 android:drawablePadding="16dp"
                 android:gravity="center"
-                android:hint="Password *"
+                android:hint="@string/password_required"
                 android:inputType="textPassword"
                 android:paddingTop="9dp" />
 
@@ -125,7 +125,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:onClick="signUpB"
-            android:text="Register"
+            android:text="@string/register_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -138,7 +138,7 @@
             android:layout_marginStart="60dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
-            android:text="Already Registered"
+            android:text="@string/already_registered"
             android:textAlignment="textEnd"
             android:textColor="#1C1919"
             android:textSize="16sp"
@@ -151,7 +151,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Login Here"
+            android:text="@string/login_here"
             android:textColor="#3F51B5"
             android:textSize="16sp"
             android:textStyle="bold"
