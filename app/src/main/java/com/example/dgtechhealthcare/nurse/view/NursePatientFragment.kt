@@ -1,20 +1,14 @@
 package com.example.dgtechhealthcare.nurse.view
 
-import android.app.ProgressDialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.nurse.presenter.AllPatientsInfoPresenter
-import java.util.concurrent.CountDownLatch
 
 class NursePatientFragment : Fragment() {
 
