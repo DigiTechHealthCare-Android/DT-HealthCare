@@ -43,7 +43,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/requestMed4"
-                app:layout_constraintVertical_bias="0.49" />
+                app:layout_constraintVertical_bias="0.612" />
 
             <Button
                 android:id="@+id/requestDeclineB"
@@ -85,7 +85,7 @@
                 android:id="@+id/requestMed1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 android:text="TextView"
                 android:textColor="@color/black"
                 android:textSize="16sp"
