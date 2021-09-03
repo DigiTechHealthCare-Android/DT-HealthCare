@@ -179,7 +179,6 @@ class EditProfileModel(val view: View) {
 
         reference.userReference.child(reference.currentUserId!!).updateChildren(hm).addOnCompleteListener {
             if(it.isSuccessful) Toast.makeText(view.context,"Profile Updated",Toast.LENGTH_LONG).show()
-            else Toast.makeText(view.context,"Error: ${it.exception?.message}",Toast.LENGTH_LONG).show()
         }
     }
 }

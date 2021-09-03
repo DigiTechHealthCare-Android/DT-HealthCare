@@ -48,7 +48,7 @@ class DoctorProfileModel(view : View) {
                         if(it.isSuccessful) Toast.makeText(requireActivity,"Image stored", Toast.LENGTH_SHORT).show()
                     }
                 }
-            } else Toast.makeText(requireActivity,"Error: ${it.exception?.message}", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

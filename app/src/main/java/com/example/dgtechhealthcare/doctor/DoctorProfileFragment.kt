@@ -84,7 +84,7 @@ class DoctorProfileFragment : Fragment() {
             imgUri = data.data!!
             presenter.uploadProfilePicture(reference,reference.currentUserId,imgUri,requireActivity())
             profileIV.setImageURI(imgUri)
-        } else Toast.makeText(activity,"ERROR!!", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun editUserProfile() {

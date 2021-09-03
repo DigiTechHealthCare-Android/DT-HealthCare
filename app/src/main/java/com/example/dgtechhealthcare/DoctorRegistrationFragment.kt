@@ -76,7 +76,7 @@ class DoctorRegistrationFragment : Fragment() {
                                 activity?.finish()
                             }
                         }
-                    } else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
+                    }
                 }
 
             }

@@ -1,8 +1,6 @@
 package com.example.dgtechhealthcare.editProfile
 
-import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.RadioGroup
 
 data class PatientClass(var name : EditText, var mob : EditText, var dob:EditText,

@@ -268,7 +268,7 @@ class PatientProfileFragment : Fragment() {
                 uploadClassReference.uploadReportToFirebase(f.name,Uri.fromFile(f),requireActivity())
             }
 
-        } else Toast.makeText(activity,"ERROR!!",Toast.LENGTH_LONG).show()
+        }
     }
 
 

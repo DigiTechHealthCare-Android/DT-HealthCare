@@ -85,7 +85,7 @@ class AddContentModel(view : View) {
                         if(it.isSuccessful) Toast.makeText(requireActivity,"Image Uploaded",Toast.LENGTH_LONG).show()
                     }
                 }
-            } else Toast.makeText(requireActivity,"Error: ${it.exception?.message}",Toast.LENGTH_LONG).show()
+            }
         }
     }
 }

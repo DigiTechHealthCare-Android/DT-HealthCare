@@ -103,7 +103,7 @@ class EditArticlesFragment : AppCompatActivity() {
                         if(it.isSuccessful) Toast.makeText(this,"Image Uploaded",Toast.LENGTH_LONG).show()
                     }
                 }
-            } else Toast.makeText(this,"Error: ${it.exception?.message}",Toast.LENGTH_LONG).show()
+            }
         }
         contentImg.setImageURI(imgUri)
     }
