@@ -53,17 +53,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4">
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:startIconDrawable="@drawable/usernameicon">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/userEV"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:drawableLeft="@drawable/usernameicon"
                 android:drawablePadding="16dp"
                 android:gravity="center"
                 android:hint="@string/username_required"
-                android:paddingTop="9dp" />
+                android:paddingTop="9dp"
+                android:paddingEnd="64dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -77,18 +78,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout10">
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout10"
+            app:startIconDrawable="@drawable/emailimageicon">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/emailEV"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:drawableLeft="@drawable/emailimageicon"
                 android:drawablePadding="16dp"
                 android:gravity="center"
                 android:hint="@string/email_required"
                 android:inputType="textEmailAddress"
-                android:paddingTop="9dp" />
+                android:paddingTop="9dp"
+                android:paddingEnd="56dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -98,19 +100,20 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
+            app:endIconMode="password_toggle"
             app:helperText="@string/required_field"
             app:helperTextTextColor="#000000"
             app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout11">
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout11"
+            app:startIconDrawable="@drawable/passwordimageicon">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordEV"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:drawableLeft="@drawable/passwordimageicon"
                 android:drawablePadding="16dp"
                 android:gravity="center"
                 android:hint="@string/password_required"
