@@ -99,7 +99,6 @@ class SignInActivity : AppCompatActivity() {
                     Thread.sleep(4000)
 
                     if(type?.compareTo("patient") ==0){
-                        //val i = Intent(this@SignInActivity, PatientsNavigationActivity::class.java)
                         val i = Intent(this@SignInActivity, PatientDrawerNavigationActivity::class.java)
                         startActivity(i)
                         loadingBar.dismiss()
@@ -176,7 +175,8 @@ class SignInActivity : AppCompatActivity() {
                 val responseObj = JSONObject(result)
                 val accountType = responseObj.getString("accountType")
                 type = accountType
-            } else Toast.makeText(this@SignInActivity,"Error", Toast.LENGTH_LONG).show()}
+            }
+        }
     }
 
     fun signInB(view: View) {
@@ -188,8 +188,6 @@ class SignInActivity : AppCompatActivity() {
             auth.signInWithEmailAndPassword(email,password).addOnCompleteListener {
                 if(it.isSuccessful) {
                     sendToDashboard()
-                } else {
-                    Toast.makeText(this,"Error: ${it.exception?.message}",Toast.LENGTH_LONG).show()
                 }
             }
         }

@@ -96,7 +96,7 @@ class ContentManagerProfileFragment : Fragment() {
                         if(it.isSuccessful) Toast.makeText(activity,"Image stored", Toast.LENGTH_SHORT).show()
                     }
                 }
-            } else Toast.makeText(activity,"Error: ${it.exception?.message}", Toast.LENGTH_SHORT).show()
+            }
         }
         image.setImageURI(imgUri)
     }

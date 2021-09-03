@@ -76,7 +76,7 @@ class PatientRegistrationFragment : Fragment() {
                         val i = Intent(activity, SignInActivity::class.java)
                         startActivity(i)
                         activity?.finish()
-                    } else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }

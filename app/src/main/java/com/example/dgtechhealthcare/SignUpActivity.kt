@@ -62,9 +62,6 @@ class SignUpActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                         startActivity(i)
                         finish()
                     }
-                    else {
-                        Toast.makeText(this, "Error: ${it.exception?.message}", Toast.LENGTH_SHORT).show()
-                    }
                 }
             } else {}
 

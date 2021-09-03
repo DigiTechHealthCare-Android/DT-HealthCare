@@ -196,7 +196,6 @@ class PatientAddtionalFragment : Fragment() {
                 uploadClass.uploadHistoryToStorage(Uri.fromFile(f),requireActivity())
             }
         }
-        else Toast.makeText(activity,"ERROR!!", Toast.LENGTH_LONG).show()
     }
 
     private fun initializeValues(view: View) {

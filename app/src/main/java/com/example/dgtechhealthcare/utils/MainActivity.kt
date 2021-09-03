@@ -82,6 +82,7 @@ class MainActivity : AppCompatActivity() {
                 val responseObj = JSONObject(result)
                 val accountType = responseObj.getString("accountType")
                 type = accountType
-            } else Toast.makeText(this@MainActivity,"Error", Toast.LENGTH_LONG).show()}
+            }
         }
+    }
 }

@@ -169,7 +169,8 @@ class SplashActivity : AppCompatActivity() {
                 val responseObj = JSONObject(result)
                 val accountType = responseObj.getString("accountType")
                 type = accountType
-            } else Toast.makeText(this@SplashActivity,"Error", Toast.LENGTH_LONG).show()}
+            }
+        }
     }
 
     override fun onResume() {
