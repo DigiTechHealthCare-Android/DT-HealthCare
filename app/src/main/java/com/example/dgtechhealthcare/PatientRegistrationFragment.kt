@@ -60,7 +60,9 @@ class PatientRegistrationFragment : Fragment() {
         registerB.setOnClickListener {
 
             if(name.isEmpty()) Toast.makeText(activity,"Name is empty",Toast.LENGTH_LONG).show()
-            if(dob.isEmpty()) Toast.makeText(activity,"Date of birth is empty",Toast.LENGTH_LONG).show()
+            else if(dob.isEmpty()) Toast.makeText(activity,"Date of birth is empty",Toast.LENGTH_LONG).show()
+            else if (contact.isEmpty()) Toast.makeText(activity,"Contact No. is empty",Toast.LENGTH_LONG).show()
+            else if (contact.length > 10 || contact.length < 10) Toast.makeText(activity,"Invalid mobile number",Toast.LENGTH_LONG).show()
             else {
                 val hm = HashMap<String,Any>()
                 hm["username"] = name.toString()

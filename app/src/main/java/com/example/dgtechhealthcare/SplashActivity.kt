@@ -7,8 +7,10 @@ import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
+import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.utils.NetworkUtil
 import com.example.dgtechhealthcare.view.PharmacistDrawerNavigationActivity
 import com.example.dgtechhealthcare.view.ContentManagerDrawerNavigationActivity
@@ -16,7 +18,10 @@ import com.example.dgtechhealthcare.view.DoctorDrawerNavigationActivity
 import com.example.dgtechhealthcare.view.NurseDrawerNavigationActivity
 import com.example.dgtechhealthcare.view.PatientDrawerNavigationActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -69,7 +74,6 @@ class SplashActivity : AppCompatActivity() {
                                     .child(auth.currentUser!!.uid).child("token").setValue(token)
                             }
                         }
-
                         val job = CoroutineScope(Dispatchers.Default).launch {
                             val result = CoroutineScope(Dispatchers.Default).async {
                                 FlagTask().execute()
@@ -122,7 +126,6 @@ class SplashActivity : AppCompatActivity() {
                                 }
                             }
                         }
-
                     } else {
                         val i = Intent(this,SignInActivity::class.java)
                         startActivity(i)

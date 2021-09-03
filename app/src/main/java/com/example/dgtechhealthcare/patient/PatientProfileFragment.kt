@@ -142,11 +142,28 @@ class PatientProfileFragment : Fragment() {
         }
 
         patientCamera.setOnClickListener {
-            val gallery : Intent = Intent()
-            gallery.setAction(Intent.ACTION_GET_CONTENT)
-            gallery.setType("image/*")
-            choice = 1
-            startActivityForResult(gallery,galleryPick)
+            val options = arrayOf("Camera","Gallery","Cancel")
+            val builder = AlertDialog.Builder(activity)
+            val a = builder.create()
+            builder.setCancelable(false)
+            builder.setTitle("Take Picture from")
+            builder.setItems(options,DialogInterface.OnClickListener { dialog, which ->
+                if (which ==0){
+                    dispatchTakePictureIntent("image")
+                    a.cancel()
+                }
+                if (which == 1) {
+                    val gallery : Intent = Intent()
+                    gallery.setAction(Intent.ACTION_GET_CONTENT)
+                    gallery.setType("image/*")
+                    choice = 1
+                    startActivityForResult(gallery,galleryPick)
+                }
+                if (which ==2){
+                    a.dismiss()
+                }
+            })
+            builder.show()
         }
 
         uploadReport.setOnClickListener {
@@ -155,7 +172,7 @@ class PatientProfileFragment : Fragment() {
             builder.setTitle("Do you want to?")
             builder.setItems(options,DialogInterface.OnClickListener { dialog, which ->
                 if(which == 0) {
-                    dispatchTakePictureIntent()
+                    dispatchTakePictureIntent("report")
                 }
                 if(which == 1) {
                     val gallery : Intent = Intent()
@@ -268,6 +285,13 @@ class PatientProfileFragment : Fragment() {
                 uploadClassReference.uploadReportToFirebase(f.name,Uri.fromFile(f),requireActivity())
             }
 
+        } else if (requestCode == 2 && resultCode == RESULT_OK) {
+            val f = File(currentPhotoPath)
+            Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE).also { mediaScanIntent ->
+                mediaScanIntent.data = Uri.fromFile(f)
+                activity?.sendBroadcast(mediaScanIntent)
+                uploadClassReference.uploadProfilePictureToFirebase(f.name, Uri.fromFile(f),requireActivity())
+            }
         }
     }
 
@@ -287,7 +311,7 @@ class PatientProfileFragment : Fragment() {
         }
     }
 
-    private fun dispatchTakePictureIntent() {
+    private fun dispatchTakePictureIntent(s: String) {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
             // Ensure that there's a camera activity to handle the intent
             takePictureIntent.resolveActivity(activity?.packageManager!!)?.also {
@@ -306,7 +330,10 @@ class PatientProfileFragment : Fragment() {
                     )
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
                     try {
-                        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+                        if (s.equals("report",false))
+                            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+                        else if (s.equals("image",false))
+                            startActivityForResult(takePictureIntent, 2)
                     }catch (e : Exception){
                         Toast.makeText(activity,"Camera Error",Toast.LENGTH_LONG).show()
                     }

@@ -63,6 +63,7 @@ class NurseRegistrationFragment : Fragment() {
             if(name.isEmpty()) Toast.makeText(activity,"Name is empty", Toast.LENGTH_LONG).show()
             else if(hospital.isEmpty()) Toast.makeText(activity,"Hospital name is empty",Toast.LENGTH_LONG).show()
             else if(contact.length > 10)  Toast.makeText(activity,"Invalid mobile number",Toast.LENGTH_LONG).show()
+            else if (dob.isEmpty()) Toast.makeText(activity,"Date of birth is empty",Toast.LENGTH_LONG).show()
             else {
                 val hm = HashMap<String,Any>()
                 hm["username"] = name.toString()
