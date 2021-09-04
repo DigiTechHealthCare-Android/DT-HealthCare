@@ -179,4 +179,10 @@
     <string name="request_pharma">Request</string>
     <string name="old_req">Old Request</string>
 
+    //Code String values
+    <string name="url_required">Url required</string>
+    <string name="content_published">Content published</string>
+    <string name="image_uploaded">Image Uploaded</string>
+    <string name="profile_image">Profile image changed</string>
+
 </resources>

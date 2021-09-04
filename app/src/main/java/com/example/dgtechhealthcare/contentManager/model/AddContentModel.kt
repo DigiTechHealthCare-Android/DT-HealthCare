@@ -4,6 +4,7 @@ import android.net.Uri
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
+import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -35,7 +36,7 @@ class AddContentModel(view : View) {
                 hm["views"] = 0
                 if(type.compareTo("video")==0 || type.compareTo("research")==0){
                     if (url.isNullOrEmpty() && type.compareTo("video")==0){
-                        Toast.makeText(requireActivity,"Url required", Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireActivity, R.string.url_required, Toast.LENGTH_LONG).show()
                     }else {
                         reference.articleReference.child(contentUid.toString()).updateChildren(hm)
                             .addOnCompleteListener {
@@ -44,7 +45,7 @@ class AddContentModel(view : View) {
                                     h["contentUid"] = contentUid
                                     h["time"] = Calendar.getInstance().time.toString()
                                     reference.managerReference.child(reference.currentUserId!!).child("articles").child(contentUid).updateChildren(h).addOnCompleteListener {
-                                        Toast.makeText(requireActivity,"Content published", Toast.LENGTH_LONG).show()
+                                        Toast.makeText(requireActivity,R.string.content_published, Toast.LENGTH_LONG).show()
                                         requireActivity?.supportFragmentManager?.popBackStack()
                                     }
                                 }
@@ -59,7 +60,7 @@ class AddContentModel(view : View) {
                                 h["contentUid"] = contentUid
                                 h["time"] = Calendar.getInstance().time.toString()
                                 reference.managerReference.child(reference.currentUserId!!).child("articles").child(contentUid).updateChildren(h).addOnCompleteListener {
-                                    Toast.makeText(requireActivity,"Content published", Toast.LENGTH_LONG).show()
+                                    Toast.makeText(requireActivity,R.string.content_published, Toast.LENGTH_LONG).show()
                                     requireActivity?.supportFragmentManager?.popBackStack()
                                 }
                             }
@@ -82,7 +83,7 @@ class AddContentModel(view : View) {
                 path.downloadUrl.addOnSuccessListener {
                     val downloadUrl = it.toString()
                     reference.articleReference.child(contentUid).child("imageRef").setValue(downloadUrl).addOnCompleteListener {
-                        if(it.isSuccessful) Toast.makeText(requireActivity,"Image Uploaded",Toast.LENGTH_LONG).show()
+                        if(it.isSuccessful) Toast.makeText(requireActivity,R.string.image_uploaded,Toast.LENGTH_LONG).show()
                     }
                 }
             }

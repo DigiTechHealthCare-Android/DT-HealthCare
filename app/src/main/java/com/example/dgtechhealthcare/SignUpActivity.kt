@@ -59,8 +59,13 @@ class SignUpActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                     if(it.isSuccessful) {
                         val i = Intent(this,SetupActivity::class.java)
                         i.putExtra("role",roleChoice)
+                        val type = getSharedPreferences("accountType", MODE_PRIVATE)
+                        val editor = type.edit()
+                        editor.putString("type",roleChoice)
+                        editor.apply()
+                        editor.commit()
                         startActivity(i)
-                        finish()
+                        //finish()
                     }
                 }
             } else {}

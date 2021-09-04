@@ -48,7 +48,6 @@ class PatientUploadClass(view : View) {
         val path = reference.userReportRef.child("${f}.pdf")
         path.putFile(uri).addOnCompleteListener {
             if(it.isSuccessful) {
-                Toast.makeText(activity,"Report Uploaded",Toast.LENGTH_SHORT).show()
                 path.downloadUrl.addOnSuccessListener {
                     val downloadUrl = it.toString()
                     reference.userReference.child(reference.currentUserId!!).child("report").setValue(downloadUrl).addOnCompleteListener {
@@ -56,6 +55,20 @@ class PatientUploadClass(view : View) {
                     }
                 }
             }
+        }
+    }
+
+    fun uploadProfilePictureToFirebase(f: String,uri: Uri,activity: Context){
+        val path = reference.userProfileImgRef.child("${f}.pdf")
+        path.putFile(uri).addOnCompleteListener {
+            if(it.isSuccessful) {
+                path.downloadUrl.addOnSuccessListener {
+                    val downloadUrl = it.toString()
+                    reference.userReference.child(reference.currentUserId!!).child("profileImage").setValue(downloadUrl).addOnCompleteListener {
+                        if(it.isSuccessful) Toast.makeText(activity,"Image Uploaded",Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -11,12 +11,16 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.utils.NetworkUtil
 import com.example.dgtechhealthcare.view.DoctorDrawerNavigationActivity
 import com.example.dgtechhealthcare.view.PharmacistDrawerNavigationActivity
 import com.example.dgtechhealthcare.view.*
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,6 +36,7 @@ class SignInActivity : AppCompatActivity() {
 
     var type : String? = ""
     lateinit var auth : FirebaseAuth
+    //lateinit var reference : FirebasePresenter
     lateinit var loadingBar : ProgressDialog
 
     lateinit var userEmail : EditText
@@ -43,6 +48,25 @@ class SignInActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         loadingBar = ProgressDialog(this)
+        //reference = FirebasePresenter(View(this))
+
+//        if (auth.currentUser != null)
+//        {
+//            FirebaseDatabase.getInstance().reference.child("Users").addValueEventListener(object : ValueEventListener{
+//                override fun onDataChange(snapshot: DataSnapshot) {
+//                    if (!snapshot.hasChild(auth.currentUser!!.uid.toString())){
+//                        val role = getSharedPreferences("accountType", MODE_PRIVATE)
+//                            .getString("type","")
+//                        val i = Intent(this@SignInActivity,SetupActivity::class.java)
+//                        i.putExtra("role",role)
+//                        startActivity(i)
+//                        finish()
+//                    }
+//                }
+//
+//                override fun onCancelled(error: DatabaseError) {}
+//            })
+//        }
 
         userEmail = findViewById(R.id.emailE)
         userPassword = findViewById(R.id.passE)
@@ -99,6 +123,7 @@ class SignInActivity : AppCompatActivity() {
                     Thread.sleep(4000)
 
                     if(type?.compareTo("patient") ==0){
+                        //val i = Intent(this@SignInActivity, PatientsNavigationActivity::class.java)
                         val i = Intent(this@SignInActivity, PatientDrawerNavigationActivity::class.java)
                         startActivity(i)
                         loadingBar.dismiss()
@@ -106,7 +131,7 @@ class SignInActivity : AppCompatActivity() {
                     }else if(type?.compareTo("doctor") == 0) {
                         loadingBar.dismiss()
                         runOnUiThread {
-                            Toast.makeText(this@SignInActivity,"Welcome Doctor",Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@SignInActivity,"Welcome Doctor",Toast.LENGTH_SHORT).show()
                             val i = Intent(this@SignInActivity, DoctorDrawerNavigationActivity::class.java)
                             startActivity(i)
                             finish()
@@ -114,7 +139,7 @@ class SignInActivity : AppCompatActivity() {
                     } else if(type?.compareTo("nurse") == 0 ) {
                         loadingBar.dismiss()
                         runOnUiThread {
-                            Toast.makeText(this@SignInActivity,"Welcome",Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@SignInActivity,"Welcome",Toast.LENGTH_SHORT).show()
                             val i = Intent(this@SignInActivity,NurseDrawerNavigationActivity::class.java)
                             startActivity(i)
                             finish()
@@ -122,7 +147,7 @@ class SignInActivity : AppCompatActivity() {
                     } else if(type?.compareTo("pharmacist") == 0) {
                         loadingBar.dismiss()
                         runOnUiThread {
-                            Toast.makeText(this@SignInActivity,"Shop's open",Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@SignInActivity,"Shop's open",Toast.LENGTH_SHORT).show()
                             val i = Intent(this@SignInActivity, PharmacistDrawerNavigationActivity::class.java)
                             startActivity(i)
                             finish()
@@ -130,7 +155,7 @@ class SignInActivity : AppCompatActivity() {
                     } else if(type?.compareTo("contentManager")==0){
                         loadingBar.dismiss()
                         runOnUiThread {
-                            Toast.makeText(this@SignInActivity,"Time to post content",Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@SignInActivity,"Time to post content",Toast.LENGTH_SHORT).show()
                             val i = Intent(this@SignInActivity,ContentManagerDrawerNavigationActivity::class.java)
                             startActivity(i)
                             finish()
@@ -175,8 +200,7 @@ class SignInActivity : AppCompatActivity() {
                 val responseObj = JSONObject(result)
                 val accountType = responseObj.getString("accountType")
                 type = accountType
-            }
-        }
+            } else Toast.makeText(this@SignInActivity,"Error", Toast.LENGTH_LONG).show()}
     }
 
     fun signInB(view: View) {
@@ -188,6 +212,8 @@ class SignInActivity : AppCompatActivity() {
             auth.signInWithEmailAndPassword(email,password).addOnCompleteListener {
                 if(it.isSuccessful) {
                     sendToDashboard()
+                } else {
+                    Toast.makeText(this,"Error: ${it.exception?.message}",Toast.LENGTH_LONG).show()
                 }
             }
         }
