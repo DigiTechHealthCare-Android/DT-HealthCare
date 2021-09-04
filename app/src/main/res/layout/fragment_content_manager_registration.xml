@@ -6,51 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".ContentManagerRegistrationFragment">
 
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="411dp"
-        android:layout_height="285dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/doctorimage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".27"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="0dp"
-        android:layout_height="482dp"
-        android:background="@drawable/view_bg"
+        android:layout_height="0dp"
+        android:background="@drawable/newbackg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.78"
         app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout23"
+            android:id="@+id/textInputLayout21"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
-            app:helperText="@string/required_field"
             app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout22">
+            app:layout_constraintTop_toBottomOf="@+id/textView68">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/managerLocation"
+                android:id="@+id/managerName"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:drawableLeft="@drawable/location"
+                android:drawableLeft="@drawable/namedrawableicon"
                 android:drawablePadding="16dp"
                 android:gravity="center"
-                android:hint="@string/location_required"
+                android:hint="@string/fullname_required"
                 android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,16 +66,43 @@
                 android:paddingTop="9dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout23"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            app:helperText="@string/required_field"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout22">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/managerLocation"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:drawableLeft="@drawable/location"
+                android:drawablePadding="16dp"
+                android:gravity="center"
+                android:hint="@string/location_required"
+                android:paddingTop="9dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:id="@+id/registerManager"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="40dp"
             android:text="@string/register_button"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout23"
+            app:layout_constraintVertical_bias="0.0"
             tools:layout_conversion_absoluteHeight="48dp"
             tools:layout_conversion_absoluteWidth="94dp" />
 
@@ -96,39 +110,16 @@
             android:id="@+id/textView68"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:text="@string/enter_details"
             android:textColor="@color/purple_700"
             android:textSize="20sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.516"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout21"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            app:hintEnabled="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView68">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/managerName"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:drawableLeft="@drawable/namedrawableicon"
-                android:drawablePadding="16dp"
-                android:gravity="center"
-                android:hint="@string/fullname_required"
-                android:paddingTop="9dp" />
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.336" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

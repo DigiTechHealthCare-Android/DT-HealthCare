@@ -7,7 +7,7 @@
     android:clickable="true"
     tools:context=".doctorPrescribeMedicine.DoctorPrescribeMedicineFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background1"
@@ -39,25 +39,28 @@
                 android:id="@+id/textView39"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:layout_marginTop="56dp"
+                android:layout_marginEnd="16dp"
                 android:text="@string/morning"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/textInputLayout24"
-                app:layout_constraintHorizontal_bias="0.506"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView38" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout24"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="218dp"
+                android:layout_width="0dp"
                 android:layout_height="72dp"
+                android:layout_marginStart="12dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginEnd="56dp"
+                android:layout_marginEnd="3dp"
                 app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/morningCheckBox"
+                app:layout_constraintStart_toEndOf="@+id/textView39"
                 app:layout_constraintTop_toBottomOf="@+id/textView38">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -73,26 +76,28 @@
                 android:id="@+id/textView40"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:layout_marginTop="76dp"
                 android:text="@string/afternoon"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/textView39"
-                app:layout_constraintStart_toStartOf="@+id/textView39"
+                app:layout_constraintEnd_toStartOf="@+id/textInputLayout25"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView39" />
 
             <TextView
                 android:id="@+id/textView41"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:layout_marginTop="76dp"
+                android:layout_marginEnd="32dp"
                 android:text="@string/evening"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/textView40"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintEnd_toStartOf="@+id/textInputLayout26"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView40" />
 
@@ -100,14 +105,15 @@
                 android:id="@+id/textView42"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:layout_marginTop="76dp"
+                android:layout_marginEnd="52dp"
                 android:text="@string/night"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/textView41"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintEnd_toStartOf="@+id/textInputLayout27"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView41" />
 
@@ -126,14 +132,14 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout25"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="218dp"
+                android:layout_width="0dp"
                 android:layout_height="72dp"
+                android:layout_marginStart="12dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="3dp"
                 app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textInputLayout24"
+                app:layout_constraintEnd_toStartOf="@+id/afternoonCheckBox"
+                app:layout_constraintStart_toEndOf="@+id/textView40"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout24">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -148,14 +154,13 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout26"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="218dp"
+                android:layout_width="0dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="3dp"
                 app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textInputLayout25"
+                app:layout_constraintEnd_toStartOf="@+id/eveningCheckBox"
+                app:layout_constraintStart_toEndOf="@+id/textView41"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout25">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -170,13 +175,12 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout27"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="218dp"
+                android:layout_width="0dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="28dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="3dp"
                 app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintEnd_toStartOf="@+id/nightCheckBox"
                 app:layout_constraintStart_toStartOf="@+id/textInputLayout26"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout26">
 
@@ -194,8 +198,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:shadowColor="@color/purple_500"
+                android:layout_marginEnd="2dp"
                 android:buttonTint="@color/purple_700"
+                android:shadowColor="@color/purple_500"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textInputLayout24"
@@ -206,10 +211,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:shadowColor="@color/purple_500"
+                android:layout_marginEnd="2dp"
                 android:buttonTint="@color/purple_700"
+                android:shadowColor="@color/purple_500"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textInputLayout25"
                 app:layout_constraintTop_toTopOf="@+id/textInputLayout25" />
 
@@ -218,10 +223,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:shadowColor="@color/purple_500"
+                android:layout_marginEnd="2dp"
                 android:buttonTint="@color/purple_700"
+                android:shadowColor="@color/purple_500"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textInputLayout26"
                 app:layout_constraintTop_toTopOf="@+id/textInputLayout26" />
 
@@ -229,13 +234,14 @@
                 android:id="@+id/nightCheckBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:shadowColor="@color/purple_500"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="2dp"
                 android:buttonTint="@color/purple_700"
+                android:shadowColor="@color/purple_500"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textInputLayout27"
                 app:layout_constraintTop_toTopOf="@+id/textInputLayout27" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </FrameLayout>

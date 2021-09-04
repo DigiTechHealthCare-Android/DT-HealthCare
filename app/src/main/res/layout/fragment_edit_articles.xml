@@ -172,9 +172,11 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout32"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="380dp"
+                android:layout_width="0dp"
                 android:layout_height="112dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
                 app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"

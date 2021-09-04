@@ -34,8 +34,9 @@
             android:drawablePadding="5dp"
             android:paddingStart="20dp"
             android:text="@string/name"
+            android:textAlignment="textStart"
             android:textColor="#000000"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.666"
@@ -60,17 +61,6 @@
             app:layout_constraintTop_toBottomOf="@+id/patientCardName" />
 
         <TextView
-            android:id="@+id/textView57"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="     _________________________"
-            app:layout_constraintBottom_toTopOf="@+id/patientCardContact"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/patientCardIV" />
-
-        <TextView
             android:id="@+id/textView58"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -82,14 +72,29 @@
 
         <ImageView
             android:id="@+id/imageView6"
-            android:layout_width="18dp"
+            android:layout_width="wrap_content"
             android:layout_height="18dp"
-            android:layout_marginEnd="280dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/patientCardIV"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/patientCardIV"
             app:layout_constraintTop_toBottomOf="@+id/patientCardContact"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/verifiedicon" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="12dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/patientCardContact"
+            app:layout_constraintEnd_toStartOf="@+id/textView58"
+            app:layout_constraintStart_toEndOf="@+id/patientCardIV"
+            app:layout_constraintTop_toBottomOf="@+id/patientCardName" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

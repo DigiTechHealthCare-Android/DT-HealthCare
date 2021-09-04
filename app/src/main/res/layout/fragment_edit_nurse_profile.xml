@@ -47,20 +47,22 @@
                     android:id="@+id/textView44"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="6dp"
                     android:text="@string/name_profile"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/editPharmacistName"
-                    app:layout_constraintHorizontal_bias="0.363"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/editPharmacistName" />
 
                 <EditText
                     android:id="@+id/editPharmacistName"
-                    android:layout_width="207dp"
+                    android:layout_width="0dp"
                     android:layout_height="40dp"
+                    android:layout_marginStart="32dp"
                     android:layout_marginTop="34dp"
                     android:layout_marginEnd="36dp"
                     android:background="@drawable/custom_input"
@@ -71,6 +73,7 @@
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView44"
                     app:layout_constraintTop_toBottomOf="@+id/textView43"
                     tools:ignore="TouchTargetSizeCheck" />
 
@@ -78,22 +81,22 @@
                     android:id="@+id/textView45"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="6dp"
                     android:text="@string/contact_profile"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toStartOf="@+id/editPharmacistContact"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/editPharmacistContact" />
 
                 <EditText
                     android:id="@+id/editPharmacistContact"
-                    android:layout_width="207dp"
+                    android:layout_width="0dp"
                     android:layout_height="40dp"
+                    android:layout_marginStart="14dp"
                     android:layout_marginTop="52dp"
-                    android:layout_marginEnd="40dp"
+                    android:layout_marginEnd="36dp"
                     android:background="@drawable/custom_input"
                     android:ems="10"
                     android:hint="@string/contact_no"
@@ -101,6 +104,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView45"
                     app:layout_constraintTop_toBottomOf="@+id/editPharmacistName"
                     tools:ignore="TouchTargetSizeCheck" />
 
@@ -108,6 +112,7 @@
                     android:id="@+id/textView46"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="6dp"
                     android:text="@string/hospital_profile"
                     android:textColor="@color/black"
@@ -120,10 +125,11 @@
 
                 <EditText
                     android:id="@+id/editPharmacyName"
-                    android:layout_width="207dp"
+                    android:layout_width="0dp"
                     android:layout_height="40dp"
+                    android:layout_marginStart="14dp"
                     android:layout_marginTop="50dp"
-                    android:layout_marginEnd="40dp"
+                    android:layout_marginEnd="36dp"
                     android:background="@drawable/custom_input"
                     android:ems="10"
                     android:hint="@string/hospital"
@@ -131,6 +137,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView46"
                     app:layout_constraintTop_toBottomOf="@+id/editPharmacistContact"
                     tools:ignore="TouchTargetSizeCheck" />
 
@@ -138,6 +145,7 @@
                     android:id="@+id/textView47"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="6dp"
                     android:text="@string/email_profile"
                     android:textColor="@color/black"
@@ -150,16 +158,19 @@
 
                 <EditText
                     android:id="@+id/editPharmacistEmail"
-                    android:layout_width="207dp"
+                    android:layout_width="0dp"
                     android:layout_height="40dp"
+                    android:layout_marginStart="36dp"
                     android:layout_marginTop="50dp"
-                    android:layout_marginEnd="40dp"
+                    android:layout_marginEnd="36dp"
                     android:background="@drawable/custom_input"
                     android:ems="10"
                     android:hint="@string/email"
                     android:inputType="textPersonName"
+                    android:maxLines="2"
                     android:textAlignment="center"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView47"
                     app:layout_constraintTop_toBottomOf="@+id/editPharmacyName"
                     tools:ignore="TouchTargetSizeCheck" />
 
@@ -167,20 +178,22 @@
                     android:id="@+id/textView48"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="6dp"
                     android:text="@string/dob_profile"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/editPharmacistLocation"
-                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/editPharmacistLocation" />
 
                 <EditText
                     android:id="@+id/editPharmacistLocation"
-                    android:layout_width="207dp"
+                    android:layout_width="0dp"
                     android:layout_height="40dp"
+                    android:layout_marginStart="46dp"
                     android:layout_marginTop="56dp"
                     android:layout_marginEnd="36dp"
                     android:background="@drawable/custom_input"
@@ -190,8 +203,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/editPharmacistEmail"
+                    app:layout_constraintStart_toEndOf="@+id/textView48"
                     app:layout_constraintTop_toBottomOf="@+id/editPharmacistEmail"
                     tools:ignore="TouchTargetSizeCheck" />
 
@@ -199,24 +211,26 @@
                     android:id="@+id/textView49"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
                     android:text="@string/gender_profile"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/radioGroup2"
-                    app:layout_constraintHorizontal_bias="0.29"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/radioGroup2" />
 
                 <RadioGroup
                     android:id="@+id/radioGroup2"
-                    android:layout_width="213dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="52dp"
                     android:layout_marginTop="48dp"
                     android:layout_marginEnd="36dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textView49"
                     app:layout_constraintTop_toBottomOf="@+id/editPharmacistLocation">
 
                     <RadioGroup
@@ -229,25 +243,25 @@
                             android:id="@+id/editPMale"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@color/purple_700"
                             android:paddingEnd="5dp"
                             android:shadowColor="@color/purple_500"
-                            android:buttonTint="@color/purple_700"
                             android:text="@string/radio_male" />
 
                         <RadioButton
                             android:id="@+id/editPFemale"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:shadowColor="@color/purple_500"
                             android:buttonTint="@color/purple_700"
+                            android:shadowColor="@color/purple_500"
                             android:text="@string/radio_female" />
 
                         <RadioButton
                             android:id="@+id/editPOther"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:shadowColor="@color/purple_500"
                             android:buttonTint="@color/purple_700"
+                            android:shadowColor="@color/purple_500"
                             android:text="@string/radio_other" />
                     </RadioGroup>
                 </RadioGroup>
