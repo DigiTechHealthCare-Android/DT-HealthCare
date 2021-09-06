@@ -1,4 +1,4 @@
-package com.example.dgtechhealthcare
+package com.example.dgtechhealthcare.userRegistration
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.Toast
+import com.example.dgtechhealthcare.R
+import com.example.dgtechhealthcare.signin.SignInActivity
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 
 class NurseRegistrationFragment : Fragment() {
@@ -60,10 +62,10 @@ class NurseRegistrationFragment : Fragment() {
             val contact = contactE.text
             val dob = dobE.text
 
-            if(name.isEmpty()) Toast.makeText(activity,"Name is empty", Toast.LENGTH_LONG).show()
-            else if(hospital.isEmpty()) Toast.makeText(activity,"Hospital name is empty",Toast.LENGTH_LONG).show()
-            else if(contact.length > 10)  Toast.makeText(activity,"Invalid mobile number",Toast.LENGTH_LONG).show()
-            else if (dob.isEmpty()) Toast.makeText(activity,"Date of birth is empty",Toast.LENGTH_LONG).show()
+            if(name.isEmpty()) Toast.makeText(activity, R.string.name_empty, Toast.LENGTH_LONG).show()
+            else if(hospital.isEmpty()) Toast.makeText(activity, R.string.hospital_empty,Toast.LENGTH_LONG).show()
+            else if(contact.length > 10)  Toast.makeText(activity, R.string.invalid_mobile,Toast.LENGTH_LONG).show()
+            else if (dob.isEmpty()) Toast.makeText(activity, R.string.dob_empty,Toast.LENGTH_LONG).show()
             else {
                 val hm = HashMap<String,Any>()
                 hm["username"] = name.toString()
@@ -83,7 +85,7 @@ class NurseRegistrationFragment : Fragment() {
 
                         reference.nurseReference.child(reference.currentUserId!!).updateChildren(nurseHashMap).addOnCompleteListener {
                             if (it.isSuccessful){
-                                Toast.makeText(activity,"Account successfully created",Toast.LENGTH_LONG).show()
+                                Toast.makeText(activity, R.string.account_created,Toast.LENGTH_LONG).show()
                                 val i = Intent(activity, SignInActivity::class.java)
                                 startActivity(i)
                                 activity?.finish()

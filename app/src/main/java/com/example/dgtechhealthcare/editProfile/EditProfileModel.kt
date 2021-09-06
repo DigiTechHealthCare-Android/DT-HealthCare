@@ -10,6 +10,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_edit_content_manager_profile.*
 
 class EditProfileModel(val view: View) {
 
@@ -113,7 +114,7 @@ class EditProfileModel(val view: View) {
                                     reference.doctorReference.child(data.child("duid").value.toString())
                                         .child("patients").child(reference.currentUserId).updateChildren(hm).addOnCompleteListener {
                                             if(it.isSuccessful) {
-                                                Toast.makeText(view.context,"Doctor registered",Toast.LENGTH_SHORT)
+                                                EditPatientProfileFragment().doctorUpdated(view.context)
                                             }
                                         }
                         }
@@ -143,14 +144,10 @@ class EditProfileModel(val view: View) {
                         }
                     }
                 }
-
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-
+                override fun onCancelled(error: DatabaseError) {}
             })
         }
-        Toast.makeText(view.context,"Profile Updated",Toast.LENGTH_LONG).show()
+        EditPatientProfileFragment().profileUpdated(view.context)
     }
 
     fun editDoctorInfo(doctorDetails: DoctorClass){
@@ -178,7 +175,32 @@ class EditProfileModel(val view: View) {
         hm["specialization"] = doctorDetails.specialization.text.toString()
 
         reference.userReference.child(reference.currentUserId!!).updateChildren(hm).addOnCompleteListener {
-            if(it.isSuccessful) Toast.makeText(view.context,"Profile Updated",Toast.LENGTH_LONG).show()
+            if(it.isSuccessful) EditDoctorProfileFragment().profileUpdated(view.context)
+        }
+    }
+
+    fun editContentManagerInfo(managerDetails: ManagerClass) {
+        reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                managerDetails.name.setText(snapshot.child("username").value.toString())
+                managerDetails.location.setText(snapshot.child("location").value.toString())
+                managerDetails.email.setText(snapshot.child("email").value.toString())
+                managerDetails.contact.setText(snapshot.child("contact").value.toString())
+            }
+            override fun onCancelled(error: DatabaseError) {}
+        })
+    }
+
+    fun updateManagerProfile(managerDetails: ManagerClass) {
+        val hm = HashMap<String,Any>()
+        hm["username"] = managerDetails.name.text.toString()
+        hm["contact"] = managerDetails.contact.text.toString()
+        hm["location"] = managerDetails.location.text.toString()
+        hm["email"] = managerDetails.email.text.toString()
+        reference.userReference.child(reference.currentUserId!!).updateChildren(hm).addOnCompleteListener {
+            if(it.isSuccessful){
+                EditContentManagerProfileFragment().profileUpdated(view.context)
+            }
         }
     }
 }

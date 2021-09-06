@@ -10,4 +10,6 @@ data class PatientClass(var name : EditText, var mob : EditText, var dob:EditTex
 data class DoctorClass(var name: EditText,var contact: EditText,
                        var hospital: EditText,var specialization:EditText)
 
+data class ManagerClass(var name:EditText,var contact: EditText,var location:EditText,var email:EditText)
+
 

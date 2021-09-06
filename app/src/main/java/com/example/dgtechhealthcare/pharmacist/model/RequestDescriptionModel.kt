@@ -4,6 +4,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import com.example.dgtechhealthcare.pharmacist.presenter.PrepareNotification
+import com.example.dgtechhealthcare.pharmacist.presenter.RequestDescriptionPresenter
+import com.example.dgtechhealthcare.pharmacist.view.RequestDescriptionFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -14,9 +16,12 @@ class RequestDescriptionModel(view : View) {
 
     val reference = FirebasePresenter(view)
     val notificationReference = PrepareNotification(view)
+    //val view = RequestDescriptionFragment()
 
     fun populateDescription(type: String, descriptionData: DescriptionData,
         requireActivity: FragmentActivity, userID: String) {
+
+        val presenter = RequestDescriptionPresenter(View(requireActivity))
 
         var m1 = ""
         var m2 = ""
@@ -75,7 +80,7 @@ class RequestDescriptionModel(view : View) {
 
             reference.pharmaReference.child(reference.currentUserId!!).child("requestHistory").child(userID).updateChildren(hashMap).addOnCompleteListener {
                 if(it.isSuccessful){
-                    Toast.makeText(requireActivity,"Request Approved", Toast.LENGTH_LONG).show()
+                    presenter.requestApproved(requireActivity)
                     requireActivity?.supportFragmentManager?.popBackStack()
                     reference.pharmaReference.child(reference.currentUserId!!).child("requests").child(userID).removeValue().addOnCompleteListener {
                         if(it.isSuccessful) notificationReference.prepareNotification("Request Approved",userID,requireActivity)
@@ -86,7 +91,7 @@ class RequestDescriptionModel(view : View) {
 
         descriptionData.declineB.setOnClickListener {
             reference.pharmaReference.child(reference.currentUserId!!).child("requests").child(userID).removeValue().addOnCompleteListener {
-                Toast.makeText(requireActivity,"Request Declined", Toast.LENGTH_LONG).show()
+                presenter.requestDeclined(requireActivity)
                 requireActivity?.supportFragmentManager?.popBackStack()
                 if(it.isSuccessful) notificationReference.prepareNotification("Request Declined",userID,requireActivity)
             }

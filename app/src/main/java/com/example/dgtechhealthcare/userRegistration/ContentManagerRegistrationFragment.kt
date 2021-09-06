@@ -1,4 +1,4 @@
-package com.example.dgtechhealthcare
+package com.example.dgtechhealthcare.userRegistration
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.dgtechhealthcare.R
+import com.example.dgtechhealthcare.signin.SignInActivity
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 
 class ContentManagerRegistrationFragment : Fragment() {
@@ -37,9 +39,9 @@ class ContentManagerRegistrationFragment : Fragment() {
         initializeValues(view)
 
         registerCMB.setOnClickListener {
-            if(name.text.isEmpty()) Toast.makeText(activity,"Name is empty",Toast.LENGTH_LONG).show()
-            else if(phone.text.isEmpty()) Toast.makeText(activity,"Phone number is empty",Toast.LENGTH_LONG).show()
-            else if(location.text.isEmpty()) Toast.makeText(activity,"Location is empty",Toast.LENGTH_LONG).show()
+            if(name.text.isEmpty()) Toast.makeText(activity, R.string.name_empty,Toast.LENGTH_LONG).show()
+            else if(phone.text.isEmpty()) Toast.makeText(activity, R.string.contact_empty,Toast.LENGTH_LONG).show()
+            else if(location.text.isEmpty()) Toast.makeText(activity, R.string.location_empty,Toast.LENGTH_LONG).show()
             else {
                 val hm = HashMap<String,Any>()
                 hm["username"] = name.text.toString()
@@ -55,7 +57,7 @@ class ContentManagerRegistrationFragment : Fragment() {
                         cm["location"] = location.text.toString()
                         reference.managerReference.child(reference.currentUserId!!).updateChildren(cm).addOnCompleteListener {
                             if(it.isSuccessful){
-                                Toast.makeText(activity,"Account successfully created",Toast.LENGTH_LONG).show()
+                                Toast.makeText(activity, R.string.account_created,Toast.LENGTH_LONG).show()
                                 val i = Intent(activity, SignInActivity::class.java)
                                 startActivity(i)
                                 activity?.finish()

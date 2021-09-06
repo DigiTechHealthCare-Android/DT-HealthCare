@@ -81,7 +81,7 @@ class ContentMangerShowContentFragment(val view: View) {
                                 activity?.supportFragmentManager?.beginTransaction()
                                     ?.replace(R.id.contentFrame,frag).addToBackStack(null).commit()
                             } catch (e : Exception){
-                                Toast.makeText(activity,"Please try again",Toast.LENGTH_LONG).show()
+                                Toast.makeText(activity,R.string.try_again,Toast.LENGTH_LONG).show()
                             }
                         }
                     }

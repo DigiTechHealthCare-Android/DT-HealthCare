@@ -40,21 +40,23 @@
                     android:id="@+id/textView51"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="48dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="6dp"
+                    android:layout_marginEnd="46dp"
                     android:text="@string/name_profile"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/editPharmacistName"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/editPharmacistName" />
 
                 <EditText
                     android:id="@+id/editPharmacistName"
-                    android:layout_width="207dp"
+                    android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="24dp"
-                    android:layout_marginEnd="40dp"
+                    android:layout_marginEnd="8dp"
                     android:background="@drawable/custom_input"
                     android:ems="10"
                     android:hint="@string/name"
@@ -62,6 +64,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView51"
                     app:layout_constraintTop_toBottomOf="@+id/textView50"
                     tools:ignore="TouchTargetSizeCheck" />
 
@@ -69,21 +72,23 @@
                     android:id="@+id/textView52"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="6dp"
+                    android:layout_marginEnd="28dp"
                     android:text="@string/contact_profile"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/editPharmacistContact"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/editPharmacistContact" />
 
                 <EditText
                     android:id="@+id/editPharmacistContact"
-                    android:layout_width="207dp"
+                    android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="52dp"
-                    android:layout_marginEnd="40dp"
+                    android:layout_marginEnd="8dp"
                     android:background="@drawable/custom_input"
                     android:ems="10"
                     android:hint="@string/contact_no"
@@ -91,6 +96,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView52"
                     app:layout_constraintTop_toBottomOf="@+id/editPharmacistName"
                     tools:ignore="TouchTargetSizeCheck" />
 
@@ -98,21 +104,23 @@
                     android:id="@+id/textView53"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="6dp"
+                    android:layout_marginEnd="8dp"
                     android:text="@string/pharmacy_profile"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/editPharmacyName"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/editPharmacyName" />
 
                 <EditText
                     android:id="@+id/editPharmacyName"
-                    android:layout_width="207dp"
+                    android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="52dp"
-                    android:layout_marginEnd="40dp"
+                    android:layout_marginEnd="8dp"
                     android:background="@drawable/custom_input"
                     android:ems="10"
                     android:hint="@string/pharmacy_name"
@@ -120,6 +128,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView53"
                     app:layout_constraintTop_toBottomOf="@+id/editPharmacistContact"
                     tools:ignore="TouchTargetSizeCheck" />
 
@@ -129,6 +138,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="6dp"
+                    android:layout_marginEnd="40dp"
                     android:text="@string/email_profile"
                     android:textColor="@color/black"
                     android:textSize="20sp"
@@ -139,9 +149,9 @@
 
                 <EditText
                     android:id="@+id/editPharmacistEmail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="40dp"
-                    android:layout_marginStart="32dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="52dp"
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/custom_input"
@@ -161,6 +171,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="6dp"
+                    android:layout_marginEnd="10dp"
                     android:text="@string/location_profile"
                     android:textColor="@color/black"
                     android:textSize="20sp"
@@ -171,7 +182,7 @@
 
                 <EditText
                     android:id="@+id/editPharmacistLocation"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="50dp"

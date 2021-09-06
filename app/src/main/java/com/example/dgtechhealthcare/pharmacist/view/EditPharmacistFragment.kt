@@ -1,5 +1,6 @@
 package com.example.dgtechhealthcare.pharmacist.view
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,22 +9,18 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.example.dgtechhealthcare.R
+import com.example.dgtechhealthcare.pharmacist.PharmacistInterface
 import com.example.dgtechhealthcare.pharmacist.model.EditPharmacistData
 import com.example.dgtechhealthcare.pharmacist.presenter.PharmacistPresenter
 import com.example.dgtechhealthcare.utils.FirebasePresenter
+import kotlinx.android.synthetic.main.fragment_edit_pharmacist.*
 
-class EditPharmacistFragment : Fragment() {
+class EditPharmacistFragment : Fragment(),PharmacistInterface.View.EditProfile {
 
     lateinit var reference: FirebasePresenter
     lateinit var presenter : PharmacistPresenter
-
-    lateinit var nameTextView: TextView
-    lateinit var mobileTextView: TextView
-    lateinit var pharmacyNameTextView: TextView
-    lateinit var emailTextView: TextView
-    lateinit var locationTextView: TextView
-    lateinit var updateButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,22 +40,34 @@ class EditPharmacistFragment : Fragment() {
 
         initializeValues(view)
 
-        val data = EditPharmacistData(nameTextView,pharmacyNameTextView,mobileTextView
-            ,locationTextView,emailTextView,updateButton)
+        val data = EditPharmacistData(editPharmacistName,editPharmacyName,editPharmacistContact
+            ,editPharmacistLocation,editPharmacistEmail,updatePharmacistB)
 
         presenter.editPharmacist(data,view)
     }
 
     private fun initializeValues(view: View) {
         reference = FirebasePresenter(view)
-
-        nameTextView = view.findViewById(R.id.editPharmacistName)
-        mobileTextView = view.findViewById(R.id.editPharmacistContact)
-        pharmacyNameTextView = view.findViewById(R.id.editPharmacyName)
-        emailTextView = view.findViewById(R.id.editPharmacistEmail)
-        locationTextView = view.findViewById(R.id.editPharmacistLocation)
-        updateButton = view.findViewById(R.id.updatePharmacistB)
-
         presenter = PharmacistPresenter(view)
+    }
+
+    override fun updatedText(context: Context) {
+        Toast.makeText(context, R.string.profile_updated, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun nameEmpty(context: Context) {
+        Toast.makeText(context, R.string.name_empty, Toast.LENGTH_LONG).show()
+    }
+
+    override fun pharmacyEmpty(context: Context) {
+        Toast.makeText(context, R.string.pharmacy_empty, Toast.LENGTH_LONG).show()
+    }
+
+    override fun mobileEmpty(context: Context) {
+        Toast.makeText(context, R.string.invalid_mobile, Toast.LENGTH_LONG).show()
+    }
+
+    override fun dobEmpty(context: Context) {
+        Toast.makeText(context, R.string.dob_empty, Toast.LENGTH_LONG).show()
     }
 }

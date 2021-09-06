@@ -13,46 +13,35 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.FileProvider
-import androidx.fragment.app.FragmentActivity
 import com.example.dgtechhealthcare.R
+import com.example.dgtechhealthcare.contentManager.contract.CMProfileContract
+import com.example.dgtechhealthcare.contentManager.presenter.FileStoragePresenter
 import com.example.dgtechhealthcare.editProfile.EditContentManagerProfileFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
+import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.UploadTask
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_content_manager_profile.*
 import java.io.File
 import java.io.IOException
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ContentManagerProfileFragment : Fragment() {
-
-    lateinit var name: TextView
-    lateinit var contact : TextView
-    lateinit var loc : TextView
-    lateinit var email : TextView
-    lateinit var editB : ImageView
-    lateinit var image : ImageView
-    lateinit var cameraEdit : ImageView
+class ContentManagerProfileFragment : Fragment(), CMProfileContract.View{
 
     lateinit var currentPhotoPath: String
-
     val REQUEST_IMAGE_CAPTURE = 1
 
     lateinit var reference : FirebasePresenter
+    lateinit var filePresenter : FileStoragePresenter
     var galleryPick : Int = 0
     var imgUri : Uri = Uri.parse("")
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {}
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
@@ -63,20 +52,21 @@ class ContentManagerProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initializedValues(view)
+        reference = FirebasePresenter(view)
+        filePresenter = FileStoragePresenter(view)
 
         reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                name.setText(snapshot.child("username").value.toString())
-                contact.setText(snapshot.child("contact").value.toString())
-                loc.setText(snapshot.child("location").value.toString())
-                email.setText(snapshot.child("email").value.toString())
-                Picasso.get().load(snapshot.child("profileImage").value.toString()).into(image)
+                cmName.setText(snapshot.child("username").value.toString())
+                cmContact.setText(snapshot.child("contact").value.toString())
+                cmLocation.setText(snapshot.child("location").value.toString())
+                cmEmail.setText(snapshot.child("email").value.toString())
+                Picasso.get().load(snapshot.child("profileImage").value.toString()).into(cmImage)
             }
             override fun onCancelled(error: DatabaseError) {}
         })
 
-        cameraEdit.setOnClickListener {
+        managerCameraEdit.setOnClickListener {
             val options = arrayOf("Camera","Gallery","Cancel")
             val builder = AlertDialog.Builder(activity)
             val a = builder.create()
@@ -100,7 +90,7 @@ class ContentManagerProfileFragment : Fragment() {
             builder.show()
         }
 
-        editB.setOnClickListener {
+        cmEdit.setOnClickListener {
             val frag = EditContentManagerProfileFragment()
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(R.id.CMProfileFrame,frag)?.addToBackStack(null)?.commit()
@@ -112,46 +102,16 @@ class ContentManagerProfileFragment : Fragment() {
 
         if(requestCode == galleryPick && resultCode == Activity.RESULT_OK && data != null) {
             imgUri = data.data!!
-            uploadToStorage(reference,reference.currentUserId,imgUri,requireActivity())
+            filePresenter.uploadToStorage(reference,reference.currentUserId,imgUri,requireActivity())
+            cmImage.setImageURI(imgUri)
         } else if (requestCode == 2 && resultCode == Activity.RESULT_OK) {
             val f = File(currentPhotoPath)
             Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE).also { mediaScanIntent ->
                 mediaScanIntent.data = Uri.fromFile(f)
                 activity?.sendBroadcast(mediaScanIntent)
-                uploadProfilePictureToFirebase(f.name, Uri.fromFile(f),requireActivity())
+                filePresenter.uploadProfilePictureToFirebase(f.name, Uri.fromFile(f),requireActivity())
             }
         }
-    }
-
-    fun uploadProfilePictureToFirebase(f: String,uri: Uri,activity: Context){
-        val path = reference.userProfileImgRef.child("${f}.pdf")
-        path.putFile(uri).addOnCompleteListener {
-            if(it.isSuccessful) {
-                path.downloadUrl.addOnSuccessListener {
-                    val downloadUrl = it.toString()
-                    reference.userReference.child(reference.currentUserId!!).child("profileImage").setValue(downloadUrl).addOnCompleteListener {
-                        if(it.isSuccessful) Toast.makeText(activity,"Image Uploaded",Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    fun uploadToStorage(reference: FirebasePresenter, currentUserId: String?, imgUri: Uri, activity: FragmentActivity) {
-        val resultUri = imgUri
-        val path = reference.userProfileImgRef.child("$currentUserId.jpg")
-        path.putFile(resultUri).addOnCompleteListener {
-            if(it.isSuccessful) {
-                Toast.makeText(activity,R.string.profile_image, Toast.LENGTH_SHORT).show()
-                path.downloadUrl.addOnSuccessListener {
-                    val downloadUrl = it.toString()
-                    reference.userReference.child(currentUserId!!).child("profileImage").setValue(downloadUrl).addOnCompleteListener {
-                        if(it.isSuccessful) Toast.makeText(activity,R.string.image_uploaded, Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-        }
-        image.setImageURI(imgUri)
     }
 
     @Throws(IOException::class)
@@ -192,22 +152,22 @@ class ContentManagerProfileFragment : Fragment() {
                         else if (s.equals("image",false))
                             startActivityForResult(takePictureIntent, 2)
                     }catch (e : Exception){
-                        Toast.makeText(activity,"Camera Error",Toast.LENGTH_LONG).show()
+                        Toast.makeText(activity,R.string.camera_error,Toast.LENGTH_LONG).show()
                     }
                 }
             }
         }
     }
 
-    private fun initializedValues(view: View) {
-        name = view.findViewById(R.id.cmName)
-        contact = view.findViewById(R.id.cmContact)
-        loc = view.findViewById(R.id.cmLocation)
-        email = view.findViewById(R.id.cmEmail)
-        editB = view.findViewById(R.id.cmEdit)
-        image = view.findViewById(R.id.cmImage)
-        cameraEdit = view.findViewById(R.id.managerCameraEdit)
+    override fun imageUploadMessage(context: Context) {
+        Toast.makeText(context, R.string.image_uploaded, Toast.LENGTH_SHORT).show()
+    }
 
-        reference = FirebasePresenter(view)
+    override fun errorMessage(context: Context, task: Task<UploadTask.TaskSnapshot>) {
+        Toast.makeText(context,"Error: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun profileImageMessage(context: Context) {
+        Toast.makeText(context, R.string.profile_image, Toast.LENGTH_SHORT).show()
     }
 }

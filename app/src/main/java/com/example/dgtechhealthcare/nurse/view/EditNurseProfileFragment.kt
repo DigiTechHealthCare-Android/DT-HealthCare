@@ -82,22 +82,22 @@ class EditNurseProfileFragment : Fragment() {
         updateButton.setOnClickListener {
             if (nameTextView.text.isEmpty()) Toast.makeText(
                 activity,
-                "Name is empty",
+                R.string.name_empty,
                 Toast.LENGTH_LONG
             ).show()
             else if (hospitalNameTextView.text.isEmpty()) Toast.makeText(
                 activity,
-                "Hospital name is empty",
+                R.string.hospital_empty,
                 Toast.LENGTH_LONG
             ).show()
             else if (mobileTextView.text.length > 10) Toast.makeText(
                 activity,
-                "Invalid mobile number",
+                R.string.invalid_mobile,
                 Toast.LENGTH_LONG
             ).show()
             else if (dobTextView.text.isEmpty()) Toast.makeText(
                 activity,
-                "Date of Birth is empty",
+                R.string.dob_empty,
                 Toast.LENGTH_LONG
             ).show()
             else {
@@ -113,7 +113,7 @@ class EditNurseProfileFragment : Fragment() {
                 reference.userReference.child(reference.currentUserId!!)
                     .updateChildren(nurseProfileData).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        Toast.makeText(activity, "Updated Successfully", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, R.string.profile_updated, Toast.LENGTH_SHORT).show()
                     }
                 }
             }

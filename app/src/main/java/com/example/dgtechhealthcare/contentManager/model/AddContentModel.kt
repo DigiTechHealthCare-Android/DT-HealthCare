@@ -5,6 +5,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import com.example.dgtechhealthcare.R
+import com.example.dgtechhealthcare.contentManager.AddContentFragment
+import com.example.dgtechhealthcare.contentManager.presenter.AddContentPresenter
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -19,6 +21,7 @@ class AddContentModel(view : View) {
     fun publishArticle(title: String, desc: String, url: String, type: String, contentUid: String,
         requireActivity: FragmentActivity,pdfUpload : Boolean) {
 
+        val presenterRef = AddContentPresenter(View(requireActivity))
         reference.userReference.child(reference.currentUserId!!).addValueEventListener(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -45,7 +48,7 @@ class AddContentModel(view : View) {
                                     h["contentUid"] = contentUid
                                     h["time"] = Calendar.getInstance().time.toString()
                                     reference.managerReference.child(reference.currentUserId!!).child("articles").child(contentUid).updateChildren(h).addOnCompleteListener {
-                                        Toast.makeText(requireActivity,R.string.content_published, Toast.LENGTH_LONG).show()
+                                        presenterRef.publishContentMessage(requireActivity)
                                         requireActivity?.supportFragmentManager?.popBackStack()
                                     }
                                 }
@@ -60,7 +63,7 @@ class AddContentModel(view : View) {
                                 h["contentUid"] = contentUid
                                 h["time"] = Calendar.getInstance().time.toString()
                                 reference.managerReference.child(reference.currentUserId!!).child("articles").child(contentUid).updateChildren(h).addOnCompleteListener {
-                                    Toast.makeText(requireActivity,R.string.content_published, Toast.LENGTH_LONG).show()
+                                    presenterRef.publishContentMessage(requireActivity)
                                     requireActivity?.supportFragmentManager?.popBackStack()
                                 }
                             }
@@ -74,7 +77,7 @@ class AddContentModel(view : View) {
 
     fun uploadImageToDatabase(reference: FirebasePresenter, currentUserId: String?, imgUri: Uri,
         requireActivity: FragmentActivity, contentUid: String) {
-
+        val presenterRef = AddContentPresenter(View(requireActivity))
         val resultUri = imgUri
         val time = Calendar.getInstance().time.toString()
         val path = reference.contentPostRef.child(currentUserId + time + ".jpg")
@@ -83,7 +86,24 @@ class AddContentModel(view : View) {
                 path.downloadUrl.addOnSuccessListener {
                     val downloadUrl = it.toString()
                     reference.articleReference.child(contentUid).child("imageRef").setValue(downloadUrl).addOnCompleteListener {
-                        if(it.isSuccessful) Toast.makeText(requireActivity,R.string.image_uploaded,Toast.LENGTH_LONG).show()
+                        if(it.isSuccessful) presenterRef.imageUploadMessage(requireActivity)
+                    }
+                }
+            }
+        }
+    }
+
+    fun uploadReport(currentUserId: String?, imgUri: Uri, requireActivity: FragmentActivity, contentUid: String) {
+        val presenterRef = AddContentPresenter(View(requireActivity))
+        val resultUri = imgUri
+        val time = Calendar.getInstance().time.toString()
+        val path = reference.contentPostRef.child(currentUserId + time + "RESEARCH")
+        path.putFile(resultUri).addOnCompleteListener {
+            if(it.isSuccessful){
+                path.downloadUrl.addOnSuccessListener {
+                    val downloadUrl = it.toString()
+                    reference.articleReference.child(contentUid).child("researchRef").setValue(downloadUrl).addOnCompleteListener {
+                        if(it.isSuccessful) presenterRef.imageUploadMessage(requireActivity)
                     }
                 }
             }

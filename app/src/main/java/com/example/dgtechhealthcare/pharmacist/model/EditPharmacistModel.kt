@@ -2,6 +2,8 @@ package com.example.dgtechhealthcare.pharmacist.model
 
 import android.view.View
 import android.widget.Toast
+import com.example.dgtechhealthcare.pharmacist.presenter.PharmacistPresenter
+import com.example.dgtechhealthcare.pharmacist.view.EditPharmacistFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -30,18 +32,11 @@ class EditPharmacistModel(view : View) {
 
         pharmacyDetails.updateB.setOnClickListener {
             //updateData()
-            if (pharmacyDetails.username.text.isEmpty()) Toast.makeText(
-                it.context, "Name is empty",
-                Toast.LENGTH_LONG).show()
-            else if (pharmacyDetails.name.text.isEmpty()) Toast.makeText(
-                it.context, "Pharmacy name is empty",
-                Toast.LENGTH_LONG).show()
-            else if (pharmacyDetails.contact.text.length > 10) Toast.makeText(
-                it.context, "Invalid mobile number",
-                Toast.LENGTH_LONG).show()
-            else if (pharmacyDetails.email.text.isEmpty()) Toast.makeText(
-                it.context, "Date of Birth is empty",
-                Toast.LENGTH_LONG).show()
+            val presenter = PharmacistPresenter(view)
+            if (pharmacyDetails.username.text.isEmpty()) presenter.nameEmpty(view.context)
+            else if (pharmacyDetails.name.text.isEmpty()) presenter.pharmacyEmpty(view.context)
+            else if (pharmacyDetails.contact.text.length > 10) presenter.mobileEmpty(view.context)
+            else if (pharmacyDetails.email.text.isEmpty()) presenter.dobEmpty(view.context)
             else {
                 val pharmacistProfileData = HashMap<String, Any>()
                 pharmacistProfileData["username"] = pharmacyDetails.username.text.toString()
@@ -53,7 +48,7 @@ class EditPharmacistModel(view : View) {
 
                 reference.userReference.child(reference.currentUserId!!).updateChildren(pharmacistProfileData).addOnCompleteListener {
                     if (it.isSuccessful){
-                        Toast.makeText(view.context, "Updated Successfully", Toast.LENGTH_SHORT).show()
+                         presenter.updatedText(view.context)
                     }
                 }
             }

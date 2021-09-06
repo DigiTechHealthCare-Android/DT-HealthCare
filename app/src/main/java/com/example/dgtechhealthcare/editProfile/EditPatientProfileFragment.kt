@@ -1,5 +1,6 @@
 package com.example.dgtechhealthcare.editProfile
 
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,22 +10,12 @@ import android.view.ViewGroup
 import android.widget.*
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.utils.FirebasePresenter
+import kotlinx.android.synthetic.main.fragment_edit_patient_profile.*
 
-class EditPatientProfileFragment : Fragment() {
+class EditPatientProfileFragment : Fragment(), EditProfileContract.Patient {
 
     lateinit var reference : FirebasePresenter
     lateinit var editPresenter : EditProfilePresenter
-
-    lateinit var editName : EditText
-    lateinit var editPhone : EditText
-    lateinit var editDob : EditText
-    lateinit var editRG : RadioGroup
-    lateinit var editFather : EditText
-    lateinit var editMother : EditText
-    lateinit var editOther : EditText
-    lateinit var editDoctor : EditText
-    lateinit var editHospital : EditText
-    lateinit var editUpdate : Button
 
     var imgUri : Uri = Uri.parse("")
 
@@ -45,27 +36,20 @@ class EditPatientProfileFragment : Fragment() {
         reference = FirebasePresenter(view)
         editPresenter = EditProfilePresenter(view)
 
-        initializeValues(view)
-
-        val patientDetails = PatientClass(editName,editPhone,editDob,editRG,editFather,editMother,
-            editOther,editDoctor,editHospital)
+        val patientDetails = PatientClass(editPName,editPPhone,editPDob,editNurseGender,editPFather,editPMother,
+            editPFamily,editPDoctor,editPHospital)
         editPresenter.populateEditPatientProfile(patientDetails)
 
-        editUpdate.setOnClickListener {
+        editPUpdate.setOnClickListener {
             editPresenter.updatePatientProfile(patientDetails)
         }
     }
 
-    fun initializeValues(view : View){
-        editName = view.findViewById(R.id.editPName)
-        editPhone = view.findViewById(R.id.editPPhone)
-        editDob = view.findViewById(R.id.editPDob)
-        editRG = view.findViewById(R.id.editNurseGender)
-        editFather = view.findViewById(R.id.editPFather)
-        editMother = view.findViewById(R.id.editPMother)
-        editOther = view.findViewById(R.id.editPFamily)
-        editDoctor = view.findViewById(R.id.editPDoctor)
-        editHospital = view.findViewById(R.id.editPHospital)
-        editUpdate = view.findViewById(R.id.editPUpdate)
+    override fun doctorUpdated(context: Context) {
+        Toast.makeText(context,"Doctor registered",Toast.LENGTH_SHORT).show()
+    }
+
+    override fun profileUpdated(context: Context) {
+        Toast.makeText(context,R.string.profile_updated,Toast.LENGTH_SHORT).show()
     }
 }

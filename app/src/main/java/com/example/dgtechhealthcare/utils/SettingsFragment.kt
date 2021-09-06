@@ -14,21 +14,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.example.dgtechhealthcare.R
-import com.example.dgtechhealthcare.SignInActivity
+import com.example.dgtechhealthcare.signin.SignInActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_settings.*
 
 class SettingsFragment : Fragment() {
-
-    lateinit var logoutB : TextView
-    lateinit var aboutus : TextView
-    lateinit var rateus : TextView
-    lateinit var feedback : TextView
-    lateinit var userImageV : ImageView
-    lateinit var username : TextView
-    lateinit var useremail : TextView
 
     lateinit var reference : FirebasePresenter
 
@@ -48,20 +41,16 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        logoutB = view.findViewById(R.id.userLogoutB)
-        aboutus = view.findViewById(R.id.settingsAboutUs)
-        rateus = view.findViewById(R.id.settingsRate)
-        feedback = view.findViewById(R.id.settingsFeedback)
         reference = FirebasePresenter(view)
 
         settingsUserData(reference,reference.currentUserId!!,requireActivity())
 
-        logoutB.setOnClickListener {
+        userLogoutB.setOnClickListener {
             val builder = AlertDialog.Builder(activity)
             builder.setTitle("Do you want to logout?")
             builder.setPositiveButton("Yes, Logout",DialogInterface.OnClickListener { dialog, which ->
                 reference.auth.signOut()
-                val i = Intent(activity,SignInActivity::class.java)
+                val i = Intent(activity, SignInActivity::class.java)
                 startActivity(i)
                 activity?.finish()
             })
@@ -70,24 +59,24 @@ class SettingsFragment : Fragment() {
             builder.show()
         }
 
-        aboutus.setOnClickListener {
+        settingsAboutUs.setOnClickListener {
             val frag = AboutUsFragment()
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(R.id.settingsFrame,frag)
                 ?.addToBackStack(null)?.commit()
         }
 
-        rateus.setOnClickListener {
+        settingsRate.setOnClickListener {
             try{
                 val i = Intent(Intent.ACTION_VIEW)
                 i.setData(Uri.parse("market://details?id=com.example.dgtechhealthcare"))
                 startActivity(i)
             } catch (e: Exception){
-                Toast.makeText(activity,"Your system doesn't have the required marketstore",Toast.LENGTH_LONG).show()
+                Toast.makeText(activity,R.string.no_store,Toast.LENGTH_LONG).show()
             }
         }
 
-        feedback.setOnClickListener {
+        settingsFeedback.setOnClickListener {
             val i = Intent(Intent.ACTION_SENDTO).apply {
                 data = Uri.parse("mailto:dgtech.health@gmail.com")
                 putExtra(Intent.EXTRA_EMAIL,"dgtech.health@gmail.com")
@@ -97,29 +86,21 @@ class SettingsFragment : Fragment() {
         }
     }
 
-    fun initialiseValues(){
-        userImageV = view?.findViewById(R.id.settingsUserIV)!!
-        username = view?.findViewById(R.id.settingsNameT)!!
-        useremail = view?.findViewById(R.id.settingsEmailT)!!
-    }
-
     fun settingsUserData(reference:FirebasePresenter,currentUserId:String,activity: Context){
-
-        initialiseValues()
 
         reference.userReference.child(currentUserId).addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.hasChild("profileImage")) {
                     val img = snapshot.child("profileImage").value.toString()
-                    Picasso.get().load(img).into(userImageV)
+                    Picasso.get().load(img).into(settingsUserIV)
                 }
                 if(snapshot.hasChild("username")) {
                     val name = snapshot.child("username").value.toString()
-                    username.text = name
+                    settingsNameT.text = name
                 }
                 if(snapshot.hasChild("email")) {
                     val email = snapshot.child("email").value.toString()
-                    useremail.text = email
+                    settingsEmailT.text = email
                 }
 
             }

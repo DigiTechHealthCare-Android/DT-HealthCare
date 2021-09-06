@@ -22,6 +22,7 @@ import com.example.dgtechhealthcare.pharmacist.model.PharmacistProfileData
 import com.example.dgtechhealthcare.pharmacist.presenter.PharmacistPresenter
 import com.example.dgtechhealthcare.pharmacist.presenter.UploadImagePresenter
 import com.example.dgtechhealthcare.utils.FirebasePresenter
+import kotlinx.android.synthetic.main.fragment_pharmacist_profile.*
 import java.io.File
 import java.io.IOException
 import java.lang.Exception
@@ -38,14 +39,6 @@ class PharmacistProfileFragment : Fragment() {
 
     val REQUEST_IMAGE_CAPTURE = 1
 
-    lateinit var pharmacistProfileImg : ImageView
-    lateinit var nameTextView : TextView
-    lateinit var pharmacyNameTextView: TextView
-    lateinit var mobileTextView : TextView
-    lateinit var locationTextView : TextView
-    lateinit var editButtonView : ImageView
-    lateinit var cameraEdit : ImageView
-
     private val imagePick = 0
     lateinit var imageUri : Uri
 
@@ -60,11 +53,10 @@ class PharmacistProfileFragment : Fragment() {
 
         initializeValues(view)
 
-
-        val data = PharmacistProfileData(pharmacistProfileImg,nameTextView,pharmacyNameTextView,mobileTextView,locationTextView)
+        val data = PharmacistProfileData(pharmacistIV,usernameTV,pharmacyNameTV,contactTV,locationTV)
         presenter.populateProfile(data,activity)
 
-        editButtonView.setOnClickListener {
+        editBV.setOnClickListener {
             val transaction = activity?.supportFragmentManager?.beginTransaction()
             val frag = EditPharmacistFragment()
             transaction?.replace(R.id.fragment_container_pharmacist, frag)
@@ -72,7 +64,7 @@ class PharmacistProfileFragment : Fragment() {
             transaction?.commit()
         }
 
-        cameraEdit.setOnClickListener {
+        pharmacistCameraEdit.setOnClickListener {
             val options = arrayOf("Camera","Gallery","Cancel")
             val builder = AlertDialog.Builder(activity)
             val a = builder.create()
@@ -93,20 +85,6 @@ class PharmacistProfileFragment : Fragment() {
                 }
             })
             builder.show()
-        }
-    }
-
-    fun uploadProfilePictureToFirebase(f: String,uri: Uri,activity: Context){
-        val path = reference.userProfileImgRef.child("${f}.pdf")
-        path.putFile(uri).addOnCompleteListener {
-            if(it.isSuccessful) {
-                path.downloadUrl.addOnSuccessListener {
-                    val downloadUrl = it.toString()
-                    reference.userReference.child(reference.currentUserId!!).child("profileImage").setValue(downloadUrl).addOnCompleteListener {
-                        if(it.isSuccessful) Toast.makeText(activity,"Image Uploaded", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }else Toast.makeText(activity,"Error: ${it.exception?.message}", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -148,7 +126,7 @@ class PharmacistProfileFragment : Fragment() {
                         else if (s.equals("image",false))
                             startActivityForResult(takePictureIntent, 2)
                     }catch (e : Exception){
-                        Toast.makeText(activity,"Camera Error", Toast.LENGTH_LONG).show()
+                        Toast.makeText(activity,R.string.camera_error, Toast.LENGTH_LONG).show()
                     }
                 }
             }
@@ -159,14 +137,6 @@ class PharmacistProfileFragment : Fragment() {
         reference = FirebasePresenter(view)
         presenter = PharmacistPresenter(view)
         uploadReference = UploadImagePresenter(view)
-
-        pharmacistProfileImg = view.findViewById(R.id.pharmacistIV)
-        nameTextView = view.findViewById(R.id.usernameTV)
-        pharmacyNameTextView = view.findViewById(R.id.pharmacyNameTV)
-        mobileTextView = view.findViewById(R.id.contactTV)
-        locationTextView = view.findViewById(R.id.locationTV)
-        editButtonView = view.findViewById(R.id.editBV)
-        cameraEdit = view.findViewById(R.id.pharmacistCameraEdit)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -176,16 +146,14 @@ class PharmacistProfileFragment : Fragment() {
             imageUri = data.data!!
             uploadReference.uploadImageToStorage(imageUri,requireActivity())
 
-            pharmacistProfileImg.setImageURI(imageUri)
+            pharmacistIV.setImageURI(imageUri)
         } else if (requestCode == 2 && resultCode == Activity.RESULT_OK) {
             val f = File(currentPhotoPath)
             Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE).also { mediaScanIntent ->
                 mediaScanIntent.data = Uri.fromFile(f)
                 activity?.sendBroadcast(mediaScanIntent)
-                uploadProfilePictureToFirebase(f.name, Uri.fromFile(f),requireActivity())
+                uploadReference.uploadProfilePictureToFirebase(f.name, Uri.fromFile(f),requireActivity())
             }
         }
     }
-
-
 }

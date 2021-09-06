@@ -13,29 +13,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.FileProvider
+import androidx.fragment.app.FragmentActivity
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.editProfile.EditDoctorProfileFragment
 import com.example.dgtechhealthcare.utils.FirebasePresenter
+import kotlinx.android.synthetic.main.fragment_doctor_profile.*
 import java.io.File
 import java.io.IOException
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DoctorProfileFragment : Fragment() {
-
-    lateinit var username : TextView
-    lateinit var useremail : TextView
-    lateinit var userhospital : TextView
-    lateinit var userspecial : TextView
-    lateinit var usercontact : TextView
-    lateinit var profileIV : ImageView
-    lateinit var editProfile : ImageView
-    lateinit var cameraEdit : ImageView
+class DoctorProfileFragment : Fragment(),DoctorProfileContract.View {
 
     lateinit var currentPhotoPath: String
 
@@ -62,11 +53,11 @@ class DoctorProfileFragment : Fragment() {
 
         initializeValues(view)
 
-        val data = DoctorProfileData(username, useremail, userhospital, userspecial, usercontact, profileIV)
+        val data = DoctorProfileData(doctorName, doctorEmail, doctorHospital, doctorSpecial, doctorContact, doctorIV)
 
         presenter.populateProfile(data)
 
-        cameraEdit.setOnClickListener {
+        doctorCameraEdit.setOnClickListener {
             val options = arrayOf("Camera","Gallery","Cancel")
             val builder = AlertDialog.Builder(activity)
             val a = builder.create()
@@ -90,7 +81,7 @@ class DoctorProfileFragment : Fragment() {
             builder.show()
         }
 
-        editProfile.setOnClickListener {
+        editDoctorProfile.setOnClickListener {
             editUserProfile()
         }
     }
@@ -102,7 +93,7 @@ class DoctorProfileFragment : Fragment() {
                 path.downloadUrl.addOnSuccessListener {
                     val downloadUrl = it.toString()
                     reference.userReference.child(reference.currentUserId!!).child("profileImage").setValue(downloadUrl).addOnCompleteListener {
-                        if(it.isSuccessful) Toast.makeText(activity,"Image Uploaded",Toast.LENGTH_SHORT).show()
+                        if(it.isSuccessful) Toast.makeText(activity,R.string.image_uploaded,Toast.LENGTH_SHORT).show()
                     }
                 }
             }else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
@@ -147,7 +138,7 @@ class DoctorProfileFragment : Fragment() {
                         else if (s.equals("image",false))
                             startActivityForResult(takePictureIntent, 2)
                     }catch (e : Exception){
-                        Toast.makeText(activity,"Camera Error",Toast.LENGTH_LONG).show()
+                        Toast.makeText(activity,R.string.camera_error,Toast.LENGTH_LONG).show()
                     }
                 }
             }
@@ -157,15 +148,6 @@ class DoctorProfileFragment : Fragment() {
     private fun initializeValues(view: View) {
         reference = FirebasePresenter(view)
         presenter = DoctorProfilePresenter(view)
-
-        username = view.findViewById(R.id.doctorName)
-        useremail = view.findViewById(R.id.doctorEmail)
-        userhospital = view.findViewById(R.id.doctorHospital)
-        userspecial = view.findViewById(R.id.doctorSpecial)
-        usercontact = view.findViewById(R.id.doctorContact)
-        profileIV = view.findViewById(R.id.doctorIV)
-        editProfile = view.findViewById(R.id.editDoctorProfile)
-        cameraEdit = view.findViewById(R.id.doctorCameraEdit)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -174,7 +156,7 @@ class DoctorProfileFragment : Fragment() {
         if(requestCode == galleryPick && resultCode == Activity.RESULT_OK && data != null) {
             imgUri = data.data!!
             presenter.uploadProfilePicture(reference,reference.currentUserId,imgUri,requireActivity())
-            profileIV.setImageURI(imgUri)
+            doctorIV.setImageURI(imgUri)
         } else if (requestCode == 2 && resultCode == Activity.RESULT_OK) {
             val f = File(currentPhotoPath)
             Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE).also { mediaScanIntent ->
@@ -190,5 +172,9 @@ class DoctorProfileFragment : Fragment() {
         activity?.supportFragmentManager
             ?.beginTransaction()?.replace(R.id.doctorProfileFrame,frag)
             ?.addToBackStack(null)?.commit()
+    }
+
+    override fun showImageUpload(requireActivity: FragmentActivity) {
+        Toast.makeText(requireActivity,R.string.image_uploaded, Toast.LENGTH_SHORT).show()
     }
 }

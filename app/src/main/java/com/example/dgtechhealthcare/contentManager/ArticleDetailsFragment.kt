@@ -10,19 +10,12 @@ import android.widget.TextView
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.contentManager.presenter.ArticleDetailsPresenter
 import com.example.dgtechhealthcare.utils.FirebasePresenter
+import kotlinx.android.synthetic.main.fragment_article_details.*
 
 class ArticleDetailsFragment : Fragment() {
 
     lateinit var reference : FirebasePresenter
     lateinit var detailsPresenter : ArticleDetailsPresenter
-
-    lateinit var cTitle : TextView
-    lateinit var cImg : ImageView
-    lateinit var cEdit : ImageView
-    lateinit var cDesc : TextView
-    lateinit var userImage : ImageView
-    lateinit var userName : TextView
-    lateinit var articleViews : TextView
 
     var articleID = ""
     var type = ""
@@ -46,20 +39,12 @@ class ArticleDetailsFragment : Fragment() {
 
         initializeValues(view)
 
-        detailsPresenter.editArticlesPresenter(view,requireActivity(),articleID,cEdit)
-        detailsPresenter.populateView(articleID,cTitle,userName,articleViews
-            ,cDesc,type,cImg,userImage,requireActivity())
+        detailsPresenter.editArticlesPresenter(view,requireActivity(),articleID,contentEdit)
+        detailsPresenter.populateView(articleID,contentShowTitle,articlePTextView,countViews
+            ,contentShowDesc,type,contentShowImg,articlePImageView,requireActivity())
     }
 
     private fun initializeValues(view: View) {
-        cTitle = view.findViewById(R.id.contentShowTitle)
-        cImg = view.findViewById(R.id.contentShowImg)
-        cDesc = view.findViewById(R.id.contentShowDesc)
-        cEdit = view.findViewById(R.id.contentEdit)
-        userImage = view.findViewById(R.id.articlePImageView)
-        userName = view.findViewById(R.id.articlePTextView)
-        articleViews = view.findViewById(R.id.countViews)
-
         reference = FirebasePresenter(view)
         detailsPresenter = ArticleDetailsPresenter(view)
     }

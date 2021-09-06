@@ -21,12 +21,14 @@ import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.patient.model.PatientDataClass
 import com.example.dgtechhealthcare.patient.presenter.PatientPresenter
 import com.example.dgtechhealthcare.patient.presenter.PatientUploadClass
+import com.example.dgtechhealthcare.patient.presenter.PatientViewReportPresenter
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.utils.ViewImageActivity
 import com.example.dgtechhealthcare.utils.ViewPdfActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.fragment_patient_addtional.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -39,17 +41,8 @@ import java.util.*
 
 class PatientAddtionalFragment : Fragment() {
 
-    lateinit var fname : TextView
-    lateinit var mname : TextView
-    lateinit var address : TextView
-    lateinit var dname : TextView
-    lateinit var hname : TextView
-    lateinit var viewHistory : TextView
-    lateinit var upload : Button
-
     lateinit var currentPhotoPath: String
     val REQUEST_IMAGE_CAPTURE = 1
-
 
     lateinit var reference : FirebasePresenter
     lateinit var uploadClass : PatientUploadClass
@@ -84,57 +77,17 @@ class PatientAddtionalFragment : Fragment() {
 
         var report = ""
         viewHistory.setOnClickListener {
-            reference.userReference.child(userType).addListenerForSingleValueEvent(object : ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if(snapshot.hasChild("medicalHistory")) {
-                        report = snapshot.child("medicalHistory").value.toString()
-                        val options = arrayOf<CharSequence>("Download","View","Cancel")
-                        val builder : AlertDialog.Builder = AlertDialog.Builder(activity)
-                        builder.setTitle("Do you want to?")
-                        builder.setItems(options, DialogInterface.OnClickListener { dialog, which ->
-                            if(which == 0) {
-                                val i = Intent(Intent.ACTION_VIEW,Uri.parse(report))
-                                startActivity(i)
-                            }
-                            if(which == 1) {
-                                var connection : URLConnection? = null
-                                try{
-                                    connection = URL(report).openConnection()
-                                } catch (e : IOException){
-                                    e.printStackTrace()
-                                }
-                                CoroutineScope(Dispatchers.IO).launch {
-                                    val contentType = connection?.getHeaderField("Content-Type")
-                                    val img = contentType?.startsWith("image/")
-                                    if(img!!){
-                                        activity?.runOnUiThread {
-                                            val i = Intent(activity, ViewImageActivity::class.java)
-                                            i.putExtra("url",report)
-                                            startActivity(i)
-                                        }
-                                    } else {
-                                        val i = Intent(activity,ViewPdfActivity::class.java)
-                                        i.putExtra("url",report)
-                                        startActivity(i)
-                                    }
-                                }
-                            }
-                        })
-                        builder.show()
-                    } else Toast.makeText(activity,"No report found",Toast.LENGTH_LONG).show()
-                }
-                override fun onCancelled(error: DatabaseError) {}
-            })
+            PatientViewReportPresenter().showReport(reference,userType,requireActivity(),requireContext(),"medicalHistory")
         }
 
-        upload.setOnClickListener {
+        uploadHistory.setOnClickListener {
             val options = arrayOf<CharSequence>("Take from Camera","Upload from gallery","Cancel")
             val builder : AlertDialog.Builder = AlertDialog.Builder(activity)
             builder.setTitle("Do you want to?")
             builder.setItems(options,DialogInterface.OnClickListener { dialog, which ->
                 if(which ==0 ){
                     dispatchTakePictureIntent()
-                }else {
+                }else if (which == 1){
                     val gallery : Intent = Intent()
                     gallery.setAction(Intent.ACTION_GET_CONTENT)
                     gallery.setType("*/*")
@@ -144,7 +97,7 @@ class PatientAddtionalFragment : Fragment() {
             builder.show()
         }
 
-        val data = PatientDataClass(fname,mname,address,dname,hname,upload)
+        val data = PatientDataClass(addFName,addMName,addAddress,addDoctorName,addHospitalName,uploadHistory)
         presenter.populateAdditionalInfo(userType,data)
     }
 
@@ -199,14 +152,6 @@ class PatientAddtionalFragment : Fragment() {
     }
 
     private fun initializeValues(view: View) {
-        fname = view.findViewById(R.id.addFName)
-        mname = view.findViewById(R.id.addMName)
-        address = view.findViewById(R.id.addAddress)
-        dname = view.findViewById(R.id.addDoctorName)
-        hname = view.findViewById(R.id.addHospitalName)
-        viewHistory = view.findViewById(R.id.viewHistory)
-        upload = view.findViewById(R.id.uploadHistory)
-
         reference = FirebasePresenter(view)
         uploadClass = PatientUploadClass(view)
         presenter = PatientPresenter(view)

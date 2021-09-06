@@ -1,7 +1,9 @@
-package com.example.dgtechhealthcare
+package com.example.dgtechhealthcare.utils
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.dgtechhealthcare.R
+import com.example.dgtechhealthcare.userRegistration.*
 import com.google.firebase.auth.FirebaseAuth
 
 class SetupActivity : AppCompatActivity(){

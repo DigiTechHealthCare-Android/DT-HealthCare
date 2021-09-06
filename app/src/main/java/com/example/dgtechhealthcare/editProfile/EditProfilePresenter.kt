@@ -1,5 +1,7 @@
 package com.example.dgtechhealthcare.editProfile
 
+import androidx.fragment.app.FragmentActivity
+
 class EditProfilePresenter(val view: android.view.View) {
 
     val model : EditProfileModel = EditProfileModel(view)
@@ -18,5 +20,29 @@ class EditProfilePresenter(val view: android.view.View) {
 
     fun updateDoctorProfile(doctorDetails: DoctorClass){
         model.updateDoctorProfile(doctorDetails)
+    }
+
+    fun populateEditContentManagerProfile(pharmaDetails:ManagerClass){
+        model.editContentManagerInfo(pharmaDetails)
+    }
+
+    fun updateContentManagerProfile(managerDetails:ManagerClass){
+        model.updateManagerProfile(managerDetails)
+    }
+
+    fun doctorUpdateMessage(activity: FragmentActivity){
+        EditDoctorProfileFragment().profileUpdated(activity)
+    }
+
+    fun patientUpdateMessage(activity: FragmentActivity){
+        EditPatientProfileFragment().profileUpdated(activity)
+    }
+
+    fun managerUpdateMessage(activity: FragmentActivity){
+        EditContentManagerProfileFragment().profileUpdated(activity)
+    }
+
+    fun patientUpdateDoctorMessage(activity: FragmentActivity){
+        EditPatientProfileFragment().doctorUpdated(activity)
     }
 }

@@ -49,10 +49,7 @@
             android:name=".utils.ViewPdfActivity"
             android:exported="true" />
         <activity
-            android:name=".nurse.view.NurseNavigationActivity"
-            android:exported="true" />
-        <activity
-            android:name=".SplashActivity"
+            android:name=".splashActivity.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
@@ -62,13 +59,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SetupActivity"
+            android:name=".utils.SetupActivity"
             android:exported="true" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".signup.SignUpActivity"
             android:exported="true" />
         <activity
-            android:name=".SignInActivity"
+            android:name=".signin.SignInActivity"
             android:exported="true" />
         <activity
             android:name=".utils.MainActivity"

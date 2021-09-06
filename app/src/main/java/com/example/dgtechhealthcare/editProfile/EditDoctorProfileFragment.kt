@@ -1,5 +1,6 @@
 package com.example.dgtechhealthcare.editProfile
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,19 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.utils.FirebasePresenter
+import kotlinx.android.synthetic.main.fragment_edit_doctor_profile.*
 
-class EditDoctorProfileFragment : Fragment() {
+class EditDoctorProfileFragment : Fragment(), EditProfileContract.Doctor {
 
     lateinit var reference : FirebasePresenter
     lateinit var editPresenter : EditProfilePresenter
-
-    lateinit var editName : EditText
-    lateinit var editPhone : EditText
-    lateinit var editHospital : EditText
-    lateinit var editSpecial : EditText
-    lateinit var editUpdateB : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,22 +35,15 @@ class EditDoctorProfileFragment : Fragment() {
         reference = FirebasePresenter(view)
         editPresenter = EditProfilePresenter(view)
 
-        initializeValues(view)
-
-        val doctorDetails = DoctorClass(editName,editPhone,editHospital,editSpecial)
+        val doctorDetails = DoctorClass(editDName,editDPhone,editDHospital,editDSpecial)
         editPresenter.populateEditDoctorProfile(doctorDetails)
 
-        editUpdateB.setOnClickListener {
+        editDUpdateB.setOnClickListener {
             editPresenter.updateDoctorProfile(doctorDetails)
         }
     }
 
-    fun initializeValues(view : View){
-        editName = view.findViewById(R.id.editDName)
-        editPhone = view.findViewById(R.id.editDPhone)
-        editHospital = view.findViewById(R.id.editDHospital)
-        editSpecial = view.findViewById(R.id.editDSpecial)
-        editUpdateB = view.findViewById(R.id.editDUpdateB)
-
+    override fun profileUpdated(context: Context) {
+        Toast.makeText(context,R.string.profile_updated, Toast.LENGTH_LONG).show()
     }
 }

@@ -8,10 +8,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import com.example.dgtechhealthcare.R
-import com.example.dgtechhealthcare.SignInActivity
-import com.example.dgtechhealthcare.SignUpActivity
+import com.example.dgtechhealthcare.signin.SignInActivity
+import com.example.dgtechhealthcare.signup.SignUpActivity
 import com.google.firebase.auth.FirebaseAuth
 import org.json.JSONObject
 import java.io.BufferedReader

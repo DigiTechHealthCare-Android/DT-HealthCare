@@ -139,8 +139,12 @@ class ArticleDetailsModel(view : View) {
                         override fun onInitializationFailure(p0: YouTubePlayer.Provider?,
                                                              p1: YouTubeInitializationResult?) {}
                     })
-                    val transaction : FragmentTransaction = requireActivity.supportFragmentManager.beginTransaction()
-                    transaction.add(R.id.abc,player as Fragment).commit()
+                    try {
+                        val transaction : FragmentTransaction = requireActivity.supportFragmentManager.beginTransaction()
+                        transaction.add(R.id.abc,player as Fragment).commit()
+                    } catch (e : Exception){
+                        //Toast.makeText(requireActivity,R.string.error,Toast.LENGTH_LONG).show()
+                    }
                 }
             }
             override fun onCancelled(error: DatabaseError) {}

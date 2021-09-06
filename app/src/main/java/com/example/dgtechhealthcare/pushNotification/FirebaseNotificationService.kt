@@ -13,7 +13,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.example.dgtechhealthcare.R
-import com.example.dgtechhealthcare.SplashActivity
+import com.example.dgtechhealthcare.splashActivity.SplashActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage

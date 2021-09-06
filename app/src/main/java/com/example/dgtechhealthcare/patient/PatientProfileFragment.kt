@@ -21,6 +21,7 @@ import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.doctorPrescribeMedicine.DoctorPrescribeMedicineFragment
 import com.example.dgtechhealthcare.editProfile.EditPatientProfileFragment
 import com.example.dgtechhealthcare.patient.presenter.PatientUploadClass
+import com.example.dgtechhealthcare.patient.presenter.PatientViewReportPresenter
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.example.dgtechhealthcare.utils.ViewImageActivity
 import com.example.dgtechhealthcare.utils.ViewPdfActivity
@@ -28,6 +29,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_patient_profile.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -46,19 +48,6 @@ class PatientProfileFragment : Fragment() {
     lateinit var currentPhotoPath: String
 
     val REQUEST_IMAGE_CAPTURE = 1
-
-    lateinit var userprofileImg : ImageView
-    lateinit var editProfileIV : ImageView
-    lateinit var username : TextView
-    lateinit var mobile : TextView
-    lateinit var userdob : TextView
-    lateinit var usergender : TextView
-    lateinit var viewReport : TextView
-    lateinit var viewPrescription : TextView
-    lateinit var uploadReport : Button
-    lateinit var prescribeMedB : Button
-    lateinit var additianalInfo : TextView
-    lateinit var patientCamera : ImageView
 
     var galleryPick : Int = 0
     var choice = 0
@@ -93,19 +82,20 @@ class PatientProfileFragment : Fragment() {
 
 
         if(userID?.compareTo(reference.currentUserId!!) != 0){
-            userprofileImg.isClickable = false
-            uploadReport.visibility = View.INVISIBLE
-            editProfileIV.visibility = View.INVISIBLE
+            patientIV.isClickable = false
+            uploadReportB.visibility = View.INVISIBLE
+            editProfileB.visibility = View.INVISIBLE
             prescribeMedB.visibility = View.VISIBLE
+            patientCameraEdit.visibility = View.GONE
         }
         else {
-            userprofileImg.isClickable = true
-            uploadReport.visibility = View.VISIBLE
-            editProfileIV.visibility = View.VISIBLE
+            patientIV.isClickable = true
+            uploadReportB.visibility = View.VISIBLE
+            editProfileB.visibility = View.VISIBLE
             prescribeMedB.visibility = View.INVISIBLE
         }
 
-        additianalInfo.setOnClickListener {
+        addtionalInfoTV.setOnClickListener {
             val frag = PatientAddtionalFragment()
             val bundle = Bundle()
             bundle.putString("patientID",userID)
@@ -137,11 +127,11 @@ class PatientProfileFragment : Fragment() {
                 ?.addToBackStack(null)?.commit()
         }
 
-        editProfileIV.setOnClickListener {
+        editProfileB.setOnClickListener {
             editProfilePT()
         }
 
-        patientCamera.setOnClickListener {
+        patientCameraEdit.setOnClickListener {
             val options = arrayOf("Camera","Gallery","Cancel")
             val builder = AlertDialog.Builder(activity)
             val a = builder.create()
@@ -166,7 +156,7 @@ class PatientProfileFragment : Fragment() {
             builder.show()
         }
 
-        uploadReport.setOnClickListener {
+        uploadReportB.setOnClickListener {
             val options = arrayOf<CharSequence>("Take from Camera","Upload from gallery","Cancel")
             val builder : AlertDialog.Builder = AlertDialog.Builder(activity)
             builder.setTitle("Do you want to?")
@@ -185,52 +175,8 @@ class PatientProfileFragment : Fragment() {
             builder.show()
         }
 
-        var report = ""
-
-        viewReport.setOnClickListener {
-            reference.userReference.child(userID).addListenerForSingleValueEvent(object : ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if(snapshot.hasChild("report")) {
-                        report = snapshot.child("report").value.toString()
-                        val options = arrayOf<CharSequence>("Download","View","Cancel")
-                        val builder : AlertDialog.Builder = AlertDialog.Builder(activity)
-                        builder.setTitle("Do you want to?")
-                        builder.setItems(options,DialogInterface.OnClickListener { dialog, which ->
-                            if(which == 0) {
-                                val i = Intent(Intent.ACTION_VIEW,Uri.parse(report))
-                                startActivity(i)
-                            }
-                            if(which == 1) {
-                                var connection : URLConnection? = null
-                                try{
-                                    connection = URL(report).openConnection()
-                                } catch (e : IOException){
-                                    e.printStackTrace()
-                                }
-                                CoroutineScope(Dispatchers.IO).launch {
-                                    val contentType = connection?.getHeaderField("Content-Type")
-                                    val img = contentType?.startsWith("image/")
-                                    if(img!!){
-                                        activity?.runOnUiThread {
-                                            Toast.makeText(activity,"it's an image",Toast.LENGTH_LONG).show()
-                                            val i = Intent(activity,ViewImageActivity::class.java)
-                                            i.putExtra("url",report)
-                                            startActivity(i)
-                                        }
-                                    } else {
-                                        val i = Intent(activity,ViewPdfActivity::class.java)
-                                        i.putExtra("url",report)
-                                        startActivity(i)
-                                    }
-                                }
-                            }
-                        })
-                        builder.show()
-                    } else Toast.makeText(activity,"No report found",Toast.LENGTH_LONG).show()
-                }
-                override fun onCancelled(error: DatabaseError) {}
-            })
-
+        patientReport.setOnClickListener {
+            PatientViewReportPresenter().showReport(reference,userID,requireActivity(),requireContext(),"report")
         }
 
         populateProfile(view)
@@ -239,19 +185,22 @@ class PatientProfileFragment : Fragment() {
     private fun populateProfile(view: View) {
         reference.userReference.child(userID).addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.hasChild("profileImage")) {
-                    val img = snapshot.child("profileImage").value.toString()
-                    Picasso.get().load(img).into(userprofileImg)
-                }
+                try {
+                    if(snapshot.hasChild("profileImage")) {
+                        val img = snapshot.child("profileImage").value.toString()
+                        Picasso.get().load(img).into(patientIV)
+                    }
+                }catch (e :Exception){}
+
                 val name = snapshot.child("username").value.toString()
                 val mob = snapshot.child("contactNo").value.toString()
                 val dob = snapshot.child("dateOfBirth").value.toString()
                 val gender = snapshot.child("gender").value.toString()
 
-                username.text = name
-                mobile.text = "$mob"
-                userdob.text = "$dob"
-                usergender.text = "$gender"
+                patientName.text = name
+                patientMob.text = "$mob"
+                patientDob.text = "$dob"
+                patientGender.text = "$gender"
             }
             override fun onCancelled(error: DatabaseError) {}
         })
@@ -271,7 +220,7 @@ class PatientProfileFragment : Fragment() {
             if(choice == 1) {
                 imgUri = data.data!!
                 uploadClassReference.uploadToStorage(reference,reference.currentUserId,imgUri,requireActivity())
-                userprofileImg.setImageURI(imgUri)
+                patientIV.setImageURI(imgUri)
             } else if(choice == 2) {
                 reportUri = data.data!!
                 uploadClassReference.uploadMedicalReport(reportUri,requireActivity())
@@ -294,8 +243,6 @@ class PatientProfileFragment : Fragment() {
             }
         }
     }
-
-
 
     @Throws(IOException::class)
     private fun createImageFile(): File {
@@ -335,7 +282,7 @@ class PatientProfileFragment : Fragment() {
                         else if (s.equals("image",false))
                             startActivityForResult(takePictureIntent, 2)
                     }catch (e : Exception){
-                        Toast.makeText(activity,"Camera Error",Toast.LENGTH_LONG).show()
+                        Toast.makeText(activity,R.string.camera_error,Toast.LENGTH_LONG).show()
                     }
                 }
             }
@@ -343,19 +290,6 @@ class PatientProfileFragment : Fragment() {
     }
 
     private fun initializeValues(view: View) {
-        userprofileImg = view.findViewById(R.id.patientIV)
-        editProfileIV = view.findViewById(R.id.editProfileB)
-        username = view.findViewById(R.id.patientName)
-        mobile = view.findViewById(R.id.patientMob)
-        userdob = view.findViewById(R.id.patientDob)
-        usergender = view.findViewById(R.id.patientGender)
-        viewReport = view.findViewById(R.id.patientReport)
-        viewPrescription = view.findViewById(R.id.viewPrescription)
-        uploadReport = view.findViewById(R.id.uploadReportB)
-        prescribeMedB = view.findViewById(R.id.prescribeMedB)
-        additianalInfo = view.findViewById(R.id.addtionalInfoTV)
-        patientCamera = view.findViewById(R.id.patientCameraEdit)
-
         reference = FirebasePresenter(requireView())
         uploadClassReference = PatientUploadClass(view)
     }

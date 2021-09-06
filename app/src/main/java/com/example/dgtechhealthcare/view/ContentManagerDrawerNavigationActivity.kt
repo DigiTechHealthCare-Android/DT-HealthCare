@@ -13,7 +13,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.dgtechhealthcare.R
-import com.example.dgtechhealthcare.SignInActivity
+import com.example.dgtechhealthcare.signin.SignInActivity
 import com.example.dgtechhealthcare.contentManager.CRUDContentActivity
 import com.example.dgtechhealthcare.contentManager.ContentManagerProfileFragment
 import com.example.dgtechhealthcare.editProfile.EditContentManagerProfileFragment

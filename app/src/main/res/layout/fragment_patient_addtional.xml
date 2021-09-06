@@ -20,14 +20,12 @@
                 android:id="@+id/textView75"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="72dp"
-                android:layout_marginEnd="13dp"
                 android:text="@string/father_profile"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/addFName"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView80" />
 
@@ -35,60 +33,48 @@
                 android:id="@+id/textView76"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="5dp"
                 android:text="@string/mother_profile"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/addMName"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView75"
                 app:layout_constraintTop_toBottomOf="@+id/textView75" />
 
             <TextView
                 android:id="@+id/textView77"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="128dp"
                 android:text="@string/address_profile"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/addAddress"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView76"
                 app:layout_constraintTop_toBottomOf="@+id/textView76" />
 
             <TextView
                 android:id="@+id/textView78"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="7dp"
                 android:text="@string/doctor_profile"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/addDoctorName"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView77"
                 app:layout_constraintTop_toBottomOf="@+id/textView77" />
 
             <TextView
                 android:id="@+id/textView79"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="62dp"
                 android:text="@string/hospital_profile"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/addHospitalName"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView78"
                 app:layout_constraintTop_toBottomOf="@+id/textView78" />
 
             <TextView
@@ -109,28 +95,22 @@
                 android:id="@+id/addFName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="13dp"
-                android:layout_marginTop="72dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="16dp"
                 android:text="@string/father_name"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView75"
-                app:layout_constraintTop_toBottomOf="@+id/textView80" />
+                app:layout_constraintTop_toTopOf="@+id/textView75" />
 
             <TextView
                 android:id="@+id/addMName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
                 android:text="@string/mother_name"
                 android:textColor="#000000"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView76"
+                app:layout_constraintEnd_toEndOf="@+id/addFName"
                 app:layout_constraintTop_toBottomOf="@+id/addFName" />
 
             <TextView
@@ -138,40 +118,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
                 android:text="@string/address"
                 android:textColor="#000000"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView77"
+                app:layout_constraintEnd_toEndOf="@+id/addMName"
                 app:layout_constraintTop_toBottomOf="@+id/addMName" />
 
             <TextView
                 android:id="@+id/addDoctorName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="7dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
                 android:text="@string/doc_name"
                 android:textColor="#000000"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView78"
+                app:layout_constraintEnd_toEndOf="@+id/addAddress"
                 app:layout_constraintTop_toBottomOf="@+id/addAddress" />
 
             <TextView
                 android:id="@+id/addHospitalName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
                 android:text="@string/hospital"
                 android:textColor="#000000"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView79"
+                app:layout_constraintEnd_toEndOf="@+id/addDoctorName"
                 app:layout_constraintTop_toBottomOf="@+id/addDoctorName" />
 
             <TextView

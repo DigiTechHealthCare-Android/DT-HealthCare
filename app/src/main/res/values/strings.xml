@@ -184,5 +184,36 @@
     <string name="content_published">Content published</string>
     <string name="image_uploaded">Image Uploaded</string>
     <string name="profile_image">Profile image changed</string>
+    <string name="camera_error">Camera Error</string>
+    <string name="try_again">Please try again</string>
+    <string name="article_update">Article Updated</string>
+    <string name="profile_updated">Profile Updated</string>
+    <string name="request_sent">Request Sent</string>
+    <string name="status_update">Status Updated</string>
+    <string name="authenitcate">Authenticating</string>
+    <string name="account_created">Account successfully created</string>
+    <string name="name_empty">Name is empty</string>
+    <string name="contact_empty">Phone number is empty</string>
+    <string name="location_empty">Location is empty</string>
+    <string name="hospital_empty">Hospital name is empty</string>
+    <string name="special_empty">Specialization is empty</string>
+    <string name="invalid_mobile">Invalid mobile number</string>
+    <string name="dob_empty">Date of birth is empty</string>
+    <string name="pharmacy_empty">Pharmacy Name is empty</string>
+    <string name="no_store">Your system doesn\'t have the required marketstore</string>
+    <string name="doctor_welcome">Welcome Doctor</string>
+    <string name="nurse_welcome">Welcome</string>
+    <string name="phrama_welcome">Shop\'s open</string>
+    <string name="manager_welcome">Time to post content</string>
+    <string name="name_please">Please enter your name</string>
+    <string name="email_please">Please enter your email!</string>
+    <string name="password_please">Please enter your password!</string>
+    <string name="password_reset">Password reset mail sent</string>
+    <string name="error">Error</string>
+    <string name="req_approved">Request Approved</string>
+    <string name="req_declined">Request Declined</string>
+    <string name="prescription_empty">Prescription is Empty</string>
+    <string name="prescription_given">Prescription given</string>
+    <string name="select_checkbox">Select AtLeast One CheckBox</string>
 
 </resources>

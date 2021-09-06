@@ -1,6 +1,7 @@
 package com.example.dgtechhealthcare.contentManager
 
 import android.app.Activity.RESULT_OK
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -11,20 +12,13 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.FragmentActivity
 import com.example.dgtechhealthcare.R
+import com.example.dgtechhealthcare.contentManager.contract.AddContentContract
 import com.example.dgtechhealthcare.contentManager.presenter.AddContentPresenter
 import com.example.dgtechhealthcare.utils.FirebasePresenter
+import kotlinx.android.synthetic.main.fragment_add_content.*
 import java.util.*
 
-class AddContentFragment : Fragment() {
-
-    lateinit var title : EditText
-    lateinit var contentImg : ImageView
-    lateinit var contentDesc : EditText
-    lateinit var contentUrl : EditText
-    lateinit var contentRG : RadioGroup
-    lateinit var researchRG : RadioGroup
-    lateinit var uploadResearchB : Button
-    lateinit var publishB : Button
+class AddContentFragment : Fragment(), AddContentContract.View {
 
     lateinit var reference : FirebasePresenter
     lateinit var presenter : AddContentPresenter
@@ -53,12 +47,12 @@ class AddContentFragment : Fragment() {
         initializeValues(view)
 
         contentUid = UUID.randomUUID().toString()
-        contentImg.visibility = View.GONE
+        contentAddImage.visibility = View.GONE
         researchRG.visibility = View.GONE
         contentUrl.visibility = View.GONE
         uploadResearchB.visibility = View.GONE
 
-        contentImg.setOnClickListener {
+        contentAddImage.setOnClickListener {
             val gallery = Intent()
             gallery.setAction(Intent.ACTION_GET_CONTENT)
             gallery.setType("image/*")
@@ -68,8 +62,8 @@ class AddContentFragment : Fragment() {
         contentRG.setOnCheckedChangeListener { group, checkedId ->
             when(checkedId){
                 R.id.contentImageR -> {
-                    contentImg.visibility = View.VISIBLE
-                    contentDesc.visibility = View.VISIBLE
+                    contentAddImage.visibility = View.VISIBLE
+                    contentAddDesc.visibility = View.VISIBLE
                     researchRG.visibility = View.GONE
                     contentUrl.visibility = View.GONE
                     uploadResearchB.visibility = View.GONE
@@ -77,14 +71,14 @@ class AddContentFragment : Fragment() {
                 }
                 R.id.contentVideoR -> {
                     type = "video"
-                    contentImg.visibility = View.GONE
+                    contentAddImage.visibility = View.GONE
                     contentUrl.visibility = View.VISIBLE
                     researchRG.visibility = View.GONE
                     uploadResearchB.visibility = View.GONE
                 }
                 R.id.contentResearchR -> {
                     type = "research"
-                    contentImg.visibility = View.GONE
+                    contentAddImage.visibility = View.GONE
                     researchRG.visibility = View.VISIBLE
                     contentUrl.visibility = View.GONE
                 }
@@ -113,9 +107,9 @@ class AddContentFragment : Fragment() {
             startActivityForResult(gallery,1)
         }
 
-        publishB.setOnClickListener {
-            val title = title.text.toString()
-            val desc = contentDesc.text.toString()
+        publishContent.setOnClickListener {
+            val title = contentAddTitle.text.toString()
+            val desc = contentAddDesc.text.toString()
             val url = contentUrl.text.toString()
 
             presenter.publishArticle(title,desc,url,type,contentUid,requireActivity(),uploadpdf)
@@ -128,42 +122,23 @@ class AddContentFragment : Fragment() {
         if(requestCode == galleryPick && resultCode == RESULT_OK && data!=null) {
             imgUri = data.data!!
             presenter.uploadImage(reference,reference.currentUserId!!,imgUri,requireActivity(),contentUid)
-            contentImg.setImageURI(imgUri)
+            contentAddImage.setImageURI(imgUri)
         } else if(requestCode == 1 && resultCode == RESULT_OK && data!= null) {
             imgUri = data.data!!
-            uploadImageToDatabase(reference,reference.currentUserId!!,imgUri,requireActivity(),contentUid)
-        }
-    }
-
-    fun uploadImageToDatabase(reference: FirebasePresenter, currentUserId: String?, imgUri: Uri,
-                              requireActivity: FragmentActivity, contentUid: String) {
-
-        val resultUri = imgUri
-        val time = Calendar.getInstance().time.toString()
-        val path = reference.contentPostRef.child(currentUserId + time + "RESEARCH")
-        path.putFile(resultUri).addOnCompleteListener {
-            if(it.isSuccessful){
-                path.downloadUrl.addOnSuccessListener {
-                    val downloadUrl = it.toString()
-                    reference.articleReference.child(contentUid).child("researchRef").setValue(downloadUrl).addOnCompleteListener {
-                        if(it.isSuccessful) Toast.makeText(requireActivity,R.string.image_uploaded,Toast.LENGTH_LONG).show()
-                    }
-                }
-            }
+            presenter.uploadReportToDatabase(reference,reference.currentUserId!!,imgUri,requireActivity(),contentUid)
         }
     }
 
     private fun initializeValues(view: View) {
-        title = view.findViewById(R.id.contentAddTitle)
-        contentImg = view.findViewById(R.id.contentAddImage)
-        contentDesc = view.findViewById(R.id.contentAddDesc)
-        publishB = view.findViewById(R.id.publishContent)
-        contentUrl = view.findViewById(R.id.contentUrl)
-        contentRG = view.findViewById(R.id.contentRG)
-        researchRG = view.findViewById(R.id.researchRG)
-        uploadResearchB = view.findViewById(R.id.uploadResearchB)
-
         reference = FirebasePresenter(view)
         presenter = AddContentPresenter(view)
+    }
+
+    override fun publishContentMessage(context: Context) {
+        Toast.makeText(context,R.string.content_published, Toast.LENGTH_LONG).show()
+    }
+
+    override fun imageUploadMessage(context: Context) {
+        Toast.makeText(context,R.string.image_uploaded,Toast.LENGTH_LONG).show()
     }
 }

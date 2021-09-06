@@ -4,6 +4,7 @@ import android.net.Uri
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
+import com.example.dgtechhealthcare.R
 import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -41,11 +42,13 @@ class DoctorProfileModel(view : View) {
         val path = reference.userProfileImgRef.child("$currentUserId.jpg")
         path.putFile(resultUri).addOnCompleteListener {
             if(it.isSuccessful) {
-                Toast.makeText(requireActivity,"Profile image changed", Toast.LENGTH_SHORT).show()
+
                 path.downloadUrl.addOnSuccessListener {
                     val downloadUrl = it.toString()
                     reference.userReference.child(currentUserId!!).child("profileImage").setValue(downloadUrl).addOnCompleteListener {
-                        if(it.isSuccessful) Toast.makeText(requireActivity,"Image stored", Toast.LENGTH_SHORT).show()
+                        if(it.isSuccessful){
+                            DoctorProfilePresenter(View(requireActivity)).showToast(requireActivity)
+                        }
                     }
                 }
             }

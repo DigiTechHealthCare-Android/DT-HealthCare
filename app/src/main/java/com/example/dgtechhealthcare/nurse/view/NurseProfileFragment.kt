@@ -142,7 +142,7 @@ class NurseProfileFragment : Fragment() {
                 path.downloadUrl.addOnSuccessListener {
                     val downloadUrl = it.toString()
                     reference.userReference.child(reference.currentUserId!!).child("profileImage").setValue(downloadUrl).addOnCompleteListener {
-                        if(it.isSuccessful) Toast.makeText(activity,"Image Uploaded",Toast.LENGTH_SHORT).show()
+                        if(it.isSuccessful) Toast.makeText(activity,R.string.image_uploaded,Toast.LENGTH_SHORT).show()
                     }
                 }
             }else Toast.makeText(activity,"Error: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
@@ -187,7 +187,7 @@ class NurseProfileFragment : Fragment() {
                         else if (s.equals("image",false))
                             startActivityForResult(takePictureIntent, 2)
                     }catch (e : Exception){
-                        Toast.makeText(activity,"Camera Error",Toast.LENGTH_LONG).show()
+                        Toast.makeText(activity,R.string.camera_error,Toast.LENGTH_LONG).show()
                     }
                 }
             }
@@ -217,12 +217,11 @@ class NurseProfileFragment : Fragment() {
         imgPath.putFile(imageUri).addOnSuccessListener {
             imgPath.downloadUrl.addOnSuccessListener {
                 val downloadUri = it.toString()
-
                 // save Image to Firebase Realtime Database
                 reference.userReference.child(reference.currentUserId!!).child("profileImage").setValue(downloadUri)
                     .addOnCompleteListener {
                         if (it.isSuccessful){
-                            Toast.makeText(this.activity, "Image Uploaded", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this.activity, R.string.image_uploaded, Toast.LENGTH_SHORT).show()
                         }
                 }
             }

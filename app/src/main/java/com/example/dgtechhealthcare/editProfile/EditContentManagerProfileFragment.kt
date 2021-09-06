@@ -1,5 +1,6 @@
 package com.example.dgtechhealthcare.editProfile
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,16 +13,12 @@ import com.example.dgtechhealthcare.utils.FirebasePresenter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.fragment_edit_content_manager_profile.*
 
-class EditContentManagerProfileFragment : Fragment() {
-
-    lateinit var name : TextView
-    lateinit var loc : TextView
-    lateinit var email : TextView
-    lateinit var phone : TextView
-    lateinit var editB : TextView
+class EditContentManagerProfileFragment : Fragment(),EditProfileContract.Manager {
 
     lateinit var reference : FirebasePresenter
+    lateinit var presenter : EditProfilePresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,39 +34,18 @@ class EditContentManagerProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        intializeValues(view)
+        reference = FirebasePresenter(view)
+        presenter = EditProfilePresenter(view)
 
-        reference.userReference.child(reference.currentUserId!!).addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                name.setText(snapshot.child("username").value.toString())
-                loc.setText(snapshot.child("location").value.toString())
-                email.setText(snapshot.child("email").value.toString())
-                phone.setText(snapshot.child("contact").value.toString())
-            }
-            override fun onCancelled(error: DatabaseError) {}
-        })
+        val data = ManagerClass(editCMName,editCMPhone,editCMLocation,editCMEmail)
+        presenter.populateEditContentManagerProfile(data)
 
-        editB.setOnClickListener {
-            val hm = HashMap<String,Any>()
-            hm["username"] = name.text.toString()
-            hm["contact"] = phone.text.toString()
-            hm["location"] = loc.text.toString()
-            hm["email"] = email.text.toString()
-            reference.userReference.child(reference.currentUserId!!).updateChildren(hm).addOnCompleteListener {
-                if(it.isSuccessful){
-                    Toast.makeText(activity,"Profile Updated",Toast.LENGTH_LONG).show()
-                }
-            }
+        editCMButton.setOnClickListener {
+            presenter.updateContentManagerProfile(data)
         }
     }
 
-    private fun intializeValues(view: View) {
-        name = view.findViewById(R.id.editCMName)
-        loc = view.findViewById(R.id.editCMLocation)
-        email = view.findViewById(R.id.editCMEmail)
-        phone = view.findViewById(R.id.editCMPhone)
-        editB = view.findViewById(R.id.editCMButton)
-
-        reference = FirebasePresenter(view)
+    override fun profileUpdated(context: Context) {
+        Toast.makeText(context,R.string.profile_updated,Toast.LENGTH_LONG).show()
     }
 }

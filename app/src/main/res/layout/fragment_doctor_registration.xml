@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/newbackg"
-    tools:context=".DoctorRegistrationFragment">
+    tools:context=".userRegistration.DoctorRegistrationFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
