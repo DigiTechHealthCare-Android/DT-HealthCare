@@ -55,12 +55,16 @@ class ArticleDetailsModel(view : View) {
     }
 
     private fun deleteContent(userID: String?,activity: FragmentActivity) {
-        reference.articleReference.child(userID!!).removeValue()
-        reference.managerReference.child(reference.currentUserId!!).child("articles").child(
-            userID).removeValue().addOnCompleteListener {
-            if(it.isSuccessful) Toast.makeText(activity,"Article Deleted", Toast.LENGTH_LONG).show()
-        }
-        activity?.supportFragmentManager?.popBackStack()
+        try {
+            reference.articleReference.child(userID!!).removeValue()
+            reference.managerReference.child(reference.currentUserId!!).child("articles").child(
+                userID).removeValue().addOnCompleteListener {
+                if(it.isSuccessful) Toast.makeText(activity,"Article Deleted", Toast.LENGTH_LONG).show()
+            }
+            activity?.supportFragmentManager?.popBackStack()
+            activity?.supportFragmentManager?.popBackStack()
+        } catch (e : Exception){}
+
     }
     private fun editContent(userID: String?,activity: FragmentActivity) {
         val i = Intent(activity,EditArticlesFragment::class.java)
@@ -141,9 +145,9 @@ class ArticleDetailsModel(view : View) {
                     })
                     try {
                         val transaction : FragmentTransaction = requireActivity.supportFragmentManager.beginTransaction()
-                        transaction.add(R.id.abc,player as Fragment).commit()
+                        transaction.replace(R.id.abc,player as Fragment).addToBackStack(null).commit()
                     } catch (e : Exception){
-                        //Toast.makeText(requireActivity,R.string.error,Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireActivity,R.string.error,Toast.LENGTH_LONG).show()
                     }
                 }
             }

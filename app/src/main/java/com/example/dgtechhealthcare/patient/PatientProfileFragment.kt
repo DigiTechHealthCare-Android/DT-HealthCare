@@ -197,10 +197,13 @@ class PatientProfileFragment : Fragment() {
                 val dob = snapshot.child("dateOfBirth").value.toString()
                 val gender = snapshot.child("gender").value.toString()
 
-                patientName.text = name
-                patientMob.text = mob
-                patientDob.text = dob
-                patientGender.text = gender
+                try {
+                    patientName.text = name
+                    patientMob.text = mob
+                    patientDob.text = dob
+                    patientGender.text = gender
+                } catch (e : Exception){}
+
             }
             override fun onCancelled(error: DatabaseError) {}
         })
