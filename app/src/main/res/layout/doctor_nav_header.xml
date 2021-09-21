@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="@string/email"
-        android:textSize="10sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/drawerDoctorName"
         app:layout_constraintTop_toBottomOf="@+id/drawerDoctorName" />
