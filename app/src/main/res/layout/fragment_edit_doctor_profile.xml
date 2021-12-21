@@ -4,17 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background1"
     tools:context=".editProfile.EditDoctorProfileFragment">
 
-    <ScrollView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         tools:context=".EditDoctorProfileFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/background1">
 
             <TextView
                 android:id="@+id/textView28"
@@ -34,24 +35,21 @@
                 android:id="@+id/textView30"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="60dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
                 android:text="@string/name_profile"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/editDName"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/editDName" />
 
             <EditText
                 android:id="@+id/editDName"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="70dp"
                 android:layout_marginTop="44dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="28dp"
                 android:background="@drawable/custom_input"
                 android:ems="10"
                 android:hint="@string/name"
@@ -60,31 +58,26 @@
                 android:textAlignment="center"
                 android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView30"
                 app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
             <TextView
                 android:id="@+id/textView32"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="2dp"
                 android:text="@string/contact_profile"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/editDPhone"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView30"
+                app:layout_constraintStart_toStartOf="@+id/textView30"
                 app:layout_constraintTop_toTopOf="@+id/editDPhone" />
 
             <EditText
                 android:id="@+id/editDPhone"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="56dp"
                 android:layout_marginTop="44dp"
-                android:layout_marginEnd="8dp"
                 android:background="@drawable/custom_input"
                 android:ems="10"
                 android:hint="@string/contact_no"
@@ -93,70 +86,65 @@
                 android:minHeight="48dp"
                 android:textAlignment="center"
                 android:textColor="#000000"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView32"
+                app:layout_constraintEnd_toEndOf="@+id/editDName"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/editDName"
                 app:layout_constraintTop_toBottomOf="@+id/editDName" />
 
             <TextView
                 android:id="@+id/textView35"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/hospital_profile"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/editDHospital"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView32"
+                app:layout_constraintStart_toStartOf="@+id/textView32"
                 app:layout_constraintTop_toTopOf="@+id/editDHospital" />
 
             <EditText
                 android:id="@+id/editDHospital"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_marginStart="54dp"
                 android:layout_marginTop="44dp"
-                android:layout_marginEnd="8dp"
                 android:background="@drawable/custom_input"
                 android:ems="10"
                 android:hint="@string/hospital"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
                 android:textColor="#000000"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView35"
+                app:layout_constraintEnd_toEndOf="@+id/editDPhone"
+                app:layout_constraintStart_toStartOf="@+id/editDPhone"
                 app:layout_constraintTop_toBottomOf="@+id/editDPhone" />
 
             <TextView
                 android:id="@+id/textView37"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/special_profile"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/editDSpecial"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView35"
+                app:layout_constraintStart_toStartOf="@+id/textView35"
                 app:layout_constraintTop_toTopOf="@+id/editDSpecial" />
 
             <EditText
                 android:id="@+id/editDSpecial"
-                android:layout_width="0dp"
+                android:layout_width="201dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="2dp"
                 android:layout_marginTop="44dp"
-                android:layout_marginEnd="8dp"
                 android:background="@drawable/custom_input"
                 android:ems="10"
                 android:hint="@string/special"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
                 android:textColor="#000000"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView37"
+                app:layout_constraintEnd_toEndOf="@+id/editDHospital"
+                app:layout_constraintStart_toStartOf="@+id/editDHospital"
                 app:layout_constraintTop_toBottomOf="@+id/editDHospital" />
 
             <Button
@@ -172,5 +160,5 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editDSpecial" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </FrameLayout>
 </FrameLayout>

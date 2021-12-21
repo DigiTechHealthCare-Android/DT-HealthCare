@@ -228,3 +228,10 @@ class NurseProfileFragment : Fragment() {
         }
     }
 }
+
+class Demo : Fragment() {
+
+    fun demo(){
+        Toast.makeText(this.activity, "demo function", Toast.LENGTH_LONG).show()
+    }
+}
